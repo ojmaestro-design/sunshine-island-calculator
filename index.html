@@ -314,8 +314,10 @@ select.tnat{position:absolute!important;width:1px!important;height:1px!important
 @media (max-width:640px){.tabs{grid-template-columns:repeat(3,minmax(0,1fr))}}
 /* My buildings sections */
 .subtabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:0 0 10px}
-.subtabs button{min-height:44px;padding:4px 2px;font:600 13px/1.15 var(--body);color:var(--muted);background:var(--surface);border:1.5px solid var(--line);border-radius:10px;cursor:pointer}
-.subtabs button[aria-selected="true"]{color:var(--fg);border-color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,var(--surface));font-weight:700}
+.subtabs button{min-height:44px;padding:4px 2px;font:600 13px/1.15 var(--body);color:var(--muted);background:transparent;border:1.5px solid var(--line);border-radius:10px;cursor:pointer}
+.subtabs button[aria-selected="true"]{color:#2a1d12;background:#f9e5b8;border-color:#c9a35a;font-weight:700}
+.libtabs button{min-height:44px;font:600 13px/1.15 var(--body) !important;color:var(--muted);background:transparent;border:1.5px solid var(--line);border-radius:10px}
+.libtabs button[aria-selected="true"]{color:#2a1d12;background:#f9e5b8;border-color:#c9a35a;font-weight:700 !important}
 /* Quick sum result rows on one tidy grid */
 .qline{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 10px;align-items:end}
 .qline>.first{grid-column:1/-1;min-width:0;flex:none}
@@ -351,9 +353,13 @@ tr.cur td{background:color-mix(in srgb,var(--accent) 32%,var(--surface));font-we
 tr.cur td:first-child{box-shadow:inset 6px 0 0 var(--accent)}
 .subrow{display:flex;justify-content:space-between;align-items:center;gap:8px;position:relative}.subrow .sub{margin:0}#runeq .runehint{position:static;display:block;margin:0}#runeq .runehint .helpbox{position:absolute;right:0;top:30px;width:min(340px,84vw);z-index:25;background:var(--surface2);box-shadow:0 6px 18px rgba(0,0,0,.45)}
 .runebar .runehint{display:none}
+
+/* test 125: first-time box */
+.firstbox{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 12px;margin:8px 0 10px;padding:8px 12px;border-left:4px solid var(--accent);border-radius:8px;background:var(--surface2)}
+.ocrgaps{margin:0 0 6px;font-size:14px}.ocrgaps summary{cursor:pointer;color:var(--accent-ink);min-height:32px;display:flex;align-items:center}.ocrgaps ul{margin:4px 0 0;padding-left:22px;color:var(--muted)}
 </style>
 <div class="wrap">
-  <div class="hdr"><span id="logo"></span><h1>Sunshine Island Calculator <span class="chip">Beta 0.1 · test 124</span></h1><button type="button" class="cogbtn" data-act="cog" aria-expanded="false" aria-controls="cogpanel"><span aria-hidden="true">⚙</span> Colours</button></div>
+  <div class="hdr"><span id="logo"></span><h1>Sunshine Island Calculator <span class="chip">Beta 0.1 · test 125</span></h1><button type="button" class="cogbtn" data-act="cog" aria-expanded="false" aria-controls="cogpanel"><span aria-hidden="true">⚙</span> Colours</button></div>
   <div class="card cogpanel" id="cogpanel" hidden><h2 style="margin:0 0 4px">Colours</h2><p class="sub" style="margin:0">Pick the look you like.</p><div class="cogrow">
     <button type="button" class="cogopt" data-act="look" data-v="teal" aria-pressed="true"><b>Teal</b><small>Dark green-blue, the usual look</small></button>
     <button type="button" class="cogopt" data-act="look" data-v="black" aria-pressed="false"><b>Black</b><small>Darkest, black background</small></button>
@@ -1292,8 +1298,8 @@ function renderSetup(){
   const hp=state.help&&state.help.library;
   const anyLv=Object.keys(GU).some((id)=>C.libLevel(model,setup,id)>0);
   const helpHtml=hp?`<div class="helpbox"><p><b>Start here:</b> press the <b>Start here</b> button to fill in your levels from the game's <b>Overview</b>. It is the quickest way, and you only need to do it once.</p><p><b>Production tab:</b> laid out like the game's shelves. Tap a book to set its level. A picker opens at the bottom of the screen, and the book's other volume glows. The colour shows the island. Use it to check your levels, or to change one book after you research it.</p><p><b>Padlock:</b> if you have not unlocked a shelf in the game yet, lock it here. That also locks the shelves after it. A shelf with levels set cannot be locked.</p><p><b>Saving:</b> your answers are kept in this browser as you go. The Save my setup box below gives you a text copy to keep in Notes, or to paste into another device.</p></div>`:'';
-  const startCard=anyLv?`<p class="sub" style="margin:6px 0"><button type="button" class="startlink" data-act="quickstart">Re-enter my levels from the Overview</button></p>`:`<div class="helpbox" style="margin:8px 0 10px"><p><b>First time here?</b> Start by filling in your levels from the game's <b>Overview</b>.</p><button type="button" class="btn" data-act="quickstart">Start here: fill in from the Overview</button></div>`;
-  let html=(qs||state.walkDone?'':walkCard())+(qs?`<div class="card"><h2>Fill in from the <b>Overview</b></h2><div class="row" style="margin:6px 0 10px"><button type="button" class="btn" data-act="quickdone">Done, back to my shelves</button></div>`:`<div class="card libcard"><h2>Library levels <button type="button" class="qbtn" data-act="help" data-k="library" aria-expanded="${!!hp}" aria-label="Help for this tab">?</button></h2>${helpHtml}${startCard}${ltabs}`);
+  const startCard=anyLv?`<p class="sub" style="margin:6px 0"><button type="button" class="startlink" data-act="quickstart">Re-enter my levels from the Overview</button></p>`:`<div class="firstbox"><b>First time here?</b><button type="button" class="btn" data-act="quickstart">Start here: fill in from the Overview</button></div>`;
+  let html=(qs||state.walkDone?'':walkCard())+(qs?`<div class="card"><h2>Fill in from the <b>Overview</b></h2><p style="margin:2px 0 8px"><button type="button" class="startlink" data-act="quickdone">← Back to Library</button></p>`:`<div class="card libcard"><h2>Library levels <button type="button" class="qbtn" data-act="help" data-k="library" aria-expanded="${!!hp}" aria-label="Help for this tab">?</button></h2>${helpHtml}${startCard}${ltabs}`);
   if(lt==='quick'){
     const keys=new Set();Object.keys(GU).forEach((id)=>{const m=id.match(/^(.*)_bonus_vol_\d+$/);if(m&&m[1]!=='shelter_feed')keys.add(m[1])});
     const first=OV_ORDER.filter((k)=>keys.has(k)),rest=[...keys].filter((k)=>!OV_ORDER.includes(k));
@@ -1374,7 +1380,7 @@ function ocrParse(pages){
   let gaps=0;const gl=[];
   for(let i=0;i<used.length-1;i++){const a=used[i],b=used[i+1];const last=a.rows[a.rows.length-1].k;
     if(!b.rows.some((r)=>r.k===last)){gaps++;gl.push('screenshot '+(i+1)+' to '+(i+2)+' ('+pretty(last)+' to '+pretty(b.rows[0].k)+')')}}
-  if(gaps)warn.unshift('The last row of one screenshot is not repeated at the top of the next, so I cannot prove nothing was skipped: '+gl.join('; ')+'. If you scrolled about 4 rows each time this is fine. If you scrolled further, check the products between those pairs.');
+  if(gaps)warn.unshift('Some screenshots do not overlap, so I cannot prove no row was skipped. Check your numbers below.');
   const seen={},rows=[];
   used.forEach((p,pi)=>p.rows.forEach((r,ri)=>{const prev=seen[r.k];
     if(!prev){const o={...r};seen[r.k]=o;rows.push(o);o._pi=pi;o._ri=ri;o._pl=pi;return}
@@ -1387,12 +1393,13 @@ function ocrParse(pages){
   loose.forEach((l)=>warn.push('I could not match this line: “'+l+'”.'));
   const unseen=OV_ORDER.filter((k)=>!seen[k]&&ovTotal(k)>0);
   const zeroUnseen=heading&&!gaps;
-  return{rows,warn,info,unseen,zeroUnseen,pages:pages.length}}
+  return{rows,warn,info,unseen,zeroUnseen,pages:pages.length,gapList:gl}}
 function ocrCardHtml(){const r=OCR.res;
   let h=`<div class="ocrcard"><p class="qs1" style="margin-top:0 !important"><b>3. Let the calculator read them (quickest, beta)</b></p><p class="sub">Choose all your Overview screenshots at once. They are read on this device and are not uploaded anywhere.</p><div class="row"><input type="file" id="ocrfiles" accept="image/*" multiple aria-label="Choose your Overview screenshots"><button type="button" class="btn" data-act="ocrread"${OCR.busy?' disabled':''}>Read screenshots</button></div><p class="sub" id="ocrstat" role="status" aria-live="polite" style="margin:8px 0 0">${esc(OCR.stat||'')}</p>`;
   if(r){const bad=r.rows.filter((x)=>!x.dec).length,ch=r.rows.filter((x)=>x.dec&&x.now!==x.total).length;
     h+=`<div class="ocrrev"><p><b>I read ${r.rows.length} products from ${r.pages} screenshot${r.pages>1?'s':''}.</b> ${ch} would change${bad?', '+bad+' need checking':''}. Nothing is saved until you press Use these.</p>`;
     if(r.warn.length)h+=`<ul class="ocrwarn">${r.warn.map((w)=>'<li>'+esc(w)+'</li>').join('')}</ul>`;
+    if(r.gapList&&r.gapList.length)h+=`<details class="ocrgaps"><summary>Show which</summary><ul>${r.gapList.map((w)=>'<li>'+esc(w)+'</li>').join('')}</ul><p class="sub" style="margin:4px 0 0">Tip: scroll about 4 rows between screenshots so one full row repeats.</p></details>`;
     if(r.info.length)h+=`<ul class="ocrinfo">${r.info.map((w)=>'<li>'+esc(w)+'</li>').join('')}</ul>`;
     h+=`<div class="ocrlist">${r.rows.map((x)=>{const st=!x.dec?'<span class="bad">not a value the game gives, check</span>':x.now===x.total?'same':(x.now?'was +'+x.now:'new');return `<div class="ocrrow${x.dec?'':' ocrbad'}"><span>${esc(pretty(x.k))}${x.fuzzy?' <i>(read as “'+esc(x.raw)+'”)</i>':''}</span><b>+${x.total}</b><span class="sub" style="margin:0">${st}</span></div>`}).join('')}</div>`;
     if(r.unseen.length)h+=`<p class="sub" style="margin:8px 0 0">${r.zeroUnseen?'These are not in your screenshots, so they will be set to 0: ':'These are not in your screenshots and will be left as they are: '}${esc(r.unseen.map(pretty).join(', '))}.</p>`;
