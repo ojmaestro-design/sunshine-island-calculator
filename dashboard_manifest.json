@@ -1,39 +1,39 @@
 {
- "_note": "Dashboard wiring only (not game data). To add an island, add its island file name to islands.",
- "title": "Sunshine Island Calculator",
- "library": "library.json",
- "modifiers": "modifiers.json",
- "user_stated_slider_ranges": {
-  "windmill": {
-   "min": 1,
-   "max": 5,
-   "source": "user_stated: Windmill slider x1 to x5 (recorded in the project, thread 4 prompt)"
-  }
- },
- "assumed_slider_range": {
-  "min": 1,
-  "max": 5,
-  "source": "ASSUMPTION, not seen: borrowed from the Windmill and Foundry x1 to x5; used only for a building whose file says yes without a range, range UNCONFIRMED"
- },
- "islands": [
-  "island_jade.json",
-  "island_tropicalis.json",
-  "island_haven.json"
- ],
- "shelter_products": {
-  "ids": [
-   "cup_of_coffee",
-   "bamboo",
-   "cashmere",
-   "pine_wood"
+  "_note": "Dashboard wiring only (not game data). To add an island, add its island file name to islands.",
+  "title": "Sunshine Island Calculator",
+  "library": "library.json",
+  "modifiers": "modifiers.json",
+  "user_stated_slider_ranges": {
+    "windmill": {
+      "min": 1,
+      "max": 5,
+      "source": "user_stated: Windmill slider x1 to x5 (recorded in the project, thread 4 prompt)"
+    }
+  },
+  "assumed_slider_range": {
+    "min": 1,
+    "max": 5,
+    "source": "ASSUMPTION, not seen: borrowed from the Windmill and Foundry x1 to x5; used only for a building whose file says yes without a range, range UNCONFIRMED"
+  },
+  "islands": [
+    "island_jade.json",
+    "island_tropicalis.json",
+    "island_haven.json"
   ],
-  "slots": 2,
-  "source": "user_stated 2026-10-27 (handoff section 8): the Animal Shelter animals give extra cups (coffee), bamboo, cashmere or pine wood; up to two animals at a time, so two slots with DIFFERENT products. Which animal makes which product is UNCONFIRMED until the animals file exists."
- },
- "starter_island": "starter_island.json",
- "guild_projects": "guild_projects.json",
- "cruise_cards": "cruise_cards_clean_30oct.json",
- "cruise_rules": "cruise_rules.json",
- "my_island": "my_island.json",
- "auto_my_island": true
+  "shelter_products": {
+    "ids": [
+      "cup_of_coffee",
+      "bamboo",
+      "cashmere",
+      "pine_wood"
+    ],
+    "slots": 2,
+    "source": "user_stated 2026-10-27 (handoff section 8): the Animal Shelter animals give extra cups (coffee), bamboo, cashmere or pine wood; up to two animals at a time, so two slots with DIFFERENT products. Which animal makes which product is UNCONFIRMED until the animals file exists."
+  },
+  "starter_island": "starter_island.json",
+  "guild_projects": "guild_projects.json",
+  "cruise_cards": "cruise_cards_clean_30oct.json",
+  "cruise_rules": "cruise_rules.json",
+  "my_island": "my_island.json",
+  "auto_my_island": false
 }

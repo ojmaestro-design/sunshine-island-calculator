@@ -353,7 +353,7 @@ tr.cur td:first-child{box-shadow:inset 6px 0 0 var(--accent)}
 .runebar .runehint{display:none}
 </style>
 <div class="wrap">
-  <div class="hdr"><span id="logo"></span><h1>Sunshine Island Calculator <span class="chip">Beta 0.1 · test 122</span></h1><button type="button" class="cogbtn" data-act="cog" aria-expanded="false" aria-controls="cogpanel"><span aria-hidden="true">⚙</span> Colours</button></div>
+  <div class="hdr"><span id="logo"></span><h1>Sunshine Island Calculator <span class="chip">Beta 0.1 · test 124</span></h1><button type="button" class="cogbtn" data-act="cog" aria-expanded="false" aria-controls="cogpanel"><span aria-hidden="true">⚙</span> Colours</button></div>
   <div class="card cogpanel" id="cogpanel" hidden><h2 style="margin:0 0 4px">Colours</h2><p class="sub" style="margin:0">Pick the look you like.</p><div class="cogrow">
     <button type="button" class="cogopt" data-act="look" data-v="teal" aria-pressed="true"><b>Teal</b><small>Dark green-blue, the usual look</small></button>
     <button type="button" class="cogopt" data-act="look" data-v="black" aria-pressed="false"><b>Black</b><small>Darkest, black background</small></button>
@@ -442,7 +442,7 @@ async function boot(){
     setup=C.defaultSetup(model);
     Object.keys(model.runes||{}).forEach((k)=>{setup.runes[k]=false});Object.keys(setup.runes).forEach((k)=>{setup.runes[k]=false});
     let sv=loadSaved();let fromFile=false;
-    if((!sv||!(sv.groups||[]).length)&&files.myIsland&&man.auto_my_island===true){sv=files.myIsland;fromFile=true}
+    if((!sv||!(sv.groups||[]).length)&&files.myIsland&&(man.auto_my_island===true||/[?&]me=1(&|$)/.test(location.search))){sv=files.myIsland;fromFile=true}
     state.src=fromFile?'your 28 Oct island file (nothing was saved in this browser)':(sv?'saved earlier in this browser':'nothing yet');
     const fresh=!sv;
     setup.groups=[];setup.sumRows=[];setup.storage={};setup.shelter=[];setup.tournaments=[];setup.runeStart={};setup.cellState={};
@@ -1298,7 +1298,7 @@ function renderSetup(){
     const keys=new Set();Object.keys(GU).forEach((id)=>{const m=id.match(/^(.*)_bonus_vol_\d+$/);if(m&&m[1]!=='shelter_feed')keys.add(m[1])});
     const first=OV_ORDER.filter((k)=>keys.has(k)),rest=[...keys].filter((k)=>!OV_ORDER.includes(k));
     const row=(k)=>{const b=ovBooks(k);const t=ovTotal(k);return `<div class="ovrow c-${gk(b.i1)}" data-ovk="${k}"><label><span class="ovn">${esc(pretty(k))}</span><input type="text" inputmode="numeric" data-ov="${k}" value="${t?'+'+t:'0'}" placeholder="0" autocomplete="off" aria-label="${esc(pretty(k))} total in the Overview"></label><span class="ovdec">${esc(ovDecText(k))}</span><span class="ovmsg" role="status"></span></div>`};
-    html+=`<div class="qsteps"><p class="qs1"><b>1. In the game</b></p><p class="sub">Open the Library, then press the yellow <b>Overview</b> button (top right). The game only lists products you have started. Take a screenshot each time the list scrolls, about 8 in all.</p><p class="qs1"><b>2. Find your screenshots</b></p><ul class="qdev"><li><b>iPhone or iPad:</b> Photos app, Screenshots album.</li><li><b>Android:</b> Gallery or Google Photos, Screenshots folder.</li><li><b>Windows PC:</b> Pictures, then Screenshots (if you used the Windows key plus Print Screen).</li></ul><div class="qhere"><p class="qs1"><b>3. Type the numbers here</b></p><p class="sub">Each screenshot shows about 5 products. Type the number next to each product, in the same order: 15 for +15. Type 0 for any product the game does not list. We split Volume 1 and Volume 2 into levels for you. Your entries save as you go.</p></div></div>${ocrCardHtml()}${first.map(row).join('')}${rest.map(row).join('')}<div class="row" style="margin-top:10px"><button type="button" class="btn" data-act="quickdone">Done, back to my shelves</button></div>`}
+    html+=`<div class="qsteps"><p class="qs1"><b>1. In the game</b></p><p class="sub">Open the Library, then press the yellow <b>Overview</b> button (top right). The game only lists products you have started. Take a screenshot. Then scroll up about 4 rows and take another, so the last full row you can see is at the top of the next screenshot. Keep going until you can see the <b>Delivery bonuses</b> heading (usually 9 to 11 screenshots).</p><p class="qs1"><b>2. Find your screenshots</b></p><ul class="qdev"><li><b>iPhone or iPad:</b> Photos app, Screenshots album.</li><li><b>Android:</b> Gallery or Google Photos, Screenshots folder.</li><li><b>Windows PC:</b> Pictures, then Screenshots (if you used the Windows key plus Print Screen).</li></ul></div>${ocrCardHtml()}<div class="qhere"><p class="qs1"><b>4. Check your numbers, or type them in yourself</b></p><p class="sub">If you used the scanner, the boxes below now show what it read, so fix any that look wrong. If you would rather not scan, or you are reading the game on another device, type the number next to each product, in the same order: 15 for +15. Type 0 for any product the game does not list. We split Volume 1 and Volume 2 into levels for you. Your entries save as you go.</p></div>${first.map(row).join('')}${rest.map(row).join('')}<div class="row" style="margin-top:10px"><button type="button" class="btn" data-act="quickdone">Done, back to my shelves</button></div>`}
   else if(lt==='delivery')html+=`<div style="margin:10px 0 0;min-height:260px;display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;border:1px dashed var(--line);border-radius:8px"><p class="sub" style="margin:0">The Delivery tab in the game is not used by this calculator, so there is nothing to enter here. Out of scope for now.</p></div>`;
   else if(lt==='shelter'){
     const gt=(n,w)=>`<div class="btile grey" aria-label="${n}, ${w}, not used yet"><span class="bn">${n}</span><span class="bv">${w}</span><span class="bl sm">Not used yet</span></div>`;
@@ -1377,9 +1377,9 @@ function ocrParse(pages){
   if(gaps)warn.unshift('The last row of one screenshot is not repeated at the top of the next, so I cannot prove nothing was skipped: '+gl.join('; ')+'. If you scrolled about 4 rows each time this is fine. If you scrolled further, check the products between those pairs.');
   const seen={},rows=[];
   used.forEach((p,pi)=>p.rows.forEach((r,ri)=>{const prev=seen[r.k];
-    if(!prev){const o={...r};seen[r.k]=o;rows.push(o);o._pi=pi;o._ri=ri;return}
-    const overlap=prev._pi===pi-1&&prev._ri===used[pi-1].rows.length-1&&ri===0;
-    if(overlap){if(prev.total!==r.total)warn.push(pretty(r.k)+' was read as +'+prev.total+' and +'+r.total+' on two screenshots. Check it in the game.');return}
+    if(!prev){const o={...r};seen[r.k]=o;rows.push(o);o._pi=pi;o._ri=ri;o._pl=pi;return}
+    const overlap=pi-prev._pl<=1;
+    if(overlap){prev._pl=pi;if(prev.total!==r.total)warn.push(pretty(r.k)+' was read as +'+prev.total+' and +'+r.total+' on two screenshots. Check it in the game.');return}
     if(prev.total===r.total)prev.twice=true;else{prev.conflict=r.total;warn.push(pretty(r.k)+' appears twice with different numbers (+'+prev.total+' and +'+r.total+'). I kept the first. Check the game.')}}));
   rows.forEach((r)=>{r.dec=ovDecode(r.k,r.total);r.now=ovTotal(r.k)});
   rows.filter((r)=>r.twice).forEach((r)=>info.push(pretty(r.k)+' bonus is listed twice with the same number (+'+r.total+'). I used it once.'));
@@ -1389,7 +1389,7 @@ function ocrParse(pages){
   const zeroUnseen=heading&&!gaps;
   return{rows,warn,info,unseen,zeroUnseen,pages:pages.length}}
 function ocrCardHtml(){const r=OCR.res;
-  let h=`<div class="ocrcard"><p class="qs1" style="margin-top:0 !important"><b>Or let the calculator read your screenshots (beta)</b></p><p class="sub">Choose all your Overview screenshots at once. They are read on this device and are not uploaded anywhere. Scroll about 4 rows each time, so the last full row you can see is at the top of the next screenshot. Stop once you can see the <b>Delivery bonuses</b> heading.</p><div class="row"><input type="file" id="ocrfiles" accept="image/*" multiple aria-label="Choose your Overview screenshots"><button type="button" class="btn" data-act="ocrread"${OCR.busy?' disabled':''}>Read screenshots</button></div><p class="sub" id="ocrstat" role="status" aria-live="polite" style="margin:8px 0 0">${esc(OCR.stat||'')}</p>`;
+  let h=`<div class="ocrcard"><p class="qs1" style="margin-top:0 !important"><b>3. Let the calculator read them (quickest, beta)</b></p><p class="sub">Choose all your Overview screenshots at once. They are read on this device and are not uploaded anywhere.</p><div class="row"><input type="file" id="ocrfiles" accept="image/*" multiple aria-label="Choose your Overview screenshots"><button type="button" class="btn" data-act="ocrread"${OCR.busy?' disabled':''}>Read screenshots</button></div><p class="sub" id="ocrstat" role="status" aria-live="polite" style="margin:8px 0 0">${esc(OCR.stat||'')}</p>`;
   if(r){const bad=r.rows.filter((x)=>!x.dec).length,ch=r.rows.filter((x)=>x.dec&&x.now!==x.total).length;
     h+=`<div class="ocrrev"><p><b>I read ${r.rows.length} products from ${r.pages} screenshot${r.pages>1?'s':''}.</b> ${ch} would change${bad?', '+bad+' need checking':''}. Nothing is saved until you press Use these.</p>`;
     if(r.warn.length)h+=`<ul class="ocrwarn">${r.warn.map((w)=>'<li>'+esc(w)+'</li>').join('')}</ul>`;
