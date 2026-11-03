@@ -225,6 +225,10 @@ a{color:var(--accent-ink)}
 .pstrip .btn.pbtn.on{background:var(--accent);color:var(--accent-fg);border-color:var(--accent);font-weight:700;box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 45%,transparent)}
 .footer [data-act="look"][aria-pressed="true"]{font-weight:700;color:var(--fg);text-decoration:none}
 .qsteps p{margin:0 0 4px}.qs1{margin-top:10px !important}.qdev{margin:0 0 6px;padding-left:20px;font-size:14px;line-height:1.5}.qdev li{margin:2px 0}
+.ocrcard{margin:12px 0;padding:10px 12px;border:1px dashed var(--line);border-radius:10px}.ocrcard input[type=file]{max-width:100%;color:var(--fg);font-size:14px;margin:0 8px 6px 0}.ocrcard .row{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.ocrrev{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}.ocrwarn,.ocrinfo{margin:6px 0;padding:6px 10px 6px 26px;font-size:14px;line-height:1.4}.ocrwarn{background:var(--unc-bg);color:var(--unc-fg);border:1px solid var(--unc-line);border-radius:8px}.ocrinfo{color:var(--muted)}
+.ocrlist{margin-top:6px;max-height:340px;overflow:auto}.ocrrow{display:grid;grid-template-columns:1fr auto minmax(70px,auto);gap:8px;padding:4px 0;border-top:1px solid var(--line);font-size:14px;align-items:baseline}.ocrrow i{color:var(--muted);font-size:12px}.ocrbad{background:var(--unc-bg)}
+
 .qhere{border-left:4px solid var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface));border-radius:8px;padding:6px 10px 8px;margin:10px 0 8px}
 .rstrip{position:sticky;top:0;z-index:6;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 18px;padding:7px 12px;margin:0 0 10px;border:2px solid var(--accent);border-radius:12px;background:var(--surface2);color:var(--fg);box-shadow:0 4px 10px rgba(0,0,0,.35)}
 .rstrip .rlab{font:600 11px var(--body);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
@@ -349,7 +353,7 @@ tr.cur td:first-child{box-shadow:inset 6px 0 0 var(--accent)}
 .runebar .runehint{display:none}
 </style>
 <div class="wrap">
-  <div class="hdr"><span id="logo"></span><h1>Sunshine Island Calculator <span class="chip">Beta 0.1 · test 121</span></h1><button type="button" class="cogbtn" data-act="cog" aria-expanded="false" aria-controls="cogpanel"><span aria-hidden="true">⚙</span> Colours</button></div>
+  <div class="hdr"><span id="logo"></span><h1>Sunshine Island Calculator <span class="chip">Beta 0.1 · test 122</span></h1><button type="button" class="cogbtn" data-act="cog" aria-expanded="false" aria-controls="cogpanel"><span aria-hidden="true">⚙</span> Colours</button></div>
   <div class="card cogpanel" id="cogpanel" hidden><h2 style="margin:0 0 4px">Colours</h2><p class="sub" style="margin:0">Pick the look you like.</p><div class="cogrow">
     <button type="button" class="cogopt" data-act="look" data-v="teal" aria-pressed="true"><b>Teal</b><small>Dark green-blue, the usual look</small></button>
     <button type="button" class="cogopt" data-act="look" data-v="black" aria-pressed="false"><b>Black</b><small>Darkest, black background</small></button>
@@ -1294,7 +1298,7 @@ function renderSetup(){
     const keys=new Set();Object.keys(GU).forEach((id)=>{const m=id.match(/^(.*)_bonus_vol_\d+$/);if(m&&m[1]!=='shelter_feed')keys.add(m[1])});
     const first=OV_ORDER.filter((k)=>keys.has(k)),rest=[...keys].filter((k)=>!OV_ORDER.includes(k));
     const row=(k)=>{const b=ovBooks(k);const t=ovTotal(k);return `<div class="ovrow c-${gk(b.i1)}" data-ovk="${k}"><label><span class="ovn">${esc(pretty(k))}</span><input type="text" inputmode="numeric" data-ov="${k}" value="${t?'+'+t:'0'}" placeholder="0" autocomplete="off" aria-label="${esc(pretty(k))} total in the Overview"></label><span class="ovdec">${esc(ovDecText(k))}</span><span class="ovmsg" role="status"></span></div>`};
-    html+=`<div class="qsteps"><p class="qs1"><b>1. In the game</b></p><p class="sub">Open the Library, then press the yellow <b>Overview</b> button (top right). The game only lists products you have started. Take a screenshot each time the list scrolls, about 8 in all.</p><p class="qs1"><b>2. Find your screenshots</b></p><ul class="qdev"><li><b>iPhone or iPad:</b> Photos app, Screenshots album.</li><li><b>Android:</b> Gallery or Google Photos, Screenshots folder.</li><li><b>Windows PC:</b> Pictures, then Screenshots (if you used the Windows key plus Print Screen).</li></ul><div class="qhere"><p class="qs1"><b>3. Type the numbers here</b></p><p class="sub">Each screenshot shows about 5 products. Type the number next to each product, in the same order: 15 for +15. Type 0 for any product the game does not list. We split Volume 1 and Volume 2 into levels for you. Your entries save as you go.</p></div></div>${first.map(row).join('')}${rest.map(row).join('')}<div class="row" style="margin-top:10px"><button type="button" class="btn" data-act="quickdone">Done, back to my shelves</button></div>`}
+    html+=`<div class="qsteps"><p class="qs1"><b>1. In the game</b></p><p class="sub">Open the Library, then press the yellow <b>Overview</b> button (top right). The game only lists products you have started. Take a screenshot each time the list scrolls, about 8 in all.</p><p class="qs1"><b>2. Find your screenshots</b></p><ul class="qdev"><li><b>iPhone or iPad:</b> Photos app, Screenshots album.</li><li><b>Android:</b> Gallery or Google Photos, Screenshots folder.</li><li><b>Windows PC:</b> Pictures, then Screenshots (if you used the Windows key plus Print Screen).</li></ul><div class="qhere"><p class="qs1"><b>3. Type the numbers here</b></p><p class="sub">Each screenshot shows about 5 products. Type the number next to each product, in the same order: 15 for +15. Type 0 for any product the game does not list. We split Volume 1 and Volume 2 into levels for you. Your entries save as you go.</p></div></div>${ocrCardHtml()}${first.map(row).join('')}${rest.map(row).join('')}<div class="row" style="margin-top:10px"><button type="button" class="btn" data-act="quickdone">Done, back to my shelves</button></div>`}
   else if(lt==='delivery')html+=`<div style="margin:10px 0 0;min-height:260px;display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;border:1px dashed var(--line);border-radius:8px"><p class="sub" style="margin:0">The Delivery tab in the game is not used by this calculator, so there is nothing to enter here. Out of scope for now.</p></div>`;
   else if(lt==='shelter'){
     const gt=(n,w)=>`<div class="btile grey" aria-label="${n}, ${w}, not used yet"><span class="bn">${n}</span><span class="bv">${w}</span><span class="bl sm">Not used yet</span></div>`;
@@ -1338,6 +1342,76 @@ function openPick(id){closePick();const sel=document.querySelector('select[data-
   el.innerHTML='<div class="pk-head"><div><strong>'+esc(tile.getAttribute('aria-label').split('. Level')[0].split(', ')[0])+'</strong><div class="pk-sub">'+esc(tile.getAttribute('aria-label').split('. Level')[0].split(', ').slice(1).join(', '))+'</div></div><button type="button" class="pk-x" data-act="pickclose" aria-label="Done">Done</button></div><div class="pk-grid">'+opts+'</div><div class="pk-status" role="status" aria-live="polite">Tap a level to set it. Nothing closes until you press Done.</div>'+(info?'<div class="pk-pair"><span>'+esc(info.txt)+'</span><button type="button" data-act="pickswitch" data-id="'+info.other+'">Go to it</button></div>':'');
   (document.getElementById('panel')||document.body).appendChild(el);const r=tile.getBoundingClientRect();try{window.scrollBy({top:r.top-130,behavior:'smooth'})}catch(_){}}
 function ovDecText(k){const b=ovBooks(k);const t=ovTotal(k);if(!t)return'';return'Vol 1: level '+C.libLevel(model,setup,b.i1)+' of '+b.v1.max_level+(b.v2?'. Vol 2: level '+C.libLevel(model,setup,b.i2)+' of '+b.v2.max_level:'')}
+
+/* ---- READ THE OVERVIEW FROM SCREENSHOTS (runs on this device, nothing is uploaded) ---- */
+const OCR={worker:null,busy:false,res:null,stat:''};
+const ocrNorm=(s)=>String(s).toLowerCase().replace(/[^a-z]/g,'');
+const OVN={};OV_ORDER.forEach((k)=>{OVN[ocrNorm(k.replace(/_/g,' '))]=k});
+function ocrLev(a,b){const m=a.length,n=b.length;let p=Array.from({length:n+1},(_,j)=>j);for(let i=1;i<=m;i++){const c=[i];for(let j=1;j<=n;j++)c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]===b[j-1]?0:1));p=c}return p[n]}
+function ocrMatch(name){const t=name.trim().split(/\s+/);
+  for(let i=0;i<t.length;i++){const k=OVN[ocrNorm(t.slice(i).join(' '))];if(k)return{k,fuzzy:false}}
+  let best=null,bd=99;
+  for(let i=0;i<Math.min(t.length,3);i++){const n=ocrNorm(t.slice(i).join(' '));if(n.length<4)continue;for(const k of OV_ORDER){const d=ocrLev(n,ocrNorm(k.replace(/_/g,' ')));if(d<bd){bd=d;best=k}}}
+  return best&&bd<=Math.max(1,Math.floor(ocrNorm(best.replace(/_/g,' ')).length/6))?{k:best,fuzzy:true}:null}
+function ocrParse(pages){
+  const warn=[],info=[],loose=[];let heading=false;
+  const P=pages.map((pg,pi)=>{const rows=[];let stop=false;
+    String(pg.text).split(/\r?\n/).forEach((ln)=>{ln=ln.trim();if(!ln)return;
+      if(/deliver\w*\s*bonus/i.test(ln)){stop=true;heading=true;return}
+      if(stop)return;
+      let m=ln.match(/([A-Za-z][A-Za-z ]*?)\s+bonus\s+\+?(\d+)\s*$/i);
+      if(!m){const m2=ln.match(/([A-Za-z][A-Za-z ]*?)\s+\+(\d+)\s*$/);if(m2&&ocrMatch(m2[1]))m=m2;else return}
+      if(/^\W*(market|plane|ship)\b/i.test(ln))return;
+      const f=ocrMatch(m[1]);
+      if(!f){loose.push(ln);return}
+      rows.push({k:f.k,total:parseInt(m[2],10),fuzzy:f.fuzzy,raw:m[1].trim()})});
+    return{name:pg.name,rows,idx:0}});
+  P.forEach((p)=>{p.idx=p.rows.length?OV_ORDER.indexOf(p.rows[0].k):999});
+  P.sort((a,b)=>a.idx-b.idx);
+  const used=P.filter((p)=>p.rows.length);
+  const empty=P.length-used.length;
+  if(empty)info.push(empty+' screenshot'+(empty>1?'s had':' had')+' no product rows I could read (that is fine for a Delivery-only screenshot).');
+  let gaps=0;const gl=[];
+  for(let i=0;i<used.length-1;i++){const a=used[i],b=used[i+1];const last=a.rows[a.rows.length-1].k;
+    if(!b.rows.some((r)=>r.k===last)){gaps++;gl.push('screenshot '+(i+1)+' to '+(i+2)+' ('+pretty(last)+' to '+pretty(b.rows[0].k)+')')}}
+  if(gaps)warn.unshift('The last row of one screenshot is not repeated at the top of the next, so I cannot prove nothing was skipped: '+gl.join('; ')+'. If you scrolled about 4 rows each time this is fine. If you scrolled further, check the products between those pairs.');
+  const seen={},rows=[];
+  used.forEach((p,pi)=>p.rows.forEach((r,ri)=>{const prev=seen[r.k];
+    if(!prev){const o={...r};seen[r.k]=o;rows.push(o);o._pi=pi;o._ri=ri;return}
+    const overlap=prev._pi===pi-1&&prev._ri===used[pi-1].rows.length-1&&ri===0;
+    if(overlap){if(prev.total!==r.total)warn.push(pretty(r.k)+' was read as +'+prev.total+' and +'+r.total+' on two screenshots. Check it in the game.');return}
+    if(prev.total===r.total)prev.twice=true;else{prev.conflict=r.total;warn.push(pretty(r.k)+' appears twice with different numbers (+'+prev.total+' and +'+r.total+'). I kept the first. Check the game.')}}));
+  rows.forEach((r)=>{r.dec=ovDecode(r.k,r.total);r.now=ovTotal(r.k)});
+  rows.filter((r)=>r.twice).forEach((r)=>info.push(pretty(r.k)+' bonus is listed twice with the same number (+'+r.total+'). I used it once.'));
+  if(!heading)warn.push('I did not see the “Delivery bonuses” heading, so the list may stop early. Products I did not read are left as they are.');
+  loose.forEach((l)=>warn.push('I could not match this line: “'+l+'”.'));
+  const unseen=OV_ORDER.filter((k)=>!seen[k]&&ovTotal(k)>0);
+  const zeroUnseen=heading&&!gaps;
+  return{rows,warn,info,unseen,zeroUnseen,pages:pages.length}}
+function ocrCardHtml(){const r=OCR.res;
+  let h=`<div class="ocrcard"><p class="qs1" style="margin-top:0 !important"><b>Or let the calculator read your screenshots (beta)</b></p><p class="sub">Choose all your Overview screenshots at once. They are read on this device and are not uploaded anywhere. Scroll about 4 rows each time, so the last full row you can see is at the top of the next screenshot. Stop once you can see the <b>Delivery bonuses</b> heading.</p><div class="row"><input type="file" id="ocrfiles" accept="image/*" multiple aria-label="Choose your Overview screenshots"><button type="button" class="btn" data-act="ocrread"${OCR.busy?' disabled':''}>Read screenshots</button></div><p class="sub" id="ocrstat" role="status" aria-live="polite" style="margin:8px 0 0">${esc(OCR.stat||'')}</p>`;
+  if(r){const bad=r.rows.filter((x)=>!x.dec).length,ch=r.rows.filter((x)=>x.dec&&x.now!==x.total).length;
+    h+=`<div class="ocrrev"><p><b>I read ${r.rows.length} products from ${r.pages} screenshot${r.pages>1?'s':''}.</b> ${ch} would change${bad?', '+bad+' need checking':''}. Nothing is saved until you press Use these.</p>`;
+    if(r.warn.length)h+=`<ul class="ocrwarn">${r.warn.map((w)=>'<li>'+esc(w)+'</li>').join('')}</ul>`;
+    if(r.info.length)h+=`<ul class="ocrinfo">${r.info.map((w)=>'<li>'+esc(w)+'</li>').join('')}</ul>`;
+    h+=`<div class="ocrlist">${r.rows.map((x)=>{const st=!x.dec?'<span class="bad">not a value the game gives, check</span>':x.now===x.total?'same':(x.now?'was +'+x.now:'new');return `<div class="ocrrow${x.dec?'':' ocrbad'}"><span>${esc(pretty(x.k))}${x.fuzzy?' <i>(read as “'+esc(x.raw)+'”)</i>':''}</span><b>+${x.total}</b><span class="sub" style="margin:0">${st}</span></div>`}).join('')}</div>`;
+    if(r.unseen.length)h+=`<p class="sub" style="margin:8px 0 0">${r.zeroUnseen?'These are not in your screenshots, so they will be set to 0: ':'These are not in your screenshots and will be left as they are: '}${esc(r.unseen.map(pretty).join(', '))}.</p>`;
+    h+=`<div class="row" style="margin-top:10px"><button type="button" class="btn" data-act="ocrapply">Use these</button><button type="button" class="btn ghost" data-act="ocrcancel">Cancel</button></div></div>`}
+  return h+'</div>'}
+function ocrLoad(){return new Promise((res,rej)=>{if(window.Tesseract)return res();const s=document.createElement('script');s.src='ocr-lib/tesseract.min.js';s.onload=()=>res();s.onerror=()=>rej(new Error('The reader files did not load. Open the calculator from its web address, not from a saved file.'));document.head.appendChild(s)})}
+async function ocrWorker(){if(OCR.worker)return OCR.worker;await ocrLoad();OCR.worker=await Tesseract.createWorker('eng',1,{workerPath:'ocr-lib/worker.min.js',corePath:'ocr-lib/',langPath:'ocr-lib/lang',gzip:true,workerBlobURL:false});return OCR.worker}
+async function ocrRun(){if(OCR.busy)return;const inp=document.getElementById('ocrfiles'),st=document.getElementById('ocrstat');const files=inp?[...inp.files]:[];
+  if(!files.length){if(st)st.textContent='Choose your screenshots first, then press Read screenshots.';return}
+  OCR.busy=true;OCR.res=null;const btn=document.querySelector('[data-act="ocrread"]');if(btn)btn.disabled=true;
+  try{if(st)st.textContent='Getting the reader ready…';const w=await ocrWorker();const pages=[];
+    for(let i=0;i<files.length;i++){const s2=document.getElementById('ocrstat');if(s2)s2.textContent='Reading screenshot '+(i+1)+' of '+files.length+'…';const r=await w.recognize(files[i]);pages.push({name:files[i].name,text:r.data.text})}
+    OCR.res=ocrParse(pages);OCR.stat=''}
+  catch(e){OCR.stat='Could not read the screenshots: '+((e&&e.message)||e)}
+  OCR.busy=false;render()}
+function ocrApply(){const r=OCR.res;if(!r)return;let n=0,z=0;
+  r.rows.forEach((x)=>{if(!x.dec)return;const b=ovBooks(x.k);setup.library[b.i1]=x.dec.l1;if(b.v2)setup.library[b.i2]=x.dec.l2;n++});
+  if(r.zeroUnseen)r.unseen.forEach((k)=>{const b=ovBooks(k);setup.library[b.i1]=0;if(b.v2)setup.library[b.i2]=0;z++});
+  save();OCR.res=null;OCR.stat='Saved '+n+' products'+(z?' and set '+z+' to 0':'')+'. Check the numbers below and fix any that look wrong.';render()}
 
 /* ---- DATA & FLAGS (for checking the files) ---- */
 function renderData(){
@@ -1455,6 +1529,9 @@ document.addEventListener('click',(e)=>{
   if(a==='bsec'){state.bsec=b.dataset.s;render();const st=document.querySelector('.subtabs');if(st){try{st.scrollIntoView({block:'nearest'})}catch(_){}}return}
   if(a==='look'){setLook(b.dataset.v);return}
   if(a==='cog'){const p=document.getElementById('cogpanel');if(p){p.hidden=!p.hidden;b.setAttribute('aria-expanded',String(!p.hidden))}return}
+  if(a==='ocrread'){ocrRun();return}
+  if(a==='ocrapply'){ocrApply();return}
+  if(a==='ocrcancel'){OCR.res=null;OCR.stat='';render();return}
   if(a==='quickstart'||a==='quickdone'){state.libscreen=a==='quickstart'?'quick':null;if(a==='quickdone')state.libtab='production';render();try{window.scrollTo(0,0)}catch(_){}return}
   if(a==='pick'){openPick(b.dataset.id);return}
   if(a==='pickclose'){const id=(document.getElementById('picksheet')||{dataset:{}}).dataset.id;closePick();if(id)pairHint(id,true);return}
