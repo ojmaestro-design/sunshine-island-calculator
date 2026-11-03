@@ -1,0 +1,5289 @@
+{
+ "meta": {
+  "file": "island_tropicalis.json",
+  "status": "ISLAND_TROPICALIS_v1_PASS1",
+  "date": "2026-10-27",
+  "island": "tropicalis",
+  "sources": "screenshots IMG_3052, IMG_3053, IMG_3054, IMG_3055, IMG_3056 (photo-grid captures of the Library building panels, taken 00:50-00:52 on 27 Oct 2026) plus 5 single-panel screenshots at 01:07-01:10 (Coffee brewery Lvl 1-5, Bar Lvl 1-5 and 7-11, Instrument maker Lvl 1-8); user_stated: scrolled to the last level",
+  "value_type": "every output_qty is displayed_output: includes Jo's Library bonuses at the time. Plantation rows were recorded with the Plantations rune OFF (user_stated). Never base",
+  "coin_note": "coin inputs are as displayed; the Tropicalis happiness penalty at capture was NOT recorded (UNCONFIRMED), so no coin_inputs_include_happiness_penalty_pct field is set",
+  "row_status_legend": {
+   "seen": "read from a screenshot or typed by Jo",
+   "estimated": "never seen; computed; flagged HYPOTHESIS; about +/-1-2",
+   "NOT_YET_SEEN": "not recorded and not estimated"
+  },
+  "scope": "Lvl 1-5 and the top five levels per table, middle levels estimated (same as island_jade.json). Stars (visible on every panel), build cost, build time, land not recorded",
+  "field_names": "producer_id, product_id, level, cycle_minutes, output_qty, mode (regular/fine/instant/none), inputs [{product_id, qty}]; second animal output is manure",
+  "rune_note": "Plantation tables: plantations_rune_active_when_recorded = false (user_stated 27 Oct 01:10)",
+  "last_capture": "2026-10-28 23:59 Tropicalis batch 2 (8 Plantation tables, Lvl 7-11, 40 rows): coffee beans Regular/Fine/Instant, cotton Regular/Instant, silk cocoon Regular/Fine/Instant; seen on screenshot, post-28-Oct update (game version 1.3.40251). Earlier: 23:30 Tropicalis batch 1 (9 tables, 45 rows)",
+  "game_version": "iOS App Store 1.3.40251 (released 28 Oct 2026)"
+ },
+ "producers": [
+  {
+   "producer_id": "plantation",
+   "library_name": "Plantations",
+   "island": "tropicalis",
+   "category": "plantation",
+   "max_level": 16,
+   "max_level_source": "last row shown on the screenshots scrolled to the last level (user instruction 2026-10-27)",
+   "modes": [
+    "regular",
+    "fine",
+    "instant"
+   ],
+   "has_batch_slider": "no slider believed (user_stated 2026-10-27 01:15: 'I don't believe any of the others have a batch slider', she will check); UNCONFIRMED",
+   "product_tabs_checked": [
+    "coffee_beans",
+    "cotton",
+    "silk_cocoon"
+   ],
+   "max_owned": "no_limit_shown",
+   "tables": [
+    {
+     "producer_id": "plantation",
+     "product_id": "coffee_beans",
+     "mode": "regular",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 10,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "coins",
+       "qty": 251
+      }
+     ],
+     "cycle_minutes": 10,
+     "plantations_rune_active_when_recorded": false,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 20
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 22
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 24
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 27
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 31
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 35,
+       "xp": 22,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 40,
+       "xp": 30,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 46,
+       "xp": 39,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 53,
+       "xp": 52,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 62,
+       "xp": 67,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 72,
+       "xp": 87,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 84
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 99
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 117
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 138
+      },
+      {
+       "level": 16,
+       "status": "seen",
+       "output_qty": 164
+      }
+     ],
+     "seen_count": 16,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "Plantations rune NOT active when recorded: user_stated 2026-10-27 01:10, and these tables equal the non-rune Palm wood / Cotton roll tables at every seen level. 28 Oct 2026 post-28-Oct update: Lvl 7-11 seen on screenshot (output, xp; coins/input and time as the table-level values, no differences); Lvl 6 seen 28 Oct 23:30 (35, equals the estimate); no estimated levels remain"
+    },
+    {
+     "producer_id": "plantation",
+     "product_id": "coffee_beans",
+     "mode": "fine",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 10,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "fine_coffee_beans_input",
+       "qty": 1
+      }
+     ],
+     "cycle_minutes": 10,
+     "plantations_rune_active_when_recorded": false,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 25
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 28
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 32
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 36
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 41
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 47,
+       "xp": 22,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 55,
+       "xp": 30,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 64,
+       "xp": 39,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 74,
+       "xp": 52,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 87,
+       "xp": 67,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 103,
+       "xp": 87,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 121
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 144
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 170
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 203
+      },
+      {
+       "level": 16,
+       "status": "seen",
+       "output_qty": 241
+      }
+     ],
+     "seen_count": 16,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "Plantations rune NOT active when recorded: user_stated 2026-10-27 01:10, and these tables equal the non-rune Palm wood / Cotton roll tables at every seen level. Fine/Instant input item name not shown on the table (blue/purple bucket icon): id is a placeholder, UNCONFIRMED. 28 Oct 2026 post-28-Oct update: Lvl 6-10 seen on screenshot (15:48) (output, xp; coins/input and time as the table-level values, no differences); Lvl 11 and Lvl 7-10 seen 28 Oct 23:59 batch 2 (screenshot, post-28-Oct update); no estimated levels remain"
+    },
+    {
+     "producer_id": "plantation",
+     "product_id": "coffee_beans",
+     "mode": "instant",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 10,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "instant_coffee_beans_input",
+       "qty": 1
+      }
+     ],
+     "cycle_minutes": null,
+     "cycle_label": "Instant",
+     "plantations_rune_active_when_recorded": false,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 27
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 30
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 34
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 39
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 45
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 52,
+       "xp": 22,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 61,
+       "previous_estimate_output_qty": 60,
+       "xp": 30,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 71,
+       "xp": 39,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 83,
+       "xp": 52,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 98,
+       "previous_estimate_output_qty": 97,
+       "xp": 67,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 115,
+       "xp": 87,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 136
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 162
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 192
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 228
+      },
+      {
+       "level": 16,
+       "status": "seen",
+       "output_qty": 272
+      }
+     ],
+     "seen_count": 16,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "Plantations rune NOT active when recorded: user_stated 2026-10-27 01:10, and these tables equal the non-rune Palm wood / Cotton roll tables at every seen level. Fine/Instant input item name not shown on the table (blue/purple bucket icon): id is a placeholder, UNCONFIRMED. 28 Oct 2026 post-28-Oct update: Lvl 6-10 seen on screenshot (15:48) (output, xp; coins/input and time as the table-level values, no differences); Lvl 11 and Lvl 7-10 seen 28 Oct 23:59 batch 2 (screenshot, post-28-Oct update); no estimated levels remain"
+    },
+    {
+     "producer_id": "plantation",
+     "product_id": "cotton",
+     "mode": "regular",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 10,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "coins",
+       "qty": 754
+      }
+     ],
+     "cycle_minutes": 30,
+     "plantations_rune_active_when_recorded": false,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 30
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 34
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 39
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 45
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 51
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 60,
+       "previous_estimate_output_qty": 59,
+       "xp": 35,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 70,
+       "previous_estimate_output_qty": 69,
+       "xp": 45,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 82,
+       "previous_estimate_output_qty": 81,
+       "xp": 57,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 96,
+       "xp": 73,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 113,
+       "xp": 93,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 134,
+       "xp": 118,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 159
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 188
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 224
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 267
+      },
+      {
+       "level": 16,
+       "status": "seen",
+       "output_qty": 318
+      }
+     ],
+     "seen_count": 16,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "Plantations rune NOT active when recorded: user_stated 2026-10-27 01:10, and these tables equal the non-rune Palm wood / Cotton roll tables at every seen level. 28 Oct 2026 post-28-Oct update: Lvl 6-10 seen on screenshot (15:48) (output, xp; coins/input and time as the table-level values, no differences); Lvl 11 and Lvl 7-10 seen 28 Oct 23:59 batch 2 (screenshot, post-28-Oct update); no estimated levels remain"
+    },
+    {
+     "producer_id": "plantation",
+     "product_id": "cotton",
+     "mode": "fine",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 10,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "fine_cotton_input",
+       "qty": 1
+      }
+     ],
+     "cycle_minutes": 30,
+     "plantations_rune_active_when_recorded": false,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 40
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 46
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 53
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 62
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 72
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 85,
+       "previous_estimate_output_qty": 84,
+       "xp": 35,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 100,
+       "previous_estimate_output_qty": 99,
+       "xp": 45,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 117,
+       "xp": 57,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 139,
+       "xp": 73,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 165,
+       "xp": 93,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 196,
+       "xp": 118,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 233
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 277
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 331
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 395
+      },
+      {
+       "level": 16,
+       "status": "seen",
+       "output_qty": 472
+      }
+     ],
+     "seen_count": 16,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "Plantations rune NOT active when recorded: user_stated 2026-10-27 01:10, and these tables equal the non-rune Palm wood / Cotton roll tables at every seen level. Fine/Instant input item name not shown on the table (blue/purple bucket icon): id is a placeholder, UNCONFIRMED. 28 Oct 2026 post-28-Oct update: Lvl 7-11 seen on screenshot (output, xp; coins/input and time as the table-level values, no differences); Lvl 6 seen 28 Oct 23:30: 85 (estimate was 84, seen higher by 1; previous_estimate_output_qty kept); no estimated levels remain"
+    },
+    {
+     "producer_id": "plantation",
+     "product_id": "cotton",
+     "mode": "instant",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 10,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "instant_cotton_input",
+       "qty": 1
+      }
+     ],
+     "cycle_minutes": null,
+     "cycle_label": "Instant",
+     "plantations_rune_active_when_recorded": false,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 43
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 50
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 58
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 67
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 78
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 92,
+       "xp": 35,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 109,
+       "previous_estimate_output_qty": 108,
+       "xp": 45,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 128,
+       "xp": 57,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 152,
+       "previous_estimate_output_qty": 151,
+       "xp": 73,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 180,
+       "xp": 93,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 214,
+       "xp": 118,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 255
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 304
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 363
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 434
+      },
+      {
+       "level": 16,
+       "status": "seen",
+       "output_qty": 518
+      }
+     ],
+     "seen_count": 16,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "Plantations rune NOT active when recorded: user_stated 2026-10-27 01:10, and these tables equal the non-rune Palm wood / Cotton roll tables at every seen level. Fine/Instant input item name not shown on the table (blue/purple bucket icon): id is a placeholder, UNCONFIRMED. 28 Oct 2026 post-28-Oct update: Lvl 6-10 seen on screenshot (15:48) (output, xp; coins/input and time as the table-level values, no differences); Lvl 11 and Lvl 7-10 seen 28 Oct 23:59 batch 2 (screenshot, post-28-Oct update); no estimated levels remain"
+    },
+    {
+     "producer_id": "plantation",
+     "product_id": "silk_cocoon",
+     "mode": "regular",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 15,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "coins",
+       "qty": 1507
+      }
+     ],
+     "cycle_minutes": 60,
+     "plantations_rune_active_when_recorded": false,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 45
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 51
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 58
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 67
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 77
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 90,
+       "previous_estimate_output_qty": 89,
+       "xp": 52,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 105,
+       "previous_estimate_output_qty": 104,
+       "xp": 66,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 122,
+       "xp": 82,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 144,
+       "xp": 103,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 170,
+       "xp": 129,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 201,
+       "xp": 161,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 238
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 282
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 336
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 400
+      },
+      {
+       "level": 16,
+       "status": "seen",
+       "output_qty": 477
+      }
+     ],
+     "seen_count": 16,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "Plantations rune NOT active when recorded: user_stated 2026-10-27 01:10, and these tables equal the non-rune Palm wood / Cotton roll tables at every seen level. 28 Oct 2026 post-28-Oct update: Lvl 6-10 seen on screenshot (15:48) (output, xp; coins/input and time as the table-level values, no differences); Lvl 11 and Lvl 7-10 seen 28 Oct 23:59 batch 2 (screenshot, post-28-Oct update); no estimated levels remain"
+    },
+    {
+     "producer_id": "plantation",
+     "product_id": "silk_cocoon",
+     "mode": "fine",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 15,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "fine_silk_cocoon_input",
+       "qty": 1
+      }
+     ],
+     "cycle_minutes": 60,
+     "plantations_rune_active_when_recorded": false,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 60
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 69
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 80
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 93
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 108
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 127,
+       "xp": 52,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 149,
+       "xp": 66,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 176,
+       "xp": 82,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 208,
+       "xp": 103,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 247,
+       "xp": 129,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 294,
+       "previous_estimate_output_qty": 293,
+       "xp": 161,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 349
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 416
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 496
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 593
+      },
+      {
+       "level": 16,
+       "status": "seen",
+       "output_qty": 708
+      }
+     ],
+     "seen_count": 16,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "Plantations rune NOT active when recorded: user_stated 2026-10-27 01:10, and these tables equal the non-rune Palm wood / Cotton roll tables at every seen level. Fine/Instant input item name not shown on the table (blue/purple bucket icon): id is a placeholder, UNCONFIRMED. 28 Oct 2026 post-28-Oct update: Lvl 6-10 seen on screenshot (15:48) (output, xp; coins/input and time as the table-level values, no differences); Lvl 11 and Lvl 7-10 seen 28 Oct 23:59 batch 2 (screenshot, post-28-Oct update); no estimated levels remain"
+    },
+    {
+     "producer_id": "plantation",
+     "product_id": "silk_cocoon",
+     "mode": "instant",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 15,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "instant_silk_cocoon_input",
+       "qty": 1
+      }
+     ],
+     "cycle_minutes": null,
+     "cycle_label": "Instant",
+     "plantations_rune_active_when_recorded": false,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 65
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 75
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 87
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 101
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 119
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 139,
+       "previous_estimate_output_qty": 140,
+       "xp": 52,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 164,
+       "previous_estimate_output_qty": 165,
+       "xp": 66,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 194,
+       "previous_estimate_output_qty": 195,
+       "xp": 82,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 230,
+       "xp": 103,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 273,
+       "xp": 129,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 325,
+       "xp": 161,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 387
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 461
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 550
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 657
+      },
+      {
+       "level": 16,
+       "status": "seen",
+       "output_qty": 785
+      }
+     ],
+     "seen_count": 16,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "Plantations rune NOT active when recorded: user_stated 2026-10-27 01:10, and these tables equal the non-rune Palm wood / Cotton roll tables at every seen level. Fine/Instant input item name not shown on the table (blue/purple bucket icon): id is a placeholder, UNCONFIRMED. 28 Oct 2026 post-28-Oct update: Lvl 6-10 seen on screenshot (15:48) (output, xp; coins/input and time as the table-level values, no differences); Lvl 11 and Lvl 7-10 seen 28 Oct 23:59 batch 2 (screenshot, post-28-Oct update); no estimated levels remain"
+    }
+   ],
+   "notes": "Plantations rune covers coffee_beans, cotton, silk_cocoon (modifiers.json)",
+   "product_per_building": "user_stated 2026-10-27 01:19: the product is CHOSEN BY THE PLAYER PER BUILDING and changes with the current task; any plantation may have no output running. Calculator needs a per-building product dropdown (coffee beans / cotton / silk cocoon) plus a Regular/Fine/Instant mode; no fixed product"
+  },
+  {
+   "producer_id": "ostrich_farm",
+   "library_name": "Ostrich Farms",
+   "island": "tropicalis",
+   "category": "animal",
+   "max_level": 16,
+   "max_level_source": "last row shown on the screenshots scrolled to the last level (user instruction 2026-10-27)",
+   "modes": [
+    "regular",
+    "fine",
+    "instant"
+   ],
+   "has_batch_slider": "no slider believed (user_stated 2026-10-27 01:15: 'I don't believe any of the others have a batch slider', she will check); UNCONFIRMED",
+   "product_tabs_checked": [
+    "feather"
+   ],
+   "max_owned": "no_limit_shown",
+   "tables": [
+    {
+     "producer_id": "ostrich_farm",
+     "product_id": "feather",
+     "mode": "regular",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 45,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "coins",
+       "qty": 9043
+      },
+      {
+       "product_id": "ostrich_feed",
+       "qty": 1
+      }
+     ],
+     "cycle_minutes": 360,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 135,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 93
+       }
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 153,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 111
+       }
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 175,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 133
+       }
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 201,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 159
+       }
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 232,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 190
+       }
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 269,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 227
+       },
+       "xp": 184,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 314,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 272
+       },
+       "xp": 224,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 367,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 325
+       },
+       "previous_estimate_output_qty": 368,
+       "previous_estimate_manure_qty": 326,
+       "xp": 272,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 432,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 390
+       },
+       "xp": 331,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 509,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 467
+       },
+       "previous_estimate_output_qty": 510,
+       "previous_estimate_manure_qty": 468,
+       "xp": 402,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 602,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 560
+       },
+       "previous_estimate_output_qty": 603,
+       "previous_estimate_manure_qty": 561,
+       "xp": 489,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 714,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 672
+       }
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 847,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 805
+       }
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 1008,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 966
+       }
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 1201,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 1159
+       }
+      },
+      {
+       "level": 16,
+       "status": "seen",
+       "output_qty": 1432,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 1390
+       }
+      }
+     ],
+     "seen_count": 16,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "second_output is manure; manure Library +3 assumed (vol I +1, vol II +2), inferred additive HYPOTHESIS. Feed item names not shown on the table (icons only): UNCONFIRMED. Lvl 7-11 SEEN 28 Oct 2026 16:18 (post-28-Oct update, user screenshots); Lvl 6 SEEN 28 Oct 2026 17:03 (post-28-Oct update, user screenshots): feather 269 and manure 227 equal the estimate, xp 184; Lvl 7-10 re-seen on the same screenshot and equal the earlier capture. All 16 levels seen. Feather and manure xp recorded; Lvl 8, 10 and 11 were 1 lower than the estimate (feather and manure), Lvl 7 and 9 equal"
+    },
+    {
+     "producer_id": "ostrich_farm",
+     "product_id": "feather",
+     "mode": "fine",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 45,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "fine_ostrich_feed",
+       "qty": 1
+      }
+     ],
+     "cycle_minutes": 360,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 180,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 93
+       }
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 207,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 111
+       }
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 239,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 133
+       }
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 278,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 159
+       }
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 325,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 190
+       }
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 381,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 227
+       },
+       "xp": 184,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 448,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 272
+       },
+       "xp": 224,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 529,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 325
+       },
+       "previous_estimate_manure_qty": 326,
+       "xp": 272,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 625,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 390
+       },
+       "previous_estimate_output_qty": 626,
+       "xp": 331,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 742,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 467
+       },
+       "previous_estimate_manure_qty": 468,
+       "xp": 402,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 881,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 560
+       },
+       "previous_estimate_manure_qty": 561,
+       "xp": 489,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 1048,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 672
+       }
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 1249,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 805
+       }
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 1489,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 966
+       }
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 1778,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 1159
+       }
+      },
+      {
+       "level": 16,
+       "status": "seen",
+       "output_qty": 2125,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 1390
+       }
+      }
+     ],
+     "seen_count": 16,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "second_output is manure; manure Library +3 assumed (vol I +1, vol II +2), inferred additive HYPOTHESIS. Feed item names not shown on the table (icons only): UNCONFIRMED; manure identical to Regular at every seen level. Lvl 6-11 SEEN 28 Oct 2026 16:18 (post-28-Oct update, user screenshots); feather differs from the estimate only at Lvl 9 (-1), manure at Lvl 8, 10, 11 (-1); manure identical to Regular at Lvl 7-11"
+    },
+    {
+     "producer_id": "ostrich_farm",
+     "product_id": "feather",
+     "mode": "instant",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 45,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "instant_ostrich_feed",
+       "qty": 1
+      }
+     ],
+     "cycle_minutes": null,
+     "cycle_label": "Instant",
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 195,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 103
+       }
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 225,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 123
+       }
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 261,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 147
+       }
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 304,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 176
+       }
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 356,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 210
+       }
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 418,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 252
+       },
+       "previous_estimate_manure_qty": 251,
+       "xp": 184,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 493,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 302
+       },
+       "previous_estimate_manure_qty": 301,
+       "xp": 224,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 582,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 361
+       },
+       "previous_estimate_output_qty": 583,
+       "xp": 272,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 690,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 433
+       },
+       "xp": 331,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 819,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 519
+       },
+       "xp": 402,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 974,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 622
+       },
+       "xp": 489,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 1160,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 746
+       }
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 1382,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 895
+       }
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 1650,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 1073
+       }
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 1971,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 1287
+       }
+      },
+      {
+       "level": 16,
+       "status": "seen",
+       "output_qty": 2356,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 1544
+       }
+      }
+     ],
+     "seen_count": 16,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "second_output is manure; manure Library +3 assumed (vol I +1, vol II +2), inferred additive HYPOTHESIS. Feed item names not shown on the table (icons only): UNCONFIRMED; manure differs from Regular/Fine in Instant mode. Lvl 6-11 SEEN 28 Oct 2026 16:18 (post-28-Oct update, user screenshots); feather differs from the estimate only at Lvl 8 (-1), manure at Lvl 6 and 7 (+1)"
+    }
+   ],
+   "notes": "every row also records manure as second_output"
+  },
+  {
+   "producer_id": "palm_nursery",
+   "library_name": "Palm Tree Nurseries",
+   "island": "tropicalis",
+   "category": "other",
+   "max_level": 13,
+   "max_level_source": "last row shown on the screenshots scrolled to the last level (user instruction 2026-10-27)",
+   "modes": [
+    "regular",
+    "fine",
+    "instant"
+   ],
+   "has_batch_slider": "no slider believed (user_stated 2026-10-27 01:15: 'I don't believe any of the others have a batch slider', she will check); UNCONFIRMED",
+   "product_tabs_checked": [
+    "palm_wood"
+   ],
+   "max_owned": "no_limit_shown",
+   "tables": [
+    {
+     "producer_id": "palm_nursery",
+     "product_id": "palm_wood",
+     "mode": "regular",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 15,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "coins",
+       "qty": 9043
+      },
+      {
+       "product_id": "fertilizer",
+       "qty": 30
+      }
+     ],
+     "cycle_minutes": 180,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 45
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 51
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 58
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 67
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 77
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 90,
+       "previous_estimate_output_qty": 89,
+       "xp": 109,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 105,
+       "previous_estimate_output_qty": 104,
+       "xp": 134,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 122,
+       "xp": 165,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 144,
+       "xp": 202,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 170,
+       "xp": 248,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 201
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 238
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 282
+      }
+     ],
+     "seen_count": 13,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "Input is fertilizer by icon (Regular) and by analogy with Jade bamboo (Fine/Instant): UNCONFIRMED. Same output at every seen level as Plantation silk cocoon 28 Oct 2026 23:30 post-28-Oct update: Lvl 6-10 seen on screenshot (output, xp; coins, inputs and time identical to the stored table values); Lvl 6 and 7 seen 1 higher than the estimate (90 vs 89, 105 vs 104), Lvl 8 equals (122). Lvl 6-10 equal the Plantation silk cocoon Regular values."
+    },
+    {
+     "producer_id": "palm_nursery",
+     "product_id": "palm_wood",
+     "mode": "fine",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 15,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "fine_fertilizer",
+       "qty": 30
+      }
+     ],
+     "cycle_minutes": 180,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 60
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 69
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 80
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 93
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 108
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 127,
+       "xp": 109,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 149,
+       "xp": 134,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 176,
+       "xp": 165,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 208,
+       "xp": 202,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 247,
+       "xp": 248,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 294
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 349
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 416
+      }
+     ],
+     "seen_count": 13,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "Input is fertilizer by icon (Regular) and by analogy with Jade bamboo (Fine/Instant): UNCONFIRMED. Same output at every seen level as Plantation silk cocoon 28 Oct 2026 23:30 post-28-Oct update: Lvl 6-10 seen on screenshot (output, xp; coins, inputs and time identical to the stored table values); Lvl 6-8 equal the estimates (127, 149, 176). Lvl 6-10 equal the Plantation silk cocoon Fine values."
+    },
+    {
+     "producer_id": "palm_nursery",
+     "product_id": "palm_wood",
+     "mode": "instant",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 15,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "instant_fertilizer",
+       "qty": 30
+      }
+     ],
+     "cycle_minutes": null,
+     "cycle_label": "Instant",
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 65
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 75
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 87
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 101
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 119
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 139,
+       "previous_estimate_output_qty": 140,
+       "xp": 109,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 164,
+       "previous_estimate_output_qty": 165,
+       "xp": 134,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 194,
+       "xp": 165,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 230,
+       "xp": 202,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 273,
+       "xp": 248,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 325
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 387
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 461
+      }
+     ],
+     "seen_count": 13,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "Input is fertilizer by icon (Regular) and by analogy with Jade bamboo (Fine/Instant): UNCONFIRMED. Same output at every seen level as Plantation silk cocoon 28 Oct 2026 23:30 post-28-Oct update: Lvl 6-10 seen on screenshot (output, xp; coins, inputs and time identical to the stored table values); Lvl 6 and 7 seen 1 lower than the estimate (139 vs 140, 164 vs 165), Lvl 8 equals (194). Lvl 6-10 equal the Plantation silk cocoon Instant values."
+    }
+   ]
+  },
+  {
+   "producer_id": "cotton_weaver",
+   "library_name": "Cotton Weavers",
+   "island": "tropicalis",
+   "category": "processing",
+   "max_level": 14,
+   "max_level_source": "last row shown on the screenshots scrolled to the last level (user instruction 2026-10-27)",
+   "modes": "none",
+   "has_batch_slider": "no slider believed (user_stated 2026-10-27 01:15: 'I don't believe any of the others have a batch slider', she will check); UNCONFIRMED",
+   "product_tabs_checked": [
+    "cotton_roll"
+   ],
+   "max_owned": "no_limit_shown",
+   "tables": [
+    {
+     "producer_id": "cotton_weaver",
+     "product_id": "cotton_roll",
+     "mode": "none",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 10,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "coins",
+       "qty": 9043
+      },
+      {
+       "product_id": "cotton_yarn",
+       "qty": 8
+      }
+     ],
+     "cycle_minutes": 180,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 30,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 9043
+        },
+        {
+         "product_id": "cotton_yarn",
+         "qty": 8
+        }
+       ]
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 34,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 9043
+        },
+        {
+         "product_id": "cotton_yarn",
+         "qty": 8
+        }
+       ]
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 39,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 9043
+        },
+        {
+         "product_id": "cotton_yarn",
+         "qty": 8
+        }
+       ]
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 45,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 9043
+        },
+        {
+         "product_id": "cotton_yarn",
+         "qty": 8
+        }
+       ]
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 51,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 9043
+        },
+        {
+         "product_id": "cotton_yarn",
+         "qty": 8
+        }
+       ]
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 60,
+       "previous_estimate_output_qty": 59,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 9043
+        },
+        {
+         "product_id": "cotton_yarn",
+         "qty": 8
+        }
+       ],
+       "xp": 109,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 70,
+       "previous_estimate_output_qty": 69,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 9043
+        },
+        {
+         "product_id": "cotton_yarn",
+         "qty": 8
+        }
+       ],
+       "xp": 134,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 82,
+       "previous_estimate_output_qty": 81,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 9043
+        },
+        {
+         "product_id": "cotton_yarn",
+         "qty": 8
+        }
+       ],
+       "xp": 165,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 96,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 9043
+        },
+        {
+         "product_id": "cotton_yarn",
+         "qty": 8
+        }
+       ],
+       "xp": 202,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 113,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 9043
+        },
+        {
+         "product_id": "cotton_yarn",
+         "qty": 8
+        }
+       ],
+       "xp": 248,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 134,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 9043
+        },
+        {
+         "product_id": "cotton_yarn",
+         "qty": 8
+        }
+       ]
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 159,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 9043
+        },
+        {
+         "product_id": "cotton_yarn",
+         "qty": 8
+        }
+       ]
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 188,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 9043
+        },
+        {
+         "product_id": "cotton_yarn",
+         "qty": 8
+        }
+       ]
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 224,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 9043
+        },
+        {
+         "product_id": "cotton_yarn",
+         "qty": 8
+        }
+       ]
+      }
+     ],
+     "seen_count": 14,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "Input is cotton_yarn by icon (grey spool, same icon as the Spinning works output): UNCONFIRMED. Output equals Plantation cotton Regular at every seen level (Lvl 1-5, 12-14). Other tabs not checked 28 Oct 2026 23:30 post-28-Oct update: Lvl 6-10 seen on screenshot (output, xp; coins, inputs and time identical to the stored table values); Lvl 6, 7, 8 seen 1 higher than the estimate (60 vs 59, 70 vs 69, 82 vs 81), Lvl 9 equals (96). Lvl 6-10 equal the Plantation cotton Regular values.",
+     "inputs_seen_all_levels": true,
+     "inputs_seen_note": "2026-11-02 23:06 user_stated by Jo: the item amounts are the same at every level, and the input items are as stored (cotton weaver: cotton yarn; copper forge: copper ingots; coffee brewery: ground coffee; bar: cups of coffee and milk; seamstress: cotton roll and cashmere, 120 cashmere; instrument maker: copper sheets 50 and bamboo 500). Item names confirmed, no longer icon-only. Rows here already store inputs per level, so no ? was shown."
+    }
+   ]
+  },
+  {
+   "producer_id": "spinning_works",
+   "library_name": "Spinning Works",
+   "island": "tropicalis",
+   "category": "processing",
+   "max_level": 15,
+   "max_level_source": "last row shown on the screenshots scrolled to the last level (user instruction 2026-10-27)",
+   "modes": "none",
+   "has_batch_slider": "yes x1 to x9 (max cycles per level SEEN 2026-10-28 post-28-Oct update; each row has max_cycles; slider top = that row. Older slider text superseded)",
+   "product_tabs_checked": [
+    "cotton_yarn",
+    "silk_thread"
+   ],
+   "max_owned": 1,
+   "max_owned_source": "seen: Spinning works card shows Maximum limit reached on the 27 Oct Instrument maker screenshot; the count owned there is 1 per dashboard_spec.md",
+   "tables": [
+    {
+     "producer_id": "spinning_works",
+     "product_id": "cotton_yarn",
+     "mode": "none",
+     "value_type": "displayed_output",
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton",
+         "qty": 10
+        },
+        {
+         "product_id": "coins",
+         "qty": 754
+        }
+       ],
+       "cycle_minutes": 30,
+       "cycle_text": "00:30:00",
+       "output_qty": 23,
+       "xp": 9,
+       "max_cycles": 4,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton",
+         "qty": 10
+        },
+        {
+         "product_id": "coins",
+         "qty": 754
+        }
+       ],
+       "cycle_minutes": 28.5,
+       "cycle_text": "00:28:30",
+       "output_qty": 23,
+       "xp": 9,
+       "max_cycles": 4,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton",
+         "qty": 9
+        },
+        {
+         "product_id": "coins",
+         "qty": 754
+        }
+       ],
+       "cycle_minutes": 27.083,
+       "cycle_text": "00:27:05",
+       "output_qty": 23,
+       "xp": 9,
+       "max_cycles": 5,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton",
+         "qty": 9
+        },
+        {
+         "product_id": "coins",
+         "qty": 754
+        }
+       ],
+       "cycle_minutes": 25.717,
+       "cycle_text": "00:25:43",
+       "output_qty": 23,
+       "xp": 9,
+       "max_cycles": 5,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton",
+         "qty": 8
+        },
+        {
+         "product_id": "coins",
+         "qty": 754
+        }
+       ],
+       "cycle_minutes": 24.433,
+       "cycle_text": "00:24:26",
+       "output_qty": 23,
+       "xp": 9,
+       "max_cycles": 5,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton",
+         "qty": 8
+        },
+        {
+         "product_id": "coins",
+         "qty": 754
+        }
+       ],
+       "cycle_minutes": 23.217,
+       "cycle_text": "00:23:13",
+       "output_qty": 23,
+       "xp": 9,
+       "max_cycles": 6,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton",
+         "qty": 7
+        },
+        {
+         "product_id": "coins",
+         "qty": 754
+        }
+       ],
+       "cycle_minutes": 22.05,
+       "cycle_text": "00:22:03",
+       "output_qty": 23,
+       "xp": 9,
+       "max_cycles": 6,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton",
+         "qty": 7
+        },
+        {
+         "product_id": "coins",
+         "qty": 754
+        }
+       ],
+       "cycle_minutes": 20.95,
+       "cycle_text": "00:20:57",
+       "output_qty": 23,
+       "xp": 9,
+       "max_cycles": 6,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton",
+         "qty": 7
+        },
+        {
+         "product_id": "coins",
+         "qty": 754
+        }
+       ],
+       "cycle_minutes": 19.9,
+       "cycle_text": "00:19:54",
+       "output_qty": 23,
+       "xp": 9,
+       "max_cycles": 7,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton",
+         "qty": 6
+        },
+        {
+         "product_id": "coins",
+         "qty": 754
+        }
+       ],
+       "cycle_minutes": 18.9,
+       "cycle_text": "00:18:54",
+       "output_qty": 23,
+       "xp": 9,
+       "max_cycles": 7,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton",
+         "qty": 6
+        },
+        {
+         "product_id": "coins",
+         "qty": 754
+        }
+       ],
+       "cycle_minutes": 17.967,
+       "cycle_text": "00:17:58",
+       "output_qty": 23,
+       "xp": 9,
+       "max_cycles": 7,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton",
+         "qty": 6
+        },
+        {
+         "product_id": "coins",
+         "qty": 754
+        }
+       ],
+       "cycle_minutes": 17.067,
+       "cycle_text": "00:17:04",
+       "output_qty": 23,
+       "xp": 9,
+       "max_cycles": 8,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton",
+         "qty": 5
+        },
+        {
+         "product_id": "coins",
+         "qty": 754
+        }
+       ],
+       "cycle_minutes": 16.217,
+       "cycle_text": "00:16:13",
+       "output_qty": 23,
+       "xp": 9,
+       "max_cycles": 8,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton",
+         "qty": 5
+        },
+        {
+         "product_id": "coins",
+         "qty": 754
+        }
+       ],
+       "cycle_minutes": 15.4,
+       "cycle_text": "00:15:24",
+       "output_qty": 23,
+       "xp": 9,
+       "max_cycles": 8,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton",
+         "qty": 5
+        },
+        {
+         "product_id": "coins",
+         "qty": 754
+        }
+       ],
+       "cycle_minutes": 14.633,
+       "cycle_text": "00:14:38",
+       "output_qty": 23,
+       "xp": 9,
+       "max_cycles": 9,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      }
+     ],
+     "seen_count": 15,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "Foundry-type levels (input and cycle fall, output constant) estimated separately, HYPOTHESIS: input = round(Lvl1 input x 0.95^(level-1)); cycle = Lvl1 cycle x 0.95^(level-1). Fits every seen row (see checks_run). Never seen",
+     "notes": "output_qty constant over all seen levels; whether the Library cotton_yarn bonus (+8) is inside the constant is UNCONFIRMED. Input item (cotton) identified by icon only: UNCONFIRMED",
+     "library_bonus_assumed": 8,
+     "library_bonus_assumed_source": "user_stated 2026-10-28 05:10: Jo's Library levels have not changed since the 26 Oct captures, so the recorded numbers include her current Library bonus (value taken from library.json player_levels). Other users' Library levels are re-based from this."
+    },
+    {
+     "producer_id": "spinning_works",
+     "product_id": "silk_thread",
+     "mode": "none",
+     "value_type": "displayed_output",
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "silk_cocoon",
+         "qty": 15
+        },
+        {
+         "product_id": "coins",
+         "qty": 502
+        }
+       ],
+       "cycle_minutes": 10,
+       "cycle_text": "00:10:00",
+       "output_qty": 15,
+       "xp": 4,
+       "max_cycles": 4,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "silk_cocoon",
+         "qty": 14
+        },
+        {
+         "product_id": "coins",
+         "qty": 502
+        }
+       ],
+       "cycle_minutes": 9.5,
+       "cycle_text": "00:09:30",
+       "output_qty": 15,
+       "xp": 4,
+       "max_cycles": 4,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "silk_cocoon",
+         "qty": 14
+        },
+        {
+         "product_id": "coins",
+         "qty": 502
+        }
+       ],
+       "cycle_minutes": 9.033,
+       "cycle_text": "00:09:02",
+       "output_qty": 15,
+       "xp": 4,
+       "max_cycles": 5,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "silk_cocoon",
+         "qty": 13
+        },
+        {
+         "product_id": "coins",
+         "qty": 502
+        }
+       ],
+       "cycle_minutes": 8.567,
+       "cycle_text": "00:08:34",
+       "output_qty": 15,
+       "xp": 4,
+       "max_cycles": 5,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "silk_cocoon",
+         "qty": 12
+        },
+        {
+         "product_id": "coins",
+         "qty": 502
+        }
+       ],
+       "cycle_minutes": 8.15,
+       "cycle_text": "00:08:09",
+       "output_qty": 15,
+       "xp": 4,
+       "max_cycles": 5,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "silk_cocoon",
+         "qty": 12
+        },
+        {
+         "product_id": "coins",
+         "qty": 502
+        }
+       ],
+       "cycle_minutes": 7.733,
+       "cycle_text": "00:07:44",
+       "output_qty": 15,
+       "xp": 4,
+       "max_cycles": 6,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "silk_cocoon",
+         "qty": 11
+        },
+        {
+         "product_id": "coins",
+         "qty": 502
+        }
+       ],
+       "cycle_minutes": 7.35,
+       "cycle_text": "00:07:21",
+       "output_qty": 15,
+       "xp": 4,
+       "max_cycles": 6,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "silk_cocoon",
+         "qty": 10
+        },
+        {
+         "product_id": "coins",
+         "qty": 502
+        }
+       ],
+       "cycle_minutes": 6.983,
+       "cycle_text": "00:06:59",
+       "output_qty": 15,
+       "xp": 4,
+       "max_cycles": 6,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "silk_cocoon",
+         "qty": 10
+        },
+        {
+         "product_id": "coins",
+         "qty": 502
+        }
+       ],
+       "cycle_minutes": 6.633,
+       "cycle_text": "00:06:38",
+       "output_qty": 15,
+       "xp": 4,
+       "max_cycles": 7,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "silk_cocoon",
+         "qty": 9
+        },
+        {
+         "product_id": "coins",
+         "qty": 502
+        }
+       ],
+       "cycle_minutes": 6.3,
+       "cycle_text": "00:06:18",
+       "output_qty": 15,
+       "xp": 4,
+       "max_cycles": 7,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "silk_cocoon",
+         "qty": 9
+        },
+        {
+         "product_id": "coins",
+         "qty": 502
+        }
+       ],
+       "cycle_minutes": 5.983,
+       "cycle_text": "00:05:59",
+       "output_qty": 15,
+       "xp": 4,
+       "max_cycles": 7,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "silk_cocoon",
+         "qty": 9
+        },
+        {
+         "product_id": "coins",
+         "qty": 502
+        }
+       ],
+       "cycle_minutes": 5.683,
+       "cycle_text": "00:05:41",
+       "output_qty": 15,
+       "xp": 4,
+       "max_cycles": 8,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "silk_cocoon",
+         "qty": 8
+        },
+        {
+         "product_id": "coins",
+         "qty": 502
+        }
+       ],
+       "cycle_minutes": 5.4,
+       "cycle_text": "00:05:24",
+       "output_qty": 15,
+       "xp": 4,
+       "max_cycles": 8,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "silk_cocoon",
+         "qty": 8
+        },
+        {
+         "product_id": "coins",
+         "qty": 502
+        }
+       ],
+       "cycle_minutes": 5.133,
+       "cycle_text": "00:05:08",
+       "output_qty": 15,
+       "xp": 4,
+       "max_cycles": 8,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "silk_cocoon",
+         "qty": 7
+        },
+        {
+         "product_id": "coins",
+         "qty": 502
+        }
+       ],
+       "cycle_minutes": 4.883,
+       "cycle_text": "00:04:53",
+       "output_qty": 15,
+       "xp": 4,
+       "max_cycles": 9,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      }
+     ],
+     "seen_count": 15,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "Foundry-type levels (input and cycle fall, output constant) estimated separately, HYPOTHESIS: input = round(Lvl1 input x 0.95^(level-1)); cycle = Lvl1 cycle x 0.95^(level-1). Fits every seen row (see checks_run). Never seen",
+     "notes": "output_qty constant over all seen levels; whether the Library silk_thread bonus (+5) is inside the constant is UNCONFIRMED. Input item (silk_cocoon) identified by icon only: UNCONFIRMED",
+     "library_bonus_assumed": 5,
+     "library_bonus_assumed_source": "user_stated 2026-10-28 05:10: Jo's Library levels have not changed since the 26 Oct captures, so the recorded numbers include her current Library bonus (value taken from library.json player_levels). Other users' Library levels are re-based from this."
+    },
+    {
+     "slider_evidence": {
+      "producer_id": "spinning_works",
+      "product_id": "cotton_yarn",
+      "at_building_level": 6,
+      "source": "Jo screenshot 1 Nov 2026 09:04, Spinning Works Level 6, cotton yarn, stack x6, Library +8 included",
+      "rows": [
+       {
+        "slider": "x6",
+        "coins": 4524,
+        "cotton": 48,
+        "cycle": "2h 19m",
+        "output_qty": 138,
+        "xp": 54
+       }
+      ],
+      "note": "exactly 6 times the x1 row at level 6 (23 yarn, 8 cotton, 754 coins, 23.217 min, 9 stars)"
+     }
+    },
+    {
+     "slider_evidence": {
+      "producer_id": "spinning_works",
+      "product_id": "silk_thread",
+      "at_building_level": 6,
+      "source": "Jo screenshot 1 Nov 2026 11:20, Spinning Works Level 6, silk thread, stack x6, Library included",
+      "rows": [
+       {
+        "slider": "x6",
+        "coins": 3012,
+        "silk_cocoon": 72,
+        "cycle": "46m 24s",
+        "output_qty": 90,
+        "xp": 24
+       }
+      ],
+      "note": "exactly 6 times the x1 row at level 6 (15 thread, 12 cocoon, 502 coins, 7m 44s, 4 stars)"
+     }
+    }
+   ]
+  },
+  {
+   "producer_id": "copper_forge",
+   "library_name": "Copper Forges",
+   "island": "tropicalis",
+   "category": "processing",
+   "max_level": 12,
+   "max_level_source": "last row shown on the screenshots scrolled to the last level (user instruction 2026-10-27)",
+   "modes": "none",
+   "has_batch_slider": "no slider believed (user_stated 2026-10-27 01:15: 'I don't believe any of the others have a batch slider', she will check); UNCONFIRMED",
+   "product_tabs_checked": [
+    "copper_sheets"
+   ],
+   "max_owned": "no_limit_shown",
+   "tables": [
+    {
+     "producer_id": "copper_forge",
+     "product_id": "copper_sheets",
+     "mode": "none",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 6,
+     "library_bonus_source": "library.json player_levels copper_sheets_bonus_vol_1 current 3 = +6 (level at capture UNCONFIRMED)",
+     "inputs": [
+      {
+       "product_id": "coins",
+       "qty": 13565
+      },
+      {
+       "product_id": "copper_ingot",
+       "qty": 20
+      }
+     ],
+     "cycle_minutes": 180,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 26,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 13565
+        },
+        {
+         "product_id": "copper_ingot",
+         "qty": 20
+        }
+       ]
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 30,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 13565
+        },
+        {
+         "product_id": "copper_ingot",
+         "qty": 20
+        }
+       ]
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 35,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 13565
+        },
+        {
+         "product_id": "copper_ingot",
+         "qty": 20
+        }
+       ]
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 41,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 13565
+        },
+        {
+         "product_id": "copper_ingot",
+         "qty": 20
+        }
+       ]
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 47,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 13565
+        },
+        {
+         "product_id": "copper_ingot",
+         "qty": 20
+        }
+       ]
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 56,
+       "previous_estimate_output_qty": 55,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 13565
+        },
+        {
+         "product_id": "copper_ingot",
+         "qty": 20
+        }
+       ],
+       "xp": 109,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 66,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 13565
+        },
+        {
+         "product_id": "copper_ingot",
+         "qty": 20
+        }
+       ],
+       "xp": 134,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 78,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 13565
+        },
+        {
+         "product_id": "copper_ingot",
+         "qty": 20
+        }
+       ],
+       "xp": 165,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 92,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 13565
+        },
+        {
+         "product_id": "copper_ingot",
+         "qty": 20
+        }
+       ],
+       "xp": 202,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 109,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 13565
+        },
+        {
+         "product_id": "copper_ingot",
+         "qty": 20
+        }
+       ],
+       "xp": 248,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 130,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 13565
+        },
+        {
+         "product_id": "copper_ingot",
+         "qty": 20
+        }
+       ]
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 155,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 13565
+        },
+        {
+         "product_id": "copper_ingot",
+         "qty": 20
+        }
+       ]
+      }
+     ],
+     "seen_count": 12,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "Input is copper_ingot by icon (matches the Jade Foundry output): UNCONFIRMED. Output minus Library +6 equals the Marimba and Iced coffee outputs at every shared level. Other tabs not checked 28 Oct 2026 23:30 post-28-Oct update: Lvl 6-10 seen on screenshot (output, xp; coins, inputs and time identical to the stored table values); Lvl 6 seen 1 higher than the estimate (56 vs 55), Lvl 7 equals (66). Lvl 6 and 7 equal Marimba base + 6 (50+6, 60+6).",
+     "inputs_seen_all_levels": true,
+     "inputs_seen_note": "2026-11-02 23:06 user_stated by Jo: the item amounts are the same at every level, and the input items are as stored (cotton weaver: cotton yarn; copper forge: copper ingots; coffee brewery: ground coffee; bar: cups of coffee and milk; seamstress: cotton roll and cashmere, 120 cashmere; instrument maker: copper sheets 50 and bamboo 500). Item names confirmed, no longer icon-only. Rows here already store inputs per level, so no ? was shown."
+    }
+   ]
+  },
+  {
+   "producer_id": "coffee_brewery",
+   "library_name": "Coffee Breweries",
+   "island": "tropicalis",
+   "category": "processing",
+   "max_level": 15,
+   "max_level_source": "last row shown on the screenshots scrolled to the last level (user instruction 2026-10-27)",
+   "modes": "none",
+   "has_batch_slider": "no slider believed (user_stated 2026-10-27 01:15: 'I don't believe any of the others have a batch slider', she will check); UNCONFIRMED",
+   "product_tabs_checked": [
+    "cup_of_coffee"
+   ],
+   "max_owned": "no_limit_shown",
+   "tables": [
+    {
+     "producer_id": "coffee_brewery",
+     "product_id": "cup_of_coffee",
+     "mode": "none",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 8,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "coins",
+       "qty": 3014
+      },
+      {
+       "product_id": "ground_coffee",
+       "qty": 15
+      }
+     ],
+     "cycle_minutes": 120,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 23,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 3014
+        },
+        {
+         "product_id": "ground_coffee",
+         "qty": 15
+        }
+       ]
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 26,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 3014
+        },
+        {
+         "product_id": "ground_coffee",
+         "qty": 15
+        }
+       ]
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 30,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 3014
+        },
+        {
+         "product_id": "ground_coffee",
+         "qty": 15
+        }
+       ]
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 34,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 3014
+        },
+        {
+         "product_id": "ground_coffee",
+         "qty": 15
+        }
+       ]
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 39,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 3014
+        },
+        {
+         "product_id": "ground_coffee",
+         "qty": 15
+        }
+       ]
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 45,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 3014
+        },
+        {
+         "product_id": "ground_coffee",
+         "qty": 15
+        }
+       ],
+       "xp": 82,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 53,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 3014
+        },
+        {
+         "product_id": "ground_coffee",
+         "qty": 15
+        }
+       ],
+       "xp": 102,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 62,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 3014
+        },
+        {
+         "product_id": "ground_coffee",
+         "qty": 15
+        }
+       ],
+       "xp": 125,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 72,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 3014
+        },
+        {
+         "product_id": "ground_coffee",
+         "qty": 15
+        }
+       ],
+       "xp": 155,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 85,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 3014
+        },
+        {
+         "product_id": "ground_coffee",
+         "qty": 15
+        }
+       ],
+       "xp": 191,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 101,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 3014
+        },
+        {
+         "product_id": "ground_coffee",
+         "qty": 15
+        }
+       ]
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 119,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 3014
+        },
+        {
+         "product_id": "ground_coffee",
+         "qty": 15
+        }
+       ]
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 142,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 3014
+        },
+        {
+         "product_id": "ground_coffee",
+         "qty": 15
+        }
+       ]
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 168,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 3014
+        },
+        {
+         "product_id": "ground_coffee",
+         "qty": 15
+        }
+       ]
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 201,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 3014
+        },
+        {
+         "product_id": "ground_coffee",
+         "qty": 15
+        }
+       ]
+      }
+     ],
+     "seen_count": 15,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "Lvl 1-5 and 11-15 seen; Lvl 6-10 seen 28 Oct 2026 23:30 (post-28-Oct update): all five outputs equal the earlier estimates (45, 53, 62, 72, 85); xp 82, 102, 125, 155, 191; coins 3,014, ground coffee 15 and 2 h unchanged. No estimated levels remain. Input is ground_coffee by icon (paper bag): UNCONFIRMED. Other tabs not checked",
+     "inputs_seen_all_levels": true,
+     "inputs_seen_note": "2026-11-02 23:06 user_stated by Jo: the item amounts are the same at every level, and the input items are as stored (cotton weaver: cotton yarn; copper forge: copper ingots; coffee brewery: ground coffee; bar: cups of coffee and milk; seamstress: cotton roll and cashmere, 120 cashmere; instrument maker: copper sheets 50 and bamboo 500). Item names confirmed, no longer icon-only. Rows here already store inputs per level, so no ? was shown."
+    }
+   ]
+  },
+  {
+   "producer_id": "bar",
+   "library_name": "Bars",
+   "island": "tropicalis",
+   "category": "processing",
+   "max_level": 11,
+   "max_level_source": "last row shown (Lvl 7-11 screenshot); whether the table was scrolled to the very end is UNCONFIRMED",
+   "modes": "none",
+   "has_batch_slider": "no slider believed (user_stated 2026-10-27 01:15: 'I don't believe any of the others have a batch slider', she will check); UNCONFIRMED",
+   "product_tabs_checked": [
+    "iced_coffee"
+   ],
+   "max_owned": "no_limit_shown",
+   "tables": [
+    {
+     "producer_id": "bar",
+     "product_id": "iced_coffee",
+     "mode": "none",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 0,
+     "library_bonus_source": "library.json player_levels iced_coffee_bonus_vol_1 current 0 = +0",
+     "inputs": [
+      {
+       "product_id": "coins",
+       "qty": 4522
+      },
+      {
+       "product_id": "cup_of_coffee",
+       "qty": 35
+      },
+      {
+       "product_id": "milk",
+       "qty": 35
+      }
+     ],
+     "cycle_minutes": 60,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 20,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 4522
+        },
+        {
+         "product_id": "cup_of_coffee",
+         "qty": 35
+        },
+        {
+         "product_id": "milk",
+         "qty": 35
+        }
+       ]
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 24,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 4522
+        },
+        {
+         "product_id": "cup_of_coffee",
+         "qty": 35
+        },
+        {
+         "product_id": "milk",
+         "qty": 35
+        }
+       ]
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 29,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 4522
+        },
+        {
+         "product_id": "cup_of_coffee",
+         "qty": 35
+        },
+        {
+         "product_id": "milk",
+         "qty": 35
+        }
+       ]
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 35,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 4522
+        },
+        {
+         "product_id": "cup_of_coffee",
+         "qty": 35
+        },
+        {
+         "product_id": "milk",
+         "qty": 35
+        }
+       ]
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 41,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 4522
+        },
+        {
+         "product_id": "cup_of_coffee",
+         "qty": 35
+        },
+        {
+         "product_id": "milk",
+         "qty": 35
+        }
+       ]
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 50,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 4522
+        },
+        {
+         "product_id": "cup_of_coffee",
+         "qty": 35
+        },
+        {
+         "product_id": "milk",
+         "qty": 35
+        }
+       ],
+       "xp": 52,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 60,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 4522
+        },
+        {
+         "product_id": "cup_of_coffee",
+         "qty": 35
+        },
+        {
+         "product_id": "milk",
+         "qty": 35
+        }
+       ],
+       "xp": 66,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 72,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 4522
+        },
+        {
+         "product_id": "cup_of_coffee",
+         "qty": 35
+        },
+        {
+         "product_id": "milk",
+         "qty": 35
+        }
+       ],
+       "xp": 82,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 86,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 4522
+        },
+        {
+         "product_id": "cup_of_coffee",
+         "qty": 35
+        },
+        {
+         "product_id": "milk",
+         "qty": 35
+        }
+       ],
+       "xp": 103,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 103,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 4522
+        },
+        {
+         "product_id": "cup_of_coffee",
+         "qty": 35
+        },
+        {
+         "product_id": "milk",
+         "qty": 35
+        }
+       ],
+       "xp": 129,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 124,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 4522
+        },
+        {
+         "product_id": "cup_of_coffee",
+         "qty": 35
+        },
+        {
+         "product_id": "milk",
+         "qty": 35
+        }
+       ]
+      }
+     ],
+     "seen_count": 11,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "Lvl 1-5 and 7-11 seen; Lvl 6 seen 28 Oct 2026 23:30 (post-28-Oct update): 50, equals the estimate; Lvl 6-10 re-seen the same day (50, 60, 72, 86, 103; xp 52, 66, 82, 103, 129), coins 4,522, inputs 35 + 35 and 1 h unchanged. No estimated levels remain. Inputs 35 + 35 by icon (cup of coffee, milk bottle): UNCONFIRMED. Iced coffee outputs equal Marimba at every shared level (1-5, 7, 8). Other tabs not checked",
+     "inputs_seen_all_levels": true,
+     "inputs_seen_note": "2026-11-02 23:06 user_stated by Jo: the item amounts are the same at every level, and the input items are as stored (cotton weaver: cotton yarn; copper forge: copper ingots; coffee brewery: ground coffee; bar: cups of coffee and milk; seamstress: cotton roll and cashmere, 120 cashmere; instrument maker: copper sheets 50 and bamboo 500). Item names confirmed, no longer icon-only. Rows here already store inputs per level, so no ? was shown."
+    }
+   ]
+  },
+  {
+   "producer_id": "seamstress",
+   "library_name": "Seamstresses",
+   "island": "tropicalis",
+   "category": "processing",
+   "max_level": 10,
+   "max_level_source": "last row shown on the screenshots scrolled to the last level (user instruction 2026-10-27)",
+   "modes": "none",
+   "has_batch_slider": "no slider believed (user_stated 2026-10-27 01:15: 'I don't believe any of the others have a batch slider', she will check); UNCONFIRMED",
+   "product_tabs_checked": [
+    "poncho",
+    "hammock"
+   ],
+   "max_owned": "no_limit_shown",
+   "tables": [
+    {
+     "producer_id": "seamstress",
+     "product_id": "poncho",
+     "mode": "none",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 0,
+     "library_bonus_source": "library.json player_levels poncho_bonus_vol_1 current 0 = +0",
+     "inputs": [
+      {
+       "product_id": "coins",
+       "qty": 13565
+      },
+      {
+       "product_id": "cotton_roll",
+       "qty": 60
+      },
+      {
+       "product_id": "cashmere",
+       "qty": 120
+      }
+     ],
+     "cycle_minutes": 180,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 60,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 13565
+        },
+        {
+         "product_id": "cotton_roll",
+         "qty": 60
+        },
+        {
+         "product_id": "cashmere",
+         "qty": 120
+        }
+       ]
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 72,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 13565
+        },
+        {
+         "product_id": "cotton_roll",
+         "qty": 60
+        },
+        {
+         "product_id": "cashmere",
+         "qty": 120
+        }
+       ]
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 86,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 13565
+        },
+        {
+         "product_id": "cotton_roll",
+         "qty": 60
+        },
+        {
+         "product_id": "cashmere",
+         "qty": 120
+        }
+       ]
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 104,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 13565
+        },
+        {
+         "product_id": "cotton_roll",
+         "qty": 60
+        },
+        {
+         "product_id": "cashmere",
+         "qty": 120
+        }
+       ]
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 124,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 13565
+        },
+        {
+         "product_id": "cotton_roll",
+         "qty": 60
+        },
+        {
+         "product_id": "cashmere",
+         "qty": 120
+        }
+       ]
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 149,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 13565
+        },
+        {
+         "product_id": "cotton_roll",
+         "qty": 60
+        },
+        {
+         "product_id": "cashmere",
+         "qty": 120
+        }
+       ]
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 179,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 13565
+        },
+        {
+         "product_id": "cotton_roll",
+         "qty": 60
+        },
+        {
+         "product_id": "cashmere",
+         "qty": 120
+        }
+       ]
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 215,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 13565
+        },
+        {
+         "product_id": "cotton_roll",
+         "qty": 60
+        },
+        {
+         "product_id": "cashmere",
+         "qty": 120
+        }
+       ]
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 258,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 13565
+        },
+        {
+         "product_id": "cotton_roll",
+         "qty": 60
+        },
+        {
+         "product_id": "cashmere",
+         "qty": 120
+        }
+       ]
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 310,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 13565
+        },
+        {
+         "product_id": "cotton_roll",
+         "qty": 60
+        },
+        {
+         "product_id": "cashmere",
+         "qty": 120
+        }
+       ]
+      }
+     ],
+     "seen_count": 10,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "notes": "Inputs cotton_roll (60) and cashmere (120): user_stated 2026-10-27 01:10 that the two fabrics are cotton roll and cashmere; which quantity belongs to which is from icon position only (UNCONFIRMED). Other tabs not checked",
+     "inputs_seen_all_levels": true,
+     "inputs_seen_note": "2026-11-02 23:06 user_stated by Jo: the item amounts are the same at every level, and the input items are as stored (cotton weaver: cotton yarn; copper forge: copper ingots; coffee brewery: ground coffee; bar: cups of coffee and milk; seamstress: cotton roll and cashmere, 120 cashmere; instrument maker: copper sheets 50 and bamboo 500). Item names confirmed, no longer icon-only. Rows here already store inputs per level, so no ? was shown."
+    },
+    {
+     "producer_id": "seamstress",
+     "product_id": "hammock",
+     "mode": "none",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 0,
+     "library_bonus_source": "hammock_bonus_vol_1 shown 0/5 on the Library overview 2026-10-28, so recorded output includes +0",
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton_roll",
+         "qty": 70
+        },
+        {
+         "product_id": "palm_wood",
+         "qty": 250
+        },
+        {
+         "product_id": "coins",
+         "qty": 72346
+        }
+       ],
+       "cycle_minutes": 720,
+       "cycle_text": "12:00:00",
+       "output_qty": 20,
+       "xp": 122,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton_roll",
+         "qty": 70
+        },
+        {
+         "product_id": "palm_wood",
+         "qty": 250
+        },
+        {
+         "product_id": "coins",
+         "qty": 72346
+        }
+       ],
+       "cycle_minutes": 720,
+       "cycle_text": "12:00:00",
+       "output_qty": 24,
+       "xp": 148,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton_roll",
+         "qty": 70
+        },
+        {
+         "product_id": "palm_wood",
+         "qty": 250
+        },
+        {
+         "product_id": "coins",
+         "qty": 72346
+        }
+       ],
+       "cycle_minutes": 720,
+       "cycle_text": "12:00:00",
+       "output_qty": 29,
+       "xp": 179,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton_roll",
+         "qty": 70
+        },
+        {
+         "product_id": "palm_wood",
+         "qty": 250
+        },
+        {
+         "product_id": "coins",
+         "qty": 72346
+        }
+       ],
+       "cycle_minutes": 720,
+       "cycle_text": "12:00:00",
+       "output_qty": 35,
+       "xp": 216,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton_roll",
+         "qty": 70
+        },
+        {
+         "product_id": "palm_wood",
+         "qty": 250
+        },
+        {
+         "product_id": "coins",
+         "qty": 72346
+        }
+       ],
+       "cycle_minutes": 720,
+       "cycle_text": "12:00:00",
+       "output_qty": 41,
+       "xp": 261,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton_roll",
+         "qty": 70
+        },
+        {
+         "product_id": "palm_wood",
+         "qty": 250
+        },
+        {
+         "product_id": "coins",
+         "qty": 72346
+        }
+       ],
+       "cycle_minutes": 720,
+       "cycle_text": "12:00:00",
+       "output_qty": 50,
+       "xp": 316,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton_roll",
+         "qty": 70
+        },
+        {
+         "product_id": "palm_wood",
+         "qty": 250
+        },
+        {
+         "product_id": "coins",
+         "qty": 72346
+        }
+       ],
+       "cycle_minutes": 720,
+       "cycle_text": "12:00:00",
+       "output_qty": 60,
+       "xp": 382,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton_roll",
+         "qty": 70
+        },
+        {
+         "product_id": "palm_wood",
+         "qty": 250
+        },
+        {
+         "product_id": "coins",
+         "qty": 72346
+        }
+       ],
+       "cycle_minutes": 720,
+       "cycle_text": "12:00:00",
+       "output_qty": 72,
+       "xp": 462,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton_roll",
+         "qty": 70
+        },
+        {
+         "product_id": "palm_wood",
+         "qty": 250
+        },
+        {
+         "product_id": "coins",
+         "qty": 72346
+        }
+       ],
+       "cycle_minutes": 720,
+       "cycle_text": "12:00:00",
+       "output_qty": 86,
+       "xp": 559,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton_roll",
+         "qty": 70
+        },
+        {
+         "product_id": "palm_wood",
+         "qty": 250
+        },
+        {
+         "product_id": "coins",
+         "qty": 72346
+        }
+       ],
+       "cycle_minutes": 720,
+       "cycle_text": "12:00:00",
+       "output_qty": 103,
+       "xp": 676,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      }
+     ],
+     "seen_count": 10,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "notes": "NEW PRODUCT, 28 Oct update, seen 2026-10-28 (L1-10 screenshots). The Hammock tab shows a lock icon: not unlocked for Jo yet. News popup: unlocks at player level 90. No production-cycles column and no slider. The two item inputs are icon-only and NOT identified (not matched to any existing product): UNCONFIRMED. Coin cost as shown on the screenshot; any happiness adjustment not known: UNCONFIRMED. 28 Oct 14:43: inputs IDENTIFIED from the developers' email (Hammock recipe: Cotton Roll + Palm Wood, Seamstress, Level 90) plus the icons (cream roll 70 = cotton roll, logs with leaves 250 = palm wood). Quantity per item rests on the icons: icon + email."
+    }
+   ],
+   "notes": "2026-10-28: Hammock tab added (new product, locked). Older table not re-seen after the update."
+  },
+  {
+   "producer_id": "instrument_maker",
+   "library_name": "Instrument Makers",
+   "island": "tropicalis",
+   "category": "processing",
+   "max_level": 8,
+   "max_level_source": "last row shown (Lvl 4-8 screenshot) on the screenshots scrolled to the last level (user instruction 2026-10-27)",
+   "modes": "none",
+   "has_batch_slider": "no slider believed (user_stated 2026-10-27 01:15: 'I don't believe any of the others have a batch slider', she will check); UNCONFIRMED",
+   "product_tabs_checked": [
+    "marimba",
+    "gong"
+   ],
+   "max_owned": "no_limit_shown",
+   "tables": [
+    {
+     "producer_id": "instrument_maker",
+     "product_id": "marimba",
+     "mode": "none",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 0,
+     "library_bonus_source": "library.json player_levels marimba_bonus_vol_1 current 0 = +0 (locked until player level 57 per the Library)",
+     "inputs": [
+      {
+       "product_id": "coins",
+       "qty": 36173
+      },
+      {
+       "product_id": "copper_sheets",
+       "qty": 50
+      },
+      {
+       "product_id": "bamboo",
+       "qty": 500
+      }
+     ],
+     "cycle_minutes": 360,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 20,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 36173
+        },
+        {
+         "product_id": "copper_sheets",
+         "qty": 50
+        },
+        {
+         "product_id": "bamboo",
+         "qty": 500
+        }
+       ]
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 24,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 36173
+        },
+        {
+         "product_id": "copper_sheets",
+         "qty": 50
+        },
+        {
+         "product_id": "bamboo",
+         "qty": 500
+        }
+       ]
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 29,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 36173
+        },
+        {
+         "product_id": "copper_sheets",
+         "qty": 50
+        },
+        {
+         "product_id": "bamboo",
+         "qty": 500
+        }
+       ]
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 35,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 36173
+        },
+        {
+         "product_id": "copper_sheets",
+         "qty": 50
+        },
+        {
+         "product_id": "bamboo",
+         "qty": 500
+        }
+       ]
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 41,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 36173
+        },
+        {
+         "product_id": "copper_sheets",
+         "qty": 50
+        },
+        {
+         "product_id": "bamboo",
+         "qty": 500
+        }
+       ]
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 50,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 36173
+        },
+        {
+         "product_id": "copper_sheets",
+         "qty": 50
+        },
+        {
+         "product_id": "bamboo",
+         "qty": 500
+        }
+       ]
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 60,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 36173
+        },
+        {
+         "product_id": "copper_sheets",
+         "qty": 50
+        },
+        {
+         "product_id": "bamboo",
+         "qty": 500
+        }
+       ]
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 72,
+       "inputs": [
+        {
+         "product_id": "coins",
+         "qty": 36173
+        },
+        {
+         "product_id": "copper_sheets",
+         "qty": 50
+        },
+        {
+         "product_id": "bamboo",
+         "qty": 500
+        }
+       ]
+      }
+     ],
+     "seen_count": 8,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "notes": "Inputs by icon only (brown stacked sheets = copper_sheets 50; green bundle = bamboo 500): UNCONFIRMED. Other tabs not checked",
+     "inputs_seen_all_levels": true,
+     "inputs_seen_note": "2026-11-02 23:06 user_stated by Jo: the item amounts are the same at every level, and the input items are as stored (cotton weaver: cotton yarn; copper forge: copper ingots; coffee brewery: ground coffee; bar: cups of coffee and milk; seamstress: cotton roll and cashmere, 120 cashmere; instrument maker: copper sheets 50 and bamboo 500). Item names confirmed, no longer icon-only. Rows here already store inputs per level, so no ? was shown."
+    },
+    {
+     "producer_id": "instrument_maker",
+     "product_id": "gong",
+     "mode": "none",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 0,
+     "library_bonus_source": "gong_bonus_vol_1 shown 0/5 on the Library overview 2026-10-28, so recorded output includes +0",
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "copper_sheets",
+         "qty": 30
+        },
+        {
+         "product_id": "palm_wood",
+         "qty": 120
+        },
+        {
+         "product_id": "coins",
+         "qty": 9043
+        }
+       ],
+       "cycle_minutes": 90,
+       "cycle_text": "01:30:00",
+       "output_qty": 10,
+       "xp": 22,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "copper_sheets",
+         "qty": 30
+        },
+        {
+         "product_id": "palm_wood",
+         "qty": 120
+        },
+        {
+         "product_id": "coins",
+         "qty": 9043
+        }
+       ],
+       "cycle_minutes": 90,
+       "cycle_text": "01:30:00",
+       "output_qty": 12,
+       "xp": 28,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "copper_sheets",
+         "qty": 30
+        },
+        {
+         "product_id": "palm_wood",
+         "qty": 120
+        },
+        {
+         "product_id": "coins",
+         "qty": 9043
+        }
+       ],
+       "cycle_minutes": 90,
+       "cycle_text": "01:30:00",
+       "output_qty": 14,
+       "xp": 35,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "copper_sheets",
+         "qty": 30
+        },
+        {
+         "product_id": "palm_wood",
+         "qty": 120
+        },
+        {
+         "product_id": "coins",
+         "qty": 9043
+        }
+       ],
+       "cycle_minutes": 90,
+       "cycle_text": "01:30:00",
+       "output_qty": 17,
+       "xp": 43,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "copper_sheets",
+         "qty": 30
+        },
+        {
+         "product_id": "palm_wood",
+         "qty": 120
+        },
+        {
+         "product_id": "coins",
+         "qty": 9043
+        }
+       ],
+       "cycle_minutes": 90,
+       "cycle_text": "01:30:00",
+       "output_qty": 21,
+       "xp": 54,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "copper_sheets",
+         "qty": 30
+        },
+        {
+         "product_id": "palm_wood",
+         "qty": 120
+        },
+        {
+         "product_id": "coins",
+         "qty": 9043
+        }
+       ],
+       "cycle_minutes": 90,
+       "cycle_text": "01:30:00",
+       "output_qty": 25,
+       "xp": 67,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "copper_sheets",
+         "qty": 30
+        },
+        {
+         "product_id": "palm_wood",
+         "qty": 120
+        },
+        {
+         "product_id": "coins",
+         "qty": 9043
+        }
+       ],
+       "cycle_minutes": 90,
+       "cycle_text": "01:30:00",
+       "output_qty": 30,
+       "xp": 84,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "copper_sheets",
+         "qty": 30
+        },
+        {
+         "product_id": "palm_wood",
+         "qty": 120
+        },
+        {
+         "product_id": "coins",
+         "qty": 9043
+        }
+       ],
+       "cycle_minutes": 90,
+       "cycle_text": "01:30:00",
+       "output_qty": 36,
+       "xp": 104,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      }
+     ],
+     "seen_count": 8,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "notes": "NEW PRODUCT, 28 Oct update, seen 2026-10-28 (L1-8 screenshots). The Gong tab shows a lock icon: not unlocked for Jo yet. News popup: unlocks at player level 72. No production-cycles column and no slider. The two item inputs are icon-only and NOT identified (not matched to any existing product): UNCONFIRMED. Coin cost as shown on the screenshot; any happiness adjustment not known: UNCONFIRMED. 28 Oct 14:43: inputs IDENTIFIED from the developers' email (Gong recipe: Copper Sheets + Palm Wood, Instrument Maker, Level 72) plus the icons (brown sheets 30 = copper sheets, logs with leaves 120 = palm wood). Quantity per item rests on the icons: icon + email."
+    }
+   ],
+   "notes": "2026-10-28: Gong tab added (new product, locked). Older table not re-seen after the update."
+  }
+ ],
+ "totals": {
+  "tables": 25,
+  "rows_seen": 349,
+  "rows_estimated": 0
+ },
+ "seed_mode_ratios_HYPOTHESIS": {
+  "coffee_beans": {
+   "fine_over_regular": {
+    "min": 1.476,
+    "max": 1.571,
+    "mean": 1.509,
+    "n": 10
+   },
+   "instant_over_regular": {
+    "min": 1.667,
+    "max": 1.714,
+    "mean": 1.697,
+    "n": 10
+   },
+   "label": "HYPOTHESIS observation only, computed on (displayed - library bonus)"
+  },
+  "cotton": {
+   "fine_over_regular": {
+    "min": 1.483,
+    "max": 1.512,
+    "mean": 1.498,
+    "n": 10
+   },
+   "instant_over_regular": {
+    "min": 1.629,
+    "max": 1.667,
+    "mean": 1.65,
+    "n": 10
+   },
+   "label": "HYPOTHESIS observation only, computed on (displayed - library bonus)"
+  },
+  "silk_cocoon": {
+   "fine_over_regular": {
+    "min": 1.498,
+    "max": 1.512,
+    "mean": 1.501,
+    "n": 10
+   },
+   "instant_over_regular": {
+    "min": 1.654,
+    "max": 1.677,
+    "mean": 1.668,
+    "n": 10
+   },
+   "label": "HYPOTHESIS observation only, computed on (displayed - library bonus)"
+  },
+  "palm_wood": {
+   "fine_over_regular": {
+    "min": 1.496,
+    "max": 1.512,
+    "mean": 1.5,
+    "n": 10
+   },
+   "instant_over_regular": {
+    "min": 1.654,
+    "max": 1.677,
+    "mean": 1.668,
+    "n": 10
+   },
+   "label": "HYPOTHESIS observation only, computed on (displayed - library bonus)"
+  },
+  "feather": {
+   "fine_over_regular": {
+    "min": 1.492,
+    "max": 1.501,
+    "mean": 1.498,
+    "n": 10
+   },
+   "instant_over_regular": {
+    "min": 1.66,
+    "max": 1.667,
+    "mean": 1.665,
+    "n": 10
+   },
+   "label": "HYPOTHESIS observation only, computed on (displayed - library bonus)"
+  }
+ },
+ "checks_run": {
+  "spinning_works_0.95_rule": {
+   "cycle_seconds_round": 20,
+   "cycle_seconds_floor": 12,
+   "cycle_seconds_ceil": 12,
+   "input_round": 20,
+   "n": 20
+  },
+  "shared_level_tables_seen_rows": {
+   "palm_vs_silk_cocoon_regular": {
+    "compared": 7,
+    "equal": 7,
+    "levels": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     12,
+     13
+    ]
+   },
+   "feather_vs_jade_bamboo_regular": {
+    "compared": 8,
+    "equal": 8,
+    "levels": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     12,
+     13,
+     14
+    ]
+   },
+   "palm_vs_silk_cocoon_fine": {
+    "compared": 7,
+    "equal": 7,
+    "levels": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     12,
+     13
+    ]
+   },
+   "feather_vs_jade_bamboo_fine": {
+    "compared": 8,
+    "equal": 8,
+    "levels": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     12,
+     13,
+     14
+    ]
+   },
+   "palm_vs_silk_cocoon_instant": {
+    "compared": 7,
+    "equal": 7,
+    "levels": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     12,
+     13
+    ]
+   },
+   "feather_vs_jade_bamboo_instant": {
+    "compared": 8,
+    "equal": 8,
+    "levels": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     12,
+     13,
+     14
+    ]
+   },
+   "cotton_roll_vs_cotton_regular": {
+    "compared": 8,
+    "equal": 8,
+    "levels": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     12,
+     13,
+     14
+    ]
+   },
+   "copper_sheets_base_vs_marimba_base": {
+    "compared": 6,
+    "equal": 6,
+    "levels": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     8
+    ]
+   },
+   "iced_coffee_base_vs_marimba_base": {
+    "compared": 7,
+    "equal": 7,
+    "levels": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     7,
+     8
+    ]
+   },
+   "iced_coffee_base_vs_copper_sheets_base": {
+    "compared": 9,
+    "equal": 9,
+    "levels": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     8,
+     9,
+     10,
+     11
+    ]
+   }
+  },
+  "interpolation_back_tests_pred_minus_seen": {
+   "palm_regular_9_12_from_5_and_13": [
+    0,
+    -1,
+    -1,
+    -1
+   ],
+   "silk_cocoon_regular_9_11_from_5_and_12_vs_palm_seen": [
+    0,
+    0,
+    0
+   ],
+   "feather_regular_10_11_from_5_and_12_vs_jade_bamboo_seen": [
+    1,
+    1
+   ],
+   "palm_fine_9_12_from_5_and_13": [
+    0,
+    0,
+    -1,
+    0
+   ],
+   "silk_cocoon_fine_9_11_from_5_and_12_vs_palm_seen": [
+    0,
+    0,
+    -1
+   ],
+   "feather_fine_10_11_from_5_and_12_vs_jade_bamboo_seen": [
+    0,
+    0
+   ],
+   "palm_instant_9_12_from_5_and_13": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "silk_cocoon_instant_9_11_from_5_and_12_vs_palm_seen": [
+    0,
+    0,
+    0
+   ],
+   "feather_instant_10_11_from_5_and_12_vs_jade_bamboo_seen": [
+    0,
+    0
+   ],
+   "cotton_regular_10_11_from_5_and_12_vs_cotton_roll_seen": [
+    0,
+    0
+   ],
+   "copper_sheets_6_7_from_5_and_8_vs_marimba_base_plus_6": [
+    -1,
+    0
+   ]
+  },
+  "interpolation_back_tests_summary": {
+   "points": 31,
+   "max_abs_error": 1,
+   "exact": 23
+  },
+  "plantation_28oct_seen_vs_interpolated_estimates": {
+   "compared": 45,
+   "equal": 32,
+   "differ_by_1": 13,
+   "max_abs_diff": 1,
+   "note": "seen post-28-Oct Lvl 6-11 rows compared with the stored geometric-interpolation estimates; every difference is 1 (10 rows seen higher, 3 rows seen lower: silk cocoon instant Lvl 6, 7, 8); rows that differ carry previous_estimate_output_qty",
+   "higher_by_1": 10,
+   "lower_by_1": 3
+  },
+  "ostrich_28oct_seen_vs_interpolated_estimates": {
+   "compared": 17,
+   "equal_rows": 7,
+   "differ_rows": 10,
+   "max_abs_diff": 1,
+   "note": "28 Oct 16:18: 17 ostrich rows seen (Regular Lvl 7-11, Fine Lvl 6-11, Instant Lvl 6-11) compared with the stored geometric-interpolation estimates for feather and manure; every difference is 1. Regular: Lvl 8, 10, 11 lower by 1 (feather and manure). Fine: feather Lvl 9 lower by 1; manure Lvl 8, 10, 11 lower by 1. Instant: feather Lvl 8 lower by 1; manure Lvl 6 and 7 higher by 1. Rows that differ carry previous_estimate_output_qty and/or previous_estimate_manure_qty. Overlapping Fine and Instant rows (Lvl 7-10) on two screenshots agree."
+  },
+  "ostrich_28oct_vs_jade_bamboo_nursery": {
+   "note": "Jade bamboo nursery rows Lvl 6-9 are still estimated (copied from carrots). The newly seen ostrich feather values equal those stored Jade estimates at every compared row: Regular Lvl 7-9, Fine Lvl 6-9, Instant Lvl 6-9 (11 rows). Jade left unchanged until its own screenshots; supports the shared-level-table HYPOTHESIS."
+  },
+  "ostrich_regular_lvl6_28oct": {
+   "note": "28 Oct 17:03 Ostrich Regular Lvl 6 seen (feather 269, manure 227, xp 184): equal to the interpolated estimate. The Jade bamboo nursery Lvl 6 estimate (269) also equals it, so all 12 compared ostrich-Regular rows (Lvl 6-9, Jade estimates) agree."
+  },
+  "tropicalis_28oct_2330_batch1": {
+   "compared": 45,
+   "estimates_now_seen": 23,
+   "estimates_equal": 14,
+   "estimates_differ_by_1": 9,
+   "already_seen_rows_re_seen": 22,
+   "already_seen_rows_that_differ": 0,
+   "higher_by_1": [
+    "plantation cotton fine Lvl 6 (84->85)",
+    "palm regular Lvl 6 (89->90)",
+    "palm regular Lvl 7 (104->105)",
+    "cotton weaver Lvl 6 (59->60)",
+    "cotton weaver Lvl 7 (69->70)",
+    "cotton weaver Lvl 8 (81->82)",
+    "copper sheets Lvl 6 (55->56)"
+   ],
+   "lower_by_1": [
+    "palm instant Lvl 6 (140->139)",
+    "palm instant Lvl 7 (165->164)"
+   ],
+   "coins_inputs_time": "identical to the stored table values on all 9 tables (coins 3,014 / 4,522 / 251 / 13,565 / 9,043; inputs and cycle times unchanged); no cycles column on any of them",
+   "shared_table_check": "Palm nursery Lvl 6-10 equals Plantation silk cocoon (Regular, Fine, Instant) at all 15 rows; Cotton weaver Lvl 6-10 equals Plantation cotton Regular at all 5; Copper forge Lvl 6-7 equals Marimba base + 6; Bar Lvl 6-10 equals Marimba base at all 5. Every shared-level pairing held.",
+   "note": "Differing rows keep previous_estimate_output_qty. Re-seen rows (Lvl 7-10 plantation/bar, Lvl 8-10 copper, Lvl 10 cotton weaver, Lvl 9-10 palm) were already seen before the update and are identical; they are now tagged post-28-Oct update with xp."
+  },
+  "tropicalis_28oct_2359_batch2": {
+   "compared": 40,
+   "estimates_now_seen": 7,
+   "estimates_differ_by_1": [
+    "silk_cocoon fine Lvl 11 (293->294)"
+   ],
+   "already_seen_rows_re_seen": 33,
+   "already_seen_rows_that_differ": [],
+   "coins_inputs_time": "identical to the stored table values on all 8 tables (coins 251 / 754 / 1,507; -1 input on Fine and Instant; cycles 10 m / 30 m / 60 m / Instant); no cycles column",
+   "shared_table_check": "Plantation Lvl 11 equals the stored (pre-update) palm nursery Lvl 11 (Regular 201, Fine 294, Instant 325) and cotton weaver Lvl 11 equals cotton Regular Lvl 11 (134). The seen silk Fine 294 matches palm Fine 294, which is why the old estimate of 293 was 1 low.",
+   "note": "Cotton Fine was not in this batch (already complete). Differing row keeps previous_estimate_output_qty."
+  }
+ },
+ "checklist": [
+  {
+   "producer_id": "plantation",
+   "tables": 9,
+   "max_level": 16,
+   "rows_seen": 144,
+   "rows_estimated": 0,
+   "ticked": true
+  },
+  {
+   "producer_id": "ostrich_farm",
+   "tables": 3,
+   "max_level": 16,
+   "rows_seen": 48,
+   "rows_estimated": 0,
+   "ticked": true
+  },
+  {
+   "producer_id": "palm_nursery",
+   "tables": 3,
+   "max_level": 13,
+   "rows_seen": 39,
+   "rows_estimated": 0,
+   "ticked": true
+  },
+  {
+   "producer_id": "cotton_weaver",
+   "tables": 1,
+   "max_level": 14,
+   "rows_seen": 14,
+   "rows_estimated": 0,
+   "ticked": true
+  },
+  {
+   "producer_id": "spinning_works",
+   "tables": 2,
+   "max_level": 15,
+   "rows_seen": 30,
+   "rows_estimated": 0,
+   "ticked": true
+  },
+  {
+   "producer_id": "copper_forge",
+   "tables": 1,
+   "max_level": 12,
+   "rows_seen": 12,
+   "rows_estimated": 0,
+   "ticked": true
+  },
+  {
+   "producer_id": "coffee_brewery",
+   "tables": 1,
+   "max_level": 15,
+   "rows_seen": 15,
+   "rows_estimated": 0,
+   "ticked": true
+  },
+  {
+   "producer_id": "bar",
+   "tables": 1,
+   "max_level": 11,
+   "rows_seen": 11,
+   "rows_estimated": 0,
+   "ticked": true
+  },
+  {
+   "producer_id": "seamstress",
+   "tables": 2,
+   "max_level": 10,
+   "rows_seen": 20,
+   "rows_estimated": 0,
+   "ticked": true
+  },
+  {
+   "producer_id": "instrument_maker",
+   "tables": 2,
+   "max_level": 8,
+   "rows_seen": 16,
+   "rows_estimated": 0,
+   "ticked": true
+  }
+ ],
+ "unticked_checklist": [
+  "bar: max level 11 not confirmed as the end of the table (Lvl 6 now seen)"
+ ],
+ "UNCONFIRMED": [
+  "Maximum level of every producer is the last row shown after Jo scrolled to the last level (her instruction), not independently verified. Bar has no recorded maximum",
+  "Input item identities are from icons only, not names: coffee brewery input = ground_coffee (paper bag icon); cotton weaver input = cotton_yarn; copper forge input = copper_ingot; bar inputs = cup_of_coffee and milk; seamstress inputs = cotton_roll and cashmere (named by Jo; quantity order from icon position); spinning works inputs = cotton and silk_cocoon; marimba inputs = copper_sheets (50) and bamboo (500); ostrich Regular input = ostrich_feed; palm Regular input = fertilizer",
+  "Fine and Instant item names are not shown on the tables (blue / purple bucket icon). Plantation ids fine_/instant_<product>_input and ostrich fine_/instant_ostrich_feed are placeholders; palm fine_/instant_fertilizer follows the Jade bamboo pattern",
+  "Library bonus values are taken from library.json player_levels (recorded 26 Oct); the level of each book when these panels were captured is UNCONFIRMED (copper sheets is at 3 of 5)",
+  "Tropicalis happiness penalty at capture (coin costs are as displayed)",
+  "Whether the Library bonus is inside the constant Spinning works output (cotton yarn 23, silk thread 15)",
+  "Manure Library +3 (vol I +1, vol II +2) assumed additive on the Ostrich farm rows (HYPOTHESIS, as on Jade)",
+  "Rounding rule after rune/seed multipliers (ceil is the leading candidate, not confirmed)",
+  "Batch slider on any Tropicalis processing building: not shown on the table screenshots",
+  "Other product tabs on the single-product processing buildings (cotton weaver, copper forge, coffee brewery, bar, seamstress, instrument maker) were not checked",
+  "Whether Jo's copper sheets Library level changed after the screenshots: Copper forge Lvl 1 = 26 and Marimba Lvl 1 = 20 differ by exactly 6, which fits the +6 (level 3) assumption at capture"
+ ],
+ "NOT_YET_SEEN": [
+  "Stars, build cost, build time and land for every Tropicalis building (not recorded)",
+  "Tropicalis Library page was not needed: all 13 Tropicalis products are already in library.json",
+  "No estimated rows remain on Tropicalis (all 349 rows seen, post-28-Oct update where re-screenshotted)"
+ ],
+ "contradictions": [],
+ "island_state_seen": {
+  "source": "island view screenshot 2026-10-27 01:22",
+  "player_level": 56,
+  "happiness": -65,
+  "workers_available": 0,
+  "coins": 14007946,
+  "gems": 1771,
+  "happiness_note": "seen now; the happiness at the time the producer tables were captured is not recorded (Jo says it has not changed), and the coin penalty % it implies is UNCONFIRMED"
+ },
+ "screenshot_counts_27oct": {
+  "note": "Only what was SEEN on screenshots (27 Oct 2026). Building counts and levels typed from notes are not data and are not stored here.",
+  "storage": {
+   "source": "screenshot 01:18 Building storage > Production tab (seen); other tabs Housing / Farming / Decorations not shown",
+   "buildings": [
+    {
+     "building": "instrument_maker",
+     "level": 1,
+     "count": 1,
+     "footprint": "6x9"
+    },
+    {
+     "building": "palm_nursery",
+     "level": 1,
+     "count": 1,
+     "footprint": "6x9"
+    },
+    {
+     "building": "seamstress",
+     "level": 1,
+     "count": 1,
+     "footprint": "6x9"
+    }
+   ],
+   "card_text_seen": "each card reads 'worker icon -3' and 'Need: [palm icon] 3' (3 in red); meaning not recorded as a rule"
+  },
+  "island_screenshot_check": {
+   "source": "island view screenshot 01:22 (seen)",
+   "counts_visible_on_map": {
+    "ostrich_farms": 6,
+    "palm_nurseries": 3,
+    "bars": 2,
+    "copper_forges": 2,
+    "coffee_breweries": 5,
+    "cotton_weavers": 2,
+    "spinning_works": 1,
+    "plantation_plots": 6
+   },
+   "note": "levels are not visible on the map; plantation plots all show a sleeping Z (idle) at capture"
+  }
+ }
+}

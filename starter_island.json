@@ -1,0 +1,71 @@
+{
+ "_note": "STARTER ISLAND (UNCONFIRMED). A basic set of production buildings, one of each at level 1, for a player starting out. The list comes from Jo's reading of the Your Journey level map icons (22:00 draft, 28 Oct 2026) and has NOT been checked against the game. Change anything that is wrong. Population buildings, decorations and space are out of scope.",
+ "groups": [
+  {
+   "island": "haven",
+   "producer": "field",
+   "level": 1,
+   "count": 1
+  },
+  {
+   "island": "haven",
+   "producer": "cow_shed",
+   "level": 1,
+   "count": 1
+  },
+  {
+   "island": "haven",
+   "producer": "windmill",
+   "level": 1,
+   "count": 1
+  },
+  {
+   "island": "haven",
+   "producer": "bakery",
+   "level": 1,
+   "count": 1
+  },
+  {
+   "island": "haven",
+   "producer": "silo",
+   "level": 1,
+   "count": 1
+  },
+  {
+   "island": "haven",
+   "producer": "pine_nursery",
+   "level": 1,
+   "count": 1
+  },
+  {
+   "island": "haven",
+   "producer": "feed_mill",
+   "level": 1,
+   "count": 1
+  },
+  {
+   "island": "tropicalis",
+   "producer": "plantation",
+   "level": 1,
+   "count": 1
+  },
+  {
+   "island": "tropicalis",
+   "producer": "ostrich_farm",
+   "level": 1,
+   "count": 1
+  },
+  {
+   "island": "tropicalis",
+   "producer": "palm_nursery",
+   "level": 1,
+   "count": 1
+  },
+  {
+   "island": "tropicalis",
+   "producer": "coffee_brewery",
+   "level": 1,
+   "count": 1
+  }
+ ]
+}

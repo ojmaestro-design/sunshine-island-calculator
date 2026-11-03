@@ -1,0 +1,5658 @@
+{
+ "meta": {
+  "file": "island_jade.json",
+  "status": "ISLAND_JADE_v1_PASS3",
+  "date": "2026-10-31",
+  "island": "jade",
+  "sources": "observed_tables_jade.json, observed_tables.json, screenshots 22:11 / 22:21 / 22:27 (single and photo-grid), user_stated notes at 22:14, 22:23, 22:28, 22:34",
+  "value_type": "every output_qty is displayed_output: includes Jo's Library bonuses at the time (and the Mines rune on Mine tables). Never base",
+  "coin_note": "coin inputs include the +95% Jade happiness penalty at the time (happiness -35)",
+  "row_status_legend": {
+   "seen": "read from a screenshot or typed by Jo",
+   "estimated": "never seen; computed; flagged HYPOTHESIS; about +/-1-2",
+   "NOT_YET_SEEN": "not recorded and not estimated"
+  },
+  "scope": "reduced set: Lvl 1-5 and the top five levels per table, middle levels estimated. Stars, build cost, build time, land not recorded",
+  "field_names": "producer_id, product_id, level, cycle_minutes, output_qty, mode (regular/fine/instant/none), inputs [{product_id, qty}]; second animal output is manure",
+  "supersedes": "catalogue_jade.json where they differ (see contradictions)",
+  "rune_note": "Mine rune-ON tables were recorded with the Mines rune active (user_stated). Mine rune-OFF tables (mines_rune_active_when_recorded false) are now complete for all three products and modes, Lvl 1-15, all seen. The 35 rune-on Lvl 6-10 rows stay estimated.",
+  "last_capture": "2026-10-31 11:40 Jade Mine rune-off contact sheets (5 sheets, 30 tables, 135 rows): all nine product-mode no-rune tables now complete Lvl 1-15 and seen. Earlier: 2026-10-29 00:21 batch J2, 00:18 batch J1.",
+  "game_version": "iOS App Store 1.3.40251 (released 28 Oct 2026)"
+ },
+ "producers": [
+  {
+   "producer_id": "mine",
+   "library_name": "Mines",
+   "island": "jade",
+   "category": "mine",
+   "max_level": 15,
+   "max_level_source": "user_stated (table ends at Lvl 15)",
+   "modes": [
+    "regular",
+    "fine",
+    "instant"
+   ],
+   "has_batch_slider": "no",
+   "product_tabs_checked": [
+    "iron_ore",
+    "copper_ore",
+    "gold_ore"
+   ],
+   "max_owned": "no_limit_shown",
+   "tables": [
+    {
+     "producer_id": "mine",
+     "product_id": "iron_ore",
+     "mode": "regular",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 45,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "coins",
+       "qty": 14011
+      }
+     ],
+     "cycle_minutes": 360,
+     "mines_rune_active_when_recorded": true,
+     "coin_inputs_include_happiness_penalty_pct": 95,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 145
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 164
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 189
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 217
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 251
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 292
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 341
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 400
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 471
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 556
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 658
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 781
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 928
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 1105
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 1317
+      }
+     ],
+     "seen_count": 15,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": []
+    },
+    {
+     "producer_id": "mine",
+     "product_id": "iron_ore",
+     "mode": "fine",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 45,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "fine_iron_mining_tools",
+       "qty": 1
+      }
+     ],
+     "cycle_minutes": 360,
+     "mines_rune_active_when_recorded": true,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 194
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 224
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 259
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 302
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 354
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 415
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 489
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 578
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 684
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 812
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 965
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 1149
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 1370
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 1634
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 1952
+      }
+     ],
+     "seen_count": 15,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": []
+    },
+    {
+     "producer_id": "mine",
+     "product_id": "iron_ore",
+     "mode": "instant",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 45,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "instant_iron_mining_tools",
+       "qty": 1
+      }
+     ],
+     "cycle_minutes": null,
+     "cycle_label": "Instant",
+     "mines_rune_active_when_recorded": true,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 211
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 244
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 283
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 330
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 388
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 1067
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 1272
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 1516
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 1811
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 2164
+      }
+     ],
+     "seen_count": 10,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "notes": "29 Oct 2026 00:21:  The no-rune Lvl 6-10 values were seen post-update and are held in the no-rune table of the same product and mode. 1 Nov 2026: the guessed Lvl 6-10 rows were removed; rune-on figures for those levels are worked out from the complete no-rune table (rune on the base, round up, Library added after)."
+    },
+    {
+     "producer_id": "mine",
+     "product_id": "iron_ore",
+     "mode": "regular",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 45,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "coins",
+       "qty": 14011
+      }
+     ],
+     "cycle_minutes": 360,
+     "mines_rune_active_when_recorded": false,
+     "coin_inputs_include_happiness_penalty_pct": 95,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 135,
+       "xp": 69,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 153,
+       "xp": 84,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 175,
+       "xp": 102,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 201,
+       "xp": 124,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 232,
+       "xp": 151,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 269,
+       "xp": 184,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 314,
+       "xp": 224,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 367,
+       "xp": 272,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 432,
+       "xp": 331,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 509,
+       "xp": 402,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 602,
+       "xp": 489,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 714,
+       "xp": 594,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 847,
+       "xp": 722,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 1008,
+       "xp": 877,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 1201,
+       "xp": 1066,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      }
+     ],
+     "seen_count": 15,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "notes": "NO-RUNE record, complete Lvl 1-15. Lvl 1-5 and 11-15 seen on the 31 Oct 2026 rune-off contact sheets (Jo, 5 sheets, all nine product-mode tables); Lvl 6-10 seen 28-29 Oct post-update (iron Regular/Fine Lvl 6-10 equal the shared bamboo/carrots table, confirmed equal at every level in the 31 Oct check). Stars (xp) are the same in all three modes of a product. Mine tables equal the shared level tables. Rune-on estimated rows are kept in the rune-on table of the same product and mode.",
+     "max_level_recorded": 15
+    },
+    {
+     "producer_id": "mine",
+     "product_id": "iron_ore",
+     "mode": "fine",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 45,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "fine_iron_mining_tools",
+       "qty": 1
+      }
+     ],
+     "cycle_minutes": 360,
+     "mines_rune_active_when_recorded": false,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 180,
+       "xp": 69,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 207,
+       "xp": 84,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 239,
+       "xp": 102,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 278,
+       "xp": 124,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 325,
+       "xp": 151,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 381,
+       "xp": 184,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 448,
+       "xp": 224,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 529,
+       "xp": 272,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 625,
+       "xp": 331,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 742,
+       "xp": 402,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 881,
+       "xp": 489,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 1048,
+       "xp": 594,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 1249,
+       "xp": 722,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 1489,
+       "xp": 877,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 1778,
+       "xp": 1066,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      }
+     ],
+     "seen_count": 15,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "max_level_recorded": 15,
+     "notes": "NO-RUNE record, complete Lvl 1-15. Lvl 1-5 and 11-15 seen on the 31 Oct 2026 rune-off contact sheets (Jo, 5 sheets, all nine product-mode tables); Lvl 6-10 seen 28-29 Oct post-update (iron Regular/Fine Lvl 6-10 equal the shared bamboo/carrots table, confirmed equal at every level in the 31 Oct check). Stars (xp) are the same in all three modes of a product. Mine tables equal the shared level tables. Rune-on estimated rows are kept in the rune-on table of the same product and mode."
+    },
+    {
+     "producer_id": "mine",
+     "product_id": "copper_ore",
+     "mode": "regular",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 13,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "coins",
+       "qty": 1751
+      }
+     ],
+     "cycle_minutes": 45,
+     "mines_rune_active_when_recorded": true,
+     "coin_inputs_include_happiness_penalty_pct": 95,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 41
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 47
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 53
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 61
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 71
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 184
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 218
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 259
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 307
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 367
+      }
+     ],
+     "seen_count": 10,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "notes": "29 Oct 2026 00:21:  The no-rune Lvl 6-10 values were seen post-update and are held in the no-rune table of the same product and mode. 1 Nov 2026: the guessed Lvl 6-10 rows were removed; rune-on figures for those levels are worked out from the complete no-rune table (rune on the base, round up, Library added after)."
+    },
+    {
+     "producer_id": "mine",
+     "product_id": "copper_ore",
+     "mode": "fine",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 13,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "fine_copper_mining_tools",
+       "qty": 1
+      }
+     ],
+     "cycle_minutes": 45,
+     "mines_rune_active_when_recorded": true,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 55
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 64
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 74
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 86
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 100
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 272
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 324
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 386
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 461
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 550
+      }
+     ],
+     "seen_count": 10,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "notes": "29 Oct 2026 00:21:  The no-rune Lvl 6-10 values were seen post-update and are held in the no-rune table of the same product and mode. 1 Nov 2026: the guessed Lvl 6-10 rows were removed; rune-on figures for those levels are worked out from the complete no-rune table (rune on the base, round up, Library added after)."
+    },
+    {
+     "producer_id": "mine",
+     "product_id": "copper_ore",
+     "mode": "instant",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 13,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "instant_copper_mining_tools",
+       "qty": 1
+      }
+     ],
+     "cycle_minutes": null,
+     "cycle_label": "Instant",
+     "mines_rune_active_when_recorded": true,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 60
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 69
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 80
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 94
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 109
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 300
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 357
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 425
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 507
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 606
+      }
+     ],
+     "seen_count": 10,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "notes": "29 Oct 2026 00:21:  The no-rune Lvl 6-10 values were seen post-update and are held in the no-rune table of the same product and mode. 1 Nov 2026: the guessed Lvl 6-10 rows were removed; rune-on figures for those levels are worked out from the complete no-rune table (rune on the base, round up, Library added after)."
+    },
+    {
+     "producer_id": "mine",
+     "product_id": "gold_ore",
+     "mode": "regular",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 20,
+     "library_bonus_source": "library.json: gold +10 (vol I) + +10 (vol II) = +20, inferred additive",
+     "inputs": [
+      {
+       "product_id": "coins",
+       "qty": 389
+      }
+     ],
+     "cycle_minutes": 20,
+     "mines_rune_active_when_recorded": true,
+     "coin_inputs_include_happiness_penalty_pct": 95,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 37
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 40
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 45
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 49
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 55
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 123
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 143
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 168
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 197
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 233
+      }
+     ],
+     "seen_count": 10,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "notes": "29 Oct 2026 00:21:  The no-rune Lvl 6-10 values were seen post-update and are held in the no-rune table of the same product and mode. 1 Nov 2026: the guessed Lvl 6-10 rows were removed; rune-on figures for those levels are worked out from the complete no-rune table (rune on the base, round up, Library added after)."
+    },
+    {
+     "producer_id": "mine",
+     "product_id": "gold_ore",
+     "mode": "fine",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 20,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "fine_gold_mining_tools",
+       "qty": 1
+      }
+     ],
+     "cycle_minutes": 20,
+     "mines_rune_active_when_recorded": true,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 46
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 51
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 57
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 65
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 73
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 177
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 209
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 246
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 291
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 345
+      }
+     ],
+     "seen_count": 10,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "notes": "29 Oct 2026 00:21:  The no-rune Lvl 6-10 values were seen post-update and are held in the no-rune table of the same product and mode. 1 Nov 2026: the guessed Lvl 6-10 rows were removed; rune-on figures for those levels are worked out from the complete no-rune table (rune on the base, round up, Library added after)."
+    },
+    {
+     "producer_id": "mine",
+     "product_id": "gold_ore",
+     "mode": "instant",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 20,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "instant_gold_mining_tools",
+       "qty": 1
+      }
+     ],
+     "cycle_minutes": null,
+     "cycle_label": "Instant",
+     "mines_rune_active_when_recorded": true,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 48
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 54
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 60
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 68
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 78
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 191
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 225
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 266
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 314
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 374
+      }
+     ],
+     "seen_count": 10,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "notes": "29 Oct 2026 00:21:  The no-rune Lvl 6-10 values were seen post-update and are held in the no-rune table of the same product and mode. 1 Nov 2026: the guessed Lvl 6-10 rows were removed; rune-on figures for those levels are worked out from the complete no-rune table (rune on the base, round up, Library added after)."
+    },
+    {
+     "producer_id": "mine",
+     "product_id": "copper_ore",
+     "mode": "instant",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 13,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "instant_copper_mining_tools",
+       "qty": 1
+      }
+     ],
+     "cycle_minutes": null,
+     "cycle_label": "Instant",
+     "mines_rune_active_when_recorded": false,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 55,
+       "xp": 13,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 63,
+       "xp": 17,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 73,
+       "xp": 22,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 86,
+       "xp": 28,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 100,
+       "xp": 35,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 118,
+       "xp": 45,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 138,
+       "xp": 57,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 163,
+       "xp": 72,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 194,
+       "xp": 90,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 230,
+       "xp": 114,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 273,
+       "xp": 142,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 325,
+       "xp": 178,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 387,
+       "xp": 223,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 462,
+       "xp": 278,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 552,
+       "xp": 347,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      }
+     ],
+     "seen_count": 15,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "max_level_recorded": 15,
+     "notes": "NO-RUNE record, complete Lvl 1-15. Lvl 1-5 and 11-15 seen on the 31 Oct 2026 rune-off contact sheets (Jo, 5 sheets, all nine product-mode tables); Lvl 6-10 seen 28-29 Oct post-update. Stars (xp) are the same in all three modes of a product. Mine tables equal the shared level tables. Rune-on estimated rows are kept in the rune-on table of the same product and mode."
+    },
+    {
+     "producer_id": "mine",
+     "product_id": "copper_ore",
+     "mode": "fine",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 13,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "fine_copper_mining_tools",
+       "qty": 1
+      }
+     ],
+     "cycle_minutes": 45,
+     "mines_rune_active_when_recorded": false,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 51,
+       "xp": 13,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 59,
+       "xp": 17,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 68,
+       "xp": 22,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 79,
+       "xp": 28,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 92,
+       "xp": 35,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 108,
+       "xp": 45,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 126,
+       "xp": 57,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 149,
+       "xp": 72,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 176,
+       "xp": 90,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 209,
+       "xp": 114,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 248,
+       "xp": 142,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 295,
+       "xp": 178,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 352,
+       "xp": 223,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 420,
+       "xp": 278,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 501,
+       "xp": 347,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      }
+     ],
+     "seen_count": 15,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "max_level_recorded": 15,
+     "notes": "NO-RUNE record, complete Lvl 1-15. Lvl 1-5 and 11-15 seen on the 31 Oct 2026 rune-off contact sheets (Jo, 5 sheets, all nine product-mode tables); Lvl 6-10 seen 28-29 Oct post-update. Stars (xp) are the same in all three modes of a product. Mine tables equal the shared level tables. Rune-on estimated rows are kept in the rune-on table of the same product and mode."
+    },
+    {
+     "producer_id": "mine",
+     "product_id": "copper_ore",
+     "mode": "regular",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 13,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "coins",
+       "qty": 1751
+      }
+     ],
+     "cycle_minutes": 45,
+     "mines_rune_active_when_recorded": false,
+     "coin_inputs_include_happiness_penalty_pct": 95,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 38,
+       "xp": 13,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 43,
+       "xp": 17,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 49,
+       "xp": 22,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 56,
+       "xp": 28,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 65,
+       "xp": 35,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 75,
+       "xp": 45,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 88,
+       "xp": 57,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 103,
+       "xp": 72,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 120,
+       "xp": 90,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 142,
+       "xp": 114,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 168,
+       "xp": 142,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 199,
+       "xp": 178,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 236,
+       "xp": 223,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 280,
+       "xp": 278,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 334,
+       "xp": 347,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      }
+     ],
+     "seen_count": 15,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "max_level_recorded": 15,
+     "notes": "NO-RUNE record, complete Lvl 1-15. Lvl 1-5 and 11-15 seen on the 31 Oct 2026 rune-off contact sheets (Jo, 5 sheets, all nine product-mode tables); Lvl 6-10 seen 28-29 Oct post-update. Stars (xp) are the same in all three modes of a product. Mine tables equal the shared level tables. Rune-on estimated rows are kept in the rune-on table of the same product and mode."
+    },
+    {
+     "producer_id": "mine",
+     "product_id": "gold_ore",
+     "mode": "instant",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 20,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "instant_gold_mining_tools",
+       "qty": 1
+      }
+     ],
+     "cycle_minutes": null,
+     "cycle_label": "Instant",
+     "mines_rune_active_when_recorded": false,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 45,
+       "xp": 7,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 50,
+       "xp": 10,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 56,
+       "xp": 13,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 63,
+       "xp": 17,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 72,
+       "xp": 23,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 82,
+       "xp": 30,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 95,
+       "xp": 39,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 110,
+       "xp": 50,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 127,
+       "xp": 64,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 149,
+       "xp": 83,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 175,
+       "xp": 105,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 206,
+       "xp": 134,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 243,
+       "xp": 169,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 287,
+       "xp": 214,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 341,
+       "xp": 270,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      }
+     ],
+     "seen_count": 15,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "max_level_recorded": 15,
+     "notes": "NO-RUNE record, complete Lvl 1-15. Lvl 1-5 and 11-15 seen on the 31 Oct 2026 rune-off contact sheets (Jo, 5 sheets, all nine product-mode tables); Lvl 6-10 seen 28-29 Oct post-update. Stars (xp) are the same in all three modes of a product. Mine tables equal the shared level tables. Rune-on estimated rows are kept in the rune-on table of the same product and mode."
+    },
+    {
+     "producer_id": "mine",
+     "product_id": "gold_ore",
+     "mode": "fine",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 20,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "fine_gold_mining_tools",
+       "qty": 1
+      }
+     ],
+     "cycle_minutes": 20,
+     "mines_rune_active_when_recorded": false,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 43,
+       "xp": 7,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 48,
+       "xp": 10,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 53,
+       "xp": 13,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 60,
+       "xp": 17,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 68,
+       "xp": 23,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 77,
+       "xp": 30,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 89,
+       "xp": 39,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 102,
+       "xp": 50,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 119,
+       "xp": 64,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 139,
+       "xp": 83,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 162,
+       "xp": 105,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 191,
+       "xp": 134,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 225,
+       "xp": 169,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 266,
+       "xp": 214,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 315,
+       "xp": 270,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      }
+     ],
+     "seen_count": 15,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "max_level_recorded": 15,
+     "notes": "NO-RUNE record, complete Lvl 1-15. Lvl 1-5 and 11-15 seen on the 31 Oct 2026 rune-off contact sheets (Jo, 5 sheets, all nine product-mode tables); Lvl 6-10 seen 28-29 Oct post-update. Stars (xp) are the same in all three modes of a product. Mine tables equal the shared level tables. Rune-on estimated rows are kept in the rune-on table of the same product and mode."
+    },
+    {
+     "producer_id": "mine",
+     "product_id": "gold_ore",
+     "mode": "regular",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 20,
+     "library_bonus_source": "library.json: gold +10 (vol I) + +10 (vol II) = +20, inferred additive",
+     "inputs": [
+      {
+       "product_id": "coins",
+       "qty": 389
+      }
+     ],
+     "cycle_minutes": 20,
+     "mines_rune_active_when_recorded": false,
+     "coin_inputs_include_happiness_penalty_pct": 95,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 35,
+       "xp": 7,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 38,
+       "xp": 10,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 42,
+       "xp": 13,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 46,
+       "xp": 17,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 51,
+       "xp": 23,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 57,
+       "xp": 30,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 65,
+       "xp": 39,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 74,
+       "xp": 50,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 84,
+       "xp": 64,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 97,
+       "xp": 83,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 113,
+       "xp": 105,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 131,
+       "xp": 134,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 154,
+       "xp": 169,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 180,
+       "xp": 214,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 213,
+       "xp": 270,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      }
+     ],
+     "seen_count": 15,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "max_level_recorded": 15,
+     "notes": "NO-RUNE record, complete Lvl 1-15. Lvl 1-5 and 11-15 seen on the 31 Oct 2026 rune-off contact sheets (Jo, 5 sheets, all nine product-mode tables); Lvl 6-10 seen 28-29 Oct post-update. Stars (xp) are the same in all three modes of a product. Mine tables equal the shared level tables. Rune-on estimated rows are kept in the rune-on table of the same product and mode."
+    },
+    {
+     "producer_id": "mine",
+     "product_id": "iron_ore",
+     "mode": "instant",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 45,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "instant_iron_mining_tools",
+       "qty": 1
+      }
+     ],
+     "cycle_minutes": null,
+     "cycle_label": "Instant",
+     "mines_rune_active_when_recorded": false,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 195,
+       "xp": 69,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 225,
+       "xp": 84,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 261,
+       "xp": 102,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 304,
+       "xp": 124,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 356,
+       "xp": 151,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 418,
+       "xp": 184,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 493,
+       "xp": 224,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 582,
+       "xp": 272,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 690,
+       "xp": 331,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 819,
+       "xp": 402,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 974,
+       "xp": 489,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 1160,
+       "xp": 594,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 1382,
+       "xp": 722,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 1650,
+       "xp": 877,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      },
+      {
+       "level": 15,
+       "status": "seen",
+       "output_qty": 1971,
+       "xp": 1066,
+       "seen_on": "2026-10-31",
+       "seen_in": "rune-off contact sheets, 31 Oct 2026"
+      }
+     ],
+     "seen_count": 15,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "max_level_recorded": 15,
+     "notes": "NO-RUNE record, complete Lvl 1-15. Lvl 1-5 and 11-15 seen on the 31 Oct 2026 rune-off contact sheets (Jo, 5 sheets, all nine product-mode tables); Lvl 6-10 seen 28-29 Oct post-update. Stars (xp) are the same in all three modes of a product. Mine tables equal the shared level tables. Rune-on estimated rows are kept in the rune-on table of the same product and mode."
+    }
+   ],
+   "notes": "Mines rune ACTIVE when the rune-on tables were recorded (user_stated 22:23). Rune-off tables for all nine product-mode combinations are complete and seen (31 Oct 2026). Rune end time UNCONFIRMED"
+  },
+  {
+   "producer_id": "foundry",
+   "library_name": "Foundry",
+   "island": "jade",
+   "category": "processing",
+   "max_level": 13,
+   "max_level_source": "user_stated 2026-10-26 22:14: table scrolled to the bottom; last row shown",
+   "modes": "none",
+   "has_batch_slider": "yes x1 to x8 (max cycles per level SEEN 2026-10-28 post-28-Oct update; each row has max_cycles; slider top = that row. Older slider text superseded)",
+   "product_tabs_checked": [
+    "gold_ingot",
+    "copper_ingot",
+    "iron_ingot"
+   ],
+   "max_owned": 1,
+   "tables": [
+    {
+     "producer_id": "foundry",
+     "product_id": "gold_ingot",
+     "mode": "none",
+     "value_type": "displayed_output",
+     "coin_inputs_include_happiness_penalty_pct": 95,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "gold_ore",
+         "qty": 13
+        },
+        {
+         "product_id": "coins",
+         "qty": 2335
+        }
+       ],
+       "cycle_minutes": 60,
+       "cycle_text": "01:00:00",
+       "output_qty": 30,
+       "xp": 16,
+       "max_cycles": 4,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "gold_ore",
+         "qty": 12
+        },
+        {
+         "product_id": "coins",
+         "qty": 2335
+        }
+       ],
+       "cycle_minutes": 57,
+       "cycle_text": "00:57:00",
+       "output_qty": 30,
+       "xp": 16,
+       "max_cycles": 4,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "gold_ore",
+         "qty": 12
+        },
+        {
+         "product_id": "coins",
+         "qty": 2335
+        }
+       ],
+       "cycle_minutes": 54.15,
+       "cycle_text": "00:54:09",
+       "output_qty": 30,
+       "xp": 16,
+       "max_cycles": 5,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "gold_ore",
+         "qty": 11
+        },
+        {
+         "product_id": "coins",
+         "qty": 2335
+        }
+       ],
+       "cycle_minutes": 51.45,
+       "cycle_text": "00:51:27",
+       "output_qty": 30,
+       "xp": 16,
+       "max_cycles": 5,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "gold_ore",
+         "qty": 11
+        },
+        {
+         "product_id": "coins",
+         "qty": 2335
+        }
+       ],
+       "cycle_minutes": 48.867,
+       "cycle_text": "00:48:52",
+       "output_qty": 30,
+       "xp": 16,
+       "max_cycles": 5,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "gold_ore",
+         "qty": 10
+        },
+        {
+         "product_id": "coins",
+         "qty": 2335
+        }
+       ],
+       "cycle_minutes": 46.433,
+       "cycle_text": "00:46:26",
+       "output_qty": 30,
+       "xp": 16,
+       "max_cycles": 6,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "gold_ore",
+         "qty": 10
+        },
+        {
+         "product_id": "coins",
+         "qty": 2335
+        }
+       ],
+       "cycle_minutes": 44.1,
+       "cycle_text": "00:44:06",
+       "output_qty": 30,
+       "xp": 16,
+       "max_cycles": 6,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "gold_ore",
+         "qty": 9
+        },
+        {
+         "product_id": "coins",
+         "qty": 2335
+        }
+       ],
+       "cycle_minutes": 41.9,
+       "cycle_text": "00:41:54",
+       "output_qty": 30,
+       "xp": 16,
+       "max_cycles": 6,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "gold_ore",
+         "qty": 9
+        },
+        {
+         "product_id": "coins",
+         "qty": 2335
+        }
+       ],
+       "cycle_minutes": 39.8,
+       "cycle_text": "00:39:48",
+       "output_qty": 30,
+       "xp": 16,
+       "max_cycles": 7,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "gold_ore",
+         "qty": 8
+        },
+        {
+         "product_id": "coins",
+         "qty": 2335
+        }
+       ],
+       "cycle_minutes": 37.817,
+       "cycle_text": "00:37:49",
+       "output_qty": 30,
+       "xp": 16,
+       "max_cycles": 7,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "gold_ore",
+         "qty": 8
+        },
+        {
+         "product_id": "coins",
+         "qty": 2335
+        }
+       ],
+       "cycle_minutes": 35.917,
+       "cycle_text": "00:35:55",
+       "output_qty": 30,
+       "xp": 16,
+       "max_cycles": 7,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "gold_ore",
+         "qty": 7
+        },
+        {
+         "product_id": "coins",
+         "qty": 2335
+        }
+       ],
+       "cycle_minutes": 34.133,
+       "cycle_text": "00:34:08",
+       "output_qty": 30,
+       "xp": 16,
+       "max_cycles": 8,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "gold_ore",
+         "qty": 7
+        },
+        {
+         "product_id": "coins",
+         "qty": 2335
+        }
+       ],
+       "cycle_minutes": 32.417,
+       "cycle_text": "00:32:25",
+       "output_qty": 30,
+       "xp": 16,
+       "max_cycles": 8,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      }
+     ],
+     "seen_count": 13,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "Foundry-type levels (ore input and cycle fall, output constant) estimated separately, HYPOTHESIS: ore = round(Lvl1 ore x 0.95^(level-1)); cycle = Lvl1 cycle x 0.95^(level-1). Fits every seen row (see checks_run). Never seen",
+     "notes": "output_qty constant over all seen levels; whether the Library ingot bonus is inside the constant is UNCONFIRMED",
+     "library_bonus_assumed": 10,
+     "library_bonus_assumed_source": "user_stated 2026-10-28 05:10: Jo's Library levels have not changed since the 26 Oct captures, so the recorded numbers include her current Library bonus (value taken from library.json player_levels). Other users' Library levels are re-based from this."
+    },
+    {
+     "producer_id": "foundry",
+     "product_id": "copper_ingot",
+     "mode": "none",
+     "value_type": "displayed_output",
+     "coin_inputs_include_happiness_penalty_pct": 95,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "copper_ore",
+         "qty": 17
+        },
+        {
+         "product_id": "coins",
+         "qty": 7006
+        }
+       ],
+       "cycle_minutes": 180,
+       "cycle_text": "03:00:00",
+       "output_qty": 90,
+       "xp": 39,
+       "max_cycles": 4,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "copper_ore",
+         "qty": 16
+        },
+        {
+         "product_id": "coins",
+         "qty": 7006
+        }
+       ],
+       "cycle_minutes": 171,
+       "cycle_text": "02:51:00",
+       "output_qty": 90,
+       "xp": 39,
+       "max_cycles": 4,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "copper_ore",
+         "qty": 15
+        },
+        {
+         "product_id": "coins",
+         "qty": 7006
+        }
+       ],
+       "cycle_minutes": 162.45,
+       "cycle_text": "02:42:27",
+       "output_qty": 90,
+       "xp": 39,
+       "max_cycles": 5,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "copper_ore",
+         "qty": 15
+        },
+        {
+         "product_id": "coins",
+         "qty": 7006
+        }
+       ],
+       "cycle_minutes": 154.333,
+       "cycle_text": "02:34:20",
+       "output_qty": 90,
+       "xp": 39,
+       "max_cycles": 5,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "copper_ore",
+         "qty": 14
+        },
+        {
+         "product_id": "coins",
+         "qty": 7006
+        }
+       ],
+       "cycle_minutes": 146.617,
+       "cycle_text": "02:26:37",
+       "output_qty": 90,
+       "xp": 39,
+       "max_cycles": 5,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "copper_ore",
+         "qty": 13
+        },
+        {
+         "product_id": "coins",
+         "qty": 7006
+        }
+       ],
+       "cycle_minutes": 139.283,
+       "cycle_text": "02:19:17",
+       "output_qty": 90,
+       "xp": 39,
+       "max_cycles": 6,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "copper_ore",
+         "qty": 12
+        },
+        {
+         "product_id": "coins",
+         "qty": 7006
+        }
+       ],
+       "cycle_minutes": 132.317,
+       "cycle_text": "02:12:19",
+       "output_qty": 90,
+       "xp": 39,
+       "max_cycles": 6,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "copper_ore",
+         "qty": 12
+        },
+        {
+         "product_id": "coins",
+         "qty": 7006
+        }
+       ],
+       "cycle_minutes": 125.7,
+       "cycle_text": "02:05:42",
+       "output_qty": 90,
+       "xp": 39,
+       "max_cycles": 6,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "copper_ore",
+         "qty": 11
+        },
+        {
+         "product_id": "coins",
+         "qty": 7006
+        }
+       ],
+       "cycle_minutes": 119.417,
+       "cycle_text": "01:59:25",
+       "output_qty": 90,
+       "xp": 39,
+       "max_cycles": 7,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "copper_ore",
+         "qty": 11
+        },
+        {
+         "product_id": "coins",
+         "qty": 7006
+        }
+       ],
+       "cycle_minutes": 113.45,
+       "cycle_text": "01:53:27",
+       "output_qty": 90,
+       "xp": 39,
+       "max_cycles": 7,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "copper_ore",
+         "qty": 10
+        },
+        {
+         "product_id": "coins",
+         "qty": 7006
+        }
+       ],
+       "cycle_minutes": 107.767,
+       "cycle_text": "01:47:46",
+       "output_qty": 90,
+       "xp": 39,
+       "max_cycles": 7,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "copper_ore",
+         "qty": 10
+        },
+        {
+         "product_id": "coins",
+         "qty": 7006
+        }
+       ],
+       "cycle_minutes": 102.383,
+       "cycle_text": "01:42:23",
+       "output_qty": 90,
+       "xp": 39,
+       "max_cycles": 8,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "copper_ore",
+         "qty": 9
+        },
+        {
+         "product_id": "coins",
+         "qty": 7006
+        }
+       ],
+       "cycle_minutes": 97.267,
+       "cycle_text": "01:37:16",
+       "output_qty": 90,
+       "xp": 39,
+       "max_cycles": 8,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      }
+     ],
+     "seen_count": 13,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "Foundry-type levels (ore input and cycle fall, output constant) estimated separately, HYPOTHESIS: ore = round(Lvl1 ore x 0.95^(level-1)); cycle = Lvl1 cycle x 0.95^(level-1). Fits every seen row (see checks_run). Never seen",
+     "notes": "output_qty constant over all seen levels; whether the Library ingot bonus is inside the constant is UNCONFIRMED",
+     "library_bonus_assumed": 30,
+     "library_bonus_assumed_source": "user_stated 2026-10-28 05:10: Jo's Library levels have not changed since the 26 Oct captures, so the recorded numbers include her current Library bonus (value taken from library.json player_levels). Other users' Library levels are re-based from this."
+    },
+    {
+     "producer_id": "foundry",
+     "product_id": "iron_ingot",
+     "mode": "none",
+     "value_type": "displayed_output",
+     "coin_inputs_include_happiness_penalty_pct": 95,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "iron_ore",
+         "qty": 80
+        },
+        {
+         "product_id": "coins",
+         "qty": 14011
+        }
+       ],
+       "cycle_minutes": 360,
+       "cycle_text": "06:00:00",
+       "output_qty": 30,
+       "xp": 69,
+       "max_cycles": 4,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "iron_ore",
+         "qty": 76
+        },
+        {
+         "product_id": "coins",
+         "qty": 14011
+        }
+       ],
+       "cycle_minutes": 342,
+       "cycle_text": "05:42:00",
+       "output_qty": 30,
+       "xp": 69,
+       "max_cycles": 4,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "iron_ore",
+         "qty": 72
+        },
+        {
+         "product_id": "coins",
+         "qty": 14011
+        }
+       ],
+       "cycle_minutes": 324.9,
+       "cycle_text": "05:24:54",
+       "output_qty": 30,
+       "xp": 69,
+       "max_cycles": 5,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "iron_ore",
+         "qty": 69
+        },
+        {
+         "product_id": "coins",
+         "qty": 14011
+        }
+       ],
+       "cycle_minutes": 308.65,
+       "cycle_text": "05:08:39",
+       "output_qty": 30,
+       "xp": 69,
+       "max_cycles": 5,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "iron_ore",
+         "qty": 65
+        },
+        {
+         "product_id": "coins",
+         "qty": 14011
+        }
+       ],
+       "cycle_minutes": 293.217,
+       "cycle_text": "04:53:13",
+       "output_qty": 30,
+       "xp": 69,
+       "max_cycles": 5,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "iron_ore",
+         "qty": 62
+        },
+        {
+         "product_id": "coins",
+         "qty": 14011
+        }
+       ],
+       "cycle_minutes": 278.567,
+       "cycle_text": "04:38:34",
+       "output_qty": 30,
+       "xp": 69,
+       "max_cycles": 6,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "iron_ore",
+         "qty": 59
+        },
+        {
+         "product_id": "coins",
+         "qty": 14011
+        }
+       ],
+       "cycle_minutes": 264.633,
+       "cycle_text": "04:24:38",
+       "output_qty": 30,
+       "xp": 69,
+       "max_cycles": 6,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "iron_ore",
+         "qty": 56
+        },
+        {
+         "product_id": "coins",
+         "qty": 14011
+        }
+       ],
+       "cycle_minutes": 251.4,
+       "cycle_text": "04:11:24",
+       "output_qty": 30,
+       "xp": 69,
+       "max_cycles": 6,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "iron_ore",
+         "qty": 53
+        },
+        {
+         "product_id": "coins",
+         "qty": 14011
+        }
+       ],
+       "cycle_minutes": 238.833,
+       "cycle_text": "03:58:50",
+       "output_qty": 30,
+       "xp": 69,
+       "max_cycles": 7,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "iron_ore",
+         "qty": 50
+        },
+        {
+         "product_id": "coins",
+         "qty": 14011
+        }
+       ],
+       "cycle_minutes": 226.883,
+       "cycle_text": "03:46:53",
+       "output_qty": 30,
+       "xp": 69,
+       "max_cycles": 7,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "iron_ore",
+         "qty": 48
+        },
+        {
+         "product_id": "coins",
+         "qty": 14011
+        }
+       ],
+       "cycle_minutes": 215.55,
+       "cycle_text": "03:35:33",
+       "output_qty": 30,
+       "xp": 69,
+       "max_cycles": 7,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "iron_ore",
+         "qty": 46
+        },
+        {
+         "product_id": "coins",
+         "qty": 14011
+        }
+       ],
+       "cycle_minutes": 204.767,
+       "cycle_text": "03:24:46",
+       "output_qty": 30,
+       "xp": 69,
+       "max_cycles": 8,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "iron_ore",
+         "qty": 43
+        },
+        {
+         "product_id": "coins",
+         "qty": 14011
+        }
+       ],
+       "cycle_minutes": 194.533,
+       "cycle_text": "03:14:32",
+       "output_qty": 30,
+       "xp": 69,
+       "max_cycles": 8,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      }
+     ],
+     "seen_count": 13,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "Foundry-type levels (ore input and cycle fall, output constant) estimated separately, HYPOTHESIS: ore = round(Lvl1 ore x 0.95^(level-1)); cycle = Lvl1 cycle x 0.95^(level-1). Fits every seen row (see checks_run). Never seen",
+     "notes": "output_qty constant over all seen levels; whether the Library ingot bonus is inside the constant is UNCONFIRMED",
+     "library_bonus_assumed": 10,
+     "library_bonus_assumed_source": "user_stated 2026-10-28 05:10: Jo's Library levels have not changed since the 26 Oct captures, so the recorded numbers include her current Library bonus (value taken from library.json player_levels). Other users' Library levels are re-based from this."
+    },
+    {
+     "slider_evidence": {
+      "producer_id": "foundry",
+      "product_id": "gold_ingot",
+      "at_building_level": 4,
+      "rows": [
+       {
+        "slider": "x1",
+        "coins": 2335,
+        "gold_ore": 11,
+        "cycle": "00:51:27",
+        "output_qty": 30
+       },
+       {
+        "slider": "x2",
+        "coins": 4670,
+        "gold_ore": 22,
+        "cycle": "1h 42m",
+        "output_qty": 60
+       },
+       {
+        "slider": "x3",
+        "coins": 7005,
+        "gold_ore": 33,
+        "cycle": "2h 34m",
+        "output_qty": 90
+       },
+       {
+        "slider": "x4",
+        "status": "NOT_YET_SEEN"
+       },
+       {
+        "slider": "x5",
+        "coins": 11675,
+        "gold_ore": 55,
+        "cycle": "4h 17m",
+        "output_qty": 150
+       }
+      ],
+      "note": "gold ingot: x1, x2, x3, x5 seen; x4 for gold not seen. See slider_copper for x4 (seen)"
+     }
+    },
+    {
+     "slider_evidence": {
+      "producer_id": "foundry",
+      "product_id": "copper_ingot",
+      "at_building_level": 4,
+      "source": "photo-grid screenshot 23:19, small image read",
+      "rows": [
+       {
+        "slider": "x1",
+        "coins": 7006,
+        "copper_ore": 15,
+        "cycle": "2h 34m",
+        "output_qty": 90,
+        "stars": 39
+       },
+       {
+        "slider": "x2",
+        "coins": 14012,
+        "copper_ore": 30,
+        "cycle": "5h 8m",
+        "output_qty": 180,
+        "stars": 78
+       },
+       {
+        "slider": "x3",
+        "coins": 21018,
+        "copper_ore": 45,
+        "cycle": "7h 43m",
+        "output_qty": 270,
+        "stars": 117
+       },
+       {
+        "slider": "x4",
+        "coins": 28024,
+        "copper_ore": 60,
+        "cycle": "10h 17m",
+        "output_qty": 360,
+        "stars": 156
+       },
+       {
+        "slider": "x5",
+        "coins": 35030,
+        "copper_ore": 75,
+        "cycle": "12h 51m",
+        "output_qty": 450,
+        "stars": 195
+       }
+      ],
+      "note": "coins, ore, output and stars are exactly x1 times the multiplier at all five settings; cycle follows within rounding (x4 10h 17m vs 4 x 2h 34m = 10h 16m, x1 time is rounded on screen). Scaling is now SEEN for x1-x5 on copper; gold x4 still not seen"
+     }
+    }
+   ]
+  },
+  {
+   "producer_id": "iron_forge",
+   "library_name": "Iron Forges",
+   "island": "jade",
+   "category": "processing",
+   "max_level": 12,
+   "max_level_source": "user_stated 2026-10-26 22:14: table scrolled to the bottom; last row shown",
+   "modes": "none",
+   "has_batch_slider": "no",
+   "product_tabs_checked": [
+    "iron_sheets"
+   ],
+   "max_owned": "no_limit_shown",
+   "tables": [
+    {
+     "producer_id": "iron_forge",
+     "product_id": "iron_sheets",
+     "mode": "none",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 4,
+     "library_bonus_source": "library.json player_levels iron_sheets_bonus_vol_1 current 4",
+     "inputs": [
+      {
+       "product_id": "iron_ingot",
+       "qty": 7
+      },
+      {
+       "product_id": "coins",
+       "qty": 5254
+      }
+     ],
+     "cycle_minutes": 90,
+     "coin_inputs_include_happiness_penalty_pct": 95,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 14
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 16
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 18
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 21
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 25
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 29
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 34
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 40
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 47
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 56
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 66
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 78
+      }
+     ],
+     "seen_count": 12,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "notes": "Lvl 1-10 from earlier screenshots, Lvl 8-12 re-seen 22:11 (8-10 agree). Library iron_sheets +4 (was upgraded 3 to 4 during the Library test; level at capture UNCONFIRMED)",
+     "inputs_seen_all_levels": true,
+     "inputs_seen_note": "2026-11-02 23:00 user_stated by Jo: the item amounts (what the building uses) are the same at every level; only coins, time or output change."
+    }
+   ],
+   "notes": "single tab only (user_stated 22:28)"
+  },
+  {
+   "producer_id": "goat_farm",
+   "library_name": "Goat Farms",
+   "island": "jade",
+   "category": "animal",
+   "max_level": 13,
+   "max_level_source": "last row of Instant tab (earlier) and Regular/Fine screenshots 22:27",
+   "modes": [
+    "regular",
+    "fine",
+    "instant"
+   ],
+   "has_batch_slider": "no",
+   "product_tabs_checked": [
+    "cashmere"
+   ],
+   "max_owned": "no_limit_shown",
+   "tables": [
+    {
+     "producer_id": "goat_farm",
+     "product_id": "cashmere",
+     "mode": "regular",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 28,
+     "library_bonus_source": "cashmere_bonus_vol_1 current 4 = +28 (fits Regular table: base 70 x 1.2^(n-1))",
+     "inputs": [
+      {
+       "product_id": "coins",
+       "qty": 9341
+      },
+      {
+       "product_id": "goat_feed",
+       "qty": 1
+      }
+     ],
+     "cycle_minutes": 240,
+     "coin_inputs_include_happiness_penalty_pct": 95,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 98,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 63
+       }
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 112,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 75
+       }
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 129,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 89
+       }
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 149,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 107
+       }
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 173,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 127
+       }
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 202,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 152
+       },
+       "xp": 134,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 237,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 182
+       },
+       "xp": 164,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 279,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 218
+       },
+       "xp": 201,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 329,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 261
+       }
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 389,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 313
+       }
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 461,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 375
+       }
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 548,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 449
+       }
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 652,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 538
+       }
+      }
+     ],
+     "seen_count": 13,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "second_output is manure; manure Library +3 assumed (manure vol I +1, vol II +2), inferred additive HYPOTHESIS 29 Oct 2026 00:21 (batch J2, screenshot, post-28-Oct update): Lvl 6-10 seen; no estimated levels remain."
+    },
+    {
+     "producer_id": "goat_farm",
+     "product_id": "cashmere",
+     "mode": "fine",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 28,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "fine_goat_feed",
+       "qty": 1
+      }
+     ],
+     "cycle_minutes": 240,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 133,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 63
+       }
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 154,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 75
+       }
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 179,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 89
+       }
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 209,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 107
+       }
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 246,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 127
+       }
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 289,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 152
+       },
+       "xp": 134,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 342,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 182
+       },
+       "xp": 164,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 404,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 218
+       },
+       "xp": 201,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 479,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 261
+       },
+       "xp": 245,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 570,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 313
+       },
+       "xp": 299,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 678,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 375
+       }
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 808,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 449
+       }
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 964,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 538
+       }
+      }
+     ],
+     "seen_count": 13,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "manure identical to Regular at every seen level (Lvl 1-5 and 9-13) 29 Oct 2026 00:18 (batch J1, screenshot, post-28-Oct update): Lvl 6-10 seen; no estimated levels remain."
+    },
+    {
+     "producer_id": "goat_farm",
+     "product_id": "cashmere",
+     "mode": "instant",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 28,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "instant_goat_feed",
+       "qty": 1
+      }
+     ],
+     "cycle_minutes": null,
+     "cycle_label": "Instant",
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 143,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 68
+       }
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 166,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 81
+       }
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 194,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 97
+       }
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 227,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 115
+       }
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 266,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 138
+       }
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 314,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 165
+       },
+       "xp": 134,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 371,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 197
+       },
+       "xp": 164,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 440,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 236
+       },
+       "xp": 201,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 522,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 282
+       },
+       "xp": 245,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 621,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 338
+       },
+       "xp": 299,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 740,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 405
+       }
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 882,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 486
+       }
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 1053,
+       "second_output": {
+        "product_id": "manure",
+        "qty": 583
+       }
+      }
+     ],
+     "seen_count": 13,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "manure differs from Regular/Fine in Instant mode 29 Oct 2026 00:18 (batch J1, screenshot, post-28-Oct update): Lvl 6-10 seen; no estimated levels remain."
+    }
+   ],
+   "notes": "every row also records manure as second_output"
+  },
+  {
+   "producer_id": "bamboo_nursery",
+   "library_name": "Bamboo Nurseries",
+   "island": "jade",
+   "category": "other",
+   "max_level": 14,
+   "max_level_source": "user_stated 2026-10-26 22:14: table scrolled to the bottom; last row shown",
+   "modes": [
+    "regular",
+    "fine",
+    "instant"
+   ],
+   "has_batch_slider": "no",
+   "product_tabs_checked": [
+    "bamboo"
+   ],
+   "max_owned": "no_limit_shown",
+   "tables": [
+    {
+     "producer_id": "bamboo_nursery",
+     "product_id": "bamboo",
+     "mode": "regular",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 45,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "coins",
+       "qty": 14011
+      },
+      {
+       "product_id": "fertilizer",
+       "qty": 30
+      }
+     ],
+     "cycle_minutes": 360,
+     "coin_inputs_include_happiness_penalty_pct": 95,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 135
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 153
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 175
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 201
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 232
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 269,
+       "xp": 184,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 314,
+       "xp": 224,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 367,
+       "xp": 272,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 432,
+       "xp": 331,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 509,
+       "xp": 402,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 602
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 714
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 847
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 1008
+      }
+     ],
+     "seen_count": 14,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "Lvl 6-9 copied from carrots (Haven) as agreed: HYPOTHESIS of a shared level table. Seen Lvl 1-5 and 10-14 equal carrots at every level (all modes) 29 Oct 2026 00:18 (batch J1, screenshot, post-28-Oct update): Lvl 6-10 seen; no estimated levels remain."
+    },
+    {
+     "producer_id": "bamboo_nursery",
+     "product_id": "bamboo",
+     "mode": "fine",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 45,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "fine_fertilizer",
+       "qty": 30
+      }
+     ],
+     "cycle_minutes": 360,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 180
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 207
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 239
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 278
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 325
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 381,
+       "xp": 184,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 448,
+       "xp": 224,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 529,
+       "xp": 272,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 625,
+       "xp": 331,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 742,
+       "xp": 402,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 881
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 1048
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 1249
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 1489
+      }
+     ],
+     "seen_count": 14,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "29 Oct 2026 00:18 (batch J1, screenshot, post-28-Oct update): Lvl 6-10 seen; no estimated levels remain."
+    },
+    {
+     "producer_id": "bamboo_nursery",
+     "product_id": "bamboo",
+     "mode": "instant",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 45,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "instant_fertilizer",
+       "qty": 30
+      }
+     ],
+     "cycle_minutes": null,
+     "cycle_label": "Instant",
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 195
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 225
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 261
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 304
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 356
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 418,
+       "xp": 184,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 493,
+       "xp": 224,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 582,
+       "xp": 272,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 690,
+       "xp": 331,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 819,
+       "xp": 402,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 974
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 1160
+      },
+      {
+       "level": 13,
+       "status": "seen",
+       "output_qty": 1382
+      },
+      {
+       "level": 14,
+       "status": "seen",
+       "output_qty": 1650
+      }
+     ],
+     "seen_count": 14,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "29 Oct 2026 00:18 (batch J1, screenshot, post-28-Oct update): Lvl 6-10 seen; no estimated levels remain."
+    }
+   ]
+  },
+  {
+   "producer_id": "rice_field",
+   "library_name": "Rice Fields",
+   "island": "jade",
+   "category": "field",
+   "max_level": 11,
+   "max_level_source": "user_stated 2026-10-26 22:14: table scrolled to the bottom; last row shown",
+   "modes": [
+    "regular",
+    "fine",
+    "instant"
+   ],
+   "has_batch_slider": "no",
+   "product_tabs_checked": [
+    "rice"
+   ],
+   "max_owned": "no_limit_shown",
+   "tables": [
+    {
+     "producer_id": "rice_field",
+     "product_id": "rice",
+     "mode": "regular",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 6,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "coins",
+       "qty": 7006
+      }
+     ],
+     "cycle_minutes": 120,
+     "coin_inputs_include_happiness_penalty_pct": 95,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 66
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 78
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 92
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 110
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 130
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 155,
+       "xp": 82,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 185,
+       "xp": 102,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 221,
+       "xp": 125,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 264,
+       "xp": 155,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 316,
+       "xp": 191,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 378
+      }
+     ],
+     "seen_count": 11,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "29 Oct 2026 00:18 (batch J1, screenshot, post-28-Oct update): Lvl 6-10 seen; no estimated levels remain."
+    },
+    {
+     "producer_id": "rice_field",
+     "product_id": "rice",
+     "mode": "fine",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 6,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "fine_rice_seeds",
+       "qty": 1
+      }
+     ],
+     "cycle_minutes": 120,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 96
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 114
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 136
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 162
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 193
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 230,
+       "xp": 82,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 275,
+       "xp": 102,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 328,
+       "xp": 125,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 393,
+       "xp": 155,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 470,
+       "xp": 191,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 563
+      }
+     ],
+     "seen_count": 11,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "29 Oct 2026 00:18 (batch J1, screenshot, post-28-Oct update): Lvl 6-10 seen; no estimated levels remain."
+    },
+    {
+     "producer_id": "rice_field",
+     "product_id": "rice",
+     "mode": "instant",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 6,
+     "library_bonus_source": "library.json player_levels (flat additive, HYPOTHESIS)",
+     "inputs": [
+      {
+       "product_id": "instant_rice_seeds",
+       "qty": 1
+      }
+     ],
+     "cycle_minutes": null,
+     "cycle_label": "Instant",
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 106
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 126
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 150
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 179
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 213
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 255,
+       "xp": 82,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 305,
+       "xp": 102,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 364,
+       "xp": 125,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 436,
+       "xp": 155,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 522,
+       "xp": 191,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 625
+      }
+     ],
+     "seen_count": 11,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "29 Oct 2026 00:18 (batch J1, screenshot, post-28-Oct update): Lvl 6-10 seen; no estimated levels remain."
+    }
+   ]
+  },
+  {
+   "producer_id": "silk_weaver",
+   "library_name": "Silk Weavers",
+   "island": "jade",
+   "category": "processing",
+   "max_level": 12,
+   "max_level_source": "user_stated 2026-10-26 22:14: table scrolled to the bottom; last row shown",
+   "modes": "none",
+   "has_batch_slider": "no",
+   "product_tabs_checked": [
+    "bolt_of_silk"
+   ],
+   "max_owned": "no_limit_shown",
+   "tables": [
+    {
+     "producer_id": "silk_weaver",
+     "product_id": "bolt_of_silk",
+     "mode": "none",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 2,
+     "library_bonus_source": "bolt_of_silk_bonus_vol_1 current 2 = +2",
+     "inputs": [
+      {
+       "product_id": "silk_thread",
+       "qty": 7
+      },
+      {
+       "product_id": "coins",
+       "qty": 778
+      }
+     ],
+     "cycle_minutes": 20,
+     "coin_inputs_include_happiness_penalty_pct": 95,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 7
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 8
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 9
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 11
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 12
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 14,
+       "xp": 30,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 17,
+       "xp": 39,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 20,
+       "xp": 50,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 23,
+       "xp": 64,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 28,
+       "xp": 83,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 33
+      },
+      {
+       "level": 12,
+       "status": "seen",
+       "output_qty": 39
+      }
+     ],
+     "seen_count": 12,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "29 Oct 2026 00:18 (batch J1, screenshot, post-28-Oct update): Lvl 6-10 seen; no estimated levels remain.",
+     "inputs_seen_all_levels": true,
+     "inputs_seen_note": "2026-11-02 23:00 user_stated by Jo: the item amounts (what the building uses) are the same at every level; only coins, time or output change."
+    }
+   ],
+   "notes": "single tab only (user_stated 22:28)"
+  },
+  {
+   "producer_id": "food_stand",
+   "library_name": "Food Stands",
+   "island": "jade",
+   "category": "processing",
+   "max_level": 11,
+   "max_level_source": "user_stated 2026-10-26 22:14: table scrolled to the bottom; last row shown",
+   "modes": "none",
+   "has_batch_slider": "no",
+   "product_tabs_checked": [
+    "milk_rice",
+    "bamboo_rice"
+   ],
+   "max_owned": "no_limit_shown",
+   "tables": [
+    {
+     "producer_id": "food_stand",
+     "product_id": "milk_rice",
+     "mode": "none",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 0,
+     "library_bonus_source": "milk_rice_bonus_vol_1 current 0 = +0",
+     "inputs": [
+      {
+       "product_id": "milk",
+       "qty": 25
+      },
+      {
+       "product_id": "rice",
+       "qty": 120
+      },
+      {
+       "product_id": "coins",
+       "qty": 14011
+      }
+     ],
+     "cycle_minutes": 240,
+     "coin_inputs_include_happiness_penalty_pct": 95,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 40
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 48
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 58
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 69
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 83
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 100,
+       "previous_estimate_output_qty": 99,
+       "xp": 134,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 119,
+       "xp": 164,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 143,
+       "xp": 201,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 172,
+       "xp": 245,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "output_qty": 206,
+       "xp": 299,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "output_qty": 248
+      }
+     ],
+     "seen_count": 11,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "estimation_note": "estimated rows: geometric interpolation of (displayed - library bonus) between the nearest seen levels, library bonus added back; about +/-1-2; HYPOTHESIS; never seen",
+     "notes": "29 Oct 2026 00:18 (batch J1, screenshot, post-28-Oct update): Lvl 6-10 seen; no estimated levels remain.",
+     "inputs_seen_all_levels": true,
+     "inputs_seen_note": "2026-11-02 23:00 user_stated by Jo: the item amounts (what the building uses) are the same at every level; only coins, time or output change."
+    },
+    {
+     "producer_id": "food_stand",
+     "product_id": "bamboo_rice",
+     "mode": "none",
+     "value_type": "displayed_output",
+     "coin_inputs_include_happiness_penalty_pct": 95,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "bamboo",
+         "qty": 70
+        },
+        {
+         "product_id": "rice",
+         "qty": 100
+        },
+        {
+         "product_id": "coins",
+         "qty": 1460
+        }
+       ],
+       "cycle_minutes": 25,
+       "cycle_text": "00:25:00",
+       "output_qty": 15,
+       "xp": 8,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "bamboo",
+         "qty": 70
+        },
+        {
+         "product_id": "rice",
+         "qty": 100
+        },
+        {
+         "product_id": "coins",
+         "qty": 1460
+        }
+       ],
+       "cycle_minutes": 25,
+       "cycle_text": "00:25:00",
+       "output_qty": 18,
+       "xp": 11,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "bamboo",
+         "qty": 70
+        },
+        {
+         "product_id": "rice",
+         "qty": 100
+        },
+        {
+         "product_id": "coins",
+         "qty": 1460
+        }
+       ],
+       "cycle_minutes": 25,
+       "cycle_text": "00:25:00",
+       "output_qty": 22,
+       "xp": 14,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "bamboo",
+         "qty": 70
+        },
+        {
+         "product_id": "rice",
+         "qty": 100
+        },
+        {
+         "product_id": "coins",
+         "qty": 1460
+        }
+       ],
+       "cycle_minutes": 25,
+       "cycle_text": "00:25:00",
+       "output_qty": 26,
+       "xp": 19,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "bamboo",
+         "qty": 70
+        },
+        {
+         "product_id": "rice",
+         "qty": 100
+        },
+        {
+         "product_id": "coins",
+         "qty": 1460
+        }
+       ],
+       "cycle_minutes": 25,
+       "cycle_text": "00:25:00",
+       "output_qty": 31,
+       "xp": 25,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "bamboo",
+         "qty": 70
+        },
+        {
+         "product_id": "rice",
+         "qty": 100
+        },
+        {
+         "product_id": "coins",
+         "qty": 1460
+        }
+       ],
+       "cycle_minutes": 25,
+       "cycle_text": "00:25:00",
+       "output_qty": 37,
+       "xp": 32,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "bamboo",
+         "qty": 70
+        },
+        {
+         "product_id": "rice",
+         "qty": 100
+        },
+        {
+         "product_id": "coins",
+         "qty": 1460
+        }
+       ],
+       "cycle_minutes": 25,
+       "cycle_text": "00:25:00",
+       "output_qty": 45,
+       "xp": 42,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "bamboo",
+         "qty": 70
+        },
+        {
+         "product_id": "rice",
+         "qty": 100
+        },
+        {
+         "product_id": "coins",
+         "qty": 1460
+        }
+       ],
+       "cycle_minutes": 25,
+       "cycle_text": "00:25:00",
+       "output_qty": 54,
+       "xp": 54,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "bamboo",
+         "qty": 70
+        },
+        {
+         "product_id": "rice",
+         "qty": 100
+        },
+        {
+         "product_id": "coins",
+         "qty": 1460
+        }
+       ],
+       "cycle_minutes": 25,
+       "cycle_text": "00:25:00",
+       "output_qty": 64,
+       "xp": 69,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 10,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "bamboo",
+         "qty": 70
+        },
+        {
+         "product_id": "rice",
+         "qty": 100
+        },
+        {
+         "product_id": "coins",
+         "qty": 1460
+        }
+       ],
+       "cycle_minutes": 25,
+       "cycle_text": "00:25:00",
+       "output_qty": 77,
+       "xp": 88,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 11,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "bamboo",
+         "qty": 70
+        },
+        {
+         "product_id": "rice",
+         "qty": 100
+        },
+        {
+         "product_id": "coins",
+         "qty": 1460
+        }
+       ],
+       "cycle_minutes": 25,
+       "cycle_text": "00:25:00",
+       "output_qty": 93,
+       "xp": 111,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      }
+     ],
+     "seen_count": 11,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "notes": "NEW PRODUCT, 28 Oct update, seen 2026-10-28. L1-11 all seen (L6 added 12:21 from Jo's screenshot, which also re-showed L4,5,7,8 identical to stored). No production-cycles column, no slider. Inputs by ICON MATCH (green bamboo = bamboo, rice grains = rice, same rice icon as Milk rice): UNCONFIRMED. No Bamboo rice Library book seen: library bonus UNCONFIRMED (not assumed). Happiness penalty 95 ASSUMED same as other Jade tables captured the same day: UNCONFIRMED. 28 Oct 14:43: the developers' email gives the Bamboo rice recipe as Rice + Bamboo (Food Stand, Level 46), matching the stored inputs (bamboo 70, rice 100)."
+    }
+   ],
+   "notes": "Tabs: Milk rice (earlier, not re-seen after the update) and Bamboo rice (new, 2026-10-28)."
+  },
+  {
+   "producer_id": "garment_maker",
+   "library_name": "Garment Makers",
+   "island": "jade",
+   "category": "processing",
+   "max_level": 9,
+   "max_level_source": "user_stated 2026-10-26 22:14: table scrolled to the bottom; last row shown",
+   "modes": "none",
+   "has_batch_slider": "no",
+   "product_tabs_checked": [
+    "embroidered_tunic",
+    "curtain"
+   ],
+   "max_owned": "no_limit_shown",
+   "tables": [
+    {
+     "producer_id": "garment_maker",
+     "product_id": "embroidered_tunic",
+     "mode": "none",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 0,
+     "library_bonus_source": "embroidered_tunic_bonus_vol_1 current 0 = +0",
+     "inputs": [
+      {
+       "product_id": "cotton_roll",
+       "qty": 60
+      },
+      {
+       "product_id": "bolt_of_silk",
+       "qty": 15
+      },
+      {
+       "product_id": "coins",
+       "qty": 9341
+      }
+     ],
+     "cycle_minutes": 120,
+     "coin_inputs_include_happiness_penalty_pct": 95,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 15
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 18
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 22
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 26
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 31
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 37
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 45
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 54
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "output_qty": 64
+      }
+     ],
+     "seen_count": 9,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "inputs_seen_all_levels": true,
+     "inputs_seen_note": "2026-11-02 23:00 user_stated by Jo: the item amounts (what the building uses) are the same at every level; only coins, time or output change."
+    },
+    {
+     "producer_id": "garment_maker",
+     "product_id": "curtain",
+     "mode": "none",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 0,
+     "library_bonus_source": "curtain_bonus_vol_1 shown 0/5 on the Library overview 2026-10-28, so recorded output includes +0",
+     "coin_inputs_include_happiness_penalty_pct": 95,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton_roll",
+         "qty": 40
+        },
+        {
+         "product_id": "bolt_of_silk",
+         "qty": 20
+        },
+        {
+         "product_id": "coins",
+         "qty": 1557
+        }
+       ],
+       "cycle_minutes": 20,
+       "cycle_text": "00:20:00",
+       "output_qty": 25,
+       "xp": 7,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton_roll",
+         "qty": 40
+        },
+        {
+         "product_id": "bolt_of_silk",
+         "qty": 20
+        },
+        {
+         "product_id": "coins",
+         "qty": 1557
+        }
+       ],
+       "cycle_minutes": 20,
+       "cycle_text": "00:20:00",
+       "output_qty": 30,
+       "xp": 10,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton_roll",
+         "qty": 40
+        },
+        {
+         "product_id": "bolt_of_silk",
+         "qty": 20
+        },
+        {
+         "product_id": "coins",
+         "qty": 1557
+        }
+       ],
+       "cycle_minutes": 20,
+       "cycle_text": "00:20:00",
+       "output_qty": 36,
+       "xp": 13,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton_roll",
+         "qty": 40
+        },
+        {
+         "product_id": "bolt_of_silk",
+         "qty": 20
+        },
+        {
+         "product_id": "coins",
+         "qty": 1557
+        }
+       ],
+       "cycle_minutes": 20,
+       "cycle_text": "00:20:00",
+       "output_qty": 43,
+       "xp": 17,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton_roll",
+         "qty": 40
+        },
+        {
+         "product_id": "bolt_of_silk",
+         "qty": 20
+        },
+        {
+         "product_id": "coins",
+         "qty": 1557
+        }
+       ],
+       "cycle_minutes": 20,
+       "cycle_text": "00:20:00",
+       "output_qty": 52,
+       "xp": 23,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton_roll",
+         "qty": 40
+        },
+        {
+         "product_id": "bolt_of_silk",
+         "qty": 20
+        },
+        {
+         "product_id": "coins",
+         "qty": 1557
+        }
+       ],
+       "cycle_minutes": 20,
+       "cycle_text": "00:20:00",
+       "output_qty": 62,
+       "xp": 30,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton_roll",
+         "qty": 40
+        },
+        {
+         "product_id": "bolt_of_silk",
+         "qty": 20
+        },
+        {
+         "product_id": "coins",
+         "qty": 1557
+        }
+       ],
+       "cycle_minutes": 20,
+       "cycle_text": "00:20:00",
+       "output_qty": 75,
+       "xp": 39,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton_roll",
+         "qty": 40
+        },
+        {
+         "product_id": "bolt_of_silk",
+         "qty": 20
+        },
+        {
+         "product_id": "coins",
+         "qty": 1557
+        }
+       ],
+       "cycle_minutes": 20,
+       "cycle_text": "00:20:00",
+       "output_qty": 90,
+       "xp": 50,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      },
+      {
+       "level": 9,
+       "status": "seen",
+       "inputs": [
+        {
+         "product_id": "cotton_roll",
+         "qty": 40
+        },
+        {
+         "product_id": "bolt_of_silk",
+         "qty": 20
+        },
+        {
+         "product_id": "coins",
+         "qty": 1557
+        }
+       ],
+       "cycle_minutes": 20,
+       "cycle_text": "00:20:00",
+       "output_qty": 107,
+       "xp": 64,
+       "seen_on": "2026-10-28",
+       "seen_in": "post-28-Oct update"
+      }
+     ],
+     "seen_count": 9,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "notes": "NEW PRODUCT, 28 Oct update, seen 2026-10-28 (L1-5 and L5-9 screenshots). The Curtain tab shows a lock icon: not unlocked for Jo yet (UNCONFIRMED what unlocks it). No production-cycles column and no slider on this building. Inputs identified by ICON MATCH to the Embroidered tunic inputs (cream roll = cotton_roll, blue roll = bolt_of_silk): UNCONFIRMED. Happiness penalty 95 is ASSUMED the same as the other Jade tables captured the same day: UNCONFIRMED. 28 Oct 14:43: the developers' email gives the Curtain recipe as Bolt of Silk + Cotton Roll (Garment Maker, Level 67), which matches the icon-matched inputs; which quantity belongs to which item still rests on the icons (cream roll 40 = cotton roll, blue roll 20 = bolt of silk)."
+    }
+   ],
+   "notes": "single tab only (user_stated 22:28) | 2026-10-28: Curtain tab added (new product, locked). Embroidered tunic table not re-seen after the update."
+  },
+  {
+   "producer_id": "gift_workshop",
+   "library_name": "Gift Workshops",
+   "island": "jade",
+   "category": "processing",
+   "max_level": 8,
+   "max_level_source": "user_stated 2026-10-26 22:14: table scrolled to the bottom; last row shown",
+   "modes": "none",
+   "has_batch_slider": "NOT_YET_SEEN (locked; user_stated only the Foundry has one on Jade)",
+   "product_tabs_checked": [
+    "ornamental_katana"
+   ],
+   "max_owned": "no fixed cap; limited by hammers (user_stated)",
+   "tables": [
+    {
+     "producer_id": "gift_workshop",
+     "product_id": "ornamental_katana",
+     "mode": "none",
+     "value_type": "displayed_output",
+     "library_bonus_assumed": 0,
+     "library_bonus_source": "ornamental_katana_bonus_vol_1 current 0 = +0",
+     "inputs": [
+      {
+       "product_id": "iron_sheets",
+       "qty": 25
+      },
+      {
+       "product_id": "pine_wood",
+       "qty": 135
+      },
+      {
+       "product_id": "coins",
+       "qty": 3503
+      }
+     ],
+     "cycle_minutes": 45,
+     "coin_inputs_include_happiness_penalty_pct": 95,
+     "levels": [
+      {
+       "level": 1,
+       "status": "seen",
+       "output_qty": 5
+      },
+      {
+       "level": 2,
+       "status": "seen",
+       "output_qty": 6
+      },
+      {
+       "level": 3,
+       "status": "seen",
+       "output_qty": 7
+      },
+      {
+       "level": 4,
+       "status": "seen",
+       "output_qty": 9
+      },
+      {
+       "level": 5,
+       "status": "seen",
+       "output_qty": 10
+      },
+      {
+       "level": 6,
+       "status": "seen",
+       "output_qty": 12
+      },
+      {
+       "level": 7,
+       "status": "seen",
+       "output_qty": 15
+      },
+      {
+       "level": 8,
+       "status": "seen",
+       "output_qty": 18
+      }
+     ],
+     "seen_count": 8,
+     "estimated_count": 0,
+     "estimated_levels": [],
+     "not_yet_seen_levels": [],
+     "notes": "building is locked (unlocks at player level 57) but the panel table opens. The wood input is pine_wood (user_stated 2026-10-26 22:48, identified from the icon; Library has pine_wood_bonus_vol_1)",
+     "inputs_seen_all_levels": true,
+     "inputs_seen_note": "2026-11-02 23:00 user_stated by Jo: the item amounts (what the building uses) are the same at every level; only coins, time or output change."
+    }
+   ],
+   "notes": "single tab only (user_stated 22:28)"
+  }
+ ],
+ "totals": {
+  "tables": 37,
+  "rows_seen": 460,
+  "rows_estimated": 35
+ },
+ "seed_mode_ratios_HYPOTHESIS": {
+  "iron_ore (rune on)": {
+   "fine_over_regular": {
+    "min": 1.486,
+    "max": 1.504,
+    "mean": 1.498,
+    "n": 15
+   },
+   "instant_over_regular": {
+    "min": 1.653,
+    "max": 1.672,
+    "mean": 1.664,
+    "n": 10
+   },
+   "label": "HYPOTHESIS observation only, computed on (displayed - library bonus)"
+  },
+  "copper_ore (rune on)": {
+   "fine_over_regular": {
+    "min": 1.5,
+    "max": 1.525,
+    "mean": 1.514,
+    "n": 10
+   },
+   "instant_over_regular": {
+    "min": 1.647,
+    "max": 1.688,
+    "mean": 1.673,
+    "n": 10
+   },
+   "label": "HYPOTHESIS observation only, computed on (displayed - library bonus)"
+  },
+  "gold_ore (rune on)": {
+   "fine_over_regular": {
+    "min": 1.48,
+    "max": 1.552,
+    "mean": 1.527,
+    "n": 10
+   },
+   "instant_over_regular": {
+    "min": 1.6,
+    "max": 1.7,
+    "mean": 1.657,
+    "n": 10
+   },
+   "label": "HYPOTHESIS observation only, computed on (displayed - library bonus)"
+  },
+  "bamboo": {
+   "fine_over_regular": {
+    "min": 1.492,
+    "max": 1.502,
+    "mean": 1.498,
+    "n": 10
+   },
+   "instant_over_regular": {
+    "min": 1.66,
+    "max": 1.668,
+    "mean": 1.666,
+    "n": 10
+   },
+   "label": "HYPOTHESIS observation only, computed on (displayed - library bonus)"
+  },
+  "rice": {
+   "fine_over_regular": {
+    "min": 1.497,
+    "max": 1.512,
+    "mean": 1.502,
+    "n": 10
+   },
+   "instant_over_regular": {
+    "min": 1.663,
+    "max": 1.674,
+    "mean": 1.667,
+    "n": 10
+   },
+   "label": "HYPOTHESIS observation only, computed on (displayed - library bonus)"
+  },
+  "cashmere": {
+   "fine_over_regular": {
+    "min": 1.495,
+    "max": 1.503,
+    "mean": 1.499,
+    "n": 10
+   },
+   "instant_over_regular": {
+    "min": 1.641,
+    "max": 1.645,
+    "mean": 1.643,
+    "n": 10
+   },
+   "label": "HYPOTHESIS observation only, computed on (displayed - library bonus)"
+  }
+ },
+ "checks_run": {
+  "foundry_cycle_seconds_rule_base_x_0.95^(level-1)": {
+   "round": "30/30",
+   "floor": "19/30",
+   "ceil": "20/30"
+  },
+  "foundry_ore_input_rule_round(base x 0.95^(level-1))": "30/30 seen ore quantities reproduced",
+  "bamboo_vs_carrots_seen_levels_identical": "30/30",
+  "interpolation_back_tests": {
+   "iron_regular_6_10_from_5_and_11": {
+    "anchors": "Lvl 5 and 11",
+    "predicted_levels": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "errors_pred_minus_seen": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "max_abs_error": 0
+   },
+   "iron_fine_6_10_from_5_and_11": {
+    "anchors": "Lvl 5 and 11",
+    "predicted_levels": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "errors_pred_minus_seen": [
+     1,
+     1,
+     0,
+     1,
+     0
+    ],
+    "max_abs_error": 1
+   },
+   "silk_weaver_8_11_from_5_and_12": {
+    "anchors": "Lvl 5 and 12",
+    "predicted_levels": [
+     8,
+     9,
+     10,
+     11
+    ],
+    "errors_pred_minus_seen": [
+     0,
+     0,
+     -1,
+     0
+    ],
+    "max_abs_error": 1
+   },
+   "rice_regular_8_10_from_7_and_11": {
+    "anchors": "Lvl 7 and 11",
+    "predicted_levels": [
+     8,
+     9,
+     10
+    ],
+    "errors_pred_minus_seen": [
+     0,
+     0,
+     0
+    ],
+    "max_abs_error": 0
+   },
+   "rice_fine_8_10_from_7_and_11": {
+    "anchors": "Lvl 7 and 11",
+    "predicted_levels": [
+     8,
+     9,
+     10
+    ],
+    "errors_pred_minus_seen": [
+     1,
+     0,
+     0
+    ],
+    "max_abs_error": 1
+   },
+   "rice_instant_8_10_from_7_and_11": {
+    "anchors": "Lvl 7 and 11",
+    "predicted_levels": [
+     8,
+     9,
+     10
+    ],
+    "errors_pred_minus_seen": [
+     1,
+     0,
+     0
+    ],
+    "max_abs_error": 1
+   },
+   "food_stand_8_10_from_7_and_11": {
+    "anchors": "Lvl 7 and 11",
+    "predicted_levels": [
+     8,
+     9,
+     10
+    ],
+    "errors_pred_minus_seen": [
+     0,
+     0,
+     0
+    ],
+    "max_abs_error": 0
+   }
+  },
+  "iron_instant_vs_carrots_instant_rule_ceil((carrots-45)*1.1)+45": {
+   "seen_diff_seen_minus_pred": {
+    "1": 1,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "11": 0,
+    "12": 0,
+    "13": 0,
+    "14": 0
+   },
+   "estimated_6_10_diff_interp_minus_carrots_rule": {
+    "6": 0,
+    "7": 1,
+    "8": 1,
+    "9": 0,
+    "10": 0
+   },
+   "note": "HYPOTHESIS: iron ore shares the carrots level table (supported at Lvl 1-5 Regular, now Instant); 9 of 10 seen levels reproduced exactly; the only miss is +1 at Lvl 1. The interpolated Lvl 6-10 estimates differ from the carrots rule by at most 1 (Lvl 7 and 8)"
+  },
+  "monotonic_problems": [],
+  "jade_2910_0018_batch_j1": {
+   "compared": 50,
+   "estimates_now_seen": 24,
+   "estimates_differ": [
+    "food_stand milk_rice none Lvl 6 output 99->100"
+   ],
+   "already_seen_rows_re_seen": 26,
+   "already_seen_rows_that_differ": [],
+   "coins_inputs_time": "identical to the stored table values on all 10 tables (milk rice coins 14,011, milk 25, rice 120, 04:00:00; bolt of silk coins 778, 7 silk thread, 00:20:00; rice coins 7,006 Regular, -1 seed Fine/Instant, 02:00:00 / Instant; bamboo coins 14,011 Regular, -30 input, 06:00:00 / Instant; cashmere -1 feed, 04:00:00 Fine / Instant); no cycles column",
+   "note": "Cashmere Regular was not in this batch (L6-8 still estimated)."
+  },
+  "jade_2910_0021_batch_j2": {
+   "cashmere_regular": "Lvl 6-8 estimates were equal (202/237/279; manure 152/182/218); Lvl 9-10 re-seen equal",
+   "mines_new_norune_rows": 35,
+   "norune_vs_old_rune_on_estimate": [
+    "copper_ore instant Lvl 6: no-rune 118 vs rune-on estimate 128",
+    "copper_ore instant Lvl 7: no-rune 138 vs rune-on estimate 151",
+    "copper_ore instant Lvl 8: no-rune 163 vs rune-on estimate 179",
+    "copper_ore instant Lvl 9: no-rune 194 vs rune-on estimate 212",
+    "copper_ore instant Lvl 10: no-rune 230 vs rune-on estimate 252",
+    "copper_ore fine Lvl 6: no-rune 108 vs rune-on estimate 117",
+    "copper_ore fine Lvl 7: no-rune 126 vs rune-on estimate 138",
+    "copper_ore fine Lvl 8: no-rune 149 vs rune-on estimate 163",
+    "copper_ore fine Lvl 9: no-rune 176 vs rune-on estimate 193",
+    "copper_ore fine Lvl 10: no-rune 209 vs rune-on estimate 229",
+    "copper_ore regular Lvl 6: no-rune 75 vs rune-on estimate 82",
+    "copper_ore regular Lvl 7: no-rune 88 vs rune-on estimate 96",
+    "copper_ore regular Lvl 8: no-rune 103 vs rune-on estimate 113",
+    "copper_ore regular Lvl 9: no-rune 120 vs rune-on estimate 132",
+    "copper_ore regular Lvl 10: no-rune 142 vs rune-on estimate 156",
+    "gold_ore instant Lvl 6: no-rune 82 vs rune-on estimate 89",
+    "gold_ore instant Lvl 7: no-rune 95 vs rune-on estimate 103",
+    "gold_ore instant Lvl 8: no-rune 110 vs rune-on estimate 120",
+    "gold_ore instant Lvl 9: no-rune 127 vs rune-on estimate 139",
+    "gold_ore instant Lvl 10: no-rune 149 vs rune-on estimate 163",
+    "gold_ore fine Lvl 6: no-rune 77 vs rune-on estimate 84",
+    "gold_ore fine Lvl 7: no-rune 89 vs rune-on estimate 96",
+    "gold_ore fine Lvl 8: no-rune 102 vs rune-on estimate 111",
+    "gold_ore fine Lvl 9: no-rune 119 vs rune-on estimate 129",
+    "gold_ore fine Lvl 10: no-rune 139 vs rune-on estimate 151",
+    "gold_ore regular Lvl 6: no-rune 57 vs rune-on estimate 62",
+    "gold_ore regular Lvl 7: no-rune 65 vs rune-on estimate 70",
+    "gold_ore regular Lvl 8: no-rune 74 vs rune-on estimate 80",
+    "gold_ore regular Lvl 9: no-rune 84 vs rune-on estimate 92",
+    "gold_ore regular Lvl 10: no-rune 97 vs rune-on estimate 106",
+    "iron_ore instant Lvl 6: no-rune 418 vs rune-on estimate 456",
+    "iron_ore instant Lvl 7: no-rune 493 vs rune-on estimate 539",
+    "iron_ore instant Lvl 8: no-rune 582 vs rune-on estimate 637",
+    "iron_ore instant Lvl 9: no-rune 690 vs rune-on estimate 755",
+    "iron_ore instant Lvl 10: no-rune 819 vs rune-on estimate 897"
+   ],
+   "finding": "All 35 post-update mine rows are 8-10% LOWER than the stored rune-on estimates. They equal the shared no-rune level table (iron Instant = carrots/bamboo/ostrich feather Instant Lvl 6-10). Jade Mines rows were recorded with the Mines rune ACTIVE (user_stated, meta.rune_note); the post-update screenshots show no rune. Recorded as new no-rune tables (mines_rune_active_when_recorded false), the same pattern as the existing iron Regular Lvl 1-5 no-rune table. The rune-on Lvl 6-10 rows stay estimated.",
+   "coins_inputs_time": "identical to the stored table values: -1 tool/cart on Fine and Instant, copper Regular 1,751 coins, gold Regular 389 coins, iron/copper/gold times Instant / 45 min (copper Fine and Regular) / 20 min (gold Fine and Regular); cashmere Regular 9,341 coins and 1 goat feed, 04:00:00; no cycles column"
+  }
+ },
+ "checklist": [
+  {
+   "producer_id": "mine",
+   "tables": 18,
+   "max_level": 15,
+   "rows_seen": 235,
+   "rows_estimated": 35,
+   "ticked": true
+  },
+  {
+   "producer_id": "foundry",
+   "tables": 3,
+   "max_level": 13,
+   "rows_seen": 39,
+   "rows_estimated": 0,
+   "ticked": true
+  },
+  {
+   "producer_id": "iron_forge",
+   "tables": 1,
+   "max_level": 12,
+   "rows_seen": 12,
+   "rows_estimated": 0,
+   "ticked": true
+  },
+  {
+   "producer_id": "goat_farm",
+   "tables": 3,
+   "max_level": 13,
+   "rows_seen": 39,
+   "rows_estimated": 0,
+   "ticked": true
+  },
+  {
+   "producer_id": "bamboo_nursery",
+   "tables": 3,
+   "max_level": 14,
+   "rows_seen": 42,
+   "rows_estimated": 0,
+   "ticked": true
+  },
+  {
+   "producer_id": "rice_field",
+   "tables": 3,
+   "max_level": 11,
+   "rows_seen": 33,
+   "rows_estimated": 0,
+   "ticked": true
+  },
+  {
+   "producer_id": "silk_weaver",
+   "tables": 1,
+   "max_level": 12,
+   "rows_seen": 12,
+   "rows_estimated": 0,
+   "ticked": true
+  },
+  {
+   "producer_id": "food_stand",
+   "tables": 2,
+   "max_level": 11,
+   "rows_seen": 22,
+   "rows_estimated": 0,
+   "ticked": true
+  },
+  {
+   "producer_id": "garment_maker",
+   "tables": 2,
+   "max_level": 9,
+   "rows_seen": 18,
+   "rows_estimated": 0,
+   "ticked": true
+  },
+  {
+   "producer_id": "gift_workshop",
+   "tables": 1,
+   "max_level": 8,
+   "rows_seen": 8,
+   "rows_estimated": 0,
+   "ticked": true
+  }
+ ],
+ "unticked_checklist": [
+  "none: every item in the Pass 2 order is ticked. Remaining gaps are estimated middle levels and the items under UNCONFIRMED / NOT_YET_SEEN"
+ ],
+ "UNCONFIRMED": [
+  "Product_ids for Jade inputs: none outstanding. The Regular Bamboo input is recorded as fertilizer on Jo's 23:09 'everything else is correct' (she had not named it directly; correct it if wrong). Seen on item pop-ups 22:59: fine/instant_gold_mining_tools, fine/instant_rice_seeds, fine/instant_goat_feed. User_stated 23:07: copper and iron Fine/Instant tools follow the gold pattern; Regular goat feed is plain goat_feed; Bamboo Fine and Instant inputs are fine_fertilizer and instant_fertilizer. The game calls the cart 'mining tools' and the sack 'goat feed'; catalogue_jade.json called them carts and sacks",
+  "Supply chain (user_stated 23:09): fertilizer is produced at the Silo on Haven and is the input for Bamboo (Jo thinks also the Pine and Palm nurseries, the other wood producers, which are not on Jade). Manure comes from the Cow sheds, Ostrich farms and Goat farm. Silo panel seen 23:19 (Haven, not Jade): the Silo input icon matches manure (name not shown on panel, confirm) and makes fertilizer, see silo_haven.json",
+  "Identity of icon-matched inputs: silk_thread, cotton_roll, milk (Gift workshop wood is now pine_wood, user_stated)",
+  "Rounding rule after rune/seed multipliers (ceil is the leading candidate, not confirmed)",
+  "Library bonus values are taken from library.json player_levels; gold +20, manure +3 and rice +6 are inferred or assumed additive",
+  "Iron sheets Library level when Lvl 1-10 were captured (3 or 4); Lvl 8-12 agree with earlier Lvl 8-10",
+  "Whether the Library ingot bonuses are inside the Foundry's constant output (30, 90, 30)",
+  "Exact end time of the Mines rune",
+  "Whether the Mines rune acts identically on Fine and Instant (iron Fine fits; Instant fits to +/-1)",
+  "Bamboo Lvl 6-9 equal carrots Lvl 6-9 (copied, HYPOTHESIS)",
+  "Source of the Goat farm sacks (possibly Haven Feed Mill)",
+  "Whether the Gift workshop has a batch slider (locked)"
+ ],
+ "NOT_YET_SEEN": [
+  "(CLOSED 31 Oct 2026) No-rune Mine tables: all nine product-mode combinations are now seen for Lvl 1-15.",
+  "Foundry build cost; Gift workshop hammer cost (not needed for the calculator)",
+  "Foundry slider x4 for gold and iron (copper x4 seen)",
+  "STILL ESTIMATED (35 rows): Mine Lvl 6-10 in the seven rune-ON tables, never seen with the Mines rune on. The matching no-rune rows are all seen (complete no-rune tables, Lvl 1-15). Every other Jade estimate is seen."
+ ],
+ "contradictions": [
+  {
+   "file": "catalogue_jade.json",
+   "item": "Iron forge max_level 10 (UNCONFIRMED)",
+   "now": "12 (last row after scrolling to the bottom)"
+  },
+  {
+   "file": "catalogue_jade.json",
+   "item": "max_level NOT_YET_SEEN for Bamboo, Silk weaver, Rice, Food stand, Garment maker, Gift workshop",
+   "now": "14, 12, 11, 11, 9, 8"
+  },
+  {
+   "file": "catalogue_jade.json",
+   "item": "Foundry max 13 'UNCONFIRMED that nothing follows'",
+   "now": "13 confirmed (scrolled to the bottom)"
+  },
+  {
+   "file": "catalogue_jade.json",
+   "item": "single-tab producers 'other tabs UNCONFIRMED'",
+   "now": "Iron forge, Silk weaver, Food stand, Garment maker, Gift workshop have one tab only (user_stated)"
+  },
+  {
+   "file": "catalogue_jade.json",
+   "item": "iron_ore Instant NOT_YET_SEEN; Mine Lvl 11-15 NOT_YET_SEEN",
+   "now": "recorded, with the Mines rune on"
+  },
+  {
+   "file": "master handoff / production_formulas.json",
+   "item": "Instant multiplier for iron looked product-specific",
+   "now": "iron Instant (rune on) fits the carrots Instant table within +/-1, so iron, bamboo and carrots share Regular, Fine and Instant tables so far (HYPOTHESIS)"
+  },
+  {
+   "file": "(none)",
+   "item": "numeric conflicts between tonight's screenshots and earlier tables",
+   "now": "none found: iron Regular/Fine Lvl 11-15, gold Fine Lvl 1-5, Foundry Lvl 9-13 and Iron forge Lvl 8-10 all agree"
+  }
+ ]
+}

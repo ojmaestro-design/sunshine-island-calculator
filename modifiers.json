@@ -1,0 +1,114 @@
+{
+ "meta": {
+  "status": "MODIFIERS_DRAFT_v3_NOT_FINAL",
+  "date": "2026-10-26",
+  "game": "Sunshine Island",
+  "rules": "displayed_output only; UNCONFIRMED / NOT_YET_SEEN where not shown; formulas are HYPOTHESIS until confirmed against a real in-game number; ids lowercase_with_underscores",
+  "sources_used": "sunshine_island_master_handoff.md, library_thread_handoff.md, library_findings.json. No rune screenshots were attached in this thread, so 'seen_on_screen' items are carried over from the master handoff, not re-checked here. Updated 2026-10-26 17:15 with the iron ore Mines rune before/after pair and the carrot and wheat tables (see production_formulas.json). Updated 2026-10-26 17:40 from screenshots IMG_1386, IMG_1387, IMG_2973-2975 (received earlier) and the iron ore Lvl 1-15 test."
+ },
+ "game_modifiers": {
+  "runes": {
+   "rune_fields": {
+    "label_as_seen": "Rune: Fields",
+    "description_as_seen": "Increase the production of all ...",
+    "effect_displayed": "+10%",
+    "duration_badge_displayed": "2d",
+    "duration_hours_user_stated": 48,
+    "applies_to_building_type": "Fields",
+    "island": "Haven",
+    "covers_products_user_stated": [
+     "carrots",
+     "corn",
+     "daisies",
+     "wheat"
+    ],
+    "source": "seen_on_screen (per master handoff) + user_stated",
+    "text_seen_in_screenshot": "Rune: Fields. 'Increase the production of all fields'. +10%. Badge 2d. Button 'Place rune' (IMG_2973)"
+   },
+   "rune_plantations": {
+    "label_as_seen": "Rune: Plantations",
+    "description_as_seen": "Increase the production of all ...",
+    "effect_displayed": "+10%",
+    "duration_badge_displayed": "2d",
+    "duration_hours_user_stated": 48,
+    "applies_to_building_type": "Plantations",
+    "island": "Tropicalis",
+    "covers_products_user_stated": [
+     "coffee_beans",
+     "cotton",
+     "silk_cocoon"
+    ],
+    "source": "seen_on_screen (per master handoff) + user_stated",
+    "text_seen_in_screenshot": "Rune: Plantations. 'Increase the production of all plantations'. +10%. Badge 2d (IMG_2974)"
+   },
+   "rune_mines": {
+    "label_as_seen": "Rune: Mines",
+    "description_as_seen": "Increase the production of all ...",
+    "effect_displayed": "+10%",
+    "duration_badge_displayed": "2d",
+    "duration_hours_user_stated": 48,
+    "applies_to_building_type": "Mines",
+    "island": "Jade",
+    "covers_products_user_stated": [
+     "gold_ore",
+     "copper_ore",
+     "iron_ore"
+    ],
+    "source": "seen_on_screen (per master handoff) + user_stated",
+    "text_seen_in_screenshot": "Rune: Mines. 'Increase the production of all mines'. +10%. Badge 2d (IMG_2975). Activation dialog: 'Used in the Shrine to enhance the mines by 10%' (IMG_1386). After activation the slot showed 1d 23h remaining (IMG_1387)"
+   },
+   "rules_user_stated": {
+    "slots": 3,
+    "one_rune_per_type_at_a_time": true,
+    "one_of_each_type_can_run_together": true,
+    "temporary": true,
+    "effect_described_as": "always an addition",
+    "visual_indicator": "sparkle graphics show when active",
+    "not_covered": [
+     "Rice Fields",
+     "Pine Tree Nurseries",
+     "Palm Tree Nurseries",
+     "Bamboo Nurseries",
+     "animal buildings",
+     "all processing buildings (forges, windmill, foundry, etc.)"
+    ],
+    "out_of_scope": "blue runes (ship return time, bonus hammers/pens/books)",
+    "active_on_jo_account_2026_10_26": "Mines rune active (user_stated 2026-10-26 afternoon, 48 hours, exact end time UNCONFIRMED); Fields and Plantations runes not active",
+    "shrine": "Runes are placed at the Shrine; three slots (seen: 'Select a rune' / 'Not active'). Rune stock held by Jo (IMG_2973-2975, before the Mines rune was placed): fields 10, plantations 6, mines 15; a blue (shop) rune 8. After placing a Mines rune the Mines count showed 14 (IMG_1387)"
+   }
+  },
+  "library_bonus": {
+   "reference": "library.json / library_findings.json",
+   "permanent": "user_stated",
+   "form": "SUPPORTED (not confirmed): flat additive, independent of building level; iron sheets by before/after test; carrots +45, wheat +10, gold ore +20 inferred from clean table ratios"
+  }
+ },
+ "formula_hypotheses": {
+  "project_blueprint_original": "Final Yield = (Base Yield + Library Flat Bonus) * (1 + Rune Multipliers) * Batch Multiplier",
+  "status": "HYPOTHESIS, revised. The original blueprint put the rune AFTER the Library bonus; the iron ore data points the other way",
+  "revised_formula": "displayed_output = ROUND(base * seed_multiplier * (1 + rune_pct)) + library_flat_bonus",
+  "rune_order_supported": "rune acts on the base, Library added after (option B). Evidence: iron ore Regular Lvl 1-5 before and after a Mines rune: base 90,108,130,156,187 (after removing +45); predicted 144,164,188,217,251; displayed 145,164,189,217,251. Applying 10% to the whole figure (option A) overshoots by 3 to 4 at every level Strengthened 2026-10-26 17:40: tested over iron ore Lvl 1-15; applying 10% to the whole displayed figure matches 0 of 15 levels",
+  "jo_belief": "option A (rune after Library) was Jo's belief; the data does not support it",
+  "rounding": "HYPOTHESIS (leading candidate): round up after applying the rune to the base. Iron Regular Lvl 1-15: ceil 14 of 15 exact, round-to-nearest 8 of 15, rune-on-whole-figure 0 of 15 (see production_formulas.json)",
+  "batch_multiplier": "untested for rune-eligible buildings (they have no batch slider as far as seen)",
+  "see": "production_formulas.json for the tables and the seed multipliers"
+ },
+ "order_test_plan": {
+  "status": "DONE for Mines (iron ore Regular Lvl 1-5). Not yet tested for Fields or Plantations runes",
+  "next": "Fields rune: carrots Regular and wheat Regular Lvl 1-10 after activation (no-rune side already in production_formulas.json). Plantations rune: silk cocoon Regular Lvl 1-10 after activation (no-rune side to be captured first)",
+  "note": "the earlier test plan in v1 assumed no rune was active; the pair was taken by Jo with the Mines rune activated between screenshots"
+ },
+ "UNCONFIRMED": [
+  "rounding rule (round, floor, ceil) after a percentage",
+  "what happens if a second rune of the same type is placed (replace, extend, refuse)",
+  "whether the 10% applies per cycle, per batch or per unit",
+  "whether 2d means exactly 48 hours from placement",
+  "whether the Fields and Plantations runes follow the same order as the Mines rune",
+  "whether the rune applies to Fine and Instant the same way (the iron ore Fine table with the rune matched the Fine x1.5 pattern, so it seems so)"
+ ],
+ "NOT_YET_SEEN": [
+  "Fields rune before/after pair",
+  "Plantations rune before/after pair",
+  "no-rune iron/gold/copper ore tables for Lvl 1-15 (needed after the Mines rune ends)"
+ ]
+}

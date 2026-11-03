@@ -1,0 +1,1226 @@
+{
+ "meta": {
+  "status": "LIBRARY_COMPLETE_v1",
+  "date": "2026-10-26",
+  "game": "Sunshine Island",
+  "player_level_in_game": 56,
+  "rules": "displayed_output only; UNCONFIRMED / NOT_YET_SEEN where not shown; formulas are HYPOTHESIS until confirmed against a real in-game number; ids lowercase_with_underscores",
+  "id_format": "<product>_bonus_vol_<1|2>",
+  "parts": "game_upgrades = same for every player; player_levels = Jo's own current/max level per book",
+  "companion_file": "library_findings.json (evidence, global findings, optional upgrade costs, open items)",
+  "update_2026_10_28": "Added 4 books from the 28 Oct update: hammock, gong (shelf row 16, locked until player level 72), curtain, quilt (shelf row 15, locked until player level 58). Overview showed 0/5 for each. Row 14 (Lvl 57) unchanged: clock 0/2, marimba 0/5, katana 0/2 (matches existing). Upgrade costs partly cut off on the screenshots (7/13,500 hammock/gong, 7/12,300 curtain/quilt, leading digits not visible): NOT recorded.",
+  "news_popup_2026_10_28": {
+   "seen": "2026-10-28 12:07",
+   "product_unlock_player_levels": {
+    "bamboo_rice (Food Stand)": 46,
+    "quilt (Tailor)": 58,
+    "curtain (Garment Maker)": 67,
+    "gong (Instrument Maker)": 72,
+    "hammock (Seamstress)": 90
+   },
+   "note": "News bulletin figures are NOT authoritative: Jo (12:12) says the update went live today and the screenshots of the actual game data are more accurate than the bulletin. Library shelf locks from the screenshots (58 quilt/curtain, 72 hammock/gong) stay as the recorded values. Jo's view (user_stated, not tested): the difference between the two is probably down to which player level you are on in the game. Bulletin unlock levels kept only as a reference. Also in the news: Bigger Production Stacks, Load All button for ship/plane crates, Platinum League.",
+   "authority": "bulletin, lower than screenshots"
+  },
+  "developer_email_2026_10_28": {
+   "source": "Email from Sunshine Island (Stillfront Germany), 'Fresh recipes & a little surprise inside', Wed 28 Oct 2026 11:13 AM, PDF supplied by Jo 14:43",
+   "authority": "developers' own email; Jo (user_stated 14:43) says the levels should be correct for the new updates",
+   "recipes": {
+    "bamboo_rice": {
+     "recipe": "Rice + Bamboo",
+     "crafted_at": "Food Stand",
+     "level": 46
+    },
+    "quilt": {
+     "recipe": "Cashmere + Bolt of Silk",
+     "crafted_at": "Tailor",
+     "level": 58
+    },
+    "curtain": {
+     "recipe": "Bolt of Silk + Cotton Roll",
+     "crafted_at": "Garment Maker",
+     "level": 67
+    },
+    "gong": {
+     "recipe": "Copper Sheets + Palm Wood",
+     "crafted_at": "Instrument Maker",
+     "level": 72
+    },
+    "hammock": {
+     "recipe": "Cotton Roll + Palm Wood",
+     "crafted_at": "Seamstress",
+     "level": 90
+    }
+   },
+   "notes": "The email says the 'Level' for each recipe. The email gives the two ingredients but not the quantities (quantities come from the screenshots). Same five unlock levels as the news popup. The Library shelf locks seen earlier (curtain 58, gong and hammock 72) differ from these levels, so Library levels are probably not the same as these levels (UNCONFIRMED). The email also teases 'more on the way' and a subscribers-only 'sneak peek' that is just a picture of a teddy bear with no building, recipe or level.",
+   "jo_explanation_14_46": "user_stated 14:46: Jo reads the difference as the Library having its own shelves that unlock at certain levels, separate from the level at which a recipe unlocks. Plausible and consistent with the data (Library shelf locks curtain/quilt 58, gong/hammock 72 versus recipe levels 58/67/72/90) but NOT tested."
+  },
+  "update_2026_10_28_1946": "Added shelter_feed_bonus_vol_1 (Feed Mill, Volume I, 5 levels +2 +4 +6 +8 +10) from Jo's Overview screenshot. Library now has a Shelter tab (new). Jo's level not shown, not stored.",
+  "update_2026_10_29_0107": "From Jo's library screenshots 29 Oct 00:54-01:07 (game 1.3.40251): Bolt of silk max level 3 (+3 at level 3); Bamboo rice book located on shelf row 13 (4th book); Shelter feed player level 0/5 recorded; four Shelter animal bonus books recorded as reference in shelter_animal_bonuses (percentages, not used). Jo's levels and shelf rows in the 9 compared rows were unchanged.",
+  "update_2026_10_29_0112": "Shelter row 2 lock text read from the game (see shelter_animal_bonuses._shelf_lock). Shelf rows 1-3 and the visible parts of rows 4-6 re-seen: same books, order and levels as stored.",
+  "update_2026_11_01": "Gold ore Vol 2 levels 1-4 filled (+2 +4 +6 +8 +10) from Jo's Overview screenshot, Volume II."
+ },
+ "game_upgrades": {
+  "cow_feed_bonus_vol_1": {
+   "building": "Feed Mill",
+   "island": "Haven",
+   "max_level": 1,
+   "levels": {
+    "1": "+1"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "goat_feed_bonus_vol_1": {
+   "building": "Feed Mill",
+   "island": "Haven",
+   "max_level": 1,
+   "levels": {
+    "1": "+1"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "flour_bonus_vol_1": {
+   "building": "Windmill",
+   "island": "Haven",
+   "max_level": 5,
+   "levels": {
+    "1": "+2",
+    "2": "+3",
+    "3": "+5",
+    "4": "+6",
+    "5": "+8"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "bread_bonus_vol_1": {
+   "building": "Bakeries",
+   "island": "Haven",
+   "max_level": 5,
+   "levels": {
+    "1": "+1",
+    "2": "+2",
+    "3": "+3",
+    "4": "+4",
+    "5": "+5"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "bread_bonus_vol_2": {
+   "building": "Bakeries",
+   "island": "Haven",
+   "max_level": 5,
+   "levels": {
+    "1": "+1",
+    "2": "+2",
+    "3": "+3",
+    "4": "+4",
+    "5": "+5"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "daisy_bonus_vol_1": {
+   "building": "Fields",
+   "island": "Haven",
+   "max_level": 5,
+   "levels": {
+    "1": "+1",
+    "2": "+2",
+    "3": "+3",
+    "4": "+4",
+    "5": "+5"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "daisy_bonus_vol_2": {
+   "building": "Fields",
+   "island": "Haven",
+   "max_level": 5,
+   "levels": {
+    "1": "+1",
+    "2": "+2",
+    "3": "+3",
+    "4": "+4",
+    "5": "+5"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "milk_bonus_vol_1": {
+   "building": "Cow Sheds",
+   "island": "Haven",
+   "max_level": 5,
+   "levels": {
+    "1": "+2",
+    "2": "+3",
+    "3": "+5",
+    "4": "+6",
+    "5": "+8"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "milk_bonus_vol_2": {
+   "building": "Cow Sheds",
+   "island": "Haven",
+   "max_level": 5,
+   "levels": {
+    "1": "+2",
+    "2": "+3",
+    "3": "+5",
+    "4": "+6",
+    "5": "+8"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "gold_ore_bonus_vol_2": {
+   "building": "Mines",
+   "island": "Jade",
+   "max_level": 5,
+   "levels": {
+    "1": "+2",
+    "2": "+4",
+    "3": "+6",
+    "4": "+8",
+    "5": "+10"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot 1 Nov 2026 17:2x (Gold ore bonus - Overview, Volume II, Lvl 1-5; Jo's level 5 highlighted)"
+  },
+  "cashmere_bonus_vol_1": {
+   "building": "Goat Farms",
+   "island": "Jade",
+   "max_level": 5,
+   "levels": {
+    "1": "+7",
+    "2": "+14",
+    "3": "+21",
+    "4": "+28",
+    "5": "+35"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "gold_sheets_bonus_vol_1": {
+   "building": "Gold Forges",
+   "island": "Haven",
+   "max_level": 5,
+   "levels": {
+    "1": "+2",
+    "2": "+4",
+    "3": "+6",
+    "4": "+8",
+    "5": "+10"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "iron_sheets_bonus_vol_1": {
+   "building": "Iron Forges",
+   "island": "Jade",
+   "max_level": 5,
+   "levels": {
+    "1": "+1",
+    "2": "+2",
+    "3": "+3",
+    "4": "+4",
+    "5": "+5"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "copper_sheets_bonus_vol_1": {
+   "building": "Copper Forges",
+   "island": "Tropicalis",
+   "max_level": 5,
+   "levels": {
+    "1": "+2",
+    "2": "+4",
+    "3": "+6",
+    "4": "+8",
+    "5": "+10"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "iced_coffee_bonus_vol_1": {
+   "building": "Bars",
+   "island": "Tropicalis",
+   "max_level": 5,
+   "levels": {
+    "1": "+2",
+    "2": "+4",
+    "3": "+6",
+    "4": "+8",
+    "5": "+10"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "rice_bonus_vol_1": {
+   "building": "Rice Fields",
+   "island": "Jade",
+   "max_level": 5,
+   "levels": {
+    "1": "+6",
+    "2": "+12",
+    "3": "+18",
+    "4": "+24",
+    "5": "+30"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "milk_rice_bonus_vol_1": {
+   "building": "Food Stands",
+   "island": "Jade",
+   "max_level": 5,
+   "levels": {
+    "1": "+4",
+    "2": "+8",
+    "3": "+12",
+    "4": "+16",
+    "5": "+20"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "jacket_bonus_vol_1": {
+   "building": "Tailors",
+   "island": "Haven",
+   "max_level": 5,
+   "levels": {
+    "1": "+2",
+    "2": "+3",
+    "3": "+5",
+    "4": "+6",
+    "5": "+8"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "poncho_bonus_vol_1": {
+   "building": "Seamstresses",
+   "island": "Tropicalis",
+   "max_level": 5,
+   "levels": {
+    "1": "+6",
+    "2": "+12",
+    "3": "+18",
+    "4": "+24",
+    "5": "+30"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "embroidered_tunic_bonus_vol_1": {
+   "building": "Garment Makers",
+   "island": "Jade",
+   "max_level": 5,
+   "levels": {
+    "1": "+2",
+    "2": "+3",
+    "3": "+5",
+    "4": "+6",
+    "5": "+8"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "longcase_clock_bonus_vol_1": {
+   "building": "Crafting Workshops",
+   "island": "Haven",
+   "max_level": 2,
+   "levels": {
+    "1": "+1",
+    "2": "+2"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "marimba_bonus_vol_1": {
+   "building": "Instrument Makers",
+   "island": "Tropicalis",
+   "max_level": 5,
+   "levels": {
+    "1": "+2",
+    "2": "+4",
+    "3": "+6",
+    "4": "+8",
+    "5": "+10"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "ornamental_katana_bonus_vol_1": {
+   "building": "Gift Workshops",
+   "island": "Jade",
+   "max_level": 2,
+   "levels": {
+    "1": "+1",
+    "2": "+2"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "wheat_bonus_vol_1": {
+   "building": "Fields",
+   "island": "Haven",
+   "max_level": 5,
+   "levels": {
+    "1": "+1",
+    "2": "+2",
+    "3": "+3",
+    "4": "+4",
+    "5": "+5"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "manure_bonus_vol_1": {
+   "building": "Animal Stables",
+   "island": "brown_sub_product",
+   "max_level": 1,
+   "levels": {
+    "1": "+1"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "corn_bonus_vol_1": {
+   "building": "Fields",
+   "island": "Haven",
+   "max_level": 5,
+   "levels": {
+    "1": "+2",
+    "2": "+3",
+    "3": "+5",
+    "4": "+6",
+    "5": "+8"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "fertilizer_bonus_vol_1": {
+   "building": "Silo",
+   "island": "Haven",
+   "max_level": 2,
+   "levels": {
+    "1": "+3",
+    "2": "+6"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed",
+   "building_note": "user_stated: Silo is for fertilizer"
+  },
+  "coffee_beans_bonus_vol_1": {
+   "building": "Plantations",
+   "island": "Tropicalis",
+   "max_level": 5,
+   "levels": {
+    "1": "+1",
+    "2": "+2",
+    "3": "+3",
+    "4": "+4",
+    "5": "+5"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "feather_bonus_vol_1": {
+   "building": "Ostrich Farms",
+   "island": "Tropicalis",
+   "max_level": 5,
+   "levels": {
+    "1": "+9",
+    "2": "+18",
+    "3": "+27",
+    "4": "+36",
+    "5": "+45"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "cotton_bonus_vol_1": {
+   "building": "Plantations",
+   "island": "Tropicalis",
+   "max_level": 5,
+   "levels": {
+    "1": "+2",
+    "2": "+4",
+    "3": "+6",
+    "4": "+8",
+    "5": "+10"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "ground_coffee_bonus_vol_1": {
+   "building": "Windmill",
+   "island": "Haven",
+   "max_level": 5,
+   "levels": {
+    "1": "+3",
+    "2": "+6",
+    "3": "+9",
+    "4": "+12",
+    "5": "+15"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "silk_cocoon_bonus_vol_1": {
+   "building": "Plantations",
+   "island": "Tropicalis",
+   "max_level": 5,
+   "levels": {
+    "1": "+3",
+    "2": "+6",
+    "3": "+9",
+    "4": "+12",
+    "5": "+15"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "pine_wood_bonus_vol_1": {
+   "building": "Pine Tree Nurseries",
+   "island": "Haven",
+   "max_level": 5,
+   "levels": {
+    "1": "+3",
+    "2": "+6",
+    "3": "+9",
+    "4": "+12",
+    "5": "+15"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "pasted_note_from_other_thread"
+  },
+  "ostrich_feed_bonus_vol_1": {
+   "building": "Feed Mill",
+   "island": "Haven",
+   "max_level": 1,
+   "levels": {
+    "1": "+1"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "pasted_note_from_other_thread"
+  },
+  "cotton_yarn_bonus_vol_1": {
+   "building": "Spinning Works",
+   "island": "Tropicalis",
+   "max_level": 5,
+   "levels": {
+    "1": "+2",
+    "2": "+3",
+    "3": "+5",
+    "4": "+6",
+    "5": "+8"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "pasted_note_from_other_thread"
+  },
+  "bamboo_bonus_vol_1": {
+   "building": "Bamboo Nurseries",
+   "island": "Jade",
+   "max_level": 5,
+   "levels": {
+    "1": "+9",
+    "2": "+18",
+    "3": "+27",
+    "4": "+36",
+    "5": "+45"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "pasted_note_from_other_thread"
+  },
+  "gold_ore_bonus_vol_1": {
+   "building": "Mines",
+   "island": "Jade",
+   "max_level": 5,
+   "levels": {
+    "1": "+2",
+    "2": "+4",
+    "3": "+6",
+    "4": "+8",
+    "5": "+10"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "pasted_note_from_other_thread"
+  },
+  "copper_ore_bonus_vol_1": {
+   "building": "Mines",
+   "island": "Jade",
+   "max_level": 5,
+   "levels": {
+    "1": "+3",
+    "2": "+5",
+    "3": "+8",
+    "4": "+10",
+    "5": "+13"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "pasted_note_from_other_thread"
+  },
+  "cup_of_coffee_bonus_vol_1": {
+   "building": "Coffee Breweries",
+   "island": "Tropicalis",
+   "max_level": 5,
+   "levels": {
+    "1": "+2",
+    "2": "+3",
+    "3": "+5",
+    "4": "+6",
+    "5": "+8"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "pasted_note_from_other_thread"
+  },
+  "silk_thread_bonus_vol_1": {
+   "building": "Spinning Works",
+   "island": "Tropicalis",
+   "max_level": 5,
+   "levels": {
+    "1": "+1",
+    "2": "+2",
+    "3": "+3",
+    "4": "+4",
+    "5": "+5"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "pasted_note_from_other_thread"
+  },
+  "cotton_roll_bonus_vol_1": {
+   "building": "Cotton Weavers",
+   "island": "Tropicalis",
+   "max_level": 5,
+   "levels": {
+    "1": "+2",
+    "2": "+4",
+    "3": "+6",
+    "4": "+8",
+    "5": "+10"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "pasted_note_from_other_thread"
+  },
+  "iron_ore_bonus_vol_1": {
+   "building": "Mines",
+   "island": "Jade",
+   "max_level": 5,
+   "levels": {
+    "1": "+9",
+    "2": "+18",
+    "3": "+27",
+    "4": "+36",
+    "5": "+45"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "pasted_note_from_other_thread"
+  },
+  "breakfast_bonus_vol_1": {
+   "building": "Diners",
+   "island": "Haven",
+   "max_level": 5,
+   "levels": {
+    "1": "+2",
+    "2": "+3",
+    "3": "+5",
+    "4": "+6",
+    "5": "+8"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "carrots_bonus_vol_1": {
+   "building": "Fields",
+   "island": "Haven",
+   "max_level": 5,
+   "levels": {
+    "1": "+9",
+    "2": "+18",
+    "3": "+27",
+    "4": "+36",
+    "5": "+45"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "gold_ingot_bonus_vol_1": {
+   "building": "Foundry",
+   "island": "Jade",
+   "max_level": 5,
+   "levels": {
+    "1": "+2",
+    "2": "+4",
+    "3": "+6",
+    "4": "+8",
+    "5": "+10"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "copper_ingot_bonus_vol_1": {
+   "building": "Foundry",
+   "island": "Jade",
+   "max_level": 5,
+   "levels": {
+    "1": "+6",
+    "2": "+12",
+    "3": "+18",
+    "4": "+24",
+    "5": "+30"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "palm_wood_bonus_vol_1": {
+   "building": "Palm Tree Nurseries",
+   "island": "Tropicalis",
+   "max_level": 5,
+   "levels": {
+    "1": "+3",
+    "2": "+6",
+    "3": "+9",
+    "4": "+12",
+    "5": "+15"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "iron_ingot_bonus_vol_1": {
+   "building": "Foundry",
+   "island": "Jade",
+   "max_level": 5,
+   "levels": {
+    "1": "+2",
+    "2": "+4",
+    "3": "+6",
+    "4": "+8",
+    "5": "+10"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "bolt_of_silk_bonus_vol_1": {
+   "building": "Silk Weavers",
+   "island": "Jade",
+   "max_level": 3,
+   "levels": {
+    "1": "+1",
+    "2": "+2",
+    "3": "+3"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed",
+   "note_29_oct": "Level 3 seen 29 Oct 01:07 (Bolt of silk bonus I, Level 2 to 3, +2 to +3; Overview table Lvl 1 +1, Lvl 2 +2, Lvl 3 +3). Earlier record had max level 2 (pre-update)."
+  },
+  "wheat_bonus_vol_2": {
+   "building": "Fields",
+   "island": "Haven",
+   "max_level": 5,
+   "levels": {
+    "1": "+1",
+    "2": "+2",
+    "3": "+3",
+    "4": "+4",
+    "5": "+5"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "fertilizer_bonus_vol_2": {
+   "building": "Silo",
+   "island": "Haven",
+   "max_level": 2,
+   "levels": {
+    "1": "+3",
+    "2": "+6"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed",
+   "building_note": "user_stated: Silo is for fertilizer"
+  },
+  "coffee_beans_bonus_vol_2": {
+   "building": "Plantations",
+   "island": "Tropicalis",
+   "max_level": 5,
+   "levels": {
+    "1": "+1",
+    "2": "+2",
+    "3": "+3",
+    "4": "+4",
+    "5": "+5"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "manure_bonus_vol_2": {
+   "building": "Animal Stables",
+   "island": "brown_sub_product",
+   "max_level": 2,
+   "levels": {
+    "1": "+1",
+    "2": "+2"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot_or_user_typed"
+  },
+  "hammock_bonus_vol_1": {
+   "building": "Seamstresses",
+   "island": "Tropicalis",
+   "max_level": 5,
+   "levels": {
+    "1": "+2",
+    "2": "+4",
+    "3": "+6",
+    "4": "+8",
+    "5": "+10"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot 2026-10-28 post-28-Oct update (Library Volume I overview; Vol II not seen)"
+  },
+  "gong_bonus_vol_1": {
+   "building": "Instrument Makers",
+   "island": "Tropicalis",
+   "max_level": 5,
+   "levels": {
+    "1": "+1",
+    "2": "+2",
+    "3": "+3",
+    "4": "+4",
+    "5": "+5"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot 2026-10-28 post-28-Oct update (Library Volume I overview; Vol II not seen)"
+  },
+  "curtain_bonus_vol_1": {
+   "building": "Garment Makers",
+   "island": "Jade",
+   "max_level": 5,
+   "levels": {
+    "1": "+3",
+    "2": "+5",
+    "3": "+7",
+    "4": "+10",
+    "5": "+15"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot 2026-10-28 post-28-Oct update (Library Volume I overview; Vol II not seen)"
+  },
+  "quilt_bonus_vol_1": {
+   "building": "Tailors",
+   "island": "Haven",
+   "max_level": 5,
+   "levels": {
+    "1": "+3",
+    "2": "+5",
+    "3": "+7",
+    "4": "+10",
+    "5": "+15"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot 2026-10-28 post-28-Oct update (Library Volume I overview; Vol II not seen)"
+  },
+  "bamboo_rice_bonus_vol_1": {
+   "building": "Food Stands",
+   "island": "Jade",
+   "max_level": 5,
+   "levels": {
+    "1": "+2",
+    "2": "+3",
+    "3": "+4",
+    "4": "+6",
+    "5": "+8"
+   },
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
+   "source": "screenshot 2026-10-28 16:11 (Bamboo rice bonus - Overview, Volume I, Lvl 1-5); description 'Increases the bamboo rice production from Food Stands'; island Jade taken from where Food Stands live (same as milk rice)"
+  },
+  "shelter_feed_bonus_vol_1": {
+   "building": "Feed Mill",
+   "island": "Haven",
+   "max_level": 5,
+   "levels": {
+    "1": "+2",
+    "2": "+4",
+    "3": "+6",
+    "4": "+8",
+    "5": "+10"
+   },
+   "description": "Increases the shelter feed production from the Feed Mill (game text, Volume I)",
+   "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS; unit UNCONFIRMED",
+   "source": "screenshot 28 Oct 2026 19:46 (Shelter tab, Overview), post-28-Oct update; the Shelter tab is new",
+   "note": "Jo's level 0/5 seen 29 Oct 00:54; Overview table Lvl 1 +2, 2 +4, 3 +6, 4 +8, 5 +10 matches (01:07)."
+  }
+ },
+ "player_levels": {
+  "wheat_bonus_vol_1": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 1
+  },
+  "milk_bonus_vol_1": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 1
+  },
+  "daisy_bonus_vol_1": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 1
+  },
+  "bread_bonus_vol_1": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 2
+  },
+  "flour_bonus_vol_1": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 2
+  },
+  "cow_feed_bonus_vol_1": {
+   "current": 1,
+   "max": 1,
+   "shelf_row": 2
+  },
+  "manure_bonus_vol_1": {
+   "current": 1,
+   "max": 1,
+   "shelf_row": 3
+  },
+  "corn_bonus_vol_1": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 3
+  },
+  "pine_wood_bonus_vol_1": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 3
+  },
+  "fertilizer_bonus_vol_1": {
+   "current": 2,
+   "max": 2,
+   "shelf_row": 4
+  },
+  "coffee_beans_bonus_vol_1": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 4
+  },
+  "feather_bonus_vol_1": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 4
+  },
+  "cotton_bonus_vol_1": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 4
+  },
+  "ground_coffee_bonus_vol_1": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 4
+  },
+  "silk_cocoon_bonus_vol_1": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 5
+  },
+  "ostrich_feed_bonus_vol_1": {
+   "current": 1,
+   "max": 1,
+   "shelf_row": 5
+  },
+  "cotton_yarn_bonus_vol_1": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 5
+  },
+  "wheat_bonus_vol_2": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 5,
+   "note": "from highlighted Lvl 5 in Overview"
+  },
+  "daisy_bonus_vol_2": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 5
+  },
+  "bamboo_bonus_vol_1": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 6
+  },
+  "gold_ore_bonus_vol_1": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 6
+  },
+  "copper_ore_bonus_vol_1": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 6
+  },
+  "bread_bonus_vol_2": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 6
+  },
+  "cup_of_coffee_bonus_vol_1": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 6
+  },
+  "silk_thread_bonus_vol_1": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 7
+  },
+  "cotton_roll_bonus_vol_1": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 7
+  },
+  "iron_ore_bonus_vol_1": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 7
+  },
+  "fertilizer_bonus_vol_2": {
+   "current": 2,
+   "max": 2,
+   "shelf_row": 7,
+   "note": "from highlighted Lvl 2 in Overview"
+  },
+  "milk_bonus_vol_2": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 7,
+   "note": "user_stated: level 5, +8 highlighted"
+  },
+  "breakfast_bonus_vol_1": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 8
+  },
+  "carrots_bonus_vol_1": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 8
+  },
+  "gold_ingot_bonus_vol_1": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 8
+  },
+  "coffee_beans_bonus_vol_2": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 8,
+   "note": "from highlighted Lvl 5 in Overview"
+  },
+  "manure_bonus_vol_2": {
+   "current": 2,
+   "max": 2,
+   "shelf_row": 8,
+   "note": "from highlighted Lvl 2 in Overview"
+  },
+  "copper_ingot_bonus_vol_1": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 9
+  },
+  "cashmere_bonus_vol_1": {
+   "current": 4,
+   "max": 5,
+   "shelf_row": 9
+  },
+  "goat_feed_bonus_vol_1": {
+   "current": 0,
+   "max": 1,
+   "shelf_row": 9
+  },
+  "gold_ore_bonus_vol_2": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 9
+  },
+  "palm_wood_bonus_vol_1": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 10
+  },
+  "gold_sheets_bonus_vol_1": {
+   "current": 4,
+   "max": 5,
+   "shelf_row": 10
+  },
+  "iron_ingot_bonus_vol_1": {
+   "current": 5,
+   "max": 5,
+   "shelf_row": 10
+  },
+  "bolt_of_silk_bonus_vol_1": {
+   "current": 2,
+   "max": 3,
+   "shelf_row": 10,
+   "note": "2/3 on the shelf (29 Oct 00:54 and 01:07)"
+  },
+  "iron_sheets_bonus_vol_1": {
+   "current": 4,
+   "max": 5,
+   "shelf_row": 11,
+   "note": "upgraded 3 to 4 during the test (user took screenshots before and after)"
+  },
+  "copper_sheets_bonus_vol_1": {
+   "current": 3,
+   "max": 5,
+   "shelf_row": 11
+  },
+  "iced_coffee_bonus_vol_1": {
+   "current": 0,
+   "max": 5,
+   "shelf_row": 12
+  },
+  "rice_bonus_vol_1": {
+   "current": 1,
+   "max": 5,
+   "shelf_row": 12
+  },
+  "milk_rice_bonus_vol_1": {
+   "current": 0,
+   "max": 5,
+   "shelf_row": 12
+  },
+  "jacket_bonus_vol_1": {
+   "current": 0,
+   "max": 5,
+   "shelf_row": 13
+  },
+  "poncho_bonus_vol_1": {
+   "current": 0,
+   "max": 5,
+   "shelf_row": 13
+  },
+  "embroidered_tunic_bonus_vol_1": {
+   "current": 0,
+   "max": 5,
+   "shelf_row": 13
+  },
+  "longcase_clock_bonus_vol_1": {
+   "current": 0,
+   "max": 2,
+   "shelf_row": 14,
+   "locked_until_player_level": 57
+  },
+  "marimba_bonus_vol_1": {
+   "current": 0,
+   "max": 5,
+   "shelf_row": 14,
+   "locked_until_player_level": 57
+  },
+  "ornamental_katana_bonus_vol_1": {
+   "current": 0,
+   "max": 2,
+   "shelf_row": 14,
+   "locked_until_player_level": 57
+  },
+  "hammock_bonus_vol_1": {
+   "current": 0,
+   "max": 5,
+   "shelf_row": 16,
+   "locked_until_player_level": 72
+  },
+  "gong_bonus_vol_1": {
+   "current": 0,
+   "max": 5,
+   "shelf_row": 16,
+   "locked_until_player_level": 72
+  },
+  "curtain_bonus_vol_1": {
+   "current": 0,
+   "max": 5,
+   "shelf_row": 15,
+   "locked_until_player_level": 58
+  },
+  "quilt_bonus_vol_1": {
+   "current": 0,
+   "max": 5,
+   "shelf_row": 15,
+   "locked_until_player_level": 58
+  },
+  "bamboo_rice_bonus_vol_1": {
+   "current": 0,
+   "max": 5,
+   "note": "Jo (user_stated 28 Oct 15:59): she has none of these books; zero is correct for My island | 29 Oct 01:07: book seen on shelf row 13 (4th book after jacket, poncho, embroidered tunic), purple (Jade) 0/5, 'Bamboo rice bonus I', Food Stands, Level 0 to 1 +0 to +2.",
+   "shelf_row": 13
+  },
+  "shelter_feed_bonus_vol_1": {
+   "current": 0,
+   "max": 5,
+   "shelf": "Shelter tab, row 2, 3rd book",
+   "note": "0/5 seen 29 Oct 00:54 (Shelter tab). Level 1 +2 up to Level 5 +10 confirmed in the Overview table 01:07."
+  }
+ },
+ "shelter_animal_bonuses": {
+  "_note": "Shelter tab books (new, post-28-Oct update) that raise what Animal Shelter animals produce. They are PERCENTAGES, unlike the flat Production books, and are NOT used by the calculator or listed on the Setup page (Jo 29 Oct 01:07: they do not change the outputs the calculator shows). Kept here as reference only. Seen 29 Oct 2026 00:54 and 01:07, game 1.3.40251. Jo's levels all 0/5. Upgrade costs and pen/book requirements visible on the screenshots but not recorded (coins out of scope).",
+  "elephants_pine_wood_bonus_vol_1": {
+   "label": "Elephants: Pine wood bonus I",
+   "effect": "Increases the pine wood production from Elephants in the Animal Shelter",
+   "max_level": 5,
+   "levels_seen": {
+    "1": "+3%"
+   },
+   "player_current": 0,
+   "shelf": "Shelter tab, row 1, 1st book",
+   "levels_not_seen": "2-5"
+  },
+  "sloths_cup_of_coffee_bonus_vol_1": {
+   "label": "Sloths: Cup of coffee bonus I",
+   "effect": "Increases the cup of coffee production from Sloths in the Animal Shelter",
+   "max_level": 5,
+   "levels_seen": {
+    "1": "+5%"
+   },
+   "player_current": 0,
+   "shelf": "Shelter tab, row 1, 2nd book",
+   "levels_not_seen": "2-5"
+  },
+  "pandas_bamboo_bonus_vol_1": {
+   "label": "Pandas: Bamboo bonus I",
+   "effect": "Increases the bamboo production from Pandas in the Animal Shelter",
+   "max_level": 5,
+   "levels_seen": {
+    "1": "+3%"
+   },
+   "player_current": 0,
+   "shelf": "Shelter tab, row 2, 1st book",
+   "levels_not_seen": "2-5"
+  },
+  "alpacas_cashmere_bonus_vol_1": {
+   "label": "Alpacas: Cashmere bonus I",
+   "effect": "Increases the cashmere production from Alpacas in the Animal Shelter",
+   "max_level": 5,
+   "levels_seen": {
+    "1": "+3%",
+    "2": "+6%",
+    "3": "+9%",
+    "4": "+12%",
+    "5": "+15%"
+   },
+   "player_current": 0,
+   "shelf": "Shelter tab, row 2, 2nd book (row 2 is locked until 5 more research levels are finished on the upper shelf)"
+  },
+  "_shelf_lock": "Shelter row 2 lock label '0/5'; game message seen 29 Oct 01:12: 'Finish 5 more research from the upper shelves'. Jo 0/5 so far (row 2 books were still selectable on screen, so the lock may only be a progress counter: UNCONFIRMED)."
+ }
+}

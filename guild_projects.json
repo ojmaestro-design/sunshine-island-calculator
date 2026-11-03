@@ -1,0 +1,180 @@
+{
+ "meta": {
+  "file": "guild_projects.json",
+  "date": "2026-10-28",
+  "source": "Jo's original screenshots of the guild project cards (read into tournament_notes_thread5.md on 28 Oct 2026), SEEN. Only the project NAME and the PRODUCTS each card asks for are stored here. Amounts, hours, difficulty stars and rewards are deliberately NOT stored: the amounts are guild totals at a difficulty level that is not confirmed, and rewards are out of scope.",
+  "use": "Guild tournament tab: pick a project to see the ready/will-make total of each of its products together.",
+  "not_yet_seen": "RESOLVED 28 Oct 19:19: 15 projects in total (Jo's full-list screenshot). All 15 stored; the 4 new ones' items were named by Jo.",
+  "card_amounts_note": "Amounts on this screenshot are the 15 cards at Jo's guild's current difficulty; not stored.",
+  "dig_deeper_note": "Dig deeper card shows three ores; Jo says iron, copper and gold. Which amount belongs to which ore is not stored."
+ },
+ "projects": [
+  {
+   "id": "we_got_milk",
+   "title": "We got milk!",
+   "products": [
+    {
+     "product_id": "milk"
+    }
+   ]
+  },
+  {
+   "id": "flour_power",
+   "title": "Flour power",
+   "products": [
+    {
+     "product_id": "flour"
+    }
+   ]
+  },
+  {
+   "id": "pinewood_is_fine_wood",
+   "title": "Pinewood is fine wood",
+   "products": [
+    {
+     "product_id": "pine_wood"
+    }
+   ]
+  },
+  {
+   "id": "moo_velous_blooms",
+   "title": "Moo-velous Blooms",
+   "products": [
+    {
+     "product_id": "daisies"
+    },
+    {
+     "product_id": "cow_feed",
+     "note": "icon read as cow feed (orange sack with a cow face); Jo confirmed from memory 28 Oct 19:10 (no screenshot)"
+    }
+   ]
+  },
+  {
+   "id": "it_is_feather_weather",
+   "title": "It is feather weather",
+   "products": [
+    {
+     "product_id": "feather"
+    }
+   ]
+  },
+  {
+   "id": "making_a_bun_is_fun",
+   "title": "Making a bun is fun",
+   "products": [
+    {
+     "product_id": "bread"
+    },
+    {
+     "product_id": "corn"
+    }
+   ]
+  },
+  {
+   "id": "the_coffee_is_grounded",
+   "title": "The coffee is grounded",
+   "products": [
+    {
+     "product_id": "ground_coffee"
+    }
+   ]
+  },
+  {
+   "id": "we_love_coffee",
+   "title": "We love coffee",
+   "products": [
+    {
+     "product_id": "cup_of_coffee"
+    }
+   ]
+  },
+  {
+   "id": "cotton_collection",
+   "title": "Cotton collection",
+   "products": [
+    {
+     "product_id": "cotton_yarn"
+    },
+    {
+     "product_id": "cotton"
+    }
+   ]
+  },
+  {
+   "id": "beautiful_fabric",
+   "title": "Beautiful fabric",
+   "products": [
+    {
+     "product_id": "silk_thread",
+     "note": "icon read as silk thread (blue spool); Jo confirmed from memory 28 Oct 19:10 that Beautiful fabric = silk thread (spinning works) + silk cocoon (plantation); no screenshot"
+    },
+    {
+     "product_id": "silk_cocoon"
+    }
+   ]
+  },
+  {
+   "id": "delicious_vegetables",
+   "title": "Delicious vegetables",
+   "products": [
+    {
+     "product_id": "carrots"
+    },
+    {
+     "product_id": "wheat"
+    }
+   ]
+  },
+  {
+   "id": "its_so_fluffy",
+   "title": "It's so fluffy!",
+   "products": [
+    {
+     "product_id": "cashmere"
+    },
+    {
+     "product_id": "bolt_of_silk"
+    }
+   ]
+  },
+  {
+   "id": "the_daily_grind",
+   "title": "The Daily Grind",
+   "products": [
+    {
+     "product_id": "cup_of_coffee"
+    },
+    {
+     "product_id": "coffee_beans"
+    }
+   ]
+  },
+  {
+   "id": "a_pile_of_wood",
+   "title": "A pile of wood",
+   "products": [
+    {
+     "product_id": "bamboo"
+    },
+    {
+     "product_id": "palm_wood"
+    }
+   ]
+  },
+  {
+   "id": "dig_deeper",
+   "title": "Dig deeper",
+   "products": [
+    {
+     "product_id": "iron_ore"
+    },
+    {
+     "product_id": "copper_ore"
+    },
+    {
+     "product_id": "gold_ore"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OCR test - Sunshine Island Calculator</title>
+<style>
+body{font-family:system-ui,sans-serif;background:#0e2a2b;color:#eaf6f4;margin:0;padding:16px;max-width:640px;margin:auto;line-height:1.45}
+h1{font-size:1.2rem}button,input{font:inherit}
+.btn{background:#2fb5a8;color:#06201f;border:0;border-radius:10px;padding:12px 16px;font-weight:600;width:100%;margin:8px 0}
+.box{background:#12383a;border-radius:10px;padding:12px;margin:10px 0;white-space:pre-wrap;word-break:break-word}
+img{max-width:100%;border-radius:8px}
+#log{font-size:.85rem;color:#9fd6cf}
+</style></head><body>
+<h1>OCR test page</h1>
+<p>Pick a screenshot of a Library page. The text it reads will appear below. Nothing is uploaded: it all runs on your device.</p>
+<input type="file" id="f" accept="image/*">
+<button class="btn" id="go" disabled>Read the text</button>
+<div id="log" class="box">Starting up...</div>
+<img id="pv" alt="">
+<div id="out" class="box" hidden></div>
+<script src="ocr-lib/tesseract.min.js"></script>
+<script>
+const log=m=>document.getElementById('log').textContent=m;
+let worker=null,t0=Date.now();
+(async()=>{
+  try{
+    worker=await Tesseract.createWorker('eng',1,{
+      workerPath:'ocr-lib/worker.min.js',
+      corePath:'ocr-lib/',
+      langPath:'ocr-lib/lang',
+      gzip:true,
+      workerBlobURL:false,
+      logger:m=>{if(m.status)log(m.status+(m.progress!=null?' '+Math.round(m.progress*100)+'%':''))}
+    });
+    log('Ready ('+((Date.now()-t0)/1000).toFixed(1)+'s to start). Pick a screenshot.');
+    document.getElementById('go').disabled=false;
+  }catch(e){log('PROBLEM starting: '+(e&&e.message||e))}
+})();
+document.getElementById('f').onchange=e=>{const f=e.target.files[0];if(f)document.getElementById('pv').src=URL.createObjectURL(f)};
+document.getElementById('go').onclick=async()=>{
+  const f=document.getElementById('f').files[0];if(!f){log('Pick a screenshot first.');return}
+  const s=Date.now();log('Reading...');
+  try{
+    const r=await worker.recognize(f);
+    const o=document.getElementById('out');o.hidden=false;o.textContent=r.data.text||'(nothing read)';
+    log('Done in '+((Date.now()-s)/1000).toFixed(1)+'s');
+  }catch(e){log('PROBLEM reading: '+(e&&e.message||e))}
+};
+</script></body></html>
