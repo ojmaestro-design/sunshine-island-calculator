@@ -1,4 +1,6 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.footlogo{background:#fff8f3;border-radius:12px;padding:10px 14px;margin:10px auto 0;max-width:340px;text-align:center}.footlogo img{max-width:100%;height:auto;display:block;margin:0 auto}
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.footlogo{background:rgba(255,248,243,.86);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border-radius:14px;padding:6px 12px;margin:14px auto 0;max-width:240px;text-align:center}
+:root[data-look="light"] .footlogo{background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;padding:0}.footlogo img{max-width:100%;height:auto;display:block;margin:0 auto}
 </style></head><body>
 <meta charset="utf-8">
 <title>Sunshine Calculator Trial</title>
@@ -7,7 +9,7 @@
 <meta name="description" content="Sunshine Island Calculator. Beta 0.1 - data from the 28 Oct 2026 game update.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&family=Cookie&display=swap">
 <style>
 :root{
   /* Option D look: one look only. Default tokens are for the dark teal wall; cream cards redefine them below. */
@@ -163,7 +165,10 @@ ul.opt{margin:6px 0 0;padding-left:18px}ul.opt li{margin:4px 0}
 .footer{margin-top:24px;font-size:13px;color:var(--muted)}
 .coffeecard{margin-top:28px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--surface);text-align:center}
 .coffeecard p{margin:0 0 10px;font-size:15px;color:var(--fg)}
-.coffeecard .coffeebtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:10px 22px;border-radius:12px;background:#FFDD00;color:#1a1a1a;font:700 16px var(--body);text-decoration:none;border:2px solid #1a1a1a}
+.coffeecard .coffeebtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:8px 26px;border-radius:999px;background:#FFDD00;color:#000;font:400 24px/1 Cookie,"Brush Script MT",cursive;text-decoration:none;border:2px solid #000}
+.coffeecard .coffeebtn svg{width:22px;height:26px;flex:none}
+.coffeecard .coffeebtn.official{background:none;border:0;padding:0;min-height:0;border-radius:0}
+.coffeecard .bmcimg{display:block;height:56px;max-width:100%;width:auto}
 .footer a{color:var(--muted)}
 .linkbtn{background:none;border:0;padding:0;color:var(--muted);text-decoration:underline;font:inherit;cursor:pointer}
 .shelhead{display:flex;width:100%;justify-content:space-between;align-items:center;background:none;border:0;padding:0;color:var(--fg);font:600 18px/1.2 var(--display);cursor:pointer;min-height:32px}
@@ -171,6 +176,11 @@ ul.opt{margin:6px 0 0;padding-left:18px}ul.opt li{margin:4px 0}
 .walk ol{margin:6px 0 10px;padding-left:20px}.walk li{margin:5px 0}
 .hdr{display:flex;align-items:center;gap:10px}.hdr img{height:40px;width:auto}
 .keyline{font-size:13px;color:var(--muted);display:flex;gap:6px 16px;flex-wrap:wrap;margin:2px 0 6px}
+.keybox{margin:8px 0 6px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--fg)}
+.keybox .keyhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+.keybox .keyhead b{font-size:15px}
+.keybox .keyrow{display:flex;align-items:baseline;gap:10px;margin:6px 0;font-size:14px}
+.keybox .keyrow .v{min-width:44px;text-align:center}
 .pbtns{display:flex;flex-wrap:wrap;gap:6px}.pbtn.on{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
 .mboxes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
 .mbox{min-width:0;border:2px solid;border-radius:10px;padding:6px 8px;display:flex;flex-direction:column;gap:3px;color:#14211c}
@@ -229,7 +239,7 @@ a{color:var(--accent-ink)}
 .ocrrev{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}.ocrwarn,.ocrinfo{margin:6px 0;padding:6px 10px 6px 26px;font-size:14px;line-height:1.4}.ocrwarn{background:var(--unc-bg);color:var(--unc-fg);border:1px solid var(--unc-line);border-radius:8px}.ocrinfo{color:var(--muted)}
 .ocrlist{margin-top:6px;max-height:340px;overflow:auto}.ocrrow{display:grid;grid-template-columns:1fr auto minmax(70px,auto);gap:8px;padding:4px 0;border-top:1px solid var(--line);font-size:14px;align-items:baseline}.ocrrow i{color:var(--muted);font-size:12px}.ocrbad{background:var(--unc-bg)}
 
-.qhere{border-left:4px solid var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface));border-radius:8px;padding:6px 10px 8px;margin:10px 0 8px}
+.qhere{margin:10px 0 8px;padding:0}
 .rstrip{position:sticky;top:0;z-index:6;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 18px;padding:7px 12px;margin:0 0 10px;border:2px solid var(--accent);border-radius:12px;background:var(--surface2);color:var(--fg);box-shadow:0 4px 10px rgba(0,0,0,.35)}
 .rstrip .rlab{font:600 11px var(--body);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
 .rstrip .rchip{display:inline-flex;align-items:baseline;gap:6px}
@@ -262,6 +272,11 @@ a{color:var(--accent-ink)}
 /* test 118: colours cog, Cruise tidy */
 .cogbtn{margin-left:auto;flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 12px;border:1.5px solid var(--line);border-radius:999px;background:transparent;color:var(--fg);font:600 14px var(--body);cursor:pointer}
 .cogpanel[hidden]{display:none}.cogpanel .cogrow{display:grid;gap:8px;margin-top:10px}
+.cogabout{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.cogabout h2{margin:0 0 4px}
+.cogabout p{margin:6px 0;font-size:14px}
+.cogabout .fbbtn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;max-width:100%;padding:10px 18px;border-radius:12px;background:var(--accent);color:var(--accent-fg);font:700 16px var(--body);text-decoration:none;overflow-wrap:anywhere;margin:6px 0}
+.cogabout .abrow{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:8px}
 .cogopt{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-height:52px;padding:8px 12px;text-align:left;border:1.5px solid var(--line);border-radius:12px;background:transparent;color:var(--fg);font:inherit;cursor:pointer}.cogopt small{color:var(--muted);font-size:13px}
 .cogopt[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}.cogopt[aria-pressed="true"] small{color:inherit}
 .splitrow .tsel{width:auto;flex:0 0 auto;min-width:76px}.splitrow .tsel+button,.splitrow select+.tsel{margin:0}
@@ -314,8 +329,10 @@ select.tnat{position:absolute!important;width:1px!important;height:1px!important
 @media (max-width:640px){.tabs{grid-template-columns:repeat(3,minmax(0,1fr))}}
 /* My buildings sections */
 .subtabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:0 0 10px}
-.subtabs button{min-height:44px;padding:4px 2px;font:600 13px/1.15 var(--body);color:var(--muted);background:var(--surface);border:1.5px solid var(--line);border-radius:10px;cursor:pointer}
-.subtabs button[aria-selected="true"]{color:var(--fg);border-color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,var(--surface));font-weight:700}
+.subtabs button{min-height:44px;padding:4px 2px;font:600 13px/1.15 var(--body);color:var(--muted);background:transparent;border:1.5px solid var(--line);border-radius:10px;cursor:pointer}
+.subtabs button[aria-selected="true"]{color:#2a1d12;background:#f9e5b8;border-color:#c9a35a;font-weight:700}
+.libtabs button{min-height:44px;font:600 13px/1.15 var(--body) !important;color:var(--muted);background:transparent;border:1.5px solid var(--line);border-radius:10px}
+.libtabs button[aria-selected="true"]{color:#2a1d12;background:#f9e5b8;border-color:#c9a35a;font-weight:700 !important}
 /* Quick sum result rows on one tidy grid */
 .qline{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 10px;align-items:end}
 .qline>.first{grid-column:1/-1;min-width:0;flex:none}
@@ -351,23 +368,115 @@ tr.cur td{background:color-mix(in srgb,var(--accent) 32%,var(--surface));font-we
 tr.cur td:first-child{box-shadow:inset 6px 0 0 var(--accent)}
 .subrow{display:flex;justify-content:space-between;align-items:center;gap:8px;position:relative}.subrow .sub{margin:0}#runeq .runehint{position:static;display:block;margin:0}#runeq .runehint .helpbox{position:absolute;right:0;top:30px;width:min(340px,84vw);z-index:25;background:var(--surface2);box-shadow:0 6px 18px rgba(0,0,0,.45)}
 .runebar .runehint{display:none}
+
+/* test 125: first-time box */
+.firstbox{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 12px;margin:8px 0 10px;padding:8px 12px;border-left:4px solid var(--accent);border-radius:8px;background:var(--surface2)}
+.ocrgaps{margin:0 0 6px;font-size:14px}.ocrgaps summary{cursor:pointer;color:var(--accent-ink);min-height:32px;display:flex;align-items:center}.ocrgaps ul{margin:4px 0 0;padding-left:22px;color:var(--muted)}
+
+/* test 126: Choose Files button matches the yellow buttons */
+.ocrcard input[type=file]::file-selector-button{font:600 14px var(--body);background:var(--accent);color:var(--accent-fg);border:0;border-radius:8px;padding:9px 14px;min-height:40px;margin-right:10px;cursor:pointer;box-shadow:0 3px 0 color-mix(in srgb,var(--accent) 55%,#000)}
+.ocrcard input[type=file]::-webkit-file-upload-button{font:600 14px var(--body);background:var(--accent);color:var(--accent-fg);border:0;border-radius:8px;padding:9px 14px;min-height:40px;margin-right:10px;cursor:pointer;box-shadow:0 3px 0 color-mix(in srgb,var(--accent) 55%,#000)}
+
+/* test 130: footer redesign */
+/* test 134: guild leader tab */
+.glrr{display:grid;grid-template-columns:minmax(0,1fr) 108px 48px;gap:6px;margin:6px 0;align-items:center}
+.glrr input{min-height:48px;width:100%;box-sizing:border-box;padding:6px 10px;font:inherit;font-size:16px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);color:var(--fg)}
+.glrx{min-height:48px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);color:var(--fg);font:inherit;cursor:pointer}
+.glrl{display:block;margin:12px 0 2px;font-weight:700;font-size:16px}
+.glsum{margin:6px 0 0;font-size:14px}
+.glchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.glchip{min-height:48px;padding:6px 16px;border:2px solid var(--line);border-radius:999px;background:var(--surface2);color:var(--fg);font:inherit;font-weight:600;cursor:pointer;touch-action:manipulation}
+.glchip[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:var(--accent-fg)}
+
+.gltiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
+.gltile{display:flex;flex-direction:column;gap:2px;align-items:center;justify-content:center;text-align:center;min-height:92px;padding:8px 6px;border:2px solid var(--line);border-radius:12px;background:var(--surface2);color:var(--fg);font:inherit;cursor:pointer;min-width:0;touch-action:manipulation}
+.gltile.unset{border-style:dashed;border-color:var(--accent)}
+.gltile.cur{box-shadow:0 0 0 3px var(--accent)}
+.gltile .gll{font-size:13px;color:var(--muted)}
+.gltile .glvv{font-size:22px;font-weight:700}
+.gltile .gls{font-size:12px;color:var(--muted)}
+#picksheet .pk-grid.five{grid-template-columns:repeat(5,minmax(0,1fr))}
+#picksheet .pk-opt small{font-size:11px;opacity:.85}
+
+.glf{display:grid;gap:4px;margin:12px 0 0}
+.glf label{font-weight:600}
+.glf input,.glf select{min-height:48px;width:100%;max-width:100%;box-sizing:border-box;padding:8px 12px;font:inherit;font-size:16px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);color:var(--fg)}
+.glf small{color:var(--muted);font-size:13px}
+.glrow{border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:10px 0;background:var(--surface)}
+.glrow.locked{opacity:.6}
+.glhead{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin-bottom:4px}
+.glhead b{font-size:17px}
+.glv{font-weight:700}
+.glline{margin:3px 0;font-size:14px}
+.glmore{margin:6px 0 0;font-size:14px;font-weight:600}
+.gld summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}
+
+
+/* test 142 */
+.ovdraw{display:block;width:100%;max-width:420px;margin:2px 0 8px;color:var(--fg)}
+.qfind{margin:6px 0 0}.qfind summary{cursor:pointer;min-height:40px;display:flex;align-items:center;font-size:14px;font-weight:600}
+/* test 141 */
+.gdot{display:inline-block;width:.85em;height:.85em;border-radius:50%;vertical-align:-.08em;margin-right:6px;border:1.5px solid rgba(255,255,255,.65);box-sizing:border-box}
+.gdot.g{background:#3fc24f}.gdot.a{background:#f2b01e}.gdot.r{background:#e5483d}.gdot.k{background:#111}
+.gldots{display:flex;flex-wrap:wrap;gap:4px 14px;margin:2px 0 4px;font-size:14px}
+.gldots span{white-space:nowrap}
+.firstbox{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;margin:10px 0;padding:14px 12px;border:2px solid var(--accent);border-left-width:2px;border-radius:12px;background:color-mix(in srgb,var(--accent) 10%,var(--surface))}
+.firstbox .btn{min-height:48px;padding:10px 18px;font-size:16px;font-weight:700;border-radius:12px;animation:startglow 2.4s ease-in-out infinite}
+@keyframes startglow{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 0%,transparent)}50%{box-shadow:0 0 14px 4px color-mix(in srgb,var(--accent) 65%,transparent)}}
+@media (prefers-reduced-motion:reduce){.firstbox .btn{animation:none;box-shadow:0 0 10px 2px color-mix(in srgb,var(--accent) 55%,transparent)}}
+.coffeecard{border:2px solid var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface))}
+/* test 139 */
+.glneed{grid-column:1/-1;margin:-4px 0 0;font-size:13px}
+.glsed{margin:10px 0 0;padding:10px;border:2px solid var(--accent);border-radius:12px}
+.glsed .glnumrow{grid-template-columns:minmax(0,1fr) auto}
+.glsed .glbtns{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.glnums{margin-top:8px}
+.gls-lab{font-weight:600;margin:0}
+/* test 138: guild leader tab, simple version */
+.glans{font-size:20px;font-weight:700;line-height:1.3;margin:0 0 10px}
+.glst{display:grid;grid-template-columns:7.6em minmax(0,1fr) auto;gap:8px;align-items:center;padding:9px 0;border-top:1px solid var(--line)}
+.glst.glsth{border-top:0;padding:0 0 4px;font-size:13px;color:var(--muted)}
+.glst .gls6{white-space:nowrap;font-size:15px;font-weight:700}
+.glst .gla{display:flex;align-items:center;gap:8px;font-weight:600;min-width:0}
+.glst .glw{white-space:nowrap;font-size:15px;text-align:right}
+.glbadge{flex:none;display:inline-flex;width:26px;height:26px;border-radius:50%;align-items:center;justify-content:center;font-weight:700;font-size:15px;background:var(--ok);color:var(--on-ink)}
+.glbadge.close{background:var(--focus)}
+.glbadge.no{background:var(--bad)}
+.glbadge.lock{background:var(--line);color:var(--fg)}
+.glst.locked .gla,.glst.locked .gls6,.glst.locked .glw{opacity:.65}
+.glnumrow{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:8px;margin:8px 0}
+.glnumrow input{min-height:56px;width:100%;box-sizing:border-box;padding:6px 12px;font:inherit;font-size:22px;border:2px solid var(--accent);border-radius:12px;background:var(--surface);color:var(--fg)}
+.glnumrow .btn{min-height:56px}
+.gltot{font-size:18px;margin:6px 0 0}
+.gltot b{font-size:24px}
+.gltotrow{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between}
+.glwk{margin-top:12px}
+.glwk summary,.glms summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}
+.glbon{margin-top:8px}
+
+.fbcard{margin-top:16px;border:2px solid var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface));text-align:center}
+.fbcard h2{margin:0 0 6px}
+.fbcard p{margin:0 0 12px;font-size:15px}
+.fbcard .fbbtn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;max-width:100%;padding:10px 18px;border-radius:12px;background:var(--accent);color:var(--accent-fg);font:700 16px var(--body);text-decoration:none;overflow-wrap:anywhere;box-shadow:0 3px 0 color-mix(in srgb,var(--accent) 55%,#000)}
+.fbcard .fbdisc{margin:12px 0 0}
 </style>
 <div class="wrap">
-  <div class="hdr"><span id="logo"></span><h1>Sunshine Island Calculator <span class="chip">Beta 0.1 · test 124</span></h1><button type="button" class="cogbtn" data-act="cog" aria-expanded="false" aria-controls="cogpanel"><span aria-hidden="true">⚙</span> Colours</button></div>
+  <div class="hdr"><span id="logo"></span><h1>Sunshine Island Calculator</h1><button type="button" class="cogbtn" data-act="cog" aria-expanded="false" aria-controls="cogpanel"><span aria-hidden="true">⚙</span> Colours &amp; help</button></div>
   <div class="card cogpanel" id="cogpanel" hidden><h2 style="margin:0 0 4px">Colours</h2><p class="sub" style="margin:0">Pick the look you like.</p><div class="cogrow">
     <button type="button" class="cogopt" data-act="look" data-v="teal" aria-pressed="true"><b>Teal</b><small>Dark green-blue, the usual look</small></button>
     <button type="button" class="cogopt" data-act="look" data-v="black" aria-pressed="false"><b>Black</b><small>Darkest, black background</small></button>
-    <button type="button" class="cogopt" data-act="look" data-v="light" aria-pressed="false"><b>Cream</b><small>Pale background, dark writing</small></button></div></div>
+    <button type="button" class="cogopt" data-act="look" data-v="light" aria-pressed="false"><b>Cream</b><small>Pale background, dark writing</small></button></div><div id="cogabout" class="cogabout"></div></div>
   <div class="subrow"><p class="sub" id="subtitle">Loading…</p><span id="runeq"></span></div>
   <div class="runebar" id="runebar"></div>
   <div class="tabs" role="tablist" id="tabs"></div>
   <div id="panel"></div>
   <p class="totop"><button type="button" class="btn ghost small" data-act="totop">↑ Back to top</button></p>
   <div id="coffee"></div>
-  <p class="footer"><a href="#data">Data &amp; flags</a> · <button class="btn ghost small" data-act="key" aria-label="What do the number styles mean?">?</button> · <button class="linkbtn" data-act="walkshow">Quick start</button> · Look: <button class="linkbtn" data-act="look" data-v="teal" aria-pressed="true">Teal</button> / <button class="linkbtn" data-act="look" data-v="black" aria-pressed="false">Black</button> / <button class="linkbtn" data-act="look" data-v="light" aria-pressed="false">Cream</button> <span id="keyline"></span></p>
-  <p class="footer" style="margin-top:6px">Beta 0.1 - data from the 28 Oct 2026 game update (game 1.3.40251)</p>
+  <div id="feedback"></div>
+  <p class="footer"><a href="#data">Data &amp; flags</a> · <button class="linkbtn" data-act="walkshow">Quick start</button> · <button class="btn ghost small" data-act="key" aria-expanded="false" id="keybtn">? Number key</button></p>
+  <div id="keyline"></div>
+  <p class="footer" style="margin-top:6px">Beta 0.1 · test 145 - data from the 28 Oct 2026 game update (game 1.3.40251)</p>
   <p class="footer" style="margin-top:0">Unofficial fan tool. Not made by, or connected to, the game's developers.</p>
-  <p class="footer" id="sitelinks" style="margin-top:0"></p>
   <div id="footlogo" class="footlogo"></div>
 </div>
 <script src="calc.js"></script>
@@ -384,8 +493,8 @@ const plu=(id)=>PLU[id]||pretty(id);
 const isPlaceholder=(id)=>/^unidentified_input_|^(fine|instant)_.*_input$/.test(String(id));
 const inName=(id)=>{const m=String(id).match(/^unidentified_input_.*_(\d+)$/);if(m)return 'Item '+m[1]+' (icon only)';const f=String(id).match(/^(fine|instant)_(.*)_input$/);if(f)return pretty(f[1])+' '+f[2].replace(/_/g,' ')+' item';return pretty(id)};
 /* Fill these in when ready; empty values stay hidden. */
-const SITE={logo:'',footlogo:'oj-maestro-logo.png',made:'Made by OJ Maestro',coffee:'https://buymeacoffee.com/ojmaestro',email:'hello.ojmaestro@gmail.com',feedback:'Beta: if a number looks different from the game, something is unclear, or you have an idea for a new feature, let me know.'};
-const TABS=[['setup','Library & setup'],['buildings','My buildings'],['guild','Guild tournament'],['cruise','Cruise tournament'],['lookup','Look up']];
+const SITE={logo:'',footlogo:'oj-maestro-logo.png',made:'Made by OJ Maestro',coffee:'https://buymeacoffee.com/ojmaestro',email:'hello.ojmaestro@gmail.com',feedback:'Beta: if a number looks different from the game, something is unclear, or you have an idea for a new feature, let me know. If a Cruise card is not in the calculator, send me a screenshot.',discord:'OJ Maestro'};
+const TABS=[['setup','Library & setup'],['buildings','My buildings'],['guild','Guild tournament'],['leader','Guild leader'],['cruise','Cruise tournament'],['lookup','Look up']];
 const ALLTABS=TABS.concat([['data','Data & flags']]);
 const TAGTXT={seen:'seen',estimated:'estimated',unconfirmed:'not confirmed'};
 let files=null,model=null,setup=null,integ=null,state={},uid=1;
@@ -463,11 +572,13 @@ async function boot(){
 }
 function siteBits(){
   if(SITE.logo)$('#logo').innerHTML=`<img src="${esc(SITE.logo)}" alt="">`;
-  const lines=[];if(SITE.made)lines.push(esc(SITE.made));
-  if(SITE.feedback||SITE.email)lines.push(`${esc(SITE.feedback||'')} ${SITE.email?`<a href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}`.trim());
   if(SITE.footlogo&&$('#footlogo'))$('#footlogo').innerHTML=`<img src="${esc(SITE.footlogo)}" alt="OJ Maestro" onerror="this.parentNode.hidden=true">`;
-  if(SITE.coffee&&$('#coffee'))$('#coffee').innerHTML=`<div class="coffeecard"><p>Free tool, made by OJ Maestro. If it saved you time, you can say thanks with a small tip.</p><a class="coffeebtn" href="${esc(SITE.coffee)}" target="_blank" rel="noopener"><span aria-hidden="true">☕</span> Buy me a coffee</a></div>`;
-  $('#sitelinks').innerHTML=lines.join('<br>')}
+  if(SITE.coffee&&$('#coffee'))$('#coffee').innerHTML=`<div class="coffeecard"><p>Free tool, made by OJ Maestro. If it saved you time, you can say thanks with a small tip.</p><a class="coffeebtn" href="${esc(SITE.coffee)}" target="_blank" rel="noopener" aria-label="Buy me a coffee"><img class="bmcimg" hidden alt="" src="https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=&slug=ojmaestro&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" onload="this.hidden=false;this.nextElementSibling.hidden=true;this.parentNode.classList.add('official')" onerror="this.remove()"><span class="bmcfb"><svg viewBox="0 0 22 26" aria-hidden="true"><path d="M3 9h16l-1.6 14.5a2 2 0 0 1-2 1.5H6.6a2 2 0 0 1-2-1.5z" fill="#fff" stroke="#000" stroke-width="1.8" stroke-linejoin="round"/><path d="M2 9h18V6.5H2z" fill="#fff" stroke="#000" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 6.5V4.5c0-1 1-1.8 2-1.8h8c1 0 2 .8 2 1.8v2" fill="none" stroke="#000" stroke-width="1.8"/></svg> Buy me a coffee</span></a></div>`;
+  const ab=$('#cogabout');
+  if(ab)ab.innerHTML=`<h2>Help &amp; feedback</h2><p class="sub" style="margin:0">Spot a bug or have an idea? Tell me.</p>${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p>Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}<div class="abrow"><button class="linkbtn" data-act="walkshow">Quick start</button><a href="#data">Data &amp; flags</a></div><p class="sub">Made by OJ Maestro · Beta 0.1 · test 145</p>`;
+  const fb=$('#feedback');
+  if(fb&&(SITE.feedback||SITE.email||SITE.discord))fb.innerHTML=`<div class="card fbcard"><h2>Spot a bug or have an idea?</h2>${SITE.feedback?`<p>${esc(SITE.feedback)}</p>`:''}${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p class="fbdisc">Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}</div>`}
+document.addEventListener('click',(e)=>{const t=e.target.closest&&e.target.closest('#cogpanel [data-act="walkshow"], #cogpanel a[href="#data"]');if(t){const pn=document.getElementById('cogpanel');if(pn){pn.hidden=true;const cb=document.querySelector('.cogbtn');if(cb)cb.setAttribute('aria-expanded','false')}}});
 function copyText(text,done){
   const fb=()=>{let ok=false;const ta=document.createElement('textarea');ta.value=text;ta.setAttribute('readonly','');ta.style.cssText='position:fixed;left:-9999px;top:0';document.body.appendChild(ta);ta.select();try{ok=document.execCommand('copy')}catch(x){}ta.remove();done(ok)};
   try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(()=>done(true),fb);return}}catch(x){}
@@ -600,7 +711,7 @@ function drawRunes(){$('#runebar').innerHTML=Object.values(model.runes).map((r)=
 /* ---- MY BUILDINGS ---- */
 function walkCard(){return `<div class="card walk"><h2>Quick start</h2><ol>
   <li><b>Runes.</b> Tap the rune buttons above to match the game.</li>
-  <li><b>Library.</b> Set your levels on the shelves below.</li>
+  <li><b>Library.</b> Press the glowing <b>Start here</b> button below to fill in your levels from the game's Overview, or set them on the shelves.</li>
   <li><b>Buildings.</b> Open <a href="#buildings">My buildings</a> and add yours, or fill in a basic island and fix it.</li>
   <li><b>Try it.</b> Pick a project on the <a href="#guild">Guild tournament</a> tab, or use <a href="#lookup">Look up</a>.</li></ol>
   <div class="row"><button class="btn small" data-act="walkdone">Got it</button></div></div>`}
@@ -945,6 +1056,149 @@ function groupLine(c,ids,single){
   return h+'</div>'}
 let undoTimer=null,undoArmed=null;
 function armUndo(){if(undoArmed===state.undo)return;undoArmed=state.undo;clearTimeout(undoTimer);const mine=state.undo;undoTimer=setTimeout(()=>{if(state.undo===mine){state.undo=null;const e=document.getElementById('gundo');if(e)e.remove()}undoArmed=null},30000)}
+const GSTARS=[{"id":"we_got_milk","title":"We got milk!","items":["milk"],"rewards":[4,16,48,120,300,600],"targets":[[1800],[3600],[7200],[14400],[28800],[43200]],"locks":{},"unsure":false},{"id":"flour_power","title":"Flour power","items":["flour"],"rewards":[4,16,48,120,300,600],"targets":[[400],[800],[1500],[3000],[6000],[9000]],"locks":{"6":36},"unsure":false},{"id":"pinewood_is_fine_wood","title":"Pinewood is fine wood","items":["pine_wood"],"rewards":[6,24,72,180,450,900],"targets":[[300],[600],[1200],[2300],[4600],[6900]],"locks":{},"unsure":false},{"id":"moo_velous_blooms","title":"Moo-velous Blooms","items":["daisies","cow_feed"],"rewards":[5,20,60,150,375,750],"targets":[[1400,85],[2800,170],[5600,250],[11200,600],[22400,1100],[34000,1700]],"locks":{"5":15,"6":40},"unsure":false},{"id":"it_is_feather_weather","title":"It is feather weather","items":["feather"],"rewards":[7,28,84,210,525,1050],"targets":[[400],[900],[1700],[3500],[6900],[10350]],"locks":{},"unsure":false},{"id":"making_a_bun_is_fun","title":"Making a bun is fun","items":["bread","corn"],"rewards":[6,24,72,180,450,900],"targets":[[400,1000],[800,1900],[1600,3900],[3100,7800],[6200,15600],[9300,23400]],"locks":{},"unsure":false},{"id":"the_coffee_is_grounded","title":"The coffee is grounded","items":["ground_coffee"],"rewards":[7,28,84,210,525,1050],"targets":[[400],[900],[1700],[3000],[6000],[9000]],"locks":{"6":40},"unsure":false},{"id":"we_love_coffee","title":"We love coffee","items":["cup_of_coffee"],"rewards":[9,36,108,270,675,1350],"targets":[[200],[300],[600],[1300],[2600],[3900]],"locks":{},"unsure":false},{"id":"cotton_collection","title":"Cotton collection","items":["cotton_yarn","cotton"],"rewards":[4,16,48,120,300,600],"targets":[[200,600],[300,1200],[700,2400],[1300,4800],[2600,9600],[3900,14400]],"locks":{"6":40},"unsure":false},{"id":"beautiful_fabric","title":"Beautiful fabric","items":["silk_thread","silk_cocoon"],"rewards":[7,28,84,210,525,1050],"targets":[[200,600],[400,1200],[800,2300],[1500,4600],[3000,9200],[4500,13800]],"locks":{"6":40},"unsure":false},{"id":"dig_deeper","title":"Dig deeper","items":["copper_ore","gold_ore","iron_ore"],"rewards":[10,40,120,300,750,1500],"targets":[[300,400,500],[600,800,1100],[1200,1600,2200],[2400,3100,4300],[4800,6200,8600],[7200,9300,12900]],"locks":{},"unsure":false},{"id":"delicious_vegetables","title":"Delicious vegetables","items":["wheat","carrots"],"rewards":[12,48,144,360,900,1800],"targets":[[1600,600],[3200,1300],[6400,2600],[13000,5200],[26000,10400],[39000,15600]],"locks":{},"unsure":false},{"id":"a_pile_of_wood","title":"A pile of wood","items":["bamboo","palm_wood"],"rewards":[11,44,132,330,825,1650],"targets":[[300,200],[600,300],[1000,600],[1800,1200],[3500,2300],[5250,3450]],"locks":{},"unsure":false},{"id":"the_daily_grind","title":"The Daily Grind","items":["cup_of_coffee","coffee_beans"],"rewards":[6,24,72,180,450,900],"targets":[[200,1100],[300,2200],[700,4400],[1400,8700],[2800,17500],[4200,26500]],"locks":{"5":35,"6":40},"unsure":false},{"id":"its_so_fluffy","title":"It's so fluffy!","items":["cashmere","bolt_of_silk"],"rewards":[11,44,132,330,825,1650],"targets":[[600,300],[1200,600],[2300,1200],[4600,2500],[9200,5000],[13800,7500]],"locks":{"4":9,"5":35,"6":40},"unsure":false}];
+const GL_CONTRIB=[0,2,4,6,8,10,12,14,16,18,20,22,24,26,28],GL_AD=[0,10,20,30,40,50,60,70,80,90];
+const GL_DEF={proj:'delicious_vegetables',members:null,adverts:null,v:137,spread:25,maxStar:6,cl:null,al:null,rep:{},keyp:{}};
+const GL_OPTS={
+ cl:{title:'Contributions for projects',min:1,max:15,cols:3,lab:(n)=>'Level '+n,sub:(n)=>'+'+GL_CONTRIB[n-1]+'%',hint:'Your guild island building "Contributions for projects". Tap your guild\'s level.'},
+ al:{title:'Ad contributions for projects',min:1,max:10,cols:3,lab:(n)=>'Level '+n,sub:(n)=>'+'+GL_AD[n-1]+'%',hint:'Your guild island building "Ad contributions for projects". Tap your guild\'s level.'},
+ members:{title:'Members online now',min:0,max:25,cols:5,lab:(n)=>String(n),sub:null,hint:'Count the green dots on your guild member list. Amber members were online recently and may be back, so add them if you expect them. Red and black are not online. A guild has 25 at most.'},
+ adverts:{title:'Members who watch the advert',min:0,max:25,cols:5,lab:(n)=>String(n),sub:null,hint:'Most guilds ask everyone to watch the advert first, so this follows the number online. Set a number if some only drop by to watch an advert. 0 ignores adverts.'},
+ maxStar:{title:'Stars your guild has unlocked',min:1,max:6,cols:3,lab:(n)=>n+' star'+(n>1?'s':''),sub:null,hint:'Tap the highest star your guild can start. Higher stars show a padlock.'}};
+/* the product(s) leaders ask members to count: the slow or scarce ones (Jo, 3 Nov 2026: feathers, carrots, cups, pine, palm and bamboo, ground coffee). Other projects start on their first product. */
+const GL_KEYS={delicious_vegetables:['carrots'],a_pile_of_wood:['bamboo','palm_wood'],the_daily_grind:['cup_of_coffee'],we_love_coffee:['cup_of_coffee'],it_is_feather_weather:['feather'],the_coffee_is_grounded:['ground_coffee'],pinewood_is_fine_wood:['pine_wood'],making_a_bun_is_fun:['bread'],dig_deeper:['iron_ore','copper_ore']};
+function glLoad(){let g={};try{g=JSON.parse(localStorage.getItem('sunshine_gl_v1'))||{}}catch(e){}const o=Object.assign({},GL_DEF,g);o.rep=Object.assign({},g.rep||{});o.keyp=Object.assign({},g.keyp||{});if(!(g.v>=137)){o.adverts=null;o.v=137}
+  ['cl','al','members','adverts','maxStar'].forEach((k)=>{const m=GL_OPTS[k];if(o[k]!==null&&!(o[k]>=m.min&&o[k]<=m.max))o[k]=GL_DEF[k]});return o}
+function glSave(){try{localStorage.setItem('sunshine_gl_v1',JSON.stringify(state.gl))}catch(e){}}
+function glProj(){const G=state.gl;return GSTARS.find((x)=>x.id===G.proj)||GSTARS[0]}
+function glKeys(){const pr=glProj(),G=state.gl;const k=(G.keyp[pr.id]||GL_KEYS[pr.id]||[pr.items[0]]).filter((x)=>pr.items.indexOf(x)>=0);return k.length?k:[pr.items[0]]}
+function glRep(pid){const G=state.gl,key=glProj().id+':'+pid;if(!Array.isArray(G.rep[key]))G.rep[key]=[];return G.rep[key]}
+function glRepStats(pid){const L=glRep(pid).filter((r)=>r.v!==''&&r.v!==null&&!isNaN(+r.v));return {n:L.length,R:L.reduce((t,r)=>t+(+r.v),0)}}
+const glN=(n)=>Math.round(n).toLocaleString('en-GB');
+let glSel=null;
+function glAdvert(t,ab){return Math.round(Math.round(t/100)*(1+ab/100))}
+function glBon(){const G=state.gl;return {cb:G.cl?GL_CONTRIB[G.cl-1]:null,ab:G.al?GL_AD[G.al-1]:null}}
+function glMissing(){const G=state.gl,m=[];if(!G.cl)m.push('the Contributions for projects level');if(!G.al)m.push('the Ad contributions for projects level');
+  glKeys().forEach((pid)=>{if(glRepStats(pid).n<1)m.push('at least one number from a member for '+plu(pid).toLowerCase())});return m}
+function glAdv(){const G=state.gl;if(G.adverts===null||G.adverts===undefined)return Math.max(+G.members||0,...glKeys().map((p)=>glRepStats(p).n));return +G.adverts||0}
+function glCalc(){const G=state.gl,pr=glProj(),B=glBon(),keys=glKeys(),a=glAdv(),cb=1+B.cb/100,sp=Math.min(100,Math.max(0,+G.spread||0))/100;
+  return pr.rewards.map((rw,i)=>{const star=i+1;
+    const items=keys.map((pid)=>{const T=pr.targets[i][pr.items.indexOf(pid)],st=glRepStats(pid),M=Math.max(+G.members||0,st.n),un=M-st.n,avg=st.n?st.R/st.n:0,adv=glAdvert(T,B.ab),ad=a*adv;
+      const mid=(st.R+un*avg)*cb+ad,low=(st.R+un*avg*(1-sp))*cb+ad,high=(st.R+un*avg*(1+sp))*cb+ad;
+      const more=avg>0?Math.ceil(Math.max(0,T-mid)/(avg*cb)):null;
+      return {pid,T,n:st.n,un,adv,ad,mid,low,high,more}});
+    const verdict=items.every((x)=>x.low>=x.T)?'ok':items.every((x)=>x.high>=x.T)?'maybe':'no';
+    const lim=items.reduce((q,x)=>(x.mid/x.T<q.mid/q.T?x:q));
+    const more=items.some((x)=>x.more===null)?null:Math.max.apply(null,items.map((x)=>x.more));
+    return {star,reward:rw,items,verdict,lim,more,locked:star>(+G.maxStar||6),lock:pr.locks[String(star)]||0}})}
+function glView(){const G=state.gl,pr=glProj(),B=glBon(),keys=glKeys(),rows=glCalc(),cb=1+B.cb/100;
+  const st=rows.map((r)=>{if(r.locked)return 'lock';if(r.verdict==='ok')return 'ok';if(r.verdict==='maybe'||r.items.every((x)=>x.mid>=0.9*x.T))return 'close';return 'no'});
+  const top=rows.filter((r)=>!r.locked).length;let best=0;rows.forEach((r,i)=>{if(!r.locked&&st[i]==='ok')best=r.star});
+  const shortTxt=(r)=>{const x=r.lim,need=Math.max(0,x.T-x.mid)/cb,q=need>=1000?100:10,v=Math.max(q,Math.ceil(need/q)*q);return glN(v)+' more '+plu(x.pid).toLowerCase()};
+  const sw=(n)=>n+' star'+(n===1?'':'s');let head;
+  if(top===0)head='All stars are locked in your guild. Check "Stars your guild has unlocked" in More settings.';
+  else if(best===top)head='Enough for '+sw(best)+'.';
+  else{const nx=rows[best],ns=st[best];
+    const tail=ns==='close'?sw(nx.star)+' is close. It is possible.':sw(nx.star)+' needs about '+shortTxt(nx)+'.';
+    head=best>0?sw(best)+' is fine. '+tail:'Not enough for 1 star yet. 1 star needs about '+shortTxt(nx)+'.'}
+  return {rows,st,head,B,keys,pr}}
+function glResultHtml(){const G=state.gl,pr=glProj();
+  if(!G.cl||!G.al)return '<p class="glans" style="margin:0">Set your guild\'s two bonus levels first (Guild bonus, above).</p>';
+  const miss=glKeys().filter((pid)=>glRepStats(pid).n<1);
+  if(miss.length)return '<p class="glans" style="margin:0">Type the first '+esc(miss.map((x)=>plu(x).toLowerCase()).join(' and '))+' number above to get your answer.</p>';
+  const V=glView(),rest=pr.items.filter((x)=>V.keys.indexOf(x)<0),B=V.B;
+  let h=`<p class="glans" role="status">${esc(V.head)}</p>`;
+  h+=`<div class="glst glsth"><span>Stars</span><span>Can you do it?</span><span>Reward</span></div>`;
+  h+=V.rows.map((r,i)=>{const s=V.st[i],t={ok:['✔','Yes',''],close:['~','Close',' close'],no:['✖','Not yet',' no'],lock:['🔒','Locked',' lock']}[s];
+    return `<div class="glst${r.locked?' locked':''}"><span class="gls6" aria-label="${r.star} star${r.star===1?'':'s'}">${'★'.repeat(r.star)}</span><span class="gla"><span class="glbadge${t[2]}" aria-hidden="true">${t[0]}</span>${t[1]}</span><span class="glw">${r.reward}</span><span class="sub glneed">Needs ${r.items.map((x)=>glN(x.T)+' '+esc(plu(x.pid).toLowerCase())).join(' and ')}</span></div>`}).join('');
+  h+=`<div style="margin:10px 0 0"><p class="glline" style="margin:0"><b>Bonus used</b></p><p class="glline" style="margin:0">Items: +${B.cb}% (Contributions level ${G.cl})</p><p class="glline" style="margin:0">Adverts: +${B.ab}% (Ad level ${G.al})</p></div>`;
+  h+=`<details class="glwk"><summary>Show the working</summary>`;
+  h+=`<p class="glline sub" style="margin:0 0 8px">Counting: ${V.keys.map((x)=>esc(plu(x))).join(' and ')}.${rest.length?` Not counted: ${rest.map((x)=>esc(plu(x))).join(' and ')} (the guild keeps making ${rest.length>1?'them':'it'} until the project is done).`:''}</p>`;
+  h+=V.rows.map((r)=>{
+    let b=`<div class="glrow${r.locked?' locked':''}"><div class="glhead"><b>${'★'.repeat(r.star)}</b><span class="sub" style="margin:0">Reward ${r.reward}</span></div>`;
+    if(r.lock&&!r.locked)b+=`<p class="glline sub" style="margin:0 0 4px">Needs ${r.lock} finished at ${r.star-1} stars first.</p>`;
+    b+=r.items.map((x)=>`<p class="glline"><b>${esc(plu(x.pid))}</b>: about ${glN(x.mid)} (range ${glN(x.low)} to ${glN(x.high)}), target ${glN(x.T)}${glAdv()>0?` <span class="sub">incl. ${glN(x.ad)} from adverts</span>`:''}</p>`).join('');
+    if(!r.locked&&r.verdict!=='ok'){
+      if(r.more!==null&&r.more>0)b+=`<p class="glmore">About ${r.more} more member${r.more===1?'':'s'} online at the average would close it (the most short: ${esc(plu(r.lim.pid))}).</p>`;
+      else b+=`<p class="glmore">The usual amount reaches it; the low end does not. The most short: ${esc(plu(r.lim.pid))}.</p>`}
+    return b+'</div>'}).join('');
+  h+=`<p class="sub" style="margin:8px 0 0">Guideline only. The bonus levels come from the two guild island tables (Contributions up to level 15, Ad up to level 10). The advert amount (1% of the target, then the advert bonus) was worked out on one guild. The guild bonus is added on top of the numbers you type. "Close" means within 10% of the target. Star targets and unlocks were read from Jo's screenshots on 30 Oct 2026.</p></details>`;
+  return h}
+function glTileInner(k){const G=state.gl,o=GL_OPTS[k],v=G[k],set=v!==null&&v!==undefined;
+  const lab={cl:'Contributions for projects',al:'Ad contributions for projects',members:'<i class="gdot g"></i>Members online now',adverts:'Members who watch the advert',maxStar:'Stars your guild has unlocked'}[k];
+  const auto=k==='adverts'&&!set;const val=auto?'Same as online':!set?'Tap to set':(k==='cl'||k==='al')?'Level '+v:k==='maxStar'?v+'★':String(v);
+  const sub=auto?glAdv()+' watch (follows online)':!set?(k==='cl'||k==='al'?'level '+o.min+' to '+o.max:'0 to 25'):(k==='cl'?'+'+GL_CONTRIB[v-1]+'% on items':k==='al'?'+'+GL_AD[v-1]+'% on adverts':k==='maxStar'?'higher stars locked':'25 at most');
+  return `<span class="gll">${lab}</span><span class="glvv">${val}</span><span class="gls">${sub}</span>`}
+function glTile(k){const v=state.gl[k];return `<button type="button" class="gltile${(v===null||v===undefined)&&k!=='adverts'?' unset':''}" data-glp="${k}" aria-haspopup="dialog">${glTileInner(k)}</button>`}
+function closeGlPick(){const e=document.getElementById('picksheet');if(e)e.remove();document.querySelectorAll('.gltile.cur').forEach((x)=>x.classList.remove('cur'))}
+function openGlPick(k){closeGlPick();const o=GL_OPTS[k],G=state.gl,tile=document.querySelector('[data-glp="'+k+'"]');if(!tile)return;tile.classList.add('cur');
+  let opts=k==='adverts'?`<button type="button" class="pk-opt" data-glset="${k}" data-n="auto" aria-pressed="${G[k]===null}" style="grid-column:1/-1">Same as online</button>`:'';for(let n=o.min;n<=o.max;n++)opts+=`<button type="button" class="pk-opt" data-glset="${k}" data-n="${n}" aria-pressed="${G[k]===n}">${o.lab(n)}${o.sub?`<br><small>${o.sub(n)}</small>`:''}</button>`;
+  const el=document.createElement('div');el.id='picksheet';el.setAttribute('role','dialog');el.dataset.k=k;
+  el.innerHTML=`<div class="pk-head"><div><strong>${esc(o.title)}</strong><div class="pk-sub">${esc(o.hint)}</div></div><button type="button" class="pk-x" data-glx="close" aria-label="Done">Done</button></div><div class="pk-grid${o.cols===5?' five':''}">${opts}</div><div class="pk-status" role="status" aria-live="polite">Tap a number to set it. Nothing closes until you press Done.</div>`;
+  (document.getElementById('panel')||document.body).appendChild(el);try{const r=tile.getBoundingClientRect();window.scrollBy({top:r.top-130,behavior:'smooth'})}catch(_){}}
+function glTot(pid){const L=glRep(pid).map((r,i)=>({r,i})).filter((o)=>o.r.v!==''&&o.r.v!==null&&!isNaN(+o.r.v)),st=glRepStats(pid),nm=esc(plu(pid).toLowerCase());
+  const last=L.length?glN(+L[L.length-1].r.v):'';
+  const sel=glSel&&glSel.pid===pid?L.find((o)=>o.i===glSel.i):null;
+  let h=`<div class="gltotrow"><p class="gltot" style="margin:0">${st.n?`<b>${glN(st.R)}</b> ${nm} so far <span class="sub">(${st.n} member${st.n===1?'':'s'})</span>`:`<span class="sub">No ${nm} added yet.</span>`}</p><button type="button" class="btn ghost small" data-glundo="${esc(pid)}"${st.n?'':' disabled'}>${st.n?'Undo last ('+last+')':'Undo'}</button></div>`;
+  if(L.length){h+=`<div class="glchips glnums">${L.map((o)=>`<button type="button" class="glchip" data-gled="${esc(pid)}" data-i="${o.i}" aria-pressed="${!!(sel&&sel.i===o.i)}">${glN(+o.r.v)}</button>`).join('')}</div><p class="sub" style="margin:4px 0 0">Tap a number to change or remove it.</p>`}
+  if(sel)h+=`<div class="glsed"><p class="gls-lab">Change ${glN(+sel.r.v)}</p><div class="glnumrow"><input type="text" inputmode="numeric" autocomplete="off" enterkeyhint="done" id="glse_${esc(pid)}" class="glse" data-p="${esc(pid)}" value="${esc(String(sel.r.v))}" aria-label="New number"><button type="button" class="btn" data-glsave="${esc(pid)}">Save</button></div><div class="glbtns"><button type="button" class="btn ghost small" data-glrem="${esc(pid)}">Remove this number</button><button type="button" class="btn ghost small" data-glcan="${esc(pid)}">Cancel</button></div></div>`;
+  return h}
+function glBonSum(){const G=state.gl,B=glBon();return G.cl&&G.al?`Guild bonus: +${B.cb}% items, +${B.ab}% adverts`:'Guild bonus: not set yet'}
+function glUnans(){const G=state.gl;return glKeys().some((pid)=>Math.max(+G.members||0,glRepStats(pid).n)>glRepStats(pid).n)}
+function glRangeHtml(){const G=state.gl;
+  if(!glUnans())return '<p class="glrl" style="margin-bottom:0">Members who have not told you their number</p><p class="sub" style="margin:0">Not needed right now. This appears when more members are online than numbers you have typed.</p>';
+  return `<p class="glrl" style="margin-bottom:0">Members who have not told you their number</p><p class="sub" style="margin:0">How careful should the answer be? Careful: they might have much less than the others. Relaxed: about the same as the others.</p><div class="glchips">${[[50,'Careful'],[25,'Normal'],[10,'Relaxed']].map((o)=>`<button type="button" class="glchip" data-glsp="${o[0]}" aria-pressed="${+G.spread===o[0]}">${o[1]}</button>`).join('')}</div>`}
+function renderLeader(){
+  if(!state.gl)state.gl=glLoad();glSel=null;const G=state.gl,pr=glProj(),keys=glKeys();
+  const setB=G.cl&&G.al;
+  let h=`<div class="card"><h2 style="margin:0 0 4px">Guild leader helper</h2><p class="sub" style="margin:0">Have you got enough for the project? Add up what members have ready to collect. It is an estimate, not a promise.</p>
+  <h3 style="margin:10px 0 6px">Guild project</h3><div class="pwrap"><div class="pstrip" id="glstrip" role="listbox" aria-label="Guild project">${GSTARS.map((x)=>`<button type="button" class="btn ghost small pbtn${x.id===pr.id?' on':''}" role="option" aria-selected="${x.id===pr.id}" data-glproj="${esc(x.id)}">${esc(x.title)}</button>`).join('')}</div></div><p class="sub" style="margin:6px 0 0">Makes ${esc(pr.items.map((x)=>plu(x)).join(' + '))}. Swipe sideways to see all the projects.</p>
+  <details class="glbon"${setB?'':' open'}><summary id="glbonsum">${esc(glBonSum())}</summary><p class="sub" style="margin:0">Set once. It is saved on this device until your guild upgrades.</p><div class="gltiles">${glTile('cl')}${glTile('al')}</div></details></div>`;
+  h+=`<div class="card"><h3 style="margin:0 0 2px">Add what members have ready</h3><p class="sub" style="margin:0">Type what each member has ready to collect, then press Enter. It adds to the total.</p>${keys.map((pid)=>`<div class="glrep"><label class="glrl" for="glnum_${esc(pid)}">${esc(plu(pid))}</label><div class="glnumrow"><input type="text" inputmode="numeric" autocomplete="off" enterkeyhint="done" id="glnum_${esc(pid)}" class="glnum" data-p="${esc(pid)}" placeholder="e.g. 3500" aria-label="Number of ${esc(plu(pid).toLowerCase())} one member has ready to collect"><button type="button" class="btn ghost" data-glk1000="${esc(pid)}" aria-label="Multiply by 1000">×1000</button><button type="button" class="btn" data-gladd="${esc(pid)}">Add</button></div><div id="gltot_${esc(pid)}">${glTot(pid)}</div></div>`).join('')}</div>`;
+  h+=`<div class="card"><div id="glresult">${glResultHtml()}</div></div>`;
+  h+=`<div class="card"><details class="glms"><summary>More settings</summary>
+   <p class="sub" style="margin:0">Optional, for extra accuracy.</p>
+   <p class="glrl" style="margin-bottom:0">What do you ask members to count?</p><p class="sub" style="margin:0">Tap the product your guild counts in chat, usually the one that takes longest to make. Products you do not tap are not counted.</p><div class="glchips">${pr.items.map((pid)=>`<button type="button" class="glchip" data-glk="${esc(pid)}" aria-pressed="${keys.indexOf(pid)>=0}">${esc(plu(pid))}</button>`).join('')}</div>${pr.unsure?'<p class="sub" style="margin:10px 0 0">For this project the order of the items on the card was read from a screenshot and is not confirmed. Check the names against your card.</p>':''}
+   <p class="glrl" style="margin-bottom:0">Your guild</p><p class="gldots" aria-label="Dot colours on your guild member list: green online now, amber online recently, red offline, black offline for days"><span><i class="gdot g"></i>online now</span><span><i class="gdot a"></i>recently</span><span><i class="gdot r"></i>offline</span><span><i class="gdot k"></i>away for days</span></p><div class="gltiles">${glTile('members')}${glTile('adverts')}${glTile('maxStar')}</div>
+   <div id="glrange">${glRangeHtml()}</div>
+   <div style="margin-top:12px"><button type="button" class="btn ghost small" data-glclr="1" id="glclr">Clear all numbers</button></div></details></div>`;
+  $('#panel').innerHTML=h;{const st=document.getElementById('glstrip'),on=st&&st.querySelector('.pbtn.on');if(on)st.scrollLeft=Math.max(0,on.offsetLeft-(st.clientWidth-on.offsetWidth)/2)}}
+function glRefresh(){const r=document.getElementById('glresult');if(r){const open=r.querySelector('.glwk')&&r.querySelector('.glwk').open;r.innerHTML=glResultHtml();if(open){const w=r.querySelector('.glwk');if(w)w.open=true}}const b=document.getElementById('glbonsum');if(b)b.textContent=glBonSum();
+  glKeys().forEach((pid)=>{const t=document.getElementById('gltot_'+pid);if(t)t.innerHTML=glTot(pid)});const at=document.querySelector('[data-glp="adverts"]');if(at)at.innerHTML=glTileInner('adverts');const rg=document.getElementById('glrange');if(rg)rg.innerHTML=glRangeHtml()}
+function glParse(txt){const t=String(txt||'').replace(/[,\s]/g,'').toLowerCase();let m=t.match(/^(\d+(?:\.\d+)?)(k?)$/);if(!m)return null;let v=+m[1]*(m[2]?1000:1);return Math.round(v)}
+function glAddNum(pid){const inp=document.getElementById('glnum_'+pid);if(!inp)return;const v=glParse(inp.value);
+  if(v===null||v>10000000){inp.setAttribute('aria-invalid','true');inp.style.borderColor='var(--bad)';return}
+  inp.removeAttribute('aria-invalid');inp.style.borderColor='';
+  glRep(pid).push({n:'',v:v});glSave();inp.value='';glRefresh();inp.focus()}
+function glSaveEdit(pid){const inp=document.getElementById('glse_'+pid);if(!inp||!glSel)return;const v=glParse(inp.value);
+  if(v===null||v>10000000){inp.style.borderColor='var(--bad)';return}
+  const L=glRep(pid);if(L[glSel.i])L[glSel.i].v=v;glSel=null;glSave();glRefresh()}
+document.addEventListener('keydown',(e)=>{const t=e.target;if(e.key==='Enter'&&t&&t.classList){if(t.classList.contains('glnum')){e.preventDefault();glAddNum(t.dataset.p)}else if(t.classList.contains('glse')){e.preventDefault();glSaveEdit(t.dataset.p)}}});
+document.addEventListener('input',(e)=>{const t=e.target;if(!t||!t.dataset)return;
+  if(t.classList&&t.classList.contains('glnum')){t.style.borderColor='';t.removeAttribute('aria-invalid');return}
+  if(t.dataset.gl==='spread'){const G=state.gl||(state.gl=glLoad());G.spread=t.value===''?0:Math.min(100,Math.max(0,+t.value||0));glSave();glRefresh()}});
+document.addEventListener('change',(e)=>{const t=e.target;if(t&&t.dataset&&t.dataset.gl==='proj'){const G=state.gl||(state.gl=glLoad());G.proj=t.value;glSave();renderLeader()}});
+let glClrT=null;
+document.addEventListener('click',(e)=>{const c=e.target&&e.target.closest?e.target:null;if(!c)return;const G=state.gl||(state.gl=glLoad());
+  const k=c.closest('[data-glk]');if(k){const pr=glProj(),pid=k.dataset.glk;let cur=glKeys().slice();const i=cur.indexOf(pid);if(i>=0){if(cur.length>1)cur.splice(i,1)}else cur.push(pid);G.keyp[pr.id]=pr.items.filter((x)=>cur.indexOf(x)>=0);glSave();renderLeader();const ms=document.querySelector('.glms');if(ms)ms.open=true;return}
+  const ad=c.closest('[data-gladd]');if(ad){glAddNum(ad.dataset.gladd);return}
+  const th=c.closest('[data-glk1000]');if(th){const inp=document.getElementById('glnum_'+th.dataset.glk1000);if(inp){const v=glParse(inp.value);if(v!==null){inp.value=String(v*1000);inp.style.borderColor=''}inp.focus()}return}
+  const un=c.closest('[data-glundo]');if(un){const pid=un.dataset.glundo,L=glRep(pid);while(L.length&&(L[L.length-1].v===''||isNaN(+L[L.length-1].v)))L.pop();L.pop();glSel=null;glSave();glRefresh();return}
+  const pj=c.closest('[data-glproj]');if(pj){G.proj=pj.dataset.glproj;glSave();renderLeader();return}
+  const sp=c.closest('[data-glsp]');if(sp){G.spread=+sp.dataset.glsp;glSave();renderLeader();const ms=document.querySelector('.glms');if(ms)ms.open=true;return}
+  const ed=c.closest('[data-gled]');if(ed){const same=glSel&&glSel.pid===ed.dataset.gled&&glSel.i===+ed.dataset.i;const old=glSel&&glSel.pid;glSel=same?null:{pid:ed.dataset.gled,i:+ed.dataset.i};if(old&&old!==ed.dataset.gled){const o=document.getElementById('gltot_'+old);if(o)o.innerHTML=glTot(old)}glRefresh();if(glSel){const i=document.getElementById('glse_'+glSel.pid);if(i){i.focus();i.select()}}return}
+  const sv=c.closest('[data-glsave]');if(sv){glSaveEdit(sv.dataset.glsave);return}
+  const rm=c.closest('[data-glrem]');if(rm){const L=glRep(rm.dataset.glrem);if(glSel&&L[glSel.i]!==undefined)L.splice(glSel.i,1);glSel=null;glSave();glRefresh();return}
+  const cn=c.closest('[data-glcan]');if(cn){glSel=null;glRefresh();return}
+  const cl=c.closest('[data-glclr]');if(cl){if(cl.dataset.armed==='1'){clearTimeout(glClrT);const pr=glProj();Object.keys(G.rep).forEach((kk)=>{if(kk.indexOf(pr.id+':')===0)delete G.rep[kk]});glSave();renderLeader()}else{cl.dataset.armed='1';cl.textContent='Tap again to clear';glClrT=setTimeout(()=>{cl.dataset.armed='0';cl.textContent='Clear all numbers'},4000)}return}});
+document.addEventListener('click',(e)=>{const c=e.target&&e.target.closest?e.target:null;if(!c)return;
+  const p=c.closest('[data-glp]');if(p){openGlPick(p.dataset.glp);return}
+  const x=c.closest('[data-glx]');if(x){closeGlPick();return}
+  const st=c.closest('[data-glset]');if(st){const k=st.dataset.glset,n=st.dataset.n==='auto'?null:+st.dataset.n,G=state.gl||(state.gl=glLoad()),o=GL_OPTS[k];G[k]=n;glSave();
+    const tl=document.querySelector('[data-glp="'+k+'"]');if(tl){tl.innerHTML=glTileInner(k);if(k!=='adverts'||n!==null)tl.classList.remove('unset')}
+    document.querySelectorAll('#picksheet .pk-opt').forEach((b)=>b.setAttribute('aria-pressed',String((b.dataset.n==='auto'?null:+b.dataset.n)===n)));
+    const stt=document.querySelector('#picksheet .pk-status');if(stt)stt.innerHTML='<b>Saved:</b> '+esc(o.title)+' '+(n===null?'same as online':esc(o.lab(n)))+(o.sub?' ('+esc(o.sub(n))+')':'')+'. Press Done when finished.';
+    glRefresh()}});
 function renderGuild(){
   const act=setup.groups.filter((g)=>g.state==='active'),pr=curProject(),sh=shelterUsed();
   let html=projectPicker();
@@ -1292,13 +1546,13 @@ function renderSetup(){
   const hp=state.help&&state.help.library;
   const anyLv=Object.keys(GU).some((id)=>C.libLevel(model,setup,id)>0);
   const helpHtml=hp?`<div class="helpbox"><p><b>Start here:</b> press the <b>Start here</b> button to fill in your levels from the game's <b>Overview</b>. It is the quickest way, and you only need to do it once.</p><p><b>Production tab:</b> laid out like the game's shelves. Tap a book to set its level. A picker opens at the bottom of the screen, and the book's other volume glows. The colour shows the island. Use it to check your levels, or to change one book after you research it.</p><p><b>Padlock:</b> if you have not unlocked a shelf in the game yet, lock it here. That also locks the shelves after it. A shelf with levels set cannot be locked.</p><p><b>Saving:</b> your answers are kept in this browser as you go. The Save my setup box below gives you a text copy to keep in Notes, or to paste into another device.</p></div>`:'';
-  const startCard=anyLv?`<p class="sub" style="margin:6px 0"><button type="button" class="startlink" data-act="quickstart">Re-enter my levels from the Overview</button></p>`:`<div class="helpbox" style="margin:8px 0 10px"><p><b>First time here?</b> Start by filling in your levels from the game's <b>Overview</b>.</p><button type="button" class="btn" data-act="quickstart">Start here: fill in from the Overview</button></div>`;
-  let html=(qs||state.walkDone?'':walkCard())+(qs?`<div class="card"><h2>Fill in from the <b>Overview</b></h2><div class="row" style="margin:6px 0 10px"><button type="button" class="btn" data-act="quickdone">Done, back to my shelves</button></div>`:`<div class="card libcard"><h2>Library levels <button type="button" class="qbtn" data-act="help" data-k="library" aria-expanded="${!!hp}" aria-label="Help for this tab">?</button></h2>${helpHtml}${startCard}${ltabs}`);
+  const startCard=anyLv?`<p class="sub" style="margin:6px 0"><button type="button" class="startlink" data-act="quickstart">Re-enter my levels from the Overview</button></p>`:`<div class="firstbox"><b>First time here?</b><button type="button" class="btn" data-act="quickstart">Start here: fill in from the Overview</button></div>`;
+  let html=(qs||state.walkDone?'':walkCard())+(qs?`<div class="card"><h2>Fill in from the <b>Overview</b></h2><p style="margin:2px 0 8px"><button type="button" class="startlink" data-act="quickdone">← Back to Library</button></p>`:`<div class="card libcard"><h2>Library levels <button type="button" class="qbtn" data-act="help" data-k="library" aria-expanded="${!!hp}" aria-label="Help for this tab">?</button></h2>${helpHtml}${startCard}${ltabs}`);
   if(lt==='quick'){
     const keys=new Set();Object.keys(GU).forEach((id)=>{const m=id.match(/^(.*)_bonus_vol_\d+$/);if(m&&m[1]!=='shelter_feed')keys.add(m[1])});
     const first=OV_ORDER.filter((k)=>keys.has(k)),rest=[...keys].filter((k)=>!OV_ORDER.includes(k));
     const row=(k)=>{const b=ovBooks(k);const t=ovTotal(k);return `<div class="ovrow c-${gk(b.i1)}" data-ovk="${k}"><label><span class="ovn">${esc(pretty(k))}</span><input type="text" inputmode="numeric" data-ov="${k}" value="${t?'+'+t:'0'}" placeholder="0" autocomplete="off" aria-label="${esc(pretty(k))} total in the Overview"></label><span class="ovdec">${esc(ovDecText(k))}</span><span class="ovmsg" role="status"></span></div>`};
-    html+=`<div class="qsteps"><p class="qs1"><b>1. In the game</b></p><p class="sub">Open the Library, then press the yellow <b>Overview</b> button (top right). The game only lists products you have started. Take a screenshot. Then scroll up about 4 rows and take another, so the last full row you can see is at the top of the next screenshot. Keep going until you can see the <b>Delivery bonuses</b> heading (usually 9 to 11 screenshots).</p><p class="qs1"><b>2. Find your screenshots</b></p><ul class="qdev"><li><b>iPhone or iPad:</b> Photos app, Screenshots album.</li><li><b>Android:</b> Gallery or Google Photos, Screenshots folder.</li><li><b>Windows PC:</b> Pictures, then Screenshots (if you used the Windows key plus Print Screen).</li></ul></div>${ocrCardHtml()}<div class="qhere"><p class="qs1"><b>4. Check your numbers, or type them in yourself</b></p><p class="sub">If you used the scanner, the boxes below now show what it read, so fix any that look wrong. If you would rather not scan, or you are reading the game on another device, type the number next to each product, in the same order: 15 for +15. Type 0 for any product the game does not list. We split Volume 1 and Volume 2 into levels for you. Your entries save as you go.</p></div>${first.map(row).join('')}${rest.map(row).join('')}<div class="row" style="margin-top:10px"><button type="button" class="btn" data-act="quickdone">Done, back to my shelves</button></div>`}
+    html+=`<div class="qsteps">${ovDrawHtml()}<p class="qs1"><b>1. Open the Overview</b></p><ul class="qdev"><li>In the game, open the Library and tap <b>Overview</b> (top right).</li><li>A list called <b>Research bonuses - Overview</b> opens.</li></ul><p class="qs1"><b>2. Screenshot, scroll, repeat</b></p><ul class="qdev"><li>Take a screenshot, scroll up about 4 rows, and take another.</li><li>Keep going until you see <b>Delivery bonuses</b> (usually 9 to 11 screenshots).</li></ul></div>${ocrCardHtml()}<div class="qhere"><p class="qs1"><b>4. Check your numbers</b></p><ul class="qdev"><li>Each box is one product's <b>total from the Overview</b>: the + number next to its name (type 15 for +15).</li><li>Fix any box that looks wrong. No screenshots? Type the totals yourself. Leave 0 for any product the game does not list.</li><li>We split each total into Volume 1 and Volume 2 for you. To change one book on its own, go back to the Library shelves. Your entries save as you go.</li></ul></div>${first.map(row).join('')}${rest.map(row).join('')}<div class="row" style="margin-top:10px"><button type="button" class="btn" data-act="quickdone">Done, back to my shelves</button></div>`}
   else if(lt==='delivery')html+=`<div style="margin:10px 0 0;min-height:260px;display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;border:1px dashed var(--line);border-radius:8px"><p class="sub" style="margin:0">The Delivery tab in the game is not used by this calculator, so there is nothing to enter here. Out of scope for now.</p></div>`;
   else if(lt==='shelter'){
     const gt=(n,w)=>`<div class="btile grey" aria-label="${n}, ${w}, not used yet"><span class="bn">${n}</span><span class="bv">${w}</span><span class="bl sm">Not used yet</span></div>`;
@@ -1374,7 +1628,7 @@ function ocrParse(pages){
   let gaps=0;const gl=[];
   for(let i=0;i<used.length-1;i++){const a=used[i],b=used[i+1];const last=a.rows[a.rows.length-1].k;
     if(!b.rows.some((r)=>r.k===last)){gaps++;gl.push('screenshot '+(i+1)+' to '+(i+2)+' ('+pretty(last)+' to '+pretty(b.rows[0].k)+')')}}
-  if(gaps)warn.unshift('The last row of one screenshot is not repeated at the top of the next, so I cannot prove nothing was skipped: '+gl.join('; ')+'. If you scrolled about 4 rows each time this is fine. If you scrolled further, check the products between those pairs.');
+  if(gaps)warn.unshift('Some screenshots do not overlap, so I cannot prove no row was skipped. Check your numbers below.');
   const seen={},rows=[];
   used.forEach((p,pi)=>p.rows.forEach((r,ri)=>{const prev=seen[r.k];
     if(!prev){const o={...r};seen[r.k]=o;rows.push(o);o._pi=pi;o._ri=ri;o._pl=pi;return}
@@ -1387,12 +1641,14 @@ function ocrParse(pages){
   loose.forEach((l)=>warn.push('I could not match this line: “'+l+'”.'));
   const unseen=OV_ORDER.filter((k)=>!seen[k]&&ovTotal(k)>0);
   const zeroUnseen=heading&&!gaps;
-  return{rows,warn,info,unseen,zeroUnseen,pages:pages.length}}
+  return{rows,warn,info,unseen,zeroUnseen,pages:pages.length,gapList:gl}}
+function ovDrawHtml(){return `<svg class="ovdraw" viewBox="0 0 388 112" role="img" aria-label="Drawing of the top of the game's Library screen. On the right is a gold Overview button, then a round paintbrush button and a round red close button. Tapping Overview opens a list called Research bonuses - Overview."><rect x="0" y="0" width="388" height="46" rx="10" fill="#8a5a33"/><g font-family="inherit" font-size="11" font-weight="700" fill="#5b3b1e" text-anchor="middle"><rect x="8" y="12" width="62" height="34" rx="8" fill="#f1dba9"/><text x="39" y="33">Production</text><rect x="74" y="12" width="62" height="34" rx="8" fill="#f1dba9"/><text x="105" y="33">Delivery</text><rect x="140" y="12" width="62" height="34" rx="8" fill="#f1dba9"/><text x="171" y="33">Shelter</text><rect x="214" y="9" width="84" height="28" rx="14" fill="#f2b81f" stroke="#a87a0c" stroke-width="1.5"/><text x="256" y="28" fill="#4a3208">Overview</text></g><circle cx="334" cy="23" r="13" fill="#f4f0e8"/><circle cx="366" cy="23" r="13" fill="#d83a32"/><path d="M361 18l10 10M371 18l-10 10" stroke="#fff" stroke-width="3" stroke-linecap="round"/><rect x="207" y="4" width="98" height="38" rx="19" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="6 4"/><path d="M256 64v-14m0 0l-6 7m6-7l6 7" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="271" y="68" font-size="13" font-weight="700" fill="currentColor" font-family="inherit">Tap this</text><rect x="54" y="78" width="280" height="30" rx="8" fill="#f9ecc8" stroke="#c9a766" stroke-width="1.5"/><text x="194" y="98" font-size="13" font-weight="700" fill="#3f6f93" text-anchor="middle" font-family="inherit">Research bonuses - Overview</text></svg>`}
 function ocrCardHtml(){const r=OCR.res;
-  let h=`<div class="ocrcard"><p class="qs1" style="margin-top:0 !important"><b>3. Let the calculator read them (quickest, beta)</b></p><p class="sub">Choose all your Overview screenshots at once. They are read on this device and are not uploaded anywhere.</p><div class="row"><input type="file" id="ocrfiles" accept="image/*" multiple aria-label="Choose your Overview screenshots"><button type="button" class="btn" data-act="ocrread"${OCR.busy?' disabled':''}>Read screenshots</button></div><p class="sub" id="ocrstat" role="status" aria-live="polite" style="margin:8px 0 0">${esc(OCR.stat||'')}</p>`;
+  let h=`<div class="ocrcard"><p class="qs1" style="margin-top:0 !important"><b>3. Let the calculator read them (beta)</b></p><p class="sub">Choose all your screenshots at once. They are read on this device and not uploaded anywhere.</p><details class="qfind"><summary>How do I take a screenshot?</summary><p class="sub" style="margin:2px 0 4px">A screenshot is a picture of your screen, saved to your photos.</p><ul class="qdev"><li><b>iPhone or iPad:</b> press the side button and the volume-up button together. (With a Home button: the Home button and the side button.)</li><li><b>Android:</b> press power and volume down together. Some phones differ.</li><li><b>Windows PC:</b> Windows key plus Print Screen.</li><li><b>Mac:</b> Shift, Command and 3.</li></ul></details><details class="qfind"><summary>Where do I find them?</summary><ul class="qdev"><li><b>iPhone or iPad:</b> Photos app, Screenshots album.</li><li><b>Android:</b> Gallery or Google Photos, Screenshots folder.</li><li><b>Windows PC:</b> Pictures, then Screenshots (if you used the Windows key plus Print Screen).</li></ul></details><div class="row"><input type="file" id="ocrfiles" accept="image/*" multiple aria-label="Choose your Overview screenshots"><button type="button" class="btn" data-act="ocrread"${OCR.busy?' disabled':''}>Read screenshots</button></div><p class="sub" id="ocrstat" role="status" aria-live="polite" style="margin:8px 0 0">${esc(OCR.stat||'')}</p>`;
   if(r){const bad=r.rows.filter((x)=>!x.dec).length,ch=r.rows.filter((x)=>x.dec&&x.now!==x.total).length;
     h+=`<div class="ocrrev"><p><b>I read ${r.rows.length} products from ${r.pages} screenshot${r.pages>1?'s':''}.</b> ${ch} would change${bad?', '+bad+' need checking':''}. Nothing is saved until you press Use these.</p>`;
     if(r.warn.length)h+=`<ul class="ocrwarn">${r.warn.map((w)=>'<li>'+esc(w)+'</li>').join('')}</ul>`;
+    if(r.gapList&&r.gapList.length)h+=`<details class="ocrgaps"><summary>Show which</summary><ul>${r.gapList.map((w)=>'<li>'+esc(w)+'</li>').join('')}</ul><p class="sub" style="margin:4px 0 0">Tip: scroll about 4 rows between screenshots so one full row repeats.</p></details>`;
     if(r.info.length)h+=`<ul class="ocrinfo">${r.info.map((w)=>'<li>'+esc(w)+'</li>').join('')}</ul>`;
     h+=`<div class="ocrlist">${r.rows.map((x)=>{const st=!x.dec?'<span class="bad">not a value the game gives, check</span>':x.now===x.total?'same':(x.now?'was +'+x.now:'new');return `<div class="ocrrow${x.dec?'':' ocrbad'}"><span>${esc(pretty(x.k))}${x.fuzzy?' <i>(read as “'+esc(x.raw)+'”)</i>':''}</span><b>+${x.total}</b><span class="sub" style="margin:0">${st}</span></div>`}).join('')}</div>`;
     if(r.unseen.length)h+=`<p class="sub" style="margin:8px 0 0">${r.zeroUnseen?'These are not in your screenshots, so they will be set to 0: ':'These are not in your screenshots and will be left as they are: '}${esc(r.unseen.map(pretty).join(', '))}.</p>`;
@@ -1430,10 +1686,15 @@ function renderData(){
 function render(){try{closePick();pairClear()}catch(_){}
 
   drawRunes();
-  $('#keyline').innerHTML=state.key?`<span class="keyline"><span><span class="v seen">12</span> seen in the game or typed by you</span><span><span class="v est">≈12</span> estimated</span><span><span class="v unc">12<i>?</i></span> not confirmed</span></span>`:'';
+  $('#keyline').innerHTML=state.key?`<div class="keybox"><div class="keyhead"><b>What the number styles mean</b><button class="linkbtn" data-act="key">Close</button></div><div class="keyrow"><span class="v seen">12</span><span>Seen in the game, or typed by you</span></div><div class="keyrow"><span class="v est">≈12</span><span>Estimated, not seen in the game</span></div><div class="keyrow"><span class="v unc">12<i>?</i></span><span>Not confirmed yet</span></div><p class="footer" style="margin:6px 0 0">The number 12 is only an example.</p></div>`:'';
+  {const kb=$('#keybtn');if(kb)kb.setAttribute('aria-expanded',state.key?'true':'false')}
   const t=curTab();drawTabs();
-  ({buildings:renderBuildings,cruise:renderTournament,guild:renderGuild,lookup:renderLookup,setup:renderSetup,data:renderData})[t]();
-  if(['guild','cruise'].includes(t)&&!setup.groups.length)$('#panel').insertAdjacentHTML('afterbegin','<div class="card"><p style="margin:0"><b>Set up your Library and buildings first.</b> The answers on this tab come from your Library levels and the buildings you own. Start with <a href="#setup">Library &amp; setup</a>, then <a href="#buildings">My buildings</a>.</p></div>');
+  ({buildings:renderBuildings,cruise:renderTournament,guild:renderGuild,leader:renderLeader,lookup:renderLookup,setup:renderSetup,data:renderData})[t]();
+  {const noB=!setup.groups.length,noL=!Object.keys(model.lib.game_upgrades).some((id)=>C.libLevel(model,setup,id)>0);let nm='';
+   const mL='<b>Your Library levels are not set yet.</b> These numbers leave out your Library bonuses until you set them. Open <a href="#setup">Library &amp; setup</a> and press Start here.';
+   if(['guild','cruise'].includes(t)){if(noB&&noL)nm='<b>Set up your Library and buildings first.</b> The answers on this tab come from your Library levels and the buildings you own. Start with <a href="#setup">Library &amp; setup</a>, then <a href="#buildings">My buildings</a>.';else if(noL)nm=mL;else if(noB)nm='<b>You have no buildings yet.</b> The answers on this tab come from the buildings you own. Add them in <a href="#buildings">My buildings</a>.'}
+   else if(t==='lookup'&&noL)nm=mL;
+   if(nm)$('#panel').insertAdjacentHTML('afterbegin','<div class="card" id="setupnote"><p style="margin:0">'+nm+'</p></div>')}
   const isl=t==='buildings'?state.bIsland:t==='lookup'?(state.lookup||{}).island:null;
   if(isl)document.querySelectorAll('#panel .card').forEach((c)=>c.classList.add('isl-'+String(isl).toLowerCase()));
 }
@@ -1716,7 +1977,5 @@ function msg(t,kind,ms){const m=$('#profmsg');if(!m)return;clearTimeout(msgTimer
 boot();
 })();
 </script>
-
-
 
 </body></html>
