@@ -1,6 +1,6 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.footlogo{background:rgba(255,248,243,.86);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border-radius:14px;padding:6px 12px;margin:14px auto 0;max-width:240px;text-align:center}
-:root[data-look="light"] .footlogo{background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;padding:0}.footlogo img{max-width:100%;height:auto;display:block;margin:0 auto}
+:root:is([data-look="light"],[data-look="parchment"],[data-look="contrast"]) .footlogo{background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;padding:0}.footlogo img{max-width:100%;height:auto;display:block;margin:0 auto}
 </style></head><body>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
@@ -114,8 +114,29 @@ details{margin:6px 0}summary{cursor:pointer;font-weight:600;min-height:32px}
 .shelfkey .k-haven{--tc:var(--c-haven)}.shelfkey .k-tropicalis{--tc:var(--c-tropicalis)}.shelfkey .k-jade{--tc:var(--c-jade)}.shelfkey .k-brown{--tc:var(--c-brown)}
 
 .vchip{display:inline-block;font:600 11px var(--mono);border:1px solid var(--line);border-radius:5px;padding:0 5px;margin-left:4px}
+
+/* test 148: more looks */
+:root[data-look="plum"]{--bg:#1a1028;--surface:#261a38;--surface2:#342548;--fg:#f7f1fb;--muted:#cbbbdc;--line:#4f3d6b;--fbg:#120a1d;--fline:#9a82bd;--accent:#ecc757;--ok:#7bdc98;--bad:#ff9a90;--focus:#ecc757;--accent-fg:#2e2208;--accent-ink:#ecc757;--est:#e2d4f5;--est-bg:#432d6e;--unc-bg:#3d2a12;--unc-hatch:#5e3f1a;--unc-fg:#f3c76e;--unc-line:#b8811d;--on-ink:#140c1f;--c-haven:#5ab0e8;--c-tropicalis:#52cb94;--c-jade:#ee8cc8;--c-brown:#e0b478;}
+:root[data-look="slate"]{--bg:#121820;--surface:#1b222d;--surface2:#263040;--fg:#f5f7fa;--muted:#aab4c2;--line:#364459;--fbg:#0d1117;--fline:#7488a8;--accent:#ecc757;--ok:#7bdc98;--bad:#ff9a90;--focus:#ecc757;--accent-fg:#2e2208;--accent-ink:#ecc757;--est:#d4c6f5;--est-bg:#2e2554;--unc-bg:#3d2f0a;--unc-hatch:#5e470f;--unc-fg:#f3c76e;--unc-line:#b8811d;--on-ink:#10141a;--c-haven:#58b4e6;--c-tropicalis:#5bc592;--c-jade:#df8cca;--c-brown:#e5ba7d;}
+:root[data-look="parchment"]{--bg:#f7f4ed;--surface:#ffffff;--surface2:#eee8de;--fg:#1f1b14;--muted:#61574a;--line:#d4cac0;--fbg:#ffffff;--fline:#7d7060;--accent-ink:#0b6b6c;--focus:#0b6b6c;--c-haven:#2778a3;--c-tropicalis:#2b835d;--c-jade:#984b79;--c-brown:#8a5a2a;--accent:#ecc757;--accent-fg:#2e2208;--ok:#1b7a38;--bad:#b3261e;--est:#5a4a85;--est-bg:#ece6f7;--unc-bg:#fdebc0;--unc-hatch:#f0c862;--unc-fg:#6e4300;--unc-line:#d39a1c;--on-ink:#ffffff;}
+:root[data-look="contrast"]{--bg:#ffffff;--surface:#f0f2f5;--surface2:#e2e6eb;--fg:#0a0e14;--muted:#384454;--line:#8c9eb5;--fbg:#ffffff;--fline:#2c3b4f;--accent-ink:#0b5c8f;--focus:#0b5c8f;--c-haven:#1b638a;--c-tropicalis:#1e6e4a;--c-jade:#823964;--c-brown:#754d22;--accent:#ecc757;--accent-fg:#2e2208;--ok:#115c2a;--bad:#991b1b;--est:#432c7a;--est-bg:#eadffc;--unc-bg:#fae8b6;--unc-hatch:#dfba55;--unc-fg:#4d3000;--unc-line:#8f630a;--on-ink:#ffffff;}
+
+/* test 149: tabs and mode boxes follow the look */
+:root{--reg-bg:#e8d4ba;--reg-edge:#d4af8a;--fine-bg:#b0d9e8;--fine-edge:#1eb2ef;--ins-bg:#f6eaff;--ins-edge:#eb8cfc}
+:root:is([data-look="light"],[data-look="parchment"],[data-look="contrast"]){--reg-bg:#ecd9bf;--reg-edge:#b88a5a;--fine-bg:#bfe0ee;--fine-edge:#1a86b8;--ins-bg:#eadcfb;--ins-edge:#a34fc2}
 </style>
 <style>
+/* test 147 calmer, sleeker */
+.welcome{padding:20px 18px}.welcome h2{font-size:22px;margin:0 0 8px}.welcome p{font-size:16px;line-height:1.5;margin:0 0 14px}
+.welcome .wbtns{display:flex;flex-direction:column;align-items:flex-start;gap:6px}.welcome .wbtns .btn{min-height:52px;padding:0 28px;font-size:18px}
+.welcome .wsteps{margin-top:14px;font-size:15px}.welcome .wsteps summary{cursor:pointer;min-height:40px;display:flex;align-items:center;color:var(--accent-ink)}.welcome .wsteps ol{margin:4px 0 0;padding-left:22px}.welcome .wsteps li{margin:4px 0}
+.card[class*="isl-"]{border:1px solid color-mix(in srgb,var(--ic) 55%,var(--line));border-left:5px solid var(--ic);background:var(--surface)}
+.card[class*="isl-"] h2{color:var(--fg)}
+.card.addcard[class*="isl-"]{background:color-mix(in srgb,var(--ic) 7%,var(--surface))}
+.btile{border-width:2px;background:color-mix(in srgb,var(--tc,var(--line)) 12%,var(--surface))}
+:root:is([data-look="light"],[data-look="parchment"],[data-look="contrast"]) .btile{background:color-mix(in srgb,var(--tc,var(--line)) 9%,var(--surface))}
+.libtabs{position:sticky;top:0;z-index:30;padding:6px 0;background:var(--surface)}
+.runebar .rtile{min-height:64px}.runebar{gap:6px}
 .runebar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:6px 0 4px}
 .runebar .runehint{grid-column:1/-1;margin:0}
 .rtile{--ic:var(--accent);position:relative;min-height:88px;min-width:0;border-radius:12px;border:2px solid color-mix(in srgb,var(--ic) 45%,var(--line));
@@ -188,9 +209,9 @@ ul.opt{margin:6px 0 0;padding-left:18px}ul.opt li{margin:4px 0}
 .mbox .mname{font:600 12px var(--body);text-transform:uppercase;letter-spacing:.06em}
 .mbox input,.line .mbox input[type=number]{width:100%;background:#faf2e3;color:#14211c;border-color:rgba(0,0,0,.25);text-align:center;font:600 18px var(--mono);min-height:44px;padding:4px}
 .mbox .mout{font-size:12px;line-height:1.35}
-.mbox.m-regular{border-color:#d4af8a;background:#e8d4ba}.mbox.m-fine{border-color:#1eb2ef;background:#b0d9e8}.mbox.m-instant{border-color:#eb8cfc;background:#f6eaff}
+.mbox.m-regular{border-color:var(--reg-edge);background:var(--reg-bg)}.mbox.m-fine{border-color:var(--fine-edge);background:var(--fine-bg)}.mbox.m-instant{border-color:var(--ins-edge);background:var(--ins-bg)}
 .rbadge{--ic:var(--accent);display:inline-flex;align-items:center;gap:4px;margin-top:4px;font:600 12px var(--body);color:var(--muted)}.rbadge.isl-haven{--ic:var(--c-haven)}.rbadge.isl-tropicalis{--ic:var(--c-tropicalis)}.rbadge.isl-jade{--ic:var(--c-jade)}.rbadge svg{width:22px;height:22px;stroke:var(--ic);stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:.4}.rbadge.on{color:var(--fg)}.rbadge.on svg{opacity:1;filter:drop-shadow(0 0 5px var(--ic))}
-.gallbtn{width:100%;min-height:40px;border:2px solid;color:#14211c;font-weight:600}.gallbtn.m-regular{border-color:#d4af8a;background:#e8d4ba}.gallbtn.m-fine{border-color:#1eb2ef;background:#b0d9e8}.gallbtn.m-instant{border-color:#eb8cfc;background:#f6eaff}
+.gallbtn{width:100%;min-height:40px;border:2px solid;color:#14211c;font-weight:600}.gallbtn.m-regular{border-color:var(--reg-edge);background:var(--reg-bg)}.gallbtn.m-fine{border-color:var(--fine-edge);background:var(--fine-bg)}.gallbtn.m-instant{border-color:var(--ins-edge);background:var(--ins-bg)}
 .mbox .v.est{color:#5a4a85}.mbox .v.unc{color:#6e4300;background:repeating-linear-gradient(135deg,#fdebc0 0 5px,#f0c862 5px 6px);border-color:#d39a1c}
 .gline.notcounted{opacity:.72}
 .qmark{min-width:32px;padding:5px 0;border-radius:50%}
@@ -212,8 +233,8 @@ h1{color:var(--fg)}
 .chip{background:rgba(255,248,243,.08)}
 .card .chip{background:transparent}
 .tabs{border-bottom:0;gap:6px}
-.tabs button{font-weight:600 !important;background:#efcb8d;color:#3a2a12;border:1.5px solid #c9a35a;border-radius:12px;border-bottom-width:3px;border-bottom-color:#c9a35a}
-.tabs button[aria-selected="true"]{background:#f9e5b8;color:#2a1d12;border-color:#ecc757;border-bottom-color:#ecc757;box-shadow:0 0 0 2px #ecc757}
+.tabs button{font-weight:600 !important;background:var(--surface2);color:var(--fg);border:1.5px solid var(--line);border-radius:12px;border-bottom-width:3px;border-bottom-color:var(--line)}
+.tabs button[aria-selected="true"]{background:#ecc757;color:#2e2208;border-color:#ecc757;border-bottom-color:#b8942a;box-shadow:0 0 0 2px #ecc757}
 .card{box-shadow:0 2px 0 rgba(0,0,0,.22)}
 .btn:not(.ghost){box-shadow:0 3px 0 color-mix(in srgb,var(--accent) 55%,#000)}
 .btn:not(.ghost):active{transform:translateY(2px);box-shadow:0 1px 0 color-mix(in srgb,var(--accent) 55%,#000)}
@@ -269,7 +290,7 @@ a{color:var(--accent-ink)}
 .gu-badge{display:inline-block;max-width:100%;overflow-wrap:anywhere;font:700 16px/1.25 var(--body);color:var(--fg);background:color-mix(in srgb,var(--accent) 16%,var(--surface));border:2px solid var(--accent);border-radius:10px;padding:6px 12px}
 .gu-note{margin:6px 0 0}
 /* Test 116: tell the phone which look is on, so its own drop-down pop-ups (white until now) match: dark for Teal and Black, light for Light */
-:root{color-scheme:dark}:root[data-look="light"]{color-scheme:light}
+:root{color-scheme:dark}:root:is([data-look="light"],[data-look="parchment"],[data-look="contrast"]){color-scheme:light}
 /* test 118: colours cog, Cruise tidy */
 .cogbtn{margin-left:auto;flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 12px;border:1.5px solid var(--line);border-radius:999px;background:transparent;color:var(--fg);font:600 14px var(--body);cursor:pointer}
 .cogpanel[hidden]{display:none}.cogpanel .cogrow{display:grid;gap:8px;margin-top:10px}
@@ -311,10 +332,10 @@ select.tnat{position:absolute!important;width:1px!important;height:1px!important
 :root[data-look="light"]{--bg:#f6f8f7;--surface:#ffffff;--surface2:#eaf0ee;--fg:#16221e;--muted:#4b5a55;--line:#c5d1ce;--accent:#ecc757;--accent-fg:#2e2208;--accent-ink:#0b6b6c;
   --est:#5a4a85;--est-bg:#ece6f7;--unc-bg:#fdebc0;--unc-hatch:#f0c862;--unc-fg:#6e4300;--unc-line:#d39a1c;--ok:#1b7a38;--bad:#b3261e;--focus:#0b6b6c;--on-ink:#ffffff;
   --c-haven:#2c78a3;--c-tropicalis:#2f8a62;--c-jade:#a24f80;--c-brown:#85572a}
-:root[data-look="light"] .chip{background:rgba(0,0,0,.05)}
-:root[data-look="light"] .rtile{background:color-mix(in srgb,var(--surface2) 92%,#fff);box-shadow:inset 0 3px 6px rgba(0,0,0,.14),inset 0 -1px 0 rgba(255,255,255,.7)}
-:root[data-look="light"] .rtile.on{box-shadow:0 0 0 1px var(--ic),0 0 12px 2px color-mix(in srgb,var(--ic) 40%,transparent),inset 0 1px 0 rgba(255,255,255,.5)}
-:root[data-look="light"] .btile{background:color-mix(in srgb,var(--tc,var(--line)) 12%,var(--surface))}
+:root:is([data-look="light"],[data-look="parchment"],[data-look="contrast"]) .chip{background:rgba(0,0,0,.05)}
+:root:is([data-look="light"],[data-look="parchment"],[data-look="contrast"]) .rtile{background:color-mix(in srgb,var(--surface2) 92%,#fff);box-shadow:inset 0 3px 6px rgba(0,0,0,.14),inset 0 -1px 0 rgba(255,255,255,.7)}
+:root:is([data-look="light"],[data-look="parchment"],[data-look="contrast"]) .rtile.on{box-shadow:0 0 0 1px var(--ic),0 0 12px 2px color-mix(in srgb,var(--ic) 40%,transparent),inset 0 1px 0 rgba(255,255,255,.5)}
+:root:is([data-look="light"],[data-look="parchment"],[data-look="contrast"]) .btile{background:color-mix(in srgb,var(--tc,var(--line)) 12%,var(--surface))}
 /* ? panels (native details: tapping them never redraws the page) */
 .hline{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;margin:0 0 8px}
 .hline>.sub{margin:0;flex:1 1 0;min-width:0}
@@ -331,9 +352,9 @@ select.tnat{position:absolute!important;width:1px!important;height:1px!important
 /* My buildings sections */
 .subtabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:0 0 10px}
 .subtabs button{min-height:44px;padding:4px 2px;font:600 13px/1.15 var(--body);color:var(--muted);background:transparent;border:1.5px solid var(--line);border-radius:10px;cursor:pointer}
-.subtabs button[aria-selected="true"]{color:#2a1d12;background:#f9e5b8;border-color:#c9a35a;font-weight:700}
+.subtabs button[aria-selected="true"]{color:#2e2208;background:#ecc757;border-color:#b8942a;font-weight:700}
 .libtabs button{min-height:44px;font:600 13px/1.15 var(--body) !important;color:var(--muted);background:transparent;border:1.5px solid var(--line);border-radius:10px}
-.libtabs button[aria-selected="true"]{color:#2a1d12;background:#f9e5b8;border-color:#c9a35a;font-weight:700 !important}
+.libtabs button[aria-selected="true"]{color:#2e2208;background:#ecc757;border-color:#b8942a;font-weight:700 !important}
 /* Quick sum result rows on one tidy grid */
 .qline{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 10px;align-items:end}
 .qline>.first{grid-column:1/-1;min-width:0;flex:none}
@@ -413,7 +434,7 @@ tr.cur td:first-child{box-shadow:inset 6px 0 0 var(--accent)}
 .gld summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}
 
 
-/* test 146 */
+/* test 148 */
 #newver{position:fixed;left:12px;right:12px;bottom:12px;z-index:120;margin:0 auto;max-width:676px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border:2px solid var(--accent);border-radius:12px;background:var(--surface);color:var(--fg);font-size:14px;box-shadow:0 4px 18px rgba(0,0,0,.3)}
 #newver button{flex:0 0 auto;min-height:44px;padding:0 14px;border:0;border-radius:10px;background:var(--accent);color:var(--accent-fg,#fff);font:inherit;font-weight:700;cursor:pointer}
 /* test 142 */
@@ -469,7 +490,7 @@ tr.cur td:first-child{box-shadow:inset 6px 0 0 var(--accent)}
   <div class="card cogpanel" id="cogpanel" hidden><h2 style="margin:0 0 4px">Colours</h2><p class="sub" style="margin:0">Pick the look you like.</p><div class="cogrow">
     <button type="button" class="cogopt" data-act="look" data-v="teal" aria-pressed="true"><b>Teal</b><small>Dark green-blue, the usual look</small></button>
     <button type="button" class="cogopt" data-act="look" data-v="black" aria-pressed="false"><b>Black</b><small>Darkest, black background</small></button>
-    <button type="button" class="cogopt" data-act="look" data-v="light" aria-pressed="false"><b>Cream</b><small>Pale background, dark writing</small></button></div><div id="cogabout" class="cogabout"></div></div>
+    <button type="button" class="cogopt" data-act="look" data-v="light" aria-pressed="false"><b>Cream</b><small>Pale background, dark writing</small></button><button type="button" class="cogopt" data-act="look" data-v="plum" aria-pressed="false"><b>Plum</b><small>Deep purple, dark</small></button><button type="button" class="cogopt" data-act="look" data-v="slate" aria-pressed="false"><b>Midnight</b><small>Dark blue-grey</small></button><button type="button" class="cogopt" data-act="look" data-v="parchment" aria-pressed="false"><b>Parchment</b><small>Warm paper, dark writing</small></button><button type="button" class="cogopt" data-act="look" data-v="contrast" aria-pressed="false"><b>High contrast</b><small>Plain white, strongest writing</small></button></div><div id="cogabout" class="cogabout"></div></div>
   <div class="subrow"><p class="sub" id="subtitle">Loading…</p><span id="runeq"></span></div>
   <div class="runebar" id="runebar"></div>
   <div class="tabs" role="tablist" id="tabs"></div>
@@ -479,7 +500,7 @@ tr.cur td:first-child{box-shadow:inset 6px 0 0 var(--accent)}
   <div id="feedback"></div>
   <p class="footer"><a href="#data">Data &amp; flags</a> · <button class="linkbtn" data-act="walkshow">Quick start</button> · <button class="btn ghost small" data-act="key" aria-expanded="false" id="keybtn">? Number key</button></p>
   <div id="keyline"></div>
-  <p class="footer" style="margin-top:6px">Beta 0.1 · test 146 - data from the 28 Oct 2026 game update (game 1.3.40251)</p>
+  <p class="footer" style="margin-top:6px">Beta 0.1 · test 149 - data from the 28 Oct 2026 game update (game 1.3.40251)</p>
   <p class="footer" style="margin-top:0">Unofficial fan tool. Not made by, or connected to, the game's developers.</p>
   <div id="footlogo" class="footlogo"></div>
 </div>
@@ -530,7 +551,7 @@ const numOrStr=(v)=>/^-?\d+$/.test(v)?parseInt(v,10):v;
 
 /* ---- saving (this browser only) ---- */
 function applyLook(v){document.documentElement.setAttribute('data-look',v);document.querySelectorAll('[data-act="look"]').forEach((x)=>x.setAttribute('aria-pressed',String(x.dataset.v===v)))}
-const LOOKS=['teal','black','light'];
+const LOOKS=['teal','black','light','plum','slate','parchment','contrast'];
 function setLook(v){v=v==='cream'?'light':v;if(!LOOKS.includes(v))v='teal';try{localStorage.setItem('sunshine_look',v)}catch(e){}applyLook(v)}
 {let lk='teal';try{const x=localStorage.getItem('sunshine_look');lk=x==='cream'?'light':(LOOKS.includes(x)?x:'teal')}catch(e){}applyLook(lk)}
 const KEY='sunshine_island_setup_v3',KEY2='sunshine_island_setup_v2';
@@ -571,6 +592,7 @@ async function boot(){
     $('#subtitle').textContent=model.islands.map(pretty).join(' · ');
     state.defTab=setup.groups.length?'guild':'setup';try{const li=localStorage.getItem('sunshine_lastisl_v1');if(li&&model.islands.includes(li))state.bIsland=li}catch(e){}try{const lt=localStorage.getItem('sunshine_lasttab_v1');if(setup.groups.length&&ALLTABS.some((t)=>t[0]===lt))state.defTab=lt}catch(e){}
     try{state.walkDone=localStorage.getItem('sunshine_walk_v1')==='1'}catch(e){state.walkDone=false}
+    try{state.libhand=localStorage.getItem('sunshine_libhand_v1')==='1'}catch(e){state.libhand=false}
     siteBits();drawTabs();render();
   }catch(e){$('#subtitle').innerHTML='<span class="err">Could not load the data files.\n'+esc(e.message)+'</span>'}
 }
@@ -579,7 +601,7 @@ function siteBits(){
   if(SITE.footlogo&&$('#footlogo'))$('#footlogo').innerHTML=`<img src="${esc(SITE.footlogo)}" alt="OJ Maestro" onerror="this.parentNode.hidden=true">`;
   if(SITE.coffee&&$('#coffee'))$('#coffee').innerHTML=`<div class="coffeecard"><p>Free tool, made by OJ Maestro. If it saved you time, you can say thanks with a small tip.</p><a class="coffeebtn" href="${esc(SITE.coffee)}" target="_blank" rel="noopener" aria-label="Buy me a coffee"><img class="bmcimg" hidden alt="" src="https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=&slug=ojmaestro&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" onload="this.hidden=false;this.nextElementSibling.hidden=true;this.parentNode.classList.add('official')" onerror="this.remove()"><span class="bmcfb"><svg viewBox="0 0 22 26" aria-hidden="true"><path d="M3 9h16l-1.6 14.5a2 2 0 0 1-2 1.5H6.6a2 2 0 0 1-2-1.5z" fill="#fff" stroke="#000" stroke-width="1.8" stroke-linejoin="round"/><path d="M2 9h18V6.5H2z" fill="#fff" stroke="#000" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 6.5V4.5c0-1 1-1.8 2-1.8h8c1 0 2 .8 2 1.8v2" fill="none" stroke="#000" stroke-width="1.8"/></svg> Buy me a coffee</span></a></div>`;
   const ab=$('#cogabout');
-  if(ab)ab.innerHTML=`<h2>Help &amp; feedback</h2><p class="sub" style="margin:0">Spot a bug or have an idea? Tell me.</p>${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p>Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}<div class="abrow"><button class="linkbtn" data-act="walkshow">Quick start</button><a href="#data">Data &amp; flags</a></div><p class="sub">Made by OJ Maestro · Beta 0.1 · test 146</p>`;
+  if(ab)ab.innerHTML=`<h2>Help &amp; feedback</h2><p class="sub" style="margin:0">Spot a bug or have an idea? Tell me.</p>${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p>Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}<div class="abrow"><button class="linkbtn" data-act="walkshow">Quick start</button><a href="#data">Data &amp; flags</a></div><p class="sub">Made by OJ Maestro · Beta 0.1 · test 149</p>`;
   const fb=$('#feedback');
   if(fb&&(SITE.feedback||SITE.email||SITE.discord))fb.innerHTML=`<div class="card fbcard"><h2>Spot a bug or have an idea?</h2>${SITE.feedback?`<p>${esc(SITE.feedback)}</p>`:''}${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p class="fbdisc">Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}</div>`}
 document.addEventListener('click',(e)=>{const t=e.target.closest&&e.target.closest('#cogpanel [data-act="walkshow"], #cogpanel a[href="#data"]');if(t){const pn=document.getElementById('cogpanel');if(pn){pn.hidden=true;const cb=document.querySelector('.cogbtn');if(cb)cb.setAttribute('aria-expanded','false')}}});
@@ -1550,7 +1572,10 @@ function renderSetup(){
   const hp=state.help&&state.help.library;
   const anyLv=Object.keys(GU).some((id)=>C.libLevel(model,setup,id)>0);
   const helpHtml=hp?`<div class="helpbox"><p><b>Start here:</b> press the <b>Start here</b> button to fill in your levels from the game's <b>Overview</b>. It is the quickest way, and you only need to do it once.</p><p><b>Production tab:</b> laid out like the game's shelves. Tap a book to set its level. A picker opens at the bottom of the screen, and the book's other volume glows. The colour shows the island. Use it to check your levels, or to change one book after you research it.</p><p><b>Padlock:</b> if you have not unlocked a shelf in the game yet, lock it here. That also locks the shelves after it. A shelf with levels set cannot be locked.</p><p><b>Saving:</b> your answers are kept in this browser as you go. The Save my setup box below gives you a text copy to keep in Notes, or to paste into another device.</p></div>`:'';
-  const startCard=anyLv?`<p class="sub" style="margin:6px 0"><button type="button" class="startlink" data-act="quickstart">Re-enter my levels from the Overview</button></p>`:`<div class="firstbox"><b>First time here?</b><button type="button" class="btn" data-act="quickstart">Start here: fill in from the Overview</button></div>`;
+  const startCard=anyLv?`<p class="sub" style="margin:6px 0"><button type="button" class="startlink" data-act="quickstart">Re-enter my levels from the Overview</button></p>`:`<p class="sub" style="margin:6px 0"><button type="button" class="startlink" data-act="quickstart">Fill in my levels from the Overview</button></p>`;
+  const welcome=!anyLv&&!qs&&!state.libhand;
+  const welcomeHtml=`<div class="card welcome"><h2>Welcome. Let's set up your Library</h2><p>The Library is where you tell the calculator which research books you have finished. It only takes a few minutes, and you only do it once.</p><div class="wbtns"><button type="button" class="btn" data-act="quickstart">Start here</button><button type="button" class="startlink" data-act="libhand">I'll set my levels by hand</button></div><details class="wsteps"><summary>What happens next</summary><ol><li><b>Runes.</b> Tap the rune buttons at the top to match the game.</li><li><b>Library.</b> Fill in your levels from the game's Overview, or set them on the shelves.</li><li><b>Buildings.</b> Open <a href="#buildings">My buildings</a> and add yours.</li><li><b>Try it.</b> Pick a project on <a href="#guild">Guild tournament</a>, or use <a href="#lookup">Look up</a>.</li></ol></details></div>`;
+  if(welcome){$('#panel').innerHTML=welcomeHtml;return}
   let html=(qs||state.walkDone?'':walkCard())+(qs?`<div class="card"><h2>Fill in from the <b>Overview</b></h2><p style="margin:2px 0 8px"><button type="button" class="startlink" data-act="quickdone">← Back to Library</button></p>`:`<div class="card libcard"><h2>Library levels <button type="button" class="qbtn" data-act="help" data-k="library" aria-expanded="${!!hp}" aria-label="Help for this tab">?</button></h2>${helpHtml}${startCard}${ltabs}`);
   if(lt==='quick'){
     const keys=new Set();Object.keys(GU).forEach((id)=>{const m=id.match(/^(.*)_bonus_vol_\d+$/);if(m&&m[1]!=='shelter_feed')keys.add(m[1])});
@@ -1797,6 +1822,8 @@ document.addEventListener('click',(e)=>{
   if(a==='ocrread'){ocrRun();return}
   if(a==='ocrapply'){ocrApply();return}
   if(a==='ocrcancel'){OCR.res=null;OCR.stat='';render();return}
+  if(a==='quickstart'){state.walkDone=true;try{localStorage.setItem('sunshine_walk_v1','1')}catch(x){}}
+  if(a==='libhand'){state.libhand=true;state.walkDone=true;try{localStorage.setItem('sunshine_libhand_v1','1');localStorage.setItem('sunshine_walk_v1','1')}catch(x){}render();try{window.scrollTo(0,0)}catch(_){}return}
   if(a==='quickstart'||a==='quickdone'){state.libscreen=a==='quickstart'?'quick':null;if(a==='quickdone')state.libtab='production';render();try{window.scrollTo(0,0)}catch(_){}return}
   if(a==='pick'){openPick(b.dataset.id);return}
   if(a==='pickclose'){const id=(document.getElementById('picksheet')||{dataset:{}}).dataset.id;closePick();if(id)pairHint(id,true);return}
@@ -1983,7 +2010,7 @@ boot();
 </script>
 
 <script>
-/* test 146: tell people when a newer version of this page is online */
+/* test 148: tell people when a newer version of this page is online */
 (function(){
   var cur=0;
   function num(t){var m=/Beta 0\.1 \u00b7 test (\d+)/.exec(t||'');return m?+m[1]:0}
