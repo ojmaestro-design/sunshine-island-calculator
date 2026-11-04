@@ -8,6 +8,7 @@
 <!-- V104: Browse products list, one saved card per product with a size strip, sizes green (can do) / grey (not yet); V92 (test 92): plain wording, ? panels, My buildings sections, Teal/Black/Light looks, separate quick-sum lines, shelter box fixed, undo stays 30 s; V91 jump highlight + bottom tabs and Back to top; V90 (checked at 340 to 430 px) slim status line + one Jump to drop-down on the island row; V89 island list folded, singular names, island remembered; V88 island-in-use line on My buildings; V87 reopen on the last tab used; V85 test build number in header chip; V84 Load my saved island button in the jump row; V83 no-building answer shows the scenario; V82 storage hint + link to My buildings on cruise cards; V81 jump links, None, reset ready counts, points totals; V80 Full now on Cruise cards; V79 warehouse box tidy; V78 warehouse wording; V77 card note shows number not code; V76 load-island keeps cards/layouts/runes; V75 undo bar sticky at the bottom; V74 2 Nov 2026: fields card, tab order, sticky picker, cruise rules v2, shortest-crop-first when a count is lowered -->
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Sunshine Island Calculator. Beta 0.1 - data from the 28 Oct 2026 game update.">
+<link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&family=Cookie&display=swap">
@@ -124,6 +125,14 @@ details{margin:6px 0}summary{cursor:pointer;font-weight:600;min-height:32px}
 /* test 149: tabs and mode boxes follow the look */
 :root{--reg-bg:#e8d4ba;--reg-edge:#d4af8a;--fine-bg:#b0d9e8;--fine-edge:#1eb2ef;--ins-bg:#f6eaff;--ins-edge:#eb8cfc}
 :root:is([data-look="light"],[data-look="parchment"],[data-look="contrast"]){--reg-bg:#ecd9bf;--reg-edge:#b88a5a;--fine-bg:#bfe0ee;--fine-edge:#1a86b8;--ins-bg:#eadcfb;--ins-edge:#a34fc2}
+
+/* test 150 */
+.swatch{display:flex;gap:0;border-radius:6px;overflow:hidden;border:1px solid rgba(128,128,128,.55);width:100%;max-width:150px;height:14px;margin-bottom:4px}.swatch i{flex:1;display:block}
+
+
+/* test 151 */
+.bkcard{margin:8px 0 10px;padding:10px 12px;border-left:4px solid var(--accent);border-radius:8px;background:var(--surface2);font-size:15px}.bkrow{display:flex;align-items:center;gap:14px;margin-top:6px}
+.hometip{margin:10px 0 0;font-size:14px}.hometip summary{cursor:pointer;min-height:40px;display:flex;align-items:center;color:var(--accent-ink)}.hometip p{margin:4px 0}
 </style>
 <style>
 /* test 147 calmer, sleeker */
@@ -300,7 +309,7 @@ a{color:var(--accent-ink)}
 .cogabout .fbbtn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;max-width:100%;padding:10px 18px;border-radius:12px;background:var(--accent);color:var(--accent-fg);font:700 16px var(--body);text-decoration:none;overflow-wrap:anywhere;margin:6px 0}
 .cogabout .abrow{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:8px}
 .cogopt{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-height:52px;padding:8px 12px;text-align:left;border:1.5px solid var(--line);border-radius:12px;background:transparent;color:var(--fg);font:inherit;cursor:pointer}.cogopt small{color:var(--muted);font-size:13px}
-.cogopt[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}.cogopt[aria-pressed="true"] small{color:inherit}
+.cogopt[aria-pressed="true"]{background:var(--surface2);color:var(--fg);border:3px solid var(--accent);padding:6.5px 10.5px}.cogopt[aria-pressed="true"] b::after{content:" \2713 in use";font-weight:600;color:var(--accent-ink);font-size:13px}
 .splitrow .tsel{width:auto;flex:0 0 auto;min-width:76px}.splitrow .tsel+button,.splitrow select+.tsel{margin:0}
 .cmore summary{cursor:pointer;color:var(--accent-ink);font-size:14px;margin-top:6px}
 .cready{margin:12px 0 0;padding:10px 12px;border:2px solid var(--accent);border-radius:12px;background:color-mix(in srgb,var(--accent) 12%,var(--surface))}
@@ -351,9 +360,9 @@ select.tnat{position:absolute!important;width:1px!important;height:1px!important
 @media (max-width:640px){.tabs{grid-template-columns:repeat(3,minmax(0,1fr))}}
 /* My buildings sections */
 .subtabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:0 0 10px}
-.subtabs button{min-height:44px;padding:4px 2px;font:600 13px/1.15 var(--body);color:var(--muted);background:transparent;border:1.5px solid var(--line);border-radius:10px;cursor:pointer}
+.subtabs button{min-height:44px;padding:4px 2px;font:600 13px/1.15 var(--body);color:var(--fg);background:var(--surface2);border:1.5px solid var(--line);border-bottom-width:3px;border-radius:10px;cursor:pointer}
 .subtabs button[aria-selected="true"]{color:#2e2208;background:#ecc757;border-color:#b8942a;font-weight:700}
-.libtabs button{min-height:44px;font:600 13px/1.15 var(--body) !important;color:var(--muted);background:transparent;border:1.5px solid var(--line);border-radius:10px}
+.libtabs button{min-height:44px;font:600 13px/1.15 var(--body) !important;color:var(--fg);background:var(--surface2);border:1.5px solid var(--line);border-bottom-width:3px;border-radius:10px}
 .libtabs button[aria-selected="true"]{color:#2e2208;background:#ecc757;border-color:#b8942a;font-weight:700 !important}
 /* Quick sum result rows on one tidy grid */
 .qline{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 10px;align-items:end}
@@ -487,10 +496,7 @@ tr.cur td:first-child{box-shadow:inset 6px 0 0 var(--accent)}
 </style>
 <div class="wrap">
   <div class="hdr"><span id="logo"></span><h1>Sunshine Island Calculator</h1><button type="button" class="cogbtn" data-act="cog" aria-expanded="false" aria-controls="cogpanel"><span aria-hidden="true">⚙</span> Colours &amp; help</button></div>
-  <div class="card cogpanel" id="cogpanel" hidden><h2 style="margin:0 0 4px">Colours</h2><p class="sub" style="margin:0">Pick the look you like.</p><div class="cogrow">
-    <button type="button" class="cogopt" data-act="look" data-v="teal" aria-pressed="true"><b>Teal</b><small>Dark green-blue, the usual look</small></button>
-    <button type="button" class="cogopt" data-act="look" data-v="black" aria-pressed="false"><b>Black</b><small>Darkest, black background</small></button>
-    <button type="button" class="cogopt" data-act="look" data-v="light" aria-pressed="false"><b>Cream</b><small>Pale background, dark writing</small></button><button type="button" class="cogopt" data-act="look" data-v="plum" aria-pressed="false"><b>Plum</b><small>Deep purple, dark</small></button><button type="button" class="cogopt" data-act="look" data-v="slate" aria-pressed="false"><b>Midnight</b><small>Dark blue-grey</small></button><button type="button" class="cogopt" data-act="look" data-v="parchment" aria-pressed="false"><b>Parchment</b><small>Warm paper, dark writing</small></button><button type="button" class="cogopt" data-act="look" data-v="contrast" aria-pressed="false"><b>High contrast</b><small>Plain white, strongest writing</small></button></div><div id="cogabout" class="cogabout"></div></div>
+  <div class="card cogpanel" id="cogpanel" hidden><h2 style="margin:0 0 4px">Colours</h2><p class="sub" style="margin:0">Pick the look you like.</p><div class="cogrow"><button type="button" class="cogopt" data-act="look" data-v="teal" aria-pressed="false"><span class="swatch" aria-hidden="true"><i style="background:#063133"></i><i style="background:#0c4244"></i><i style="background:#ecc757"></i><i style="background:#55a9d6"></i><i style="background:#55b888"></i><i style="background:#d783b6"></i></span><b>Teal</b><small>Dark green-blue</small></button><button type="button" class="cogopt" data-act="look" data-v="black" aria-pressed="false"><span class="swatch" aria-hidden="true"><i style="background:#000000"></i><i style="background:#101010"></i><i style="background:#ecc757"></i><i style="background:#5cb6ea"></i><i style="background:#5fc995"></i><i style="background:#e58ec3"></i></span><b>Black</b><small>Darkest, plain black</small></button><button type="button" class="cogopt" data-act="look" data-v="plum" aria-pressed="false"><span class="swatch" aria-hidden="true"><i style="background:#1a1028"></i><i style="background:#261a38"></i><i style="background:#ecc757"></i><i style="background:#5ab0e8"></i><i style="background:#52cb94"></i><i style="background:#ee8cc8"></i></span><b>Plum</b><small>Deep purple</small></button><button type="button" class="cogopt" data-act="look" data-v="slate" aria-pressed="false"><span class="swatch" aria-hidden="true"><i style="background:#121820"></i><i style="background:#1b222d"></i><i style="background:#ecc757"></i><i style="background:#58b4e6"></i><i style="background:#5bc592"></i><i style="background:#df8cca"></i></span><b>Midnight</b><small>Dark blue-grey</small></button><button type="button" class="cogopt" data-act="look" data-v="light" aria-pressed="false"><span class="swatch" aria-hidden="true"><i style="background:#f6f8f7"></i><i style="background:#ffffff"></i><i style="background:#ecc757"></i><i style="background:#2c78a3"></i><i style="background:#2f8a62"></i><i style="background:#a24f80"></i></span><b>Mist</b><small>Pale grey-green</small></button><button type="button" class="cogopt" data-act="look" data-v="parchment" aria-pressed="false"><span class="swatch" aria-hidden="true"><i style="background:#f7f4ed"></i><i style="background:#ffffff"></i><i style="background:#ecc757"></i><i style="background:#2778a3"></i><i style="background:#2b835d"></i><i style="background:#984b79"></i></span><b>Paper</b><small>Warm cream</small></button><button type="button" class="cogopt" data-act="look" data-v="contrast" aria-pressed="false"><span class="swatch" aria-hidden="true"><i style="background:#ffffff"></i><i style="background:#f0f2f5"></i><i style="background:#ecc757"></i><i style="background:#1b638a"></i><i style="background:#1e6e4a"></i><i style="background:#823964"></i></span><b>Plain white</b><small>White, strongest writing</small></button></div><details class="hometip"><summary>Add to your home screen</summary><p><b>iPhone or iPad:</b> open this page in Safari, tap the Share button, then Add to Home Screen.</p><p><b>Android:</b> open it in Chrome, tap the three dots, then Add to Home screen.</p><p>A home-screen copy may not have the levels you set in your browser. Use <b>Save my setup</b> to copy them across.</p></details><div id="cogabout" class="cogabout"></div></div>
   <div class="subrow"><p class="sub" id="subtitle">Loading…</p><span id="runeq"></span></div>
   <div class="runebar" id="runebar"></div>
   <div class="tabs" role="tablist" id="tabs"></div>
@@ -500,7 +506,7 @@ tr.cur td:first-child{box-shadow:inset 6px 0 0 var(--accent)}
   <div id="feedback"></div>
   <p class="footer"><a href="#data">Data &amp; flags</a> · <button class="linkbtn" data-act="walkshow">Quick start</button> · <button class="btn ghost small" data-act="key" aria-expanded="false" id="keybtn">? Number key</button></p>
   <div id="keyline"></div>
-  <p class="footer" style="margin-top:6px">Beta 0.1 · test 149 - data from the 28 Oct 2026 game update (game 1.3.40251)</p>
+  <p class="footer" style="margin-top:6px">Beta 0.1 · test 152 - data from the 28 Oct 2026 game update (game 1.3.40251)</p>
   <p class="footer" style="margin-top:0">Unofficial fan tool. Not made by, or connected to, the game's developers.</p>
   <div id="footlogo" class="footlogo"></div>
 </div>
@@ -593,6 +599,7 @@ async function boot(){
     state.defTab=setup.groups.length?'guild':'setup';try{const li=localStorage.getItem('sunshine_lastisl_v1');if(li&&model.islands.includes(li))state.bIsland=li}catch(e){}try{const lt=localStorage.getItem('sunshine_lasttab_v1');if(setup.groups.length&&ALLTABS.some((t)=>t[0]===lt))state.defTab=lt}catch(e){}
     try{state.walkDone=localStorage.getItem('sunshine_walk_v1')==='1'}catch(e){state.walkDone=false}
     try{state.libhand=localStorage.getItem('sunshine_libhand_v1')==='1'}catch(e){state.libhand=false}
+    try{state.bkDone=localStorage.getItem('sunshine_backup_v1')==='1'}catch(e){state.bkDone=false}
     siteBits();drawTabs();render();
   }catch(e){$('#subtitle').innerHTML='<span class="err">Could not load the data files.\n'+esc(e.message)+'</span>'}
 }
@@ -601,7 +608,7 @@ function siteBits(){
   if(SITE.footlogo&&$('#footlogo'))$('#footlogo').innerHTML=`<img src="${esc(SITE.footlogo)}" alt="OJ Maestro" onerror="this.parentNode.hidden=true">`;
   if(SITE.coffee&&$('#coffee'))$('#coffee').innerHTML=`<div class="coffeecard"><p>Free tool, made by OJ Maestro. If it saved you time, you can say thanks with a small tip.</p><a class="coffeebtn" href="${esc(SITE.coffee)}" target="_blank" rel="noopener" aria-label="Buy me a coffee"><img class="bmcimg" hidden alt="" src="https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=&slug=ojmaestro&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" onload="this.hidden=false;this.nextElementSibling.hidden=true;this.parentNode.classList.add('official')" onerror="this.remove()"><span class="bmcfb"><svg viewBox="0 0 22 26" aria-hidden="true"><path d="M3 9h16l-1.6 14.5a2 2 0 0 1-2 1.5H6.6a2 2 0 0 1-2-1.5z" fill="#fff" stroke="#000" stroke-width="1.8" stroke-linejoin="round"/><path d="M2 9h18V6.5H2z" fill="#fff" stroke="#000" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 6.5V4.5c0-1 1-1.8 2-1.8h8c1 0 2 .8 2 1.8v2" fill="none" stroke="#000" stroke-width="1.8"/></svg> Buy me a coffee</span></a></div>`;
   const ab=$('#cogabout');
-  if(ab)ab.innerHTML=`<h2>Help &amp; feedback</h2><p class="sub" style="margin:0">Spot a bug or have an idea? Tell me.</p>${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p>Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}<div class="abrow"><button class="linkbtn" data-act="walkshow">Quick start</button><a href="#data">Data &amp; flags</a></div><p class="sub">Made by OJ Maestro · Beta 0.1 · test 149</p>`;
+  if(ab)ab.innerHTML=`<h2>Help &amp; feedback</h2><p class="sub" style="margin:0">Spot a bug or have an idea? Tell me.</p>${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p>Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}<div class="abrow"><button class="linkbtn" data-act="walkshow">Quick start</button><a href="#data">Data &amp; flags</a></div><p class="sub">Made by OJ Maestro · Beta 0.1 · test 152</p>`;
   const fb=$('#feedback');
   if(fb&&(SITE.feedback||SITE.email||SITE.discord))fb.innerHTML=`<div class="card fbcard"><h2>Spot a bug or have an idea?</h2>${SITE.feedback?`<p>${esc(SITE.feedback)}</p>`:''}${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p class="fbdisc">Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}</div>`}
 document.addEventListener('click',(e)=>{const t=e.target.closest&&e.target.closest('#cogpanel [data-act="walkshow"], #cogpanel a[href="#data"]');if(t){const pn=document.getElementById('cogpanel');if(pn){pn.hidden=true;const cb=document.querySelector('.cogbtn');if(cb)cb.setAttribute('aria-expanded','false')}}});
@@ -1573,10 +1580,11 @@ function renderSetup(){
   const anyLv=Object.keys(GU).some((id)=>C.libLevel(model,setup,id)>0);
   const helpHtml=hp?`<div class="helpbox"><p><b>Start here:</b> press the <b>Start here</b> button to fill in your levels from the game's <b>Overview</b>. It is the quickest way, and you only need to do it once.</p><p><b>Production tab:</b> laid out like the game's shelves. Tap a book to set its level. A picker opens at the bottom of the screen, and the book's other volume glows. The colour shows the island. Use it to check your levels, or to change one book after you research it.</p><p><b>Padlock:</b> if you have not unlocked a shelf in the game yet, lock it here. That also locks the shelves after it. A shelf with levels set cannot be locked.</p><p><b>Saving:</b> your answers are kept in this browser as you go. The Save my setup box below gives you a text copy to keep in Notes, or to paste into another device.</p></div>`:'';
   const startCard=anyLv?`<p class="sub" style="margin:6px 0"><button type="button" class="startlink" data-act="quickstart">Re-enter my levels from the Overview</button></p>`:`<p class="sub" style="margin:6px 0"><button type="button" class="startlink" data-act="quickstart">Fill in my levels from the Overview</button></p>`;
+  const bkCard=`<div class="bkcard"><b>Keep a copy of your setup.</b> It is saved in this browser only. A copy in your Notes means you can always get it back.<div class="bkrow"><button type="button" class="btn small" data-act="gosave">Open Save my setup</button><button type="button" class="startlink" data-act="bkdone">Not now</button></div></div>`;
   const welcome=!anyLv&&!qs&&!state.libhand;
   const welcomeHtml=`<div class="card welcome"><h2>Welcome. Let's set up your Library</h2><p>The Library is where you tell the calculator which research books you have finished. It only takes a few minutes, and you only do it once.</p><div class="wbtns"><button type="button" class="btn" data-act="quickstart">Start here</button><button type="button" class="startlink" data-act="libhand">I'll set my levels by hand</button></div><details class="wsteps"><summary>What happens next</summary><ol><li><b>Runes.</b> Tap the rune buttons at the top to match the game.</li><li><b>Library.</b> Fill in your levels from the game's Overview, or set them on the shelves.</li><li><b>Buildings.</b> Open <a href="#buildings">My buildings</a> and add yours.</li><li><b>Try it.</b> Pick a project on <a href="#guild">Guild tournament</a>, or use <a href="#lookup">Look up</a>.</li></ol></details></div>`;
   if(welcome){$('#panel').innerHTML=welcomeHtml;return}
-  let html=(qs||state.walkDone?'':walkCard())+(qs?`<div class="card"><h2>Fill in from the <b>Overview</b></h2><p style="margin:2px 0 8px"><button type="button" class="startlink" data-act="quickdone">← Back to Library</button></p>`:`<div class="card libcard"><h2>Library levels <button type="button" class="qbtn" data-act="help" data-k="library" aria-expanded="${!!hp}" aria-label="Help for this tab">?</button></h2>${helpHtml}${startCard}${ltabs}`);
+  let html=(qs||state.walkDone?'':walkCard())+(qs?`<div class="card"><h2>Fill in from the <b>Overview</b></h2><p style="margin:2px 0 8px"><button type="button" class="startlink" data-act="quickdone">← Back to Library</button></p>`:`<div class="card libcard"><h2>Library levels <button type="button" class="qbtn" data-act="help" data-k="library" aria-expanded="${!!hp}" aria-label="Help for this tab">?</button></h2>${helpHtml}${startCard}${anyLv&&!state.bkDone&&lt==='production'?bkCard:''}${ltabs}`);
   if(lt==='quick'){
     const keys=new Set();Object.keys(GU).forEach((id)=>{const m=id.match(/^(.*)_bonus_vol_\d+$/);if(m&&m[1]!=='shelter_feed')keys.add(m[1])});
     const first=OV_ORDER.filter((k)=>keys.has(k)),rest=[...keys].filter((k)=>!OV_ORDER.includes(k));
@@ -1919,6 +1927,8 @@ document.addEventListener('click',(e)=>{
   if(a==='sadd'){const G=state.gadd;setup.sumRows.push(newGroup({producer:G.producer,product:G.product,mode:G.mode,level:G.level,slider:G.slider,count:G.count||1}));save();render()}
   if(a==='sfull'||a==='snone'||a==='sdel'){const r=setup.sumRows.find((x)=>x.id===b.closest('[data-sid]').dataset.sid);if(r){if(a==='sdel')setup.sumRows=setup.sumRows.filter((x)=>x!==r);else r.full=a==='sfull'?r.count:0;save();render()}}
   if(a==='sclear'){setup.sumRows=[];save();render()}
+  if(a==='gosave'){state.bkDone=true;state.bsec='save';try{localStorage.setItem('sunshine_backup_v1','1')}catch(x){}location.hash='buildings';render();try{window.scrollTo(0,0)}catch(_){}return}
+  if(a==='bkdone'){state.bkDone=true;try{localStorage.setItem('sunshine_backup_v1','1')}catch(x){}render();return}
   if(a==='walkdone'){state.walkDone=true;try{localStorage.setItem('sunshine_walk_v1','1')}catch(x){}render()}
   if(a==='walkshow'){state.walkDone=false;try{localStorage.removeItem('sunshine_walk_v1')}catch(x){}location.hash='setup';render();window.scrollTo(0,0)}
   if(a==='shel'){state.shelterOpen=state.shelterOpen===false;render()}
