@@ -5224,7 +5224,7 @@
  "totals": {
   "tables": 37,
   "rows_seen": 460,
-  "rows_estimated": 35
+  "rows_estimated": 0
  },
  "seed_mode_ratios_HYPOTHESIS": {
   "iron_ore (rune on)": {
@@ -5519,7 +5519,7 @@
    "tables": 18,
    "max_level": 15,
    "rows_seen": 235,
-   "rows_estimated": 35,
+   "rows_estimated": 0,
    "ticked": true
   },
   {
