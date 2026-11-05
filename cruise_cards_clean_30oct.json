@@ -105,6 +105,8 @@
   {"product":"Complete market orders","amount":30,"points":134,"time_limit":"2h","time_h":2,"time_status":"seen_on_card","building":null,"type":"other_task","note":"30 Oct"},
   {"product":"Complete market orders","amount":35,"points":144,"time_limit":"2h","time_h":2,"time_status":"seen_on_card","building":null,"type":"other_task","note":"30 Oct"},
   {"product":"Catch fish","amount":12,"points":151,"time_limit":"3h","time_h":3,"time_status":"seen_on_card","building":null,"type":"other_task","note":"28 and 29 Oct. Guild does this daily"},
+  {"product":"Catch fish","amount":10,"points":125,"time_limit":"3h","time_h":3,"time_status":"inferred_from_same_product","building":null,"type":"other_task","note":"5 Nov. From a forum table (Norland Guild, 31 Oct) and a year-old table. Not seen on a card by Jo."},
+  {"product":"Catch fish","amount":8,"points":108,"time_limit":"3h","time_h":3,"time_status":"inferred_from_same_product","building":null,"type":"other_task","note":"5 Nov. From a year-old forum table only. Not seen on a card by Jo."},
   {"product":"Fill crates on ships","amount":12,"points":275,"time_limit":null,"time_h":null,"time_status":"not_seen","building":null,"type":"other_task","note":"28 Oct"},
   {"product":"Fill baskets on the market boats","amount":12,"points":325,"time_limit":null,"time_h":null,"time_status":"not_seen","building":null,"type":"other_task","note":"28 Oct"},
   {"product":"Send full ships","amount":2,"points":400,"time_limit":"18h","time_h":18,"time_status":"seen_on_card","building":null,"type":"other_task","note":"30 Oct"}
