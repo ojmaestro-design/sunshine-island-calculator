@@ -180,6 +180,7 @@ details{margin:6px 0}summary{cursor:pointer;font-weight:600;min-height:32px}
 .tile.empty{border-style:dashed;background:transparent;color:var(--muted);align-items:center;justify-content:center;font-size:13px}
 .tile b{font-size:14px;line-height:1.2}
 .undobar{position:sticky;bottom:10px;z-index:30;margin-bottom:0;box-shadow:0 4px 18px rgba(0,0,0,.45);border:2px solid var(--accent)}
+.plvl{display:flex;flex-direction:row;align-items:center;gap:10px;margin:6px 0 4px;font-size:16px}.plvl input{width:96px;min-height:44px;font-size:16px}.tickrow{display:flex;flex-direction:row;align-items:center;gap:12px;min-height:48px;padding:6px 0;border-top:1px solid var(--line);font-size:16px;cursor:pointer}.tickrow input{width:26px;height:26px;min-height:0;flex:none}.tickrow .tn{flex:1}.tickrow .tc{color:var(--muted);font-size:14px}.tickask{margin:0 0 6px 38px}
 .lvline{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:8px 0}.lvline+.lvline{border-top:1px solid var(--line)}.lvline select{width:auto;min-width:68px;flex:0 0 auto;min-height:44px}.lvline .at{color:var(--muted);font-size:15px}.lvline .xbtn{min-width:40px;padding:0 8px;font-size:20px;line-height:1;margin-left:auto}.lvline .rune-ask{margin-left:auto}
 .line{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end;padding:8px 0}
 .line+.line{border-top:1px solid var(--line)}
@@ -512,7 +513,7 @@ tr.cur td:first-child{box-shadow:inset 6px 0 0 var(--accent)}
   <div id="feedback"></div>
   <p class="footer"><a href="#data">Data &amp; flags</a> · <button class="linkbtn" data-act="walkshow">Quick start</button> · <button class="btn ghost small" data-act="key" aria-expanded="false" id="keybtn">? Number key</button></p>
   <div id="keyline"></div>
-  <p class="footer" style="margin-top:6px">Beta 0.1 · test 157 - data from the 28 Oct 2026 game update (game 1.3.40251)</p>
+  <p class="footer" style="margin-top:6px">Beta 0.1 · test 160 - data from the 28 Oct 2026 game update (game 1.3.40251)</p>
   <p class="footer" style="margin-top:0">Unofficial fan tool. Not made by, or connected to, the game's developers.</p>
   <div id="footlogo" class="footlogo"></div>
 </div>
@@ -531,6 +532,8 @@ const isPlaceholder=(id)=>/^unidentified_input_|^(fine|instant)_.*_input$/.test(
 const inName=(id)=>{const m=String(id).match(/^unidentified_input_.*_(\d+)$/);if(m)return 'Item '+m[1]+' (icon only)';const f=String(id).match(/^(fine|instant)_(.*)_input$/);if(f)return pretty(f[1])+' '+f[2].replace(/_/g,' ')+' item';return pretty(id)};
 /* Fill these in when ready; empty values stay hidden. */
 const SITE={logo:'',footlogo:'oj-maestro-logo.png',made:'Made by OJ Maestro',coffee:'https://buymeacoffee.com/ojmaestro',email:'hello.ojmaestro@gmail.com',feedback:'Beta: if a number looks different from the game, something is unclear, or you have an idea for a new feature, let me know. If a Cruise card is not in the calculator, send me a screenshot.',discord:'OJ Maestro'};
+/* Player level at which each building unlocks. From Jo's Your Journey bar, 4 Nov 2026 (levels 1 to 58). Used only for the tick list. */
+const UNLOCK={field:1,cow_shed:1,windmill:2,feed_mill:3,bakery:4,silo:6,pine_nursery:7,plantation:8,ostrich_farm:9,coffee_brewery:11,spinning_works:15,mine:16,bamboo_nursery:17,cotton_weaver:19,diner:21,foundry:23,goat_farm:25,palm_nursery:26,gold_forge:27,silk_weaver:29,copper_forge:31,iron_forge:33,bar:35,rice_field:37,food_stand:39,tailor:42,seamstress:45,garment_maker:48,crafting_workshop:51,instrument_maker:54,gift_workshop:57};
 const TABS=[['setup','Library & setup'],['buildings','My buildings'],['guild','Guild tournament'],['leader','Guild leader'],['cruise','Cruise tournament'],['lookup','Look up']];
 const ALLTABS=TABS.concat([['data','Data & flags']]);
 const TAGTXT={seen:'seen',estimated:'estimated',unconfirmed:'not confirmed'};
@@ -752,7 +755,7 @@ function drawRunes(){$('#runebar').innerHTML=Object.values(model.runes).map((r)=
 function walkCard(){return `<div class="card walk"><h2>Quick start</h2><ol>
   <li><b>Runes.</b> Tap the rune buttons above to match the game.</li>
   <li><b>Library.</b> Press the glowing <b>Start here</b> button below to fill in your levels from the game's Overview, or set them on the shelves.</li>
-  <li><b>Buildings.</b> Open <a href="#buildings">My buildings</a> and add yours, or fill in a basic island and fix it.</li>
+  <li><b>Buildings.</b> Open <a href="#buildings">My buildings</a> and tick the ones you have (the first few are ticked for you), then set their levels.</li>
   <li><b>Try it.</b> Pick a project on the <a href="#guild">Guild tournament</a> tab, or use <a href="#lookup">Look up</a>.</li></ol>
   <div class="row"><button class="btn small" data-act="walkdone">Got it</button></div></div>`}
 function lvCells(list){const m=new Map();
@@ -800,9 +803,30 @@ function renderBuildings(){
     <label>How many<select data-ba="count">${countOpts(A.count,AP)}</select></label>
     <label>Level<select data-ba="level">${opts(levelsOf(AP),A.level)}</select></label></div>
     <div class="row" style="margin-top:10px"><button class="btn" data-act="gadd">Add</button>${AP.slider?'<span class="sub" style="align-self:center">This building cannot be stored in the game.</span>':'<button class="btn ghost" data-act="gadd-store">Add 1 to storage</button>'}<span class="sub addmsg" id="addmsg" role="status" aria-live="polite">${esc(state.addMsg||'')}</span></div></div>`;
+    {const ownedOf=(pid)=>setup.groups.filter((g)=>g.producer===pid);
+      const openT=state.tickOpen===isl;
+      const pend=!setup.groups.some((g)=>g.island===isl);
+      if(state.playerLevel===undefined){try{const v=parseInt(localStorage.getItem('sunshine_playerlevel_v1'),10);state.playerLevel=v>=1&&v<=200?v:null}catch(e){state.playerLevel=null}}
+      const pl=state.playerLevel;
+      const unlockedIds=()=>pl?order0.filter((p)=>UNLOCK[p]&&UNLOCK[p]<=pl):['field','cow_shed','windmill','feed_mill','bakery'].filter((p)=>order0.includes(p));
+      const ulTag=(pid)=>{const u=UNLOCK[pid];return u&&(!pl||u>pl)?`<span class="tc">unlocks at level ${u}</span>`:''};
+      if(pend&&(!state.tickPend||state.tickPend.isl!==isl))state.tickPend={isl:isl,ids:unlockedIds()};
+      let tk=`<div class="card tickcard"><h2>Tick the buildings you have</h2>`;
+      if(pend){
+        tk+=`<p class="sub" style="margin:0 0 4px">Type your level in the game and the buildings you have unlocked are ticked for you. Untick any you have not built yet, and tick any others you have. Then press Add. Each is added at Level 1; you can change the level or the number afterwards.</p><label class="plvl">Your level in the game (optional)<input type="number" inputmode="numeric" min="1" max="200" step="1" data-plvl value="${pl||''}"></label><p class="sub" style="margin:0 0 6px">After typing your level, press Enter or tap anywhere else to update the ticks.</p>`;
+        order0.forEach((pid)=>{const P=model.producers[pid];
+          tk+=`<label class="tickrow"><input type="checkbox" data-tick="${esc(pid)}"${state.tickPend.ids.includes(pid)?' checked':''}><span class="tn">${esc(bsing(P.name))}</span>${ulTag(pid)}</label>`});
+        tk+=`<div class="row" style="margin-top:10px"><button class="btn" data-act="tickadd"${state.tickPend.ids.length?'':' disabled'}>Add ticked buildings</button></div>`}
+      else if(!openT){tk+=`<p class="sub" style="margin:0 0 8px">Quicker than adding one at a time. Each tick adds one building at Level 1. You then change the level or the number further down.</p><button class="btn" data-act="tickopen">Tick my buildings</button>`}
+      else{
+        tk+=`<p class="sub" style="margin:0 0 6px">Tick every building you have on ${esc(pretty(isl))}. Untick one to take it away.</p>`;
+        order0.forEach((pid)=>{const P=model.producers[pid],og=ownedOf(pid),tot=og.reduce((n,g)=>n+g.count,0);
+          tk+=`<label class="tickrow"><input type="checkbox" data-tick="${esc(pid)}"${tot?' checked':''}><span class="tn">${esc(bsing(P.name))}</span>${tot>1?`<span class="tc">${tot} owned</span>`:ulTag(pid)}</label>`;
+          if(state.tickAsk===pid)tk+=`<div class="rune-ask tickask">Remove all ${tot} ${esc(P.name.toLowerCase())}? <button class="btn small" data-act="tickyes" data-p="${esc(pid)}">Yes</button><button class="btn ghost small" data-act="tickno">No</button></div>`});
+        tk+=`<div class="row" style="margin-top:10px"><button class="btn" data-act="tickclose">Done</button></div>`}
+      html+=tk+'</div>'}
     const order=producersOf(isl).map((p)=>p.id);
     const have=order.filter((p)=>act.some((g)=>g.producer===p));
-    if(!setup.groups.length&&files.starter)html+='<div class="card"><p style="margin:0 0 8px">Starting from scratch? Fill in a basic island (one of each production building, all Level 1), then change levels and counts to match yours.</p><button class="btn" data-act="starter">Fill in a basic starter island</button></div>';
     if(!have.length)html+='<div class="card"><p class="empty">No buildings here yet. Add them above.</p></div>';
     have.forEach((pid)=>{const P=model.producers[pid],lines=lvCells(act.filter((g)=>g.producer===pid));
       const total=setup.groups.filter((g)=>g.producer===pid).reduce((n,g)=>n+g.count,0);
@@ -832,7 +856,7 @@ function renderBuildings(){
   else if(sec==='layouts'){html+=layoutsCard()}
   else{
     html+=saveCard();
-    if(setup.groups.length)html+=`<div class="card" id="j-again"><h2>Start again</h2>${hline('Replaces all your buildings on every island. You can Undo.')}<div class="row">${files.starter?'<button class="btn ghost" data-act="starter">Fill in a basic starter island</button>':''}<button class="btn ghost" data-act="bclear">Clear all my buildings</button></div></div>`;
+    if(setup.groups.length)html+=`<div class="card" id="j-again"><h2>Start again</h2>${hline('Takes away all your buildings on every island. You can Undo.')}<div class="row"><button class="btn ghost" data-act="bclear">Clear all my buildings</button></div></div>`;
   }
   html+=undoBar;
   $('#panel').innerHTML=html;
@@ -1191,7 +1215,7 @@ function glRangeHtml(){const G=state.gl;
 function renderLeader(){
   if(!state.gl)state.gl=glLoad();glSel=null;const G=state.gl,pr=glProj(),keys=glKeys();
   const setB=G.cl&&G.al;
-  let h=`<div class="card"><h2 style="margin:0 0 4px">Guild leader helper</h2><p class="sub" style="margin:0">Have you got enough for the project? Add up what members have ready to collect. It is an estimate, not a promise.</p>
+  let h=`<div class="card"><p class="sub" style="margin:0">In the game, guilds unlock at level 12.</p></div><div class="card"><h2 style="margin:0 0 4px">Guild leader helper</h2><p class="sub" style="margin:0">Have you got enough for the project? Add up what members have ready to collect. It is an estimate, not a promise.</p>
   <h3 style="margin:10px 0 6px">Guild project</h3><div class="pwrap"><div class="pstrip" id="glstrip" role="listbox" aria-label="Guild project">${GSTARS.map((x)=>`<button type="button" class="btn ghost small pbtn${x.id===pr.id?' on':''}" role="option" aria-selected="${x.id===pr.id}" data-glproj="${esc(x.id)}">${esc(x.title)}</button>`).join('')}</div></div><p class="sub" style="margin:6px 0 0">Makes ${esc(pr.items.map((x)=>plu(x)).join(' + '))}. Swipe sideways to see all the projects.</p>
   <details class="glbon"${setB?'':' open'}><summary id="glbonsum">${esc(glBonSum())}</summary><p class="sub" style="margin:0">Set once. It is saved on this device until your guild upgrades.</p><div class="gltiles">${glTile('cl')}${glTile('al')}</div></details></div>`;
   h+=`<div class="card"><h3 style="margin:0 0 2px">Add what members have ready</h3><p class="sub" style="margin:0">Type what each member has ready to collect, then press Enter. It adds to the total.</p>${keys.map((pid)=>`<div class="glrep"><label class="glrl" for="glnum_${esc(pid)}">${esc(plu(pid))}</label><div class="glnumrow"><input type="text" inputmode="numeric" autocomplete="off" enterkeyhint="done" id="glnum_${esc(pid)}" class="glnum" data-p="${esc(pid)}" placeholder="e.g. 3500" aria-label="Number of ${esc(plu(pid).toLowerCase())} one member has ready to collect"><button type="button" class="btn ghost" data-glk1000="${esc(pid)}" aria-label="Multiply by 1000">×1000</button><button type="button" class="btn" data-gladd="${esc(pid)}">Add</button></div><div id="gltot_${esc(pid)}">${glTot(pid)}</div></div>`).join('')}</div>`;
@@ -1241,7 +1265,7 @@ document.addEventListener('click',(e)=>{const c=e.target&&e.target.closest?e.tar
     glRefresh()}});
 function renderGuild(){
   const act=setup.groups.filter((g)=>g.state==='active'),pr=curProject(),sh=shelterUsed();
-  let html=projectPicker();
+  let html='<div class="card"><p class="sub" style="margin:0">In the game, guilds unlock at level 12.</p></div>'+projectPicker();
   if(state.undo){armUndo();
     if(state.undo.ptitle)html+=`<div class="card gu-card" id="gundo" role="status"><p class="gu-cap">Buildings filled in for</p><div class="gu-row"><span class="gu-badge">${esc(state.undo.ptitle)}</span><button class="btn small" data-act="undo">Undo</button></div><p class="sub gu-note">Change them below if you like.</p></div>`;
     else html+=`<div class="card" id="gundo" style="padding:8px 12px"><div class="row" style="justify-content:space-between;align-items:center"><span>${esc(state.undo.label)}</span><button class="btn small" data-act="undo">Undo</button></div></div>`}
@@ -1810,6 +1834,14 @@ document.addEventListener('change',(e)=>{
   if(el.dataset.lc){state.lcount=Math.max(1,parseInt(el.value,10)||1);return}
   if(el.dataset.qp){state.q.producer=el.value;render();return}
   if(el.dataset.qa){state.q.all[el.dataset.qa]=el.value;if(el.dataset.qa==='product')state.q.all.mode='';render();return}
+  if(el.dataset.plvl!==undefined){const v=parseInt(el.value,10),n=v>=1&&v<=200?v:null;state.playerLevel=n;try{if(n)localStorage.setItem('sunshine_playerlevel_v1',String(n));else localStorage.removeItem('sunshine_playerlevel_v1')}catch(e){}
+    const o0=producersOf(state.bIsland).map((p)=>p.id);state.tickPend={isl:state.bIsland,ids:n?o0.filter((p)=>UNLOCK[p]&&UNLOCK[p]<=n):['field','cow_shed','windmill','feed_mill','bakery'].filter((p)=>o0.includes(p))};render();return}
+  if(el.dataset.tick!==undefined){const pid=el.dataset.tick,P=model.producers[pid];if(!P)return;
+    if(state.tickPend&&state.tickPend.isl===state.bIsland&&!setup.groups.some((g)=>g.island===state.bIsland)){const ta=state.tickPend.ids,ti=ta.indexOf(pid);if(el.checked&&ti<0)ta.push(pid);if(!el.checked&&ti>=0)ta.splice(ti,1);render();return}
+    const og=setup.groups.filter((g)=>g.producer===pid),tot=og.reduce((n,g)=>n+g.count,0);
+    if(el.checked){if(!tot){snap('Added 1 '+bsing(P.name).toLowerCase());setup.groups.push(newGroup({producer:pid,level:1,count:1,state:'active'}));mergeGroups();save()}state.tickAsk=null;render();return}
+    if(tot===1&&og.every((g)=>g.level===1)){snap('Removed 1 '+bsing(P.name).toLowerCase());setup.groups=setup.groups.filter((g)=>g.producer!==pid);mergeGroups();state.tickAsk=null;save();render();return}
+    state.tickAsk=pid;render();return}
   if(el.dataset.shinc!==undefined){setup.shelterInclude=!!el.checked;save();render();return}
   if(el.dataset.s){const i=+el.closest('[data-si]').dataset.si,sl=shelter(),k=el.dataset.s;
     if(k==='product'){sl[i].product=el.value;sl[i].amount=0}else sl[i].amount=Math.max(0,parseInt(el.value,10)||0);shelter();save();render();return}
@@ -2008,6 +2040,11 @@ document.addEventListener('click',(e)=>{
     try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(ta.value).then(()=>done(true),()=>fallbackCopy(ta,done));return}}catch(x){}
     fallbackCopy(ta,done)}
   if(a==='loadfile'&&files.myIsland){const f=JSON.parse(JSON.stringify(files.myIsland));const dr=JSON.stringify(C.defaultSetup(model).runes);if((setup.tournaments||[]).length)f.tournaments=setup.tournaments;if(JSON.stringify(setup.runes)!==dr)f.runes=setup.runes;if(Object.keys(setup.runeStart||{}).length)f.runeStart=setup.runeStart;if((setup.shelter||[]).length)f.shelter=setup.shelter;$('#prof').value=JSON.stringify(f);state.srcNext='your 28 Oct island file (loaded with the button)';state.notice='Loaded your saved island. Your Cruise cards, layouts and runes were kept.';document.querySelector('[data-act="apply"]').click();msg('Loaded your saved island. Your Cruise cards, layouts and runes were kept.');try{window.scrollTo(0,0)}catch(_){}return}
+  if(a==='tickadd'){const ids=(state.tickPend&&state.tickPend.ids||[]).filter((p)=>model.producers[p]);if(!ids.length)return;snap('Added '+ids.length+' building'+(ids.length>1?'s':''));ids.forEach((pid)=>{setup.groups.push(newGroup({producer:pid,level:1,count:1,state:'active'}))});mergeGroups();state.tickPend=null;state.tickOpen=null;save();state.notice='Added '+ids.length+' building'+(ids.length>1?'s':'')+' at Level 1. Change the level or number of any of them below. You can press Undo.';render();return}
+  if(a==='tickopen'){state.tickOpen=state.bIsland;state.tickAsk=null;render();return}
+  if(a==='tickclose'){state.tickOpen=null;state.tickAsk=null;render();return}
+  if(a==='tickno'){state.tickAsk=null;render();return}
+  if(a==='tickyes'){const pid=b.dataset.p,P=model.producers[pid];if(P){const tot=setup.groups.filter((g)=>g.producer===pid).reduce((n,g)=>n+g.count,0);snap('Removed '+tot+' '+P.name.toLowerCase());setup.groups=setup.groups.filter((g)=>g.producer!==pid);mergeGroups();save()}state.tickAsk=null;render();return}
   if(a==='starter'&&files.starter){snap('Filled in a basic starter island');setup.groups=files.starter.groups.map((g)=>newGroup({producer:g.producer,level:g.level,count:g.count,state:'active'}));mergeGroups();save();state.notice='Basic starter island filled in: one of each, all Level 1. It is a first guess, so change anything that is wrong. You can press Undo.';state.bIsland=files.starter.groups[0].island;location.hash='#buildings';render();return}
   if(a==='clearbox'){const ta=$('#prof');ta.value='';ta.placeholder='Paste your saved setup here, then press Load this text.';ta.focus();msg('Box cleared. Paste your saved text, then press Load this text.')}
   if(a==='apply'){try{const s=JSON.parse($('#prof').value);const d=C.defaultSetup(model);
