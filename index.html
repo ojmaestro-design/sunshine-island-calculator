@@ -1,15 +1,15 @@
-<!doctype html><html data-look="slate"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html data-look="slate"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
 <style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.footlogo{background:rgba(255,248,243,.86);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border-radius:14px;padding:6px 12px;margin:14px auto 0;max-width:240px;text-align:center}
 :root:is([data-look="light"],[data-look="parchment"],[data-look="contrast"]) .footlogo{background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;padding:0}.footlogo img{max-width:100%;height:auto;display:block;margin:0 auto}
-</style></head><body>
+</style>
 <meta charset="utf-8">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>Sunshine Calculator</title>
 <!-- V104: Browse products list, one saved card per product with a size strip, sizes green (can do) / grey (not yet); V92 (test 92): plain wording, ? panels, My buildings sections, Teal/Black/Light looks, separate quick-sum lines, shelter box fixed, undo stays 30 s; V91 jump highlight + bottom tabs and Back to top; V90 (checked at 340 to 430 px) slim status line + one Jump to drop-down on the island row; V89 island list folded, singular names, island remembered; V88 island-in-use line on My buildings; V87 reopen on the last tab used; V85 test build number in header chip; V84 Load my saved island button in the jump row; V83 no-building answer shows the scenario; V82 storage hint + link to My buildings on cruise cards; V81 jump links, None, reset ready counts, points totals; V80 Full now on Cruise cards; V79 warehouse box tidy; V78 warehouse wording; V77 card note shows number not code; V76 load-island keeps cards/layouts/runes; V75 undo bar sticky at the bottom; V74 2 Nov 2026: fields card, tab order, sticky picker, cruise rules v2, shortest-crop-first when a count is lowered -->
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="build" content="169">
+<meta name="build" content="170">
 <meta name="description" content="Sunshine Island Calculator. Beta 0.1 - data from the 28 Oct 2026 game update.">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=169"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=168"><meta name="apple-mobile-web-app-title" content="Sunshine Calculator">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=170"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=168"><meta name="apple-mobile-web-app-title" content="Sunshine Calculator">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&family=Cookie&display=swap">
@@ -537,7 +537,20 @@ ol.steps{margin:0 0 8px;padding-left:22px}ol.steps li{margin:4px 0;color:var(--m
 .meonly{display:none}:root.me .meonly{display:inline}
 .subtabs{grid-template-columns:repeat(3,minmax(0,1fr))}
 .cardq{float:right;margin:-4px -4px 0 8px}.cardq:has(.qh[open]){float:none;margin:0 0 8px}.golink{margin:4px 0 14px;font-size:16px;font-weight:600}
+.ptlrow{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid var(--line);margin:16px 0 8px;padding-top:12px}.ptlrow .ptl{border-top:0;margin:0;padding:0}
+.cvcount{font-size:17px;margin:8px 0}.cvready{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:8px}
+.cvsearch{margin-top:12px;font-size:14px}.cvsearch input{font-size:16px;min-height:44px}
+.cvfilt{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.cvfilt .cchip.on{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.cvgrp{padding:6px 12px}.cvgh{margin:8px 0 4px;color:var(--fg)}
+.cvrow{border-top:1px solid var(--line)}.cvrow:first-of-type{border-top:0}.cvtop{display:flex;align-items:stretch;gap:4px}
+.cvstar{flex:0 0 44px;min-height:52px;background:none;border:0;color:var(--accent-ink);font-size:24px;cursor:pointer}
+.cvmain{flex:1;min-width:0;min-height:52px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:2px;background:none;border:0;color:var(--fg);font:inherit;text-align:left;cursor:pointer;padding:6px 4px}
+.cvmain b{font-size:16px}.cvline{font-size:14px}.cvno{color:var(--muted);font-weight:600}
+.cvrow.open .cvmain b::after{content:" ▴";color:var(--muted)}.cvmain b::after{content:" ▾";color:var(--muted);font-weight:400}
+.cvdet{padding:4px 4px 12px 48px}.cvsizes{margin:4px 0;padding-left:18px}.cvsizes li{margin:4px 0}
+@media (max-width:420px){.cvdet{padding-left:8px}}
 </style>
+</head><body>
 <div class="wrap">
   <div class="hdr"><span id="logo"></span><h1>Sunshine Island Calculator</h1><button type="button" class="cogbtn" data-act="cog" aria-expanded="false" aria-controls="cogpanel"><span aria-hidden="true">⚙</span> Colours &amp; help</button></div>
   <div class="card cogpanel" id="cogpanel" hidden><div class="coghead"><h2 style="margin:0 0 4px">Colours</h2><button type="button" class="btn ghost small" data-act="cogclose">Close</button></div><p class="sub" style="margin:0">Pick the look you like.</p><div class="cogrow"><button type="button" class="cogopt" data-act="look" data-v="teal" aria-pressed="false"><span class="swatch" aria-hidden="true"><i style="background:#063133"></i><i style="background:#0c4244"></i><i style="background:#ecc757"></i><i style="background:#55a9d6"></i><i style="background:#55b888"></i><i style="background:#d783b6"></i></span><b>Teal</b><small>Dark green-blue</small></button><button type="button" class="cogopt" data-act="look" data-v="black" aria-pressed="false"><span class="swatch" aria-hidden="true"><i style="background:#000000"></i><i style="background:#101010"></i><i style="background:#ecc757"></i><i style="background:#5cb6ea"></i><i style="background:#5fc995"></i><i style="background:#e58ec3"></i></span><b>Black</b><small>Darkest, plain black</small></button><button type="button" class="cogopt" data-act="look" data-v="plum" aria-pressed="false"><span class="swatch" aria-hidden="true"><i style="background:#1a1028"></i><i style="background:#261a38"></i><i style="background:#ecc757"></i><i style="background:#5ab0e8"></i><i style="background:#52cb94"></i><i style="background:#ee8cc8"></i></span><b>Plum</b><small>Deep purple</small></button><button type="button" class="cogopt" data-act="look" data-v="slate" aria-pressed="false"><span class="swatch" aria-hidden="true"><i style="background:#121820"></i><i style="background:#1b222d"></i><i style="background:#ecc757"></i><i style="background:#58b4e6"></i><i style="background:#5bc592"></i><i style="background:#df8cca"></i></span><b>Midnight</b><small>Dark blue-grey</small></button><button type="button" class="cogopt" data-act="look" data-v="light" aria-pressed="false"><span class="swatch" aria-hidden="true"><i style="background:#f6f8f7"></i><i style="background:#ffffff"></i><i style="background:#ecc757"></i><i style="background:#2c78a3"></i><i style="background:#2f8a62"></i><i style="background:#a24f80"></i></span><b>Mist</b><small>Pale grey-green</small></button><button type="button" class="cogopt" data-act="look" data-v="parchment" aria-pressed="false"><span class="swatch" aria-hidden="true"><i style="background:#f7f4ed"></i><i style="background:#ffffff"></i><i style="background:#ecc757"></i><i style="background:#2778a3"></i><i style="background:#2b835d"></i><i style="background:#984b79"></i></span><b>Paper</b><small>Warm cream</small></button><button type="button" class="cogopt" data-act="look" data-v="contrast" aria-pressed="false"><span class="swatch" aria-hidden="true"><i style="background:#ffffff"></i><i style="background:#f0f2f5"></i><i style="background:#ecc757"></i><i style="background:#1b638a"></i><i style="background:#1e6e4a"></i><i style="background:#823964"></i></span><b>Plain white</b><small>White, strongest writing</small></button></div><details class="hometip"><summary>Add to your home screen</summary><p><b>iPhone or iPad:</b> open this page in Safari, tap the Share button, then Add to Home Screen.</p><p><b>Android:</b> open it in Chrome, tap the three dots, then Add to Home screen.</p><p><b>Important:</b> the home-screen icon keeps its own copy of your setup, separate from your browser. Levels and buildings you set in one do not appear in the other by themselves.</p><p>To move them across: in the one you have set up, go to <a href="#buildings" data-sec="save">My buildings, Save</a> and press <b>Copy my setup</b>. Then open the other one, go to the same place, press <b>Paste a setup</b>, paste, and press <b>Load this text</b>.</p><p>If that feels like too much, just keep using the page in your browser and bookmark it.</p></details><div id="cogabout" class="cogabout"></div><div class="row" style="margin-top:14px"><button type="button" class="btn" data-act="cogclose">Close</button></div></div>
@@ -549,7 +562,7 @@ ol.steps{margin:0 0 8px;padding-left:22px}ol.steps li{margin:4px 0;color:var(--m
   <div id="feedback"></div>
   <p class="footer"><span class="meonly"><a href="#data">Data &amp; flags</a> · </span><button class="linkbtn" data-act="walkshow">Quick start</button> · <button class="btn ghost small" data-act="key" aria-expanded="false" id="keybtn">How accurate are the numbers?</button></p>
   <div id="keyline"></div>
-  <p class="footer" style="margin-top:6px">Beta 0.1 · test 169 - data from the 28 Oct 2026 game update (game 1.3.40251)</p>
+  <p class="footer" style="margin-top:6px">Beta 0.1 · test 170 - data from the 28 Oct 2026 game update (game 1.3.40251)</p>
   <p class="footer" style="margin-top:0">Unofficial fan tool. Not made by, or connected to, the game's developers.</p>
   <div id="footlogo" class="footlogo"></div>
   <p class="totop"><button type="button" class="btn ghost small" data-act="totop">↑ Back to top</button></p>
@@ -659,7 +672,7 @@ function siteBits(){
   if(SITE.footlogo&&$('#footlogo'))$('#footlogo').innerHTML=`<img src="${esc(SITE.footlogo)}" alt="OJ Maestro" onerror="this.parentNode.hidden=true">`;
   if(SITE.coffee&&$('#coffee'))$('#coffee').innerHTML=`<div class="coffeecard"><p>Free tool, made by OJ Maestro. If it saved you time, you can say thanks with a small tip.</p><a class="coffeebtn" href="${esc(SITE.coffee)}" target="_blank" rel="noopener" aria-label="Buy me a coffee"><img class="bmcimg" hidden alt="" src="https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=&slug=ojmaestro&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" onload="this.hidden=false;this.nextElementSibling.hidden=true;this.parentNode.classList.add('official')" onerror="this.remove()"><span class="bmcfb"><svg viewBox="0 0 22 26" aria-hidden="true"><path d="M3 9h16l-1.6 14.5a2 2 0 0 1-2 1.5H6.6a2 2 0 0 1-2-1.5z" fill="#fff" stroke="#000" stroke-width="1.8" stroke-linejoin="round"/><path d="M2 9h18V6.5H2z" fill="#fff" stroke="#000" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 6.5V4.5c0-1 1-1.8 2-1.8h8c1 0 2 .8 2 1.8v2" fill="none" stroke="#000" stroke-width="1.8"/></svg> Buy me a coffee</span></a></div>`;
   const ab=$('#cogabout');
-  if(ab)ab.innerHTML=`<h2>Help &amp; feedback</h2><p class="sub" style="margin:0">Spot a bug or have an idea? Tell me.</p>${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p>Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}<div class="abrow"><button class="linkbtn" data-act="walkshow">Quick start</button><span class="meonly"><a href="#data">Data &amp; flags</a></span></div><p class="sub">Made by OJ Maestro · Beta 0.1 · test 169</p>`;
+  if(ab)ab.innerHTML=`<h2>Help &amp; feedback</h2><p class="sub" style="margin:0">Spot a bug or have an idea? Tell me.</p>${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p>Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}<div class="abrow"><button class="linkbtn" data-act="walkshow">Quick start</button><span class="meonly"><a href="#data">Data &amp; flags</a></span></div><p class="sub">Made by OJ Maestro · Beta 0.1 · test 170</p>`;
   const fb=$('#feedback');
   if(fb&&(SITE.feedback||SITE.email||SITE.discord))fb.innerHTML=`<div class="card fbcard"><h2>Spot a bug or have an idea?</h2>${SITE.feedback?`<p>${esc(SITE.feedback)}</p>`:''}${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p class="fbdisc">Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}</div>`}
 document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.classList&&t.classList.contains('ovlist'))state.ovOpen=t.open},true);
@@ -821,11 +834,11 @@ function lvCells(list){const m=new Map();
 function lvByKey(k){const q=String(k).split('|');return lvCells(setup.groups.filter((g)=>g.state==='active'&&g.producer===q[0]&&String(g.level)===q[1]))[0]}
 function saveCard(){const me=/[?&]me=1(&|$)/.test(location.search);
   return `<div class="card" id="j-save"><h2>Backup copy</h2>${hline('Keep a copy in a note, or move your setup to another phone or to the home-screen icon.','<ol class="steps"><li>Press <b>Copy my setup</b> and paste it into a note or message to yourself.</li><li>To bring it back, copy that text, press <b>Paste a setup</b>, paste it into the box and press <b>Load this text</b>.</li></ol><p>The home-screen icon and your browser keep separate copies, so this is also how you move your setup from one to the other.</p>')}
-    <div class="row" style="margin-top:8px"><button class="btn" data-act="copy">Copy my setup</button><button class="btn ghost" data-act="pasteopen">Paste a setup</button></div><div id="profmsg" aria-live="polite"></div>
+    <div class="row" style="margin-top:8px"><button class="btn" data-act="copy">Copy my setup</button><button class="btn ghost" data-act="pasteopen">Paste a setup</button></div>${state.pasteAsk?`<div class="rune-ask" role="alert" style="margin-top:8px;flex-wrap:wrap">Load this setup? It replaces your current one. <button class="btn small" data-act="pasteyes">Yes</button><button class="btn ghost small" data-act="pasteno">No</button></div>`:''}${state.loadUndo?`<div class="row" style="margin-top:8px"><span class="sub" style="margin:0">Setup loaded.</span><button class="btn small" data-act="loadundo">Undo</button></div>`:''}<div id="profmsg" aria-live="polite"></div>
     <details class="proftext"${state.pasteOpen?' open':''}><summary>${state.pasteOpen?'Paste your copied setup into the box':'Show the text'}</summary><textarea id="prof" spellcheck="false" aria-label="Your setup as text">${esc(JSON.stringify(setup,null,1))}</textarea>
     <div class="row" style="margin-top:8px"><button class="btn" data-act="apply">Load this text</button><button class="btn ghost" data-act="clearbox">Clear box</button>${me&&files.myIsland?'<button class="btn ghost" data-act="loadfile">Load my saved island (28 Oct file)</button>':''}</div></details></div>`}
 function layoutsCard(){const T=curTour();
-  let h=`<div class="card" id="j-layouts"><h2>My saved setups</h2>${hline('Save your buildings under a name, then press <b>Use</b> to switch back to it any time.','<p>Using a saved setup replaces all your buildings on every island. You can press <b>Undo</b> straight afterwards.</p>')}`;
+  let h=`<div class="card" id="j-layouts"><h2>My saved setups</h2>${hline('To switch between your own saved setups, press <b>Use</b>. No copying needed.','<p>Using a saved setup replaces all your buildings on every island. You can press <b>Undo</b> straight afterwards.</p>')}`;
   if(!T.loadouts.length)h+=`<p class="empty">Nothing saved yet. Type a name below and press <b>Save my setup</b>.</p>`;
   T.loadouts.forEach((L)=>{const sm=loadoutSummary(L);
     h+=`<div class="line lsaved" data-lid="${L.id}"><div style="flex:1;min-width:150px"><b>${esc(L.name)}</b><div class="sub" style="margin:0">${Object.entries(sm).map(([i,x])=>esc(pretty(i))+': '+x.a+' in use, '+x.s+' stored').join(' · ')}</div></div>
@@ -835,10 +848,9 @@ function layoutsCard(){const T=curTour();
 function statusLine(){const byI={},stoI={};let n=0,sto=0;setup.groups.forEach((g)=>{const P=model.producers[g.producer];if(!P)return;n+=g.count;if(g.state==='storage')sto+=g.count;const I=byI[g.island]=byI[g.island]||{};I[P.id]=(I[P.id]||0)+g.count;if(g.state==='storage'){const S=stoI[g.island]=stoI[g.island]||{};S[P.id]=(S[P.id]||0)+g.count}});
   const lib=Object.values(setup.library||{}).filter((v)=>v>0).length;
   const list=model.islands.filter((i)=>byI[i]).map((i)=>`<div class="sl-isl isl-${esc(String(i).toLowerCase())}"><div class="sl-ih">${esc(pretty(i))}</div><ul class="sl-ul">${Object.entries(byI[i]).map(([k,v])=>{const nm=model.producers[k].name;const sv=(stoI[i]||{})[k]||0;return `<li><b>${v}</b> ${esc((v===1?bsing(nm):nm).toLowerCase())}${sv?` <span class="sub">(${sv} in storage)</span>`:''}</li>`}).join('')}</ul></div>`).join('');
-  const ts=tours().filter((t)=>t.type==='cruise');const tasks=ts.length?ts[0].tasks:[];let cn=0,pts=0,tot=0;
-  tasks.forEach((t)=>{const a=taskAnswer(t),p=parseInt(t.points,10)||0;tot+=p;if(a&&a.head.cls==='good'){cn++;pts+=p}});
-  const head=[n?n+' buildings'+(sto?', including '+sto+' in storage':''):'No buildings yet',tasks.length?'Cruise: you can do '+cn+' of '+tasks.length+' saved cards':''].filter(Boolean).join(' · ');
-  return `<div class="card statusline isl-${esc(String(state.bIsland||model.islands[0]).toLowerCase())}"><details><summary><span class="sl-title">My island at a glance</span><span class="sl-head">${esc(head)}</span></summary><p class="sub" style="margin:6px 0 0">${setup.groups.length||lib?'Your setup is saved in this browser.':'Nothing saved yet.'} Library: ${lib} levels set.</p>${list?`<div class="sl-list">${list}</div>`:''}${tasks.length?`<p class="sub" style="margin:4px 0 0">Cruise cards your buildings can do now: <b>${cn} of ${tasks.length}</b> saved cards.</p>`:''}</details></div>`}
+  const cv=n?cvSummary():{n:0,ok:0},cn=cv.ok,tasks={length:cv.n};
+  const head=[n?n+' buildings'+(sto?', including '+sto+' in storage':''):'No buildings yet',tasks.length?'Cruise: '+cn+' of '+tasks.length+' cards':''].filter(Boolean).join(' · ');
+  return `<div class="card statusline isl-${esc(String(state.bIsland||model.islands[0]).toLowerCase())}"><details><summary><span class="sl-title">My island at a glance</span><span class="sl-head">${esc(head)}</span></summary><p class="sub" style="margin:6px 0 0">${setup.groups.length||lib?'Your setup is saved in this browser.':'Nothing saved yet.'} Library: ${lib} levels set.</p>${list?`<div class="sl-list">${list}</div>`:''}${tasks.length?`<p class="sub" style="margin:4px 0 0">Cruise cards your buildings can do now: <b>${cn} of ${tasks.length}</b> known cards.</p>`:''}</details></div>`}
 function bsecTabs(cur){const T=[['buildings','Buildings'],['collect','Quick count'],['save','Save']];
   return `<div class="subtabs" role="tablist" aria-label="My buildings sections">${T.map(([k,l])=>`<button type="button" role="tab" aria-selected="${k===cur}" data-act="bsec" data-s="${k}">${l}</button>`).join('')}</div>`}
 /* Building picker in the add form: same look as Look up (island-coloured rows), building only, no product step. Closed it is one line with Change. */
@@ -938,23 +950,18 @@ function collectCard(pid,gs){const P=model.producers[pid];
   const desc=lvs.map((L)=>byLv[L]+' at level '+L).join(', ');
   let h=`<div class="card"><div class="row" style="justify-content:space-between;align-items:flex-start"><h2 style="margin:0">${esc(P.name)}</h2><span class="chip">You have ${total}</span></div><p class="sub" style="margin:4px 0 8px">${esc(desc)}</p>`;
   prodsOf(P).forEach((prod)=>{const ml=modeList(P,prod).slice().sort((a,b)=>['regular','fine','instant'].indexOf(a)-['regular','fine','instant'].indexOf(b));
-    let rows='',up='';
+    let rows='',up='';const cp=[];
     ml.forEach((m)=>{let tot=0,tag='seen',cyc=null,bad=false;
       lvs.forEach((L)=>{const r=R(prod,m,L);if(!r.ok){bad=true;return}tot+=r.out.v*byLv[L];tag=C.worst(tag,r.out.tag);if(r.cycle&&(!cyc||r.cycle.v>cyc.v))cyc=r.cycle});
+      if(!bad)cp.push((m==='none'?'':modeLabel(P,prod,m)+' ')+nf(tot));
       rows+=bad?`<tr><td>${m==='none'?'Per collection':esc(modeLabel(P,prod,m))}</td><td colspan="2"><span class="empty">not worked out for every level yet</span></td></tr>`:`<tr><td>${m==='none'?'Per collection':esc(modeLabel(P,prod,m))}</td><td class="n">${tv(tot,tag)}</td><td class="n">${tc(cyc)}</td></tr>`});
     const m0=ml.includes('regular')?'regular':ml[0],parts=[];
     const one=bsing(P.name).toLowerCase(),mtag=m0==='none'?'':' ('+modeLabel(P,prod,m0)+')';
     lvs.forEach((L)=>{if(L>=P.maxLevel)return;const a=R(prod,m0,L),b=R(prod,m0,L+1);if(a.ok&&b.ok&&b.out.v>a.out.v){const d=b.out.v-a.out.v;parts.push('Upgrade a level '+L+' '+one+' to level '+(L+1)+': adds '+nf(d,Number.isInteger(d)?0:1)+' '+amtName(prod,d)+mtag)}});
     if(parts.length)up='<div class="upbox">'+parts.slice(0,3).map((t)=>`<p>${esc(t)}</p>`).join('')+'</div>';
-    h+=`<h3 class="ptl">${esc(pretty(prod))}</h3><div class="scroll"><table class="ctbl"><thead><tr><th>${ml[0]==='none'?'':'Mode'}</th><th class="n">You can collect</th><th class="n">Time</th></tr></thead><tbody>${rows}</tbody></table></div>${up}`});
+    const ctext=pretty(prod)+' ('+total+' '+(total===1?bsing(P.name):P.name).toLowerCase()+'): '+cp.join(' · ');
+    h+=`<div class="ptlrow"><h3 class="ptl">${esc(pretty(prod))}</h3>${cp.length?`<button type="button" class="btn small" data-act="qccopy" data-t="${esc(ctext)}" aria-label="Copy the ${esc(pretty(prod).toLowerCase())} totals">Copy</button>`:''}</div><div class="scroll"><table class="ctbl"><thead><tr><th>${ml[0]==='none'?'':'Mode'}</th><th class="n">You can collect</th><th class="n">Time</th></tr></thead><tbody>${rows}</tbody></table></div>${up}`});
   return h+'</div>'}
-/* test 169: the most your active buildings can make of one product in one go (best of Regular and Fine, biggest stack; same rule as "Potential" on the Guild tab) */
-function maxOut(act,id){const pids=model.productProducers[id]||[];let tot=0,tag='seen',cyc=null,any=false;
-  act.forEach((g)=>{if(!pids.includes(g.producer))return;const P=model.producers[g.producer];let best=null;
-    modeList(P,id).filter((m)=>m!=='instant').forEach((m)=>{const r=C.resolve(model,setup,{producer:g.producer,product:id,mode:m,level:g.level,slider:P.slider?topOf(P,id,m,g.level).top:1});if(r.ok&&(!best||r.out.v>best.out.v))best=r});
-    if(!best)return;any=true;tot+=best.out.v*g.count;tag=C.worst(tag,best.out.tag);if(best.cycle&&(!cyc||best.cycle.v>cyc.v))cyc=best.cycle});
-  return any?{tot,tag,cyc}:null}
-function qProjText(pr,act){return pr.title+': '+pr.products.map((p)=>{const m=maxOut(act,p.product_id);return plu(p.product_id)+' '+(m?'up to '+nf(m.tot):'none')}).join(', ')+' (the most my buildings can make in one go)'}
 function renderCollect(){
   const act=setup.groups.filter((g)=>g.state==='active'&&model.producers[g.producer]);
   const ids=[];model.islands.forEach((i)=>producersOf(i).forEach((p)=>{if(act.some((g)=>g.producer===p.id))ids.push(p.id)}));
@@ -964,13 +971,8 @@ function renderCollect(){
   const inIsl=ids.filter((x)=>String(model.producers[x].island)===String(state.cisl2));
   state.csel=(state.csel==='all'||inIsl.includes(state.csel))?state.csel:'all';
   const cap=(t)=>{t=String(t);return t.charAt(0).toUpperCase()+t.slice(1)};
-  const gp=guildProjects(),pr=gp.find((x)=>x.id===state.qproj)||null;
-  let h=`<div class="card"><div class="hline"><h2 style="margin:0;flex:1">Quick count</h2>${qh('<p>The most each of your buildings can make in one go (Regular or Fine, biggest stack). Nothing to type: it reads your buildings.</p><p>Pick a guild project to see the most you can make for it, with a <b>Copy</b> button for guild chat.</p>')}</div>`;
-  if(gp.length)h+=`<div class="pwrap" style="margin-top:6px"><div class="pstrip" id="qstrip" role="listbox" aria-label="Guild project">${gp.map((x)=>`<button type="button" class="btn ghost small pbtn${pr&&pr.id===x.id?' on':''}" role="option" aria-selected="${!!(pr&&pr.id===x.id)}" data-act="qproj" data-p="${esc(x.id)}">${esc(x.title)}</button>`).join('')}</div></div>`;
-  h+='</div>';
-  /* one fixed bar: the island buttons, and (with a project picked) the most you can make plus Copy */
-  h+=`<div class="qbar" role="region" aria-label="Quick count">`;
-  if(pr)h+=`<div class="qnums"><span class="rlab">Most you can make · ${esc(pr.title)}</span>${pr.products.map((p)=>{const m=maxOut(act,p.product_id);return `<span class="rchip"><span class="rnm">${esc(plu(p.product_id))}</span><span class="rnum">${m?tv(m.tot,m.tag):'<span class="v">none</span>'}</span></span>`}).join('')}<button type="button" class="btn small rcopy" data-act="qcopy">Copy</button></div>`;
+  let h=`<div class="card"><div class="hline"><h2 style="margin:0;flex:1">Quick count</h2>${qh('<p>What your own buildings can make in one go, for every product. Nothing to type: it reads your buildings.</p><p>Press <b>Copy</b> under a product to copy its totals, ready to paste into guild chat.</p>')}</div><p class="sub" style="margin:4px 0 0">What your buildings make in one go. Press <b>Copy</b> under a product for guild chat.</p></div>`;
+  h+=`<div class="qbar" role="region" aria-label="Island">`;
   if(isls.length>1)h+=`<div class="bisltabs" role="tablist" aria-label="Island">${isls.map((k)=>`<button type="button" role="tab" aria-selected="${k===state.cisl2}" class="bislt isl-${esc(String(k).toLowerCase())}${k===state.cisl2?' on':''}" data-act="cisl2" data-k="${esc(k)}">${esc(cap(k))}</button>`).join('')}</div>`;
   h+='</div>';
   if(inIsl.length>1)h+=`<div class="card"><div class="cchips lchips">${['all'].concat(inIsl).map((x)=>`<button type="button" class="cchip lchip isl-${esc(String(state.cisl2).toLowerCase())}${x===state.csel?' on':''}" data-act="qcpick" data-v="${esc(x)}" aria-pressed="${x===state.csel}">${x==='all'?'All on '+esc(cap(state.cisl2)):esc(model.producers[x].name)}</button>`).join('')}</div></div>`;
@@ -1663,35 +1665,78 @@ function cruiseForm(T){
     ${msgs.join('')}
     ${id&&amt?`<div class="cready" role="status"><b>Ready to save:</b> ${esc(cruiseNames()[id]||pretty(id))} × ${nf(amt)}${f.points?' · '+nf(parseInt(f.points,10)||0)+' points':''}${cfLimit(f)?' · '+limitText(cfLimit(f)):''}<span class="sub" style="display:block;margin:2px 0 0">Tap another size above to change it.</span></div>`:''}
     <div class="row" style="margin-top:10px"><button class="btn" data-act="csave">Save card</button><button class="btn ghost" data-act="cclear">Clear fields</button></div></div>`}
+/* ---- CRUISE (test 170): every known card is worked out automatically; nothing to save. Stars mark favourites. ---- */
+function cvTime(id){const m=cfProdMin(id);if(m)return m;const c=cardList().find((x)=>x.id===id&&x.time_h);return c?Math.round(c.time_h*60):0}
+/* sizes with an amount seen on a real card or in the forum table; guesses are left out */
+function cvSizes(id){const rows=cfStepRows(id).filter((x)=>x.amount!=null&&(x.state==='seen'||x.state==='seen_time_inferred'||x.state==='seen_unchecked')).map((x)=>({amount:x.amount,chk:x.state==='seen_unchecked'}));
+  cardList().forEach((c)=>{if(c.id===id&&c.amount!=null&&c.type!=='other_task'&&!rows.some((r)=>r.amount===c.amount))rows.push({amount:c.amount,chk:false})});
+  return rows.sort((a,b)=>a.amount-b.amount)}
+function cvUnseen(id){return cfStepRows(id).filter((x)=>x.amount==null).length}
+function cvIds(){const R=((files.cruiseRules||{}).products)||{};const S=new Set(Object.keys(R));cardList().forEach((c)=>{if(c.type!=='other_task')S.add(c.id)});
+  return [...S].filter((id)=>!isOther(id)&&cruiseNames()[id])}
+function cvReady(){if(state.cvReady)return state.cvReady;let v=null;try{v=localStorage.getItem('sunshine_cvready_v1')}catch(_){}
+  if(v!=='scratch'&&v!=='ready')v=Object.values(setup.cellState||{}).some((x)=>x&&x.full>0)?'ready':'scratch';return state.cvReady=v}
+/* works every card out; "From scratch" ignores what is waiting to be collected */
+function cvCompute(full){const keep=setup.cellState;const scratch=cvReady()==='scratch';if(scratch)setup.cellState={};
+  const out={};try{cvIds().forEach((id)=>{const t=cvTime(id),calc=canCalc(id),sizes=cvSizes(id);
+    out[id]={id,t,calc,unseen:cvUnseen(id),sizes:sizes.map((sz)=>{let a=null;if(calc&&t){try{a=taskAnswer({product:id,target:sz.amount,h:Math.floor(t/60),m:t%60,instant:false,have:{}},!full)}catch(_){a=null}}
+      return Object.assign({},sz,{a,ok:a&&a.head?a.head.cls==='good':null})})}})}finally{if(scratch)setup.cellState=keep}
+  return out}
+function cvSummary(){const D=cvCompute(false);let n=0,ok=0;Object.values(D).forEach((p)=>{if(!p.t||!p.calc)return;p.sizes.forEach((s)=>{n++;if(s.ok)ok++})});return {n,ok}}
+function cvStars(){if(!Array.isArray(setup.cruiseStars)){setup.cruiseStars=[];
+    /* cards saved before test 170 become stars, so nothing is lost */
+    tours().filter((t)=>t.type==='cruise').forEach((T)=>T.tasks.forEach((k)=>{if(k.product&&!setup.cruiseStars.includes(k.product))setup.cruiseStars.push(k.product)}));save()}
+  return setup.cruiseStars}
+function cvRow(p,stars){const nm=cruiseNames()[p.id]||pretty(p.id),star=stars.includes(p.id),open=state.cvOpen===p.id;
+  const best=[...p.sizes].reverse().find((s)=>s.ok),next=p.sizes.find((s)=>s.ok===false);
+  let line;
+  if(!p.sizes.length)line='<span class="sub">Card amounts not seen yet</span>';
+  else if(!p.t)line='<span class="sub">Time limit not known yet, so it cannot be worked out</span>';
+  else if(!p.calc)line='<span class="sub">No game data for this product yet</span>';
+  else line=(best?`<span class="good">✓ up to ${nf(best.amount)}</span>`:'<span class="cvno">Not yet</span>')+(next?` <span class="sub">· next: ${nf(next.amount)}</span>`:(best?' <span class="sub">· every known size</span>':''));
+  let h=`<div class="cvrow${open?' open':''}" data-cvid="${esc(p.id)}" data-name="${esc(nm.toLowerCase())}"><div class="cvtop"><button type="button" class="cvstar" data-act="cvstar" aria-pressed="${star}" aria-label="${star?'Remove star from':'Star'} ${esc(nm)}">${star?'★':'☆'}</button><button type="button" class="cvmain" data-act="cvopen" aria-expanded="${open}"><b>${esc(nm)}</b><span class="cvline">${line}</span></button></div>`;
+  if(open)h+=cvDetail(p);
+  return h+'</div>'}
+function cvDetail(p){const nm=cruiseNames()[p.id]||pretty(p.id);let h='<div class="cvdet">';
+  if(p.t)h+=`<p class="sub" style="margin:0 0 6px">Time on the card: <b>${limitText(p.t)}</b>${cvReady()==='scratch'?' · worked out from scratch (nothing waiting)':' · counting what is ready now'}</p>`;
+  if(!p.sizes.length)h+=`<p class="sub">No amounts for ${esc(nm.toLowerCase())} have been seen on a real card yet. If you see one, send me a screenshot.</p>`;
+  else{const D=p.calc&&p.t?cvCompute(true)[p.id]:p;
+    h+='<ul class="cvsizes">'+D.sizes.map((s)=>`<li><b>${nf(s.amount)}</b>${s.chk?' <span class="chip">not checked</span>':''}: ${s.a&&s.a.head?(s.ok?'<span class="good">✓ can do</span>':'<span class="cvno">not yet</span>')+' <span class="sub">'+cmpHead(s.a.head.text)+'</span>':'<span class="sub">cannot work out</span>'}</li>`).join('')+'</ul>';
+    if(p.unseen)h+=`<p class="sub" style="margin:4px 0 0">${p.unseen} more size${p.unseen===1?'':'s'} not seen on a real card yet, so not shown.</p>`;
+    const nx=D.sizes.find((s)=>s.ok===false);
+    if(nx&&nx.a){const fix=(nx.a.opts||[]).filter((o)=>!/^Now:/.test(o));if(fix.length)h+=`<p style="margin:8px 0 2px"><b>To reach ${nf(nx.amount)}:</b></p><ul class="opt">${fix.map((o)=>`<li>${o}</li>`).join('')}</ul>`;
+      if(nx.a.inputs&&nx.a.inputs.length)h+=`<p class="sub" style="margin:6px 0 0">It needs: ${nx.a.inputs.map((i)=>nf(i.need)+' '+esc(inName(i.product).toLowerCase())).join(', ')}.</p>`}}
+  if(cvReady()==='ready'){const cs=activeCells().filter((c)=>c.product===p.id);if(cs.length)h+=`<p class="sub" style="margin:10px 0 0"><b>Ready to collect now</b></p>`+cs.map((c)=>`<div class="line" data-cell="${esc(c.key)}" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:6px"><span><b>${c.count} × Level ${c.level} ${esc(model.producers[c.producer].name)}</b></span><label style="flex-direction:row;align-items:center;gap:6px">Ready (of ${c.count})<input type="number" min="0" max="${c.count}" step="1" data-gf="full" value="${cellState(c).full||0}" style="width:80px"></label><button class="btn ghost small" data-act="cfull">All ready</button><button class="btn ghost small" data-act="cnone">None</button></div>`).join('')}
+  if(p.calc)h+=`<p class="sub" style="margin:10px 0 0">${supplyNote(p.id)} · <a href="#buildings" data-sec="buildings">change my buildings</a></p>`;
+  return h+'</div>'}
 function renderTournament(){
-  const T=curTour();
-  let html=`<div class="card"><h2 style="margin:0 0 4px">Cruise tournament</h2><p class="sub" style="margin:0">Pick a product with Browse products (or type its name), then press Save.</p><button type="button" class="btn ghost small" data-act="chelp" style="margin-top:8px" aria-expanded="${!!state.chelp}">${state.chelp?'Hide how this works':'How this works'}</button>${state.chelp?'<p class="sub help" style="margin:8px 0 0">It picks the biggest size your buildings can do, and you can tap another size. Each product gets one card, with all its sizes. A ✓ on a green size means your buildings can do it now. Grey means not yet. Tap the name on a saved card to fold it.</p>':''}</div>`;
-  html+=cruiseForm(T);
-  const rows=T.tasks.map((t)=>({t,a:taskAnswer(t),N:parseInt(t.target,10)||0}));
-  const oth=rows.filter((q)=>q.a&&q.a.other),calc=rows.filter((q)=>!(q.a&&q.a.other));
-  if(rows.length>=2&&calc.length){const ok=calc.filter((q)=>q.a&&q.a.head.cls==='good'),no=calc.filter((q)=>!(q.a&&q.a.head.cls==='good'));
-    const line=(q,m)=>`<li><b>${m}</b> ${esc(q.t.name||pretty(q.t.product))} × ${nf(q.N)}${parseInt(q.t.points,10)?' · '+nf(parseInt(q.t.points,10))+' points':''}<div class="sub" style="margin:0">${q.a?cmpHead(q.a.head.text):''}</div></li>`;
-    html+=`<div class="card"><h2 style="margin:0 0 6px">At a glance</h2><p class="sub" style="margin:0 0 6px">Your saved cards, sorted by whether your buildings can do them${rows.some((q)=>q.t.instant)?' (the one-cycle rule counts where ticked)':''}.</p><p style="margin:0 0 6px"><b>${ok.length} of ${calc.length} cards can be done</b></p><ul class="opt">${ok.map((q)=>line(q,'✓ Can do:')).join('')}${no.map((q)=>line(q,'✗ Cannot yet:')).join('')}</ul>${oth.length?`<p class="sub" style="margin:8px 0 0">${oth.length} other card${oth.length===1?'':'s'} (market, fishing, ships, planes and so on) not counted here. Every player can do those, so the calculator does not work them out.</p>`:''}</div>`}
-  if(!T.tasks.length)html+=`<p class="empty">No saved cards yet.</p>`;
-  else if(T.tasks.length>=2)html+=`<div class="row" style="margin:6px 0"><button class="btn ghost small" data-act="tcolall">Fold all cards</button><button class="btn ghost small" data-act="texpall">Open all cards</button></div>`;
-  T.tasks.forEach((t,i)=>{const a=taskAnswer(t),lm=(parseInt(t.h,10)||0)*60+(parseInt(t.m,10)||0),pts=parseInt(t.points,10)||0;
-    const card=cardList().find((c)=>c.id===t.product&&c.amount===(parseInt(t.target,10)||0)),diff=card&&card.differs;
-    const col=!!(state.tcol&&state.tcol[t.product]);
-    html+=`<div class="card" data-ti="${i}"><div class="row" style="justify-content:space-between;align-items:flex-start"><div data-act="tcol" role="button" tabindex="0" aria-expanded="${!col}" style="cursor:pointer;flex:1;min-height:40px"><b class="ctitle">${col?'▸':'▾'} ${esc(t.name||pretty(t.product))} × ${nf(parseInt(t.target,10)||0)}</b> ${badgeHtml(t.badge)}<div class="sub" style="margin:0">${limitText(lm)}${pts?' · '+nf(pts)+' points':''}</div></div><button class="btn ghost small" data-act="tdel">Remove</button></div>
-      ${col?(a&&a.head&&!a.other?`<p class="sub" style="margin:4px 0 0"><b>${a.head.cls==='good'?'✓ can do':'not yet'}</b> · tap the name to open</p>`:`<p class="sub" style="margin:4px 0 0">${a&&a.other?'<b>✓ can do</b> · every player can · tap the name to open':'Tap the name to open'}</p>`):`
-      ${(()=>{const sp=cfStrip(t.product,{points:t.points,amount:t.target},'tstep',lm||cfProdMin(t.product),t.instant);return sp?'<p class="sub help" style="margin:8px 0 0">Sizes: tap one to change this card. ✓ = your buildings can do it now.</p>'+sp:''})()}
-      ${diff?`<p class="sub" style="margin:4px 0 0"><b>Can differ:</b> other players report ${diff.join(' or ')} points for this card.</p>`:''}
-      ${a?`<div class="answer ${a.head.cls}">${cmpHead(a.head.text)}</div>`:''}
-      ${a&&a.other?'':`<label class="chk" style="display:flex;flex-direction:row;gap:10px;align-items:center;margin-top:8px"><input type="checkbox" data-t="instant" ${t.instant?'checked':''} style="width:24px;height:24px;min-height:0;flex:none"> <span><b>Instant task</b> (tick if the card must be completed in one go)</span></label>`}
-      ${(a&&(a.opts.length||(a.inputs&&a.inputs.length)))||canCalc(t.product)?`<button type="button" class="btn ghost small" data-act="tdet" style="margin-top:8px" aria-expanded="${!!(state.tdet&&state.tdet[i])}">${state.tdet&&state.tdet[i]?'Hide details':'Details: ready counts, what it needs'}</button>`:''}
-      ${state.tdet&&state.tdet[i]?`<div class="tdet">
-      ${canCalc(t.product)?`<p class="sub help" style="margin:6px 0 0">${supplyNote(t.product)} · <a href="#buildings">change my buildings</a></p>`:''}
-      ${activeCells().filter((c)=>c.product===t.product).map((c)=>`<div class="line" data-cell="${esc(c.key)}" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px"><span><b>${c.count} × Level ${c.level} ${esc(model.producers[c.producer].name)}</b></span><label style="flex-direction:row;align-items:center;gap:6px">Ready to collect (of ${c.count})<input type="number" min="0" max="${c.count}" step="1" data-gf="full" value="${cellState(c).full||0}" style="width:80px"></label><button class="btn ghost small" data-act="cfull">All ready</button><button class="btn ghost small" data-act="cnone">None</button></div>`).join('')}
-      ${a&&a.opts.length?`<ul class="opt">${a.opts.map((o)=>`<li>${o}</li>`).join('')}</ul>`:''}
-      ${inputsHtml(t,a)}</div>`:''}`}</div>`});
-  if(setup.groups.length)html+=`<div class="card"><b>Starting point</b> <span class="sub" style="margin:0">Sets every building to All ready to collect, so the sums start from the best case. Your cards stay.</span><div class="row" style="margin-top:6px"><button class="btn" data-act="allready">All ready (every building)</button>${state.rready?`<span class="rune-ask">Set every ready count back to 0? <button class="btn small" data-act="ryes">Yes</button><button class="btn ghost small" data-act="rno">No</button></span>`:`<button class="btn ghost small" data-act="rask">Clear all ready counts</button>`}</div>${state.rdone?`<p class="nstrip" role="status" style="margin:8px 0 0"><span class="tick">✓</span> ${esc(state.rdone)}</p>`:''}</div>`;state.rdone=null;
-  $('#panel').innerHTML=html;
+  const stars=cvStars(),D=cvCompute(false),ready=cvReady();
+  let n=0,ok=0;Object.values(D).forEach((p)=>{if(!p.t||!p.calc)return;p.sizes.forEach((s)=>{n++;if(s.ok)ok++})});
+  const f=['can','not','all','star'].includes(state.cvF)?state.cvF:'all';
+  let html=`<div class="card"><div class="hline"><h2 style="margin:0;flex:1">Cruise tournament</h2>${qh('<p>Every Cruise card we know about is worked out against your buildings. Nothing to save.</p><ol class="steps"><li>Type a product name in the box, or scroll.</li><li>Tap a product to see each size, how long it takes and what you would need.</li><li>Tap the star to keep a product at the top.</li></ol><p>Only amounts seen on real cards are used. Sizes marked <b>not checked</b> come from a forum table. Guesses are left out.</p>')}</div>
+  ${setup.groups.length?`<p class="cvcount"><b>You can do ${ok} of ${n}</b> known cards with your buildings.</p>`:`<p class="sub">Add your buildings in <a href="#buildings" data-sec="buildings">My buildings</a> first, then this tab works out which cards you can do.</p>`}
+  <div class="cvready" role="group" aria-label="Count from"><span class="sub" style="margin:0">Count from:</span><button type="button" class="btn small${ready==='scratch'?'':' ghost'}" data-act="cvready" data-v="scratch" aria-pressed="${ready==='scratch'}">From scratch</button><button type="button" class="btn small${ready==='ready'?'':' ghost'}" data-act="cvready" data-v="ready" aria-pressed="${ready==='ready'}">What's ready now</button></div>
+  ${ready==='ready'?`<div class="row" style="margin-top:6px"><button class="btn ghost small" data-act="allready">All ready (every building)</button>${state.rready?`<span class="rune-ask">Set every ready count back to 0? <button class="btn small" data-act="ryes">Yes</button><button class="btn ghost small" data-act="rno">No</button></span>`:`<button class="btn ghost small" data-act="rask">Clear</button>`}</div>${state.rdone?`<p class="nstrip" role="status" style="margin:8px 0 0"><span class="tick">✓</span> ${esc(state.rdone)}</p>`:''}`:''}
+  <label class="cvsearch">Find a product<input type="search" data-cq placeholder="e.g. jacket" value="${esc(state.cq||'')}" autocomplete="off" autocapitalize="none" spellcheck="false"></label>
+  <div class="cvfilt" role="group" aria-label="Show">${[['can','Can do now'],['not','Not yet'],['all','All']].concat(stars.length?[['star','★ Starred']]:[]).map(([k,l])=>`<button type="button" class="cchip${k===f?' on':''}" data-act="cvf" data-v="${k}" aria-pressed="${k===f}">${l}</button>`).join('')}</div></div>`;
+  state.rdone=null;
+  const keep=(p)=>f==='all'?true:f==='star'?stars.includes(p.id):f==='can'?p.sizes.some((s)=>s.ok):(p.t&&p.calc&&p.sizes.length&&!p.sizes.some((s)=>s.ok));
+  const starred=Object.values(D).filter((p)=>stars.includes(p.id)&&keep(p));
+  if(starred.length&&f!=='star')html+=`<div class="card cvgrp"><h3 class="cvgh">★ Starred</h3>${starred.map((p)=>cvRow(p,stars)).join('')}</div>`;
+  let shown=0;
+  cfBrowseGroups().forEach((g)=>{const ps=g.ids.filter((id)=>D[id]).map((id)=>D[id]).filter((p)=>keep(p)&&(f==='star'||!stars.includes(p.id)||!starred.length));
+    if(!ps.length)return;shown+=ps.length;
+    html+=`<div class="card cvgrp${g.isl?' isl-'+esc(slug(g.isl)):''}"><h3 class="cvgh">${esc(g.title)}</h3>${ps.map((p)=>cvRow(p,stars)).join('')}</div>`});
+  if(!shown&&!starred.length)html+=`<p class="empty">Nothing to show here. Try <b>All</b>.</p>`;
+  html+=`<p class="sub cvempty" hidden>No product matches that name.</p><div class="card"><p class="sub" style="margin:0"><b>Market orders, fishing, ships, planes and market boats:</b> every player can do these, so they are not listed. All of them except fishing are filled from your warehouse.</p></div>`;
+  $('#panel').innerHTML=html;cvFilterDom();
 }
+function cvFilterDom(){const q=String(state.cq||'').trim().toLowerCase();let any=false;
+  document.querySelectorAll('.cvrow').forEach((r)=>{const hit=!q||r.dataset.name.indexOf(q)>=0;r.hidden=!hit;if(hit)any=true});
+  document.querySelectorAll('.cvgrp').forEach((g)=>{g.hidden=![...g.querySelectorAll('.cvrow')].some((r)=>!r.hidden)});
+  const e=document.querySelector('.cvempty');if(e)e.hidden=any||!q}
+document.addEventListener('input',(e)=>{const el=e.target;if(el&&el.dataset&&el.dataset.cq!==undefined){state.cq=el.value;cvFilterDom()}});
+
 function supplyNote(pid,short){if(!model.productProducers[pid])return '';const U=capUnits(pid);if(!U.length)return (short?'none listed':'Your buildings: none listed');let per=0,cyc=0,tag='seen';U.forEach((x)=>{per+=x.g.count*x.base.gain;if(x.base.cyc)cyc=Math.max(cyc,x.base.cyc);tag=C.worst(tag,x.base.tag)});return `${short?'':'Your buildings make '}${tv(per,tag)}${cyc?' per '+mins(cyc):''}`}
 function inputsHtml(t,a){if(!a||!a.inputs||!a.inputs.length)return '';const h=t.have||{};
   return `<div style="margin-top:8px"><div class="sub" style="margin:0 0 4px"><b>Needed for ${nf(a.N)}, all cycles.</b> The last column shows what your buildings make. Type how much you have in the warehouse to see if you are short.</div><div class="scroll"><table><thead><tr><th>Needs</th><th class="n">Amount</th><th>In the warehouse</th><th></th><th>Your buildings make</th></tr></thead><tbody>${a.inputs.map((i)=>{const hv=h[i.product];const st=hv===undefined?'':(hv>=i.need?'<span class="good">enough</span>':`<span class="bad">short by ${nf(i.need-hv)}</span>`);
@@ -2047,6 +2092,10 @@ document.addEventListener('click',(e)=>{
   if(a==='cnone'){const c=cOf();if(c){cellState(c).full=0;save();render()}return}
   if(a==='rask'){state.rready=true;render();return}
   if(a==='rno'){state.rready=false;render();return}
+  if(a==='cvready'){state.cvReady=b.dataset.v;try{localStorage.setItem('sunshine_cvready_v1',state.cvReady)}catch(_){}render();return}
+  if(a==='cvf'){state.cvF=b.dataset.v;render();return}
+  if(a==='cvopen'){const id=b.closest('[data-cvid]').dataset.cvid;state.cvOpen=state.cvOpen===id?null:id;render();const r=document.querySelector('[data-cvid="'+id+'"]');if(r&&state.cvOpen){try{r.scrollIntoView({block:'nearest'})}catch(_){}}return}
+  if(a==='cvstar'){const id=b.closest('[data-cvid]').dataset.cvid,S=cvStars(),k=S.indexOf(id);if(k>=0)S.splice(k,1);else S.push(id);save();render();return}
   if(a==='ryes'){Object.keys(setup.cellState||{}).forEach((k)=>{setup.cellState[k]={full:0,coll:0}});state.rready=false;state.rdone='Done: every ready count is now 0.';save();render();return}
   if(a==='cfull'){const c=cOf();if(c){cellState(c).full=c.count;save();render()}return}
   if(a==='ccollect'){const c=cOf();if(c){const st=cellState(c);if(st.full>0){st.full-=1;st.coll=(st.coll||0)+1;state.lastCollect={key:c.key,at:Date.now()};clearTimeout(collTimer);collTimer=setTimeout(()=>{state.lastCollect=null;document.querySelectorAll('[data-act="cundo"]').forEach((x)=>x.remove())},30000);save();render()}}return}
@@ -2057,8 +2106,7 @@ document.addEventListener('click',(e)=>{
   if(a==='runekeep'){state.runeAsk=null;drawRunes()}
   if(a==='cisl2'){state.cisl2=b.dataset.k;state.csel='all';render();try{const q=document.querySelector('.qbar');if(q&&q.getBoundingClientRect().top<=1)q.scrollIntoView()}catch(_){}return}
   if(a==='qcpick'){state.csel=b.dataset.v;render();return}
-  if(a==='qproj'){state.qproj=state.qproj===b.dataset.p?null:b.dataset.p;render();return}
-  if(a==='qcopy'){const pr=guildProjects().find((x)=>x.id===state.qproj);if(pr){copyText(qProjText(pr,setup.groups.filter((g)=>g.state==='active'&&model.producers[g.producer])),(ok)=>{b.textContent=ok?'Copied \u2713':'Could not copy';setTimeout(()=>{b.textContent='Copy'},2000)})}return}
+  if(a==='qccopy'){const t=b.dataset.t;copyText(t,(ok)=>{b.textContent=ok?'Copied \u2713':'Could not copy';setTimeout(()=>{b.textContent='Copy'},2000)});return}
   if(a==='bpick'){state.bsel=state.bsel||{};state.bsel[state.bIsland]=b.dataset.v;render();return}
   if(a==='bisl'){state.bIsland=b.dataset.isl;try{localStorage.setItem('sunshine_lastisl_v1',state.bIsland)}catch(e){}state.addMsg='';render()}
   if(a==='qisl'){state.q={island:b.dataset.isl};render()}
@@ -2154,7 +2202,14 @@ document.addEventListener('click',(e)=>{
     if(L&&a==='lupdate'){L.groups=JSON.parse(JSON.stringify(setup.groups.map((g)=>Object.assign({},g,{full:0}))));L.saved=Date.now();save();render()}
     if(L&&a==='ldel'){T.loadouts=T.loadouts.filter((x)=>x!==L);save();render()}}
   if(a==='lundo'&&setup.prevGroups){setup.groups=setup.prevGroups;setup.prevGroups=null;setup.groups.forEach(fixGroup);save();render()}
-  if(a==='pasteopen'){state.pasteOpen=true;render();const ta=$('#prof');if(ta){ta.value='';ta.placeholder='Paste your copied setup here, then press Load this text.';ta.focus()}return}
+  if(a==='pasteopen'){
+    /* test 170: read what was copied straight from the phone (iOS shows its own Paste button); no keyboard, no text box */
+    const isSetup=(t)=>{try{const o=JSON.parse(t);return !!(o&&typeof o==='object'&&(o.library||o.groups))}catch(_){return false}};
+    const box=()=>{state.pasteOpen=true;state.pasteAsk=null;render();const ta=$('#prof');if(ta){ta.value='';ta.placeholder='Paste your copied setup here, then press Load this text.'}};
+    try{if(navigator.clipboard&&navigator.clipboard.readText){navigator.clipboard.readText().then((t)=>{if(isSetup(t)){state.pasteAsk=t;state.pasteOpen=false;render()}else{box();msg('What you copied is not a saved setup. Copy the whole setup text, then try again, or paste it into the box.','err')}},()=>box());return}}catch(_){}
+    box();return}
+  if(a==='pasteyes'){const t=state.pasteAsk;state.pasteAsk=null;render();const ta=$('#prof');if(ta&&t){ta.value=t;const ap=document.querySelector('[data-act="apply"]');if(ap)ap.click()}return}
+  if(a==='pasteno'){state.pasteAsk=null;render();return}
   if(a==='copy'){const ta=$('#prof');ta.select();const lab0=b.textContent;
     const done=(ok)=>{if(ok){b.textContent='Copied \u2713';setTimeout(()=>{b.textContent=lab0},2000);msg('Copied. Paste it into a note to keep it.','ok',5000)}else msg('Could not copy. Select the text and copy it by hand.','err')};
     try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(ta.value).then(()=>done(true),()=>fallbackCopy(ta,done));return}}catch(x){}
@@ -2166,11 +2221,12 @@ document.addEventListener('click',(e)=>{
   if(a==='tickno'){state.tickAsk=null;render();return}
   if(a==='tickyes'){const pid=b.dataset.p,P=model.producers[pid];if(P){const tot=setup.groups.filter((g)=>g.producer===pid).reduce((n,g)=>n+g.count,0);snap('Removed '+tot+' '+P.name.toLowerCase());setup.groups=setup.groups.filter((g)=>g.producer!==pid);mergeGroups();save()}state.tickAsk=null;render();return}
   if(a==='starter'&&files.starter){snap('Filled in a basic starter island');setup.groups=files.starter.groups.map((g)=>newGroup({producer:g.producer,level:g.level,count:g.count,state:'active'}));mergeGroups();save();state.notice='Basic starter island filled in: one of each, all Level 1. It is a first guess, so change anything that is wrong. You can press Undo.';state.bIsland=files.starter.groups[0].island;location.hash='#buildings';render();return}
-  if(a==='clearbox'){const ta=$('#prof');ta.value='';ta.placeholder='Paste your saved setup here, then press Load this text.';ta.focus();msg('Box cleared. Paste your saved text, then press Load this text.')}
-  if(a==='apply'){try{const s=JSON.parse($('#prof').value);const d=C.defaultSetup(model);
+  if(a==='clearbox'){const ta=$('#prof');ta.value='';ta.placeholder='Paste your saved setup here, then press Load this text.';msg('Box cleared. Paste your saved text, then press Load this text.')}
+  if(a==='loadundo'){if(state.loadUndo){try{setup=JSON.parse(state.loadUndo);(setup.groups||[]).forEach(fixGroup);fixUid();mergeGroups();save()}catch(_){}}state.loadUndo=null;render();msg('Your previous setup is back.');return}
+  if(a==='apply'){try{const s=JSON.parse($('#prof').value);const d=C.defaultSetup(model);const prevSetup=JSON.stringify(setup);
       setup=Object.assign(d,{library:s.library||{},runes:Object.assign(d.runes,s.runes||{})});
       setup.groups=(s.groups||[]).filter(validGroup);setup.groups.forEach(fixGroup);setup.storage=s.storage||{};setup.shelter=s.shelter||[];setup.tournaments=s.tournaments||[];setup.runeStart=s.runeStart||{};setup.sumRows=(s.sumRows||[]).filter(validGroup);setup.sumRows.forEach(fixGroup);fixUid();setup.cellState=s.cellState||{};setup.shelfLocked=s.shelfLocked||{};if(typeof s.shelterInclude==='boolean')setup.shelterInclude=s.shelterInclude;mergeGroups();
-      state.src=state.srcNext||'text you pasted and applied';state.srcNext=null;save();{const tx=$('#prof').value;render();const pf=$('#prof');if(pf)pf.value=tx}msg('Loaded. Library levels, runes and buildings are now in use.')}catch(x){msg('That text is not a valid saved setup: '+x.message,'err')}}
+      state.src=state.srcNext||'text you pasted and applied';state.srcNext=null;state.loadUndo=prevSetup;state.pasteOpen=false;save();{const tx=$('#prof').value;render();const pf=$('#prof');if(pf)pf.value=tx}msg('Loaded. Library levels, runes and buildings are now in use.')}catch(x){msg('That text is not a valid saved setup: '+x.message,'err')}}
   if(a==='reset'){setup.groups=[];setup.cellState={};setup.prevGroups=null;save();msg('Buildings cleared.')}
 });
 function fallbackCopy(ta,done){let ok=false;try{ta.select();ok=document.execCommand('copy')}catch(x){}done(ok)}
