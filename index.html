@@ -7,7 +7,7 @@
 <title>Sunshine Calculator</title>
 <!-- V104: Browse products list, one saved card per product with a size strip, sizes green (can do) / grey (not yet); V92 (test 92): plain wording, ? panels, My buildings sections, Teal/Black/Light looks, separate quick-sum lines, shelter box fixed, undo stays 30 s; V91 jump highlight + bottom tabs and Back to top; V90 (checked at 340 to 430 px) slim status line + one Jump to drop-down on the island row; V89 island list folded, singular names, island remembered; V88 island-in-use line on My buildings; V87 reopen on the last tab used; V85 test build number in header chip; V84 Load my saved island button in the jump row; V83 no-building answer shows the scenario; V82 storage hint + link to My buildings on cruise cards; V81 jump links, None, reset ready counts, points totals; V80 Full now on Cruise cards; V79 warehouse box tidy; V78 warehouse wording; V77 card note shows number not code; V76 load-island keeps cards/layouts/runes; V75 undo bar sticky at the bottom; V74 2 Nov 2026: fields card, tab order, sticky picker, cruise rules v2, shortest-crop-first when a count is lowered -->
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="build" content="190">
+<meta name="build" content="191">
 <meta name="description" content="Sunshine Island Calculator. Beta 0.1 - data from the 28 Oct 2026 game update.">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=170"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=168"><meta name="apple-mobile-web-app-title" content="Sunshine">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -635,7 +635,7 @@ p,li,.sub,.help,.helpbox,.warn,summary{text-wrap:pretty}
   <div id="feedback"></div>
   <p class="footer"><span class="meonly"><a href="#data">Data &amp; flags</a> · <button class="linkbtn" data-act="widthchk">Width check</button> · </span><button class="linkbtn" data-act="walkshow">Quick start</button> · <button class="linkbtn" data-act="key" aria-expanded="false" id="keybtn">How accurate are the numbers?</button></p>
   <div id="keyline"></div>
-  <p class="footer" style="margin-top:6px">Beta&nbsp;0.1 · test&nbsp;190 · data from the 28&nbsp;Oct&nbsp;2026 game update (game&nbsp;1.3.40251)</p>
+  <p class="footer" style="margin-top:6px">Beta&nbsp;0.1 · test&nbsp;191 · data from the 28&nbsp;Oct&nbsp;2026 game update (game&nbsp;1.3.40251)</p>
   <p class="footer" style="margin-top:0">Unofficial fan tool. Not made by, or connected to, the game's developers.</p>
   <div id="footlogo" class="footlogo"></div>
   <p class="totop"><button type="button" class="btn ghost small" data-act="totop">↑ Back to top</button></p>
@@ -664,6 +664,10 @@ const inName=(id)=>{const m=String(id).match(/^unidentified_input_.*_(\d+)$/);if
 const SITE={logo:'',footlogo:'oj-maestro-logo.png',made:'Made by OJ Maestro',coffee:'https://buymeacoffee.com/ojmaestro',email:'hello.ojmaestro@gmail.com',feedback:'Beta: if a number looks different from the game, something is unclear, or you have an idea for a new feature, let me know. If a Cruise card is not in the calculator, send me a screenshot.',discord:'ojmaestro'};
 /* Player level at which each building unlocks. From Jo's Your Journey bar, 4 Nov 2026 (levels 1 to 58). Used only for the tick list. */
 const UNLOCK={field:1,cow_shed:1,windmill:2,feed_mill:3,bakery:4,silo:6,pine_nursery:7,plantation:8,ostrich_farm:9,coffee_brewery:11,spinning_works:15,mine:16,bamboo_nursery:17,cotton_weaver:19,diner:21,foundry:23,goat_farm:25,palm_nursery:26,gold_forge:27,silk_weaver:29,copper_forge:31,iron_forge:33,bar:35,rice_field:37,food_stand:39,tailor:42,seamstress:45,garment_maker:48,crafting_workshop:51,instrument_maker:54,gift_workshop:57};
+/* test 191: player level at which a PRODUCT unlocks, when later than its building. From claude/BUILDING_UNLOCK_LEVELS_4nov.md (Jo's Your Journey bar, 4 Nov 2026, and the game's news for 67/72/90). */
+const PUNLOCK={daisies:3,corn:6,fertilizer:6,ostrich_feed:9,ground_coffee:10,cotton:13,silk_cocoon:14,copper_ore:18,silk_thread:18,iron_ore:20,shelter_feed:21,carrots:22,copper_ingot:24,goat_feed:25,iron_ingot:28,bamboo_rice:46,quilt:58,curtain:67,gong:72,hammock:90};
+function plvl(){const ok=(v)=>v>=1&&v<=200;if(setup&&ok(setup.playerLevel))return setup.playerLevel;let v=null;try{v=parseInt(localStorage.getItem('sunshine_playerlevel_v1'),10)}catch(_){}return ok(v)?v:null}
+function pLock(id){const lv=PUNLOCK[id];if(!lv)return null;const pl=plvl();return {lv,pl,locked:pl!=null&&pl<lv}}
 /* test 179: ordered by use. The tab grid reads down in pairs: top row My buildings, Guild tournament, Cruise tournament; bottom row Look up, Guild leader, Library & setup */
 const TABS=[['buildings','My buildings'],['lookup','Look up'],['guild','Guild tournament'],['leader','Guild leader'],['cruise','Cruise tournament'],['setup','Library & setup']];
 const ALLTABS=TABS.concat([['data','Data & flags']]);
@@ -758,7 +762,7 @@ function siteBits(){
   if(SITE.footlogo&&$('#footlogo'))$('#footlogo').innerHTML=`<img class="lg-dark" src="oj-maestro-logo-dark.png?v=182" alt="OJ Maestro" onerror="this.src='${esc(SITE.footlogo)}'"><img class="lg-light" src="oj-maestro-logo-light.png?v=182" alt="OJ Maestro" onerror="this.src='${esc(SITE.footlogo)}'">`;
   if(SITE.coffee&&$('#coffee'))$('#coffee').innerHTML=`<div class="coffeecard"><p>Free tool, made by OJ Maestro. If it saved you time, you can say thanks with a small tip.</p><a class="coffeebtn" href="${esc(SITE.coffee)}" target="_blank" rel="noopener" aria-label="Buy me a coffee"><span class="bmcfb"><svg viewBox="0 0 22 26" aria-hidden="true"><path d="M3 9h16l-1.6 14.5a2 2 0 0 1-2 1.5H6.6a2 2 0 0 1-2-1.5z" fill="#fff" stroke="#000" stroke-width="1.8" stroke-linejoin="round"/><path d="M2 9h18V6.5H2z" fill="#fff" stroke="#000" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 6.5V4.5c0-1 1-1.8 2-1.8h8c1 0 2 .8 2 1.8v2" fill="none" stroke="#000" stroke-width="1.8"/></svg> Buy me a coffee</span></a></div>`;
   const ab=$('#cogabout');
-  if(ab)ab.innerHTML=`<h2>Help &amp; feedback</h2><p class="sub" style="margin:0">Spot a bug or have an idea? Tell me.</p>${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p>Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}<div class="abrow"><button class="linkbtn" data-act="walkshow">Quick start</button><span class="meonly"><a href="#data">Data &amp; flags</a></span></div><p class="sub">This page counts visits with GoatCounter: no cookies, nothing personal is kept.</p><p class="sub">Made by OJ Maestro · Beta 0.1 · test 190</p>`;
+  if(ab)ab.innerHTML=`<h2>Help &amp; feedback</h2><p class="sub" style="margin:0">Spot a bug or have an idea? Tell me.</p>${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p>Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}<div class="abrow"><button class="linkbtn" data-act="walkshow">Quick start</button><span class="meonly"><a href="#data">Data &amp; flags</a></span></div><p class="sub">This page counts visits with GoatCounter: no cookies, nothing personal is kept.</p><p class="sub">Made by OJ Maestro · Beta 0.1 · test 191</p>`;
   const fb=$('#feedback');
   if(fb&&(SITE.feedback||SITE.email||SITE.discord))fb.innerHTML=`<div class="fbline"><p class="fbq">Spot a bug or have an idea?</p>${SITE.email?`<p><a href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a></p>`:''}${SITE.discord?`<p>or message <b>${esc(SITE.discord)}</b> on Discord</p>`:''}</div>`}
 document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.classList&&t.classList.contains('ovlist'))state.ovOpen=t.open},true);
@@ -768,7 +772,7 @@ document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.dataset&&t.dat
 document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.dataset&&t.dataset.setupfold!==undefined){state.setupOpen=t.open;if(!t.open)state.tickOpen=false;try{localStorage.setItem('sunshine_setupfold_v1',t.open?'1':'0')}catch(_){}}},true);
 /* test 169: ticks follow the level as you type (no need to press Enter) */
 document.addEventListener('input',(e)=>{const el=e.target;if(!el||!el.dataset||el.dataset.plvl===undefined||!model)return;
-  const v=parseInt(el.value,10),n=v>=1&&v<=200?v:null;state.playerLevel=n;try{if(n)localStorage.setItem('sunshine_playerlevel_v1',String(n));else localStorage.removeItem('sunshine_playerlevel_v1')}catch(_){}
+  const v=parseInt(el.value,10),n=v>=1&&v<=200?v:null;state.playerLevel=n;setup.playerLevel=n;save();try{if(n)localStorage.setItem('sunshine_playerlevel_v1',String(n));else localStorage.removeItem('sunshine_playerlevel_v1')}catch(_){}
   const o0=producersGame(state.bIsland).map((p)=>p.id);const ids=n?o0.filter((p)=>UNLOCK[p]&&UNLOCK[p]<=n):['field','cow_shed','windmill','feed_mill','bakery'].filter((p)=>o0.includes(p));
   const lvIds=(i)=>{const o=producersGame(i).map((p)=>p.id);return n?o.filter((p)=>UNLOCK[p]&&UNLOCK[p]<=n):['field','cow_shed','windmill','feed_mill','bakery'].filter((p)=>o.includes(p))};
   const em=model.islands.filter((i)=>!setup.groups.some((g)=>g.island===i));state.tickP={};em.forEach((i)=>{state.tickP[i]=lvIds(i)});
@@ -920,6 +924,7 @@ function drawRunes(){$('#runebar').innerHTML=Object.values(model.runes).map((r)=
 
 function walkCard(){return `<div class="card walk"><h2>Quick start</h2><ol>
   <li><b>Runes.</b> Tap the rune buttons at the top to match the game.</li>
+  <li><b>Player level.</b> Type it in the box below (optional). It hides products you haven't unlocked yet.</li>
   <li><b>Library.</b> Press the glowing <b>Start here</b> button below to fill in your levels from the game's Overview, or set them on the shelves.</li>
   <li><b>Buildings.</b> Open <a href="#buildings" data-sec="buildings">My buildings</a> and tick the ones you have, then set their levels.</li>
   <li><b>Try it.</b> Pick a project on the <a href="#guild">Guild tournament</a> tab, or use <a href="#lookup">Look up</a>.</li></ol>
@@ -941,7 +946,7 @@ function bkSaveFile(){const pad=(n)=>String(n).padStart(2,'0'),d=new Date();
 /* test 181: the load question and the "loaded" message show in a bar fixed at the TOP of the screen, wherever you are */
 function applySetupObj(s){const d=C.defaultSetup(model);const prev=JSON.stringify(setup);
   setup=Object.assign(d,{library:s.library||{},runes:Object.assign(d.runes,s.runes||{})});
-  setup.groups=(s.groups||[]).filter(validGroup);setup.groups.forEach(fixGroup);setup.storage=s.storage||{};setup.shelter=s.shelter||[];setup.tournaments=s.tournaments||[];setup.runeStart=s.runeStart||{};setup.sumRows=(s.sumRows||[]).filter(validGroup);setup.sumRows.forEach(fixGroup);fixUid();setup.cellState=s.cellState||{};setup.shelfLocked=s.shelfLocked||{};if(typeof s.shelterInclude==='boolean')setup.shelterInclude=s.shelterInclude;if(Array.isArray(s.cruiseStars))setup.cruiseStars=s.cruiseStars.slice();mergeGroups();
+  setup.groups=(s.groups||[]).filter(validGroup);setup.groups.forEach(fixGroup);setup.storage=s.storage||{};setup.shelter=s.shelter||[];setup.tournaments=s.tournaments||[];setup.runeStart=s.runeStart||{};setup.sumRows=(s.sumRows||[]).filter(validGroup);setup.sumRows.forEach(fixGroup);fixUid();setup.cellState=s.cellState||{};setup.shelfLocked=s.shelfLocked||{};if(typeof s.shelterInclude==='boolean')setup.shelterInclude=s.shelterInclude;if(Array.isArray(s.cruiseStars))setup.cruiseStars=s.cruiseStars.slice();if(s.playerLevel>=1&&s.playerLevel<=200){setup.playerLevel=s.playerLevel;try{localStorage.setItem('sunshine_playerlevel_v1',String(s.playerLevel))}catch(_){}}state.playerLevel=undefined;mergeGroups();
   state.loadUndo=prev;state.pasteOpen=false;state.pasteAsk=null;save();return setup.groups.reduce((n,g)=>n+g.count,0)}
 let lbTimer=null;
 function loadBar(html,ms){let el=document.getElementById('loadbar');if(!el){el=document.createElement('div');el.id='loadbar';el.setAttribute('role','alert');document.body.appendChild(el)}el.innerHTML=html;clearTimeout(lbTimer);if(ms)lbTimer=setTimeout(()=>{const e=document.getElementById('loadbar');if(e)e.remove()},ms)}
@@ -1018,7 +1023,7 @@ function renderBuildings(){
     {const ownedOf=(pid)=>setup.groups.filter((g)=>g.producer===pid);
       const openT=!!state.tickOpen;
       const pend=!setup.groups.some((g)=>g.island===isl);
-      if(state.playerLevel===undefined){try{const v=parseInt(localStorage.getItem('sunshine_playerlevel_v1'),10);state.playerLevel=v>=1&&v<=200?v:null}catch(e){state.playerLevel=null}}
+      if(state.playerLevel===undefined)state.playerLevel=plvl();
       const pl=state.playerLevel;
       const unlockedIds=()=>pl?order0.filter((p)=>UNLOCK[p]&&UNLOCK[p]<=pl):['field','cow_shed','windmill','feed_mill','bakery'].filter((p)=>order0.includes(p));
       const ulTag=(pid)=>{const u=UNLOCK[pid];return u&&(!pl||u>pl)?`<span class="tc">unlocks at level ${u}</span>`:''};
@@ -1708,7 +1713,7 @@ function cfPreselect(f){const id=slug(f.product);if(!id||!cruiseNames()[id])retu
 function cvTime(id){const m=cfProdMin(id);if(m)return m;const c=cardList().find((x)=>x.id===id&&x.time_h);return c?Math.round(c.time_h*60):0}
 /* sizes with an amount seen on a real card or in the forum table; guesses are left out */
 function cvSizes(id){const rows=cfStepRows(id).filter((x)=>x.amount!=null&&(x.state==='seen'||x.state==='seen_time_inferred'||x.state==='seen_unchecked')).map((x)=>({amount:x.amount,chk:x.state==='seen_unchecked'}));
-  cardList().forEach((c)=>{if(c.id===id&&c.amount!=null&&c.type!=='other_task'&&!rows.some((r)=>r.amount===c.amount))rows.push({amount:c.amount,chk:false})});
+  cardList().forEach((c)=>{if(c.id===id&&typeof c.amount==='number'&&c.type!=='other_task'&&!rows.some((r)=>r.amount===c.amount))rows.push({amount:c.amount,chk:false})});
   return rows.sort((a,b)=>a.amount-b.amount)}
 function cvUnseen(id){return cfStepRows(id).filter((x)=>x.amount==null).length}
 function cvIds(){const R=((files.cruiseRules||{}).products)||{};const S=new Set(Object.keys(R));cardList().forEach((c)=>{if(c.type!=='other_task')S.add(c.id)});
@@ -1718,10 +1723,10 @@ function cvReady(){if(state.cvReady)return state.cvReady;let v=null;try{v=localS
 /* works every card out; "From scratch" ignores what is waiting to be collected */
 function cvCompute(full){const keep=setup.cellState;const scratch=cvReady()==='scratch';if(scratch)setup.cellState={};
   const out={};try{cvIds().forEach((id)=>{const t=cvTime(id),calc=canCalc(id),sizes=cvSizes(id);
-    out[id]={id,t,calc,unseen:cvUnseen(id),sizes:sizes.map((sz)=>{let a=null;if(calc&&t){try{a=taskAnswer({product:id,target:sz.amount,h:Math.floor(t/60),m:t%60,instant:false,have:{}},!full)}catch(_){a=null}}
+    out[id]={id,t,calc,lock:pLock(id),unseen:cvUnseen(id),sizes:sizes.map((sz)=>{let a=null;if(calc&&t){try{a=taskAnswer({product:id,target:sz.amount,h:Math.floor(t/60),m:t%60,instant:false,have:{}},!full)}catch(_){a=null}}
       return Object.assign({},sz,{a,ok:a&&a.head?a.head.cls==='good':null})})}})}finally{if(scratch)setup.cellState=keep}
   return out}
-function cvSummary(){const D=cvCompute(false);let n=0,ok=0;Object.values(D).forEach((p)=>{if(!p.t||!p.calc)return;p.sizes.forEach((s)=>{n++;if(s.ok)ok++})});return {n,ok}}
+function cvSummary(){const D=cvCompute(false);let n=0,ok=0;Object.values(D).forEach((p)=>{if(!p.t||!p.calc||(p.lock&&p.lock.locked))return;p.sizes.forEach((s)=>{n++;if(s.ok)ok++})});return {n,ok}}
 function cvStars(){if(!Array.isArray(setup.cruiseStars)){setup.cruiseStars=[];
     /* cards saved before test 170 become stars, so nothing is lost */
     tours().filter((t)=>t.type==='cruise').forEach((T)=>T.tasks.forEach((k)=>{if(k.product&&!setup.cruiseStars.includes(k.product))setup.cruiseStars.push(k.product)}));save()}
@@ -1732,6 +1737,7 @@ function cvRow(p,stars){const nm=cruiseNames()[p.id]||pretty(p.id),star=stars.in
   if(!p.sizes.length)line='<span class="sub">Card amounts not seen yet</span>';
   else if(!p.t)line='<span class="sub">Time limit not known yet, so it cannot be worked out</span>';
   else if(!p.calc)line='<span class="sub">No game data for this product yet</span>';
+  else if(p.lock&&p.lock.locked)line=`<span class="cvno">Unlocks at player level ${p.lock.lv}</span> <span class="sub">· you're level ${p.lock.pl}</span>`;
   else line=(best?`<span class="good">✓ up to ${nf(best.amount)}</span>`:'<span class="cvno">Not yet</span>')+(next?` <span class="sub">· next: ${nf(next.amount)}</span>`:(best?' <span class="sub">· every known size</span>':''));
   let h=`<div class="cvrow${open?' open':''}" data-cvid="${esc(p.id)}" data-name="${esc(nm.toLowerCase())}"><div class="cvtop"><button type="button" class="cvstar" data-act="cvstar" aria-pressed="${star}" aria-label="${star?'Remove star from':'Star'} ${esc(nm)}">${star?'★':'☆'}</button><button type="button" class="cvmain" data-act="cvopen" aria-expanded="${open}"><b>${esc(nm)}</b><span class="cvline">${line}</span></button></div>`;
   if(open)h+=cvDetail(p);
@@ -1748,7 +1754,13 @@ function cvNoBuild(p){if(!p.calc||!p.sizes.length)return null;const pids=p.id===
   if(nx&&nx.a){const fix=(nx.a.opts||[]).filter((o)=>!/^Now:/.test(o));if(fix.length)h+=`<p style="margin:8px 0 2px"><b>To reach ${nf(nx.amount)}:</b></p><ul class="opt">${fix.map((o)=>`<li>${o}</li>`).join('')}</ul>`}
   if(!sto)h+=`<p class="sub" style="margin:8px 0 0"><a href="#buildings" data-sec="buildings">Add it in My buildings</a> once you have it.</p>`;
   return h+'</div>'}
-function cvDetail(p){const nb=cvNoBuild(p);if(nb)return nb;const nm=cruiseNames()[p.id]||pretty(p.id);let h='<div class="cvdet">';
+function cvDetail(p){const lk=p.lock;
+  if(lk&&lk.locked){let h='<div class="cvdet">';if(p.t)h+=`<p class="sub" style="margin:0 0 6px">Time on the card: <b>${limitText(p.t)}</b></p>`;
+    h+=`<p style="margin:0 0 6px">This product unlocks at <b>player level ${lk.lv}</b>. You're level ${lk.pl}, so it is not counted yet.</p>`;
+    if(p.sizes.length)h+=`<p class="sub" style="margin:0 0 6px">Sizes seen: ${p.sizes.map((s)=>nf(s.amount)+(s.chk?' (not checked)':'')).join(', ')}</p>`;
+    return h+`<p class="sub" style="margin:8px 0 0">Level gone up? Change it in <a href="#setup">Library &amp; setup</a>.</p></div>`}
+  const lkNote=lk&&lk.pl==null?`<p class="sub" style="margin:0 0 8px">Needs <b>player level ${lk.lv}</b>. Type your player level in <a href="#setup">Library &amp; setup</a> to hide what you haven't unlocked yet.</p>`:'';
+  const nb0=cvNoBuild(p);if(nb0)return nb0.replace('<div class="cvdet">','<div class="cvdet">'+lkNote);const nm=cruiseNames()[p.id]||pretty(p.id);let h='<div class="cvdet">'+lkNote;
   if(p.t)h+=`<p class="sub" style="margin:0 0 6px">Time on the card: <b>${limitText(p.t)}</b>${cvReady()==='scratch'?' · worked out from scratch (nothing waiting)':' · counting what is ready now'}</p>`;
   if(!p.sizes.length)h+=`<p class="sub">No amounts for ${esc(nm.toLowerCase())} have been seen on a real card yet. If you see one, send me a screenshot.</p>`;
   else{const D=p.calc&&p.t?cvCompute(true)[p.id]:p;
@@ -1762,7 +1774,7 @@ function cvDetail(p){const nb=cvNoBuild(p);if(nb)return nb;const nm=cruiseNames(
   return h+'</div>'}
 function renderTournament(){
   const stars=cvStars(),D=cvCompute(false),ready=cvReady();
-  let n=0,ok=0;Object.values(D).forEach((p)=>{if(!p.t||!p.calc)return;p.sizes.forEach((s)=>{n++;if(s.ok)ok++})});
+  let n=0,ok=0;Object.values(D).forEach((p)=>{if(!p.t||!p.calc||(p.lock&&p.lock.locked))return;p.sizes.forEach((s)=>{n++;if(s.ok)ok++})});
   if(state.cvF===undefined){try{state.cvF=localStorage.getItem('sunshine_cvf_v1')||(setup.groups.length?'can':'all')}catch(_){state.cvF='all'}}
   const f=['can','not','all','star'].includes(state.cvF)?state.cvF:'all';
   let html=`<div class="card"><div class="hline"><h2 style="margin:0;flex:1">Cruise tournament</h2>${qh('<p>Every Cruise card we know about is worked out against your buildings. Nothing to save.</p><ol class="steps"><li>Type a product name in the box, or scroll.</li><li>Tap a product to see each size, how long it takes and what you would need.</li><li>Tap the star to keep a product at the top.</li></ol><p>Only amounts seen on real cards are used. Sizes marked <b>not checked</b> come from a forum table. Guesses are left out.</p>')}</div>
@@ -1776,7 +1788,7 @@ function renderTournament(){
   if(state.cvIsl===undefined){try{state.cvIsl=localStorage.getItem('sunshine_cvisl_v1')||'all'}catch(_){state.cvIsl='all'}}
   const cvI=['all'].concat(model.islands.map((i)=>String(i).toLowerCase()));if(!cvI.includes(state.cvIsl))state.cvIsl='all';
   html+=`<div class="qbar"><div class="bisltabs" role="tablist" aria-label="Island">${cvI.map((k)=>`<button type="button" role="tab" aria-selected="${k===state.cvIsl}" class="bislt isl-${esc(k)}${k===state.cvIsl?' on':''}" data-act="cvisl" data-k="${esc(k)}">${k==='all'?'All':esc(pretty(k))}</button>`).join('')}</div></div>`;
-  const keep=(p)=>f==='all'?true:f==='star'?stars.includes(p.id):f==='can'?p.sizes.some((s)=>s.ok):(p.t&&p.calc&&p.sizes.length&&!p.sizes.some((s)=>s.ok));
+  const lkd=(p)=>!!(p.lock&&p.lock.locked);const keep=(p)=>f==='all'?true:f==='star'?stars.includes(p.id):f==='can'?(!lkd(p)&&p.sizes.some((s)=>s.ok)):(lkd(p)||(p.t&&p.calc&&p.sizes.length&&!p.sizes.some((s)=>s.ok)));
   const starred=Object.values(D).filter((p)=>stars.includes(p.id)&&keep(p));
   if(starred.length&&f!=='star')html+=`<div class="card cvgrp"><h3 class="cvgh">★ Starred</h3>${starred.map((p)=>cvRow(p,stars)).join('')}</div>`;
   let shown=0;
@@ -1827,7 +1839,8 @@ function renderSetup(){
   const rescue=!setup.groups.length?`<div class="card firstbox rescue"><p style="margin:0"><b>Used this calculator before?</b> In another browser, on another device or on the home-screen icon? Bring your setup back here.</p><div class="row" style="justify-content:center">${bkLoadBtn('btn')}<button type="button" class="startlink" data-act="pasteopen">or paste a copied setup</button></div></div>`:'';
   const welcomeHtml=rescue+`<div class="card welcome"><h2>Welcome. Let's set up your Library</h2><p>Tell the calculator which research books you've finished.</p><p><b>The easy way:</b> screenshot your Library Overview in the game, and the calculator reads it for you. It takes a little while, but you only do it once.</p><div class="wbtns"><button type="button" class="btn" data-act="quickstart">Start here</button></div><p style="margin-top:14px;text-wrap:wrap"><b>Or the longer way:</b> set each level yourself.</p><div class="wbtns"><button type="button" class="startlink" data-act="libhand">I'll set my levels by hand</button></div><div class="wbtns"><button type="button" class="startlink" data-act="lookfirst">Have a look around first</button></div><p class="sub" style="margin:8px 0 0">If you already use the calculator in your browser, the home-screen icon keeps its own separate copy. Open <a href="#buildings" data-sec="save">My buildings, Save</a> in the browser to move your setup across.</p><p class="wcol">Prefer a lighter or different colour? Tap <b>Colours &amp; help</b>, top right.</p><details class="wsteps"><summary>What happens next</summary><ol><li><b>Runes.</b> Tap the rune buttons at the top to match the game.</li><li><b>Library.</b> Fill in your levels from the game's Overview, or set them on the shelves.</li><li><b>Buildings.</b> Open <a href="#buildings">My buildings</a> and add yours.</li><li><b>Try it.</b> Pick a project on <a href="#guild">Guild tournament</a>, or use <a href="#lookup">Look up</a>.</li></ol></details></div>`;
   if(welcome){$('#panel').innerHTML=welcomeHtml;return}
-  let html=(qs||state.walkDone?'':walkCard())+(qs?`<div class="card"><h2>Fill in from the <b>Overview</b></h2><p style="margin:2px 0 8px"><button type="button" class="startlink" data-act="quickdone">← Back to Library</button></p>`:`<div class="card libcard"><h2>Library levels <button type="button" class="qbtn" data-act="help" data-k="library" aria-expanded="${!!hp}" aria-label="Help for this tab">?</button></h2>${helpHtml}${startCard}${''}${ltabs}`);
+  const plCard=qs?'':`<div class="card plcard"><label style="flex-direction:row;align-items:center;gap:10px;flex-wrap:wrap"><b>Your player level</b><input type="number" inputmode="numeric" min="1" max="200" step="1" data-plvl value="${plvl()||''}" style="width:90px" aria-label="Your player level"></label><p class="sub" style="margin:6px 0 0">Optional. Products you haven't unlocked yet are then left out of the Cruise count. It is kept in your backup.</p></div>`;
+  let html=(qs||state.walkDone?'':walkCard())+plCard+(qs?`<div class="card"><h2>Fill in from the <b>Overview</b></h2><p style="margin:2px 0 8px"><button type="button" class="startlink" data-act="quickdone">← Back to Library</button></p>`:`<div class="card libcard"><h2>Library levels <button type="button" class="qbtn" data-act="help" data-k="library" aria-expanded="${!!hp}" aria-label="Help for this tab">?</button></h2>${helpHtml}${startCard}${''}${ltabs}`);
   if(lt==='quick'){
     const keys=new Set();Object.keys(GU).forEach((id)=>{const m=id.match(/^(.*)_bonus_vol_\d+$/);if(m&&m[1]!=='shelter_feed')keys.add(m[1])});
     const first=OV_ORDER.filter((k)=>keys.has(k)),rest=[...keys].filter((k)=>!OV_ORDER.includes(k));
@@ -2048,7 +2061,7 @@ document.addEventListener('change',(e)=>{
   if(el.dataset.qp){state.q.producer=el.value;render();return}
   if(el.dataset.qcn!==undefined){qcS().n[el.dataset.qcn]=parseInt(el.value,10)||1;qcSave();render();return}
   if(el.dataset.qa){state.q.all[el.dataset.qa]=el.value;if(el.dataset.qa==='product')state.q.all.mode='';render();return}
-  if(el.dataset.plvl!==undefined){const v=parseInt(el.value,10),n=v>=1&&v<=200?v:null;state.playerLevel=n;try{if(n)localStorage.setItem('sunshine_playerlevel_v1',String(n));else localStorage.removeItem('sunshine_playerlevel_v1')}catch(e){}
+  if(el.dataset.plvl!==undefined){const v=parseInt(el.value,10),n=v>=1&&v<=200?v:null;state.playerLevel=n;setup.playerLevel=n;save();try{if(n)localStorage.setItem('sunshine_playerlevel_v1',String(n));else localStorage.removeItem('sunshine_playerlevel_v1')}catch(e){}
     return}
   if(el.dataset.tick!==undefined){const pid=el.dataset.tick,P=model.producers[pid];if(!P)return;
     if(state.tickP&&state.tickP[state.bIsland]&&!setup.groups.some((g)=>g.island===state.bIsland)){const ta=state.tickP[state.bIsland],ti=ta.indexOf(pid);if(el.checked&&ti<0)ta.push(pid);if(!el.checked&&ti>=0)ta.splice(ti,1);render();return}
@@ -2288,7 +2301,7 @@ document.addEventListener('click',(e)=>{
   if(a==='apply'){try{const o=JSON.parse($('#prof').value);const s0=o&&o.setup?o.setup:o;if(!s0||typeof s0!=='object'||!(s0.library||s0.groups))throw new Error('it has no buildings or Library levels');askLoad(s0,o&&o.setup?o.guildLeader||null:null)}catch(x){msg('That text is not a valid saved setup: '+x.message,'err')}return}
   if(a==='apply-old'){try{const s=JSON.parse($('#prof').value);const d=C.defaultSetup(model);const prevSetup=JSON.stringify(setup);
       setup=Object.assign(d,{library:s.library||{},runes:Object.assign(d.runes,s.runes||{})});
-      setup.groups=(s.groups||[]).filter(validGroup);setup.groups.forEach(fixGroup);setup.storage=s.storage||{};setup.shelter=s.shelter||[];setup.tournaments=s.tournaments||[];setup.runeStart=s.runeStart||{};setup.sumRows=(s.sumRows||[]).filter(validGroup);setup.sumRows.forEach(fixGroup);fixUid();setup.cellState=s.cellState||{};setup.shelfLocked=s.shelfLocked||{};if(typeof s.shelterInclude==='boolean')setup.shelterInclude=s.shelterInclude;if(Array.isArray(s.cruiseStars))setup.cruiseStars=s.cruiseStars.slice();mergeGroups();
+      setup.groups=(s.groups||[]).filter(validGroup);setup.groups.forEach(fixGroup);setup.storage=s.storage||{};setup.shelter=s.shelter||[];setup.tournaments=s.tournaments||[];setup.runeStart=s.runeStart||{};setup.sumRows=(s.sumRows||[]).filter(validGroup);setup.sumRows.forEach(fixGroup);fixUid();setup.cellState=s.cellState||{};setup.shelfLocked=s.shelfLocked||{};if(typeof s.shelterInclude==='boolean')setup.shelterInclude=s.shelterInclude;if(Array.isArray(s.cruiseStars))setup.cruiseStars=s.cruiseStars.slice();if(s.playerLevel>=1&&s.playerLevel<=200){setup.playerLevel=s.playerLevel;try{localStorage.setItem('sunshine_playerlevel_v1',String(s.playerLevel))}catch(_){}}state.playerLevel=undefined;mergeGroups();
       state.src=state.srcNext||'text you pasted and applied';state.srcNext=null;state.loadUndo=prevSetup;state.pasteOpen=false;save();{const tx=$('#prof').value;render();const pf=$('#prof');if(pf)pf.value=tx}msg('Loaded. Library levels, runes and buildings are now in use.')}catch(x){msg('That text is not a valid saved setup: '+x.message,'err')}}
   if(a==='reset'){setup.groups=[];setup.cellState={};setup.prevGroups=null;save();msg('Buildings cleared.')}
 });
