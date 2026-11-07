@@ -7,7 +7,7 @@
 <title>Sunshine Calculator</title>
 <!-- V104: Browse products list, one saved card per product with a size strip, sizes green (can do) / grey (not yet); V92 (test 92): plain wording, ? panels, My buildings sections, Teal/Black/Light looks, separate quick-sum lines, shelter box fixed, undo stays 30 s; V91 jump highlight + bottom tabs and Back to top; V90 (checked at 340 to 430 px) slim status line + one Jump to drop-down on the island row; V89 island list folded, singular names, island remembered; V88 island-in-use line on My buildings; V87 reopen on the last tab used; V85 test build number in header chip; V84 Load my saved island button in the jump row; V83 no-building answer shows the scenario; V82 storage hint + link to My buildings on cruise cards; V81 jump links, None, reset ready counts, points totals; V80 Full now on Cruise cards; V79 warehouse box tidy; V78 warehouse wording; V77 card note shows number not code; V76 load-island keeps cards/layouts/runes; V75 undo bar sticky at the bottom; V74 2 Nov 2026: fields card, tab order, sticky picker, cruise rules v2, shortest-crop-first when a count is lowered -->
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="build" content="177">
+<meta name="build" content="178">
 <meta name="description" content="Sunshine Island Calculator. Beta 0.1 - data from the 28 Oct 2026 game update.">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=170"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=168"><meta name="apple-mobile-web-app-title" content="Sunshine">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -564,6 +564,11 @@ ol.steps{margin:0 0 8px;padding-left:22px}ol.steps li{margin:4px 0;color:var(--m
 .lutbl th.inh{white-space:normal;text-transform:none;letter-spacing:0;font-size:13px;line-height:1.15;vertical-align:bottom}
 .lutbl td,.lutbl th{padding-left:6px;padding-right:6px}
 @media (max-width:420px){.lutbl{font-size:13px}.lutbl td,.lutbl th{padding-left:3px;padding-right:3px}.lutbl th{letter-spacing:.03em}}
+.bklast{margin:8px 0 0;font-size:14px}
+label.bkload{display:inline-flex;align-items:center;flex-direction:row;font:600 14px var(--body);color:inherit;cursor:pointer}
+label.btn.bkload{color:var(--accent-fg)}label.btn.ghost.bkload{color:var(--fg)}
+.rescue{border-style:solid}.rescue .row{gap:12px}.rescue .btn{animation:none}
+.bknag{border:2px solid var(--accent)}
 </style>
 <!-- test 173: visitor counter (GoatCounter: no cookies, nothing personal) -->
 <script data-goatcounter="https://ojmaestro.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
@@ -579,7 +584,7 @@ ol.steps{margin:0 0 8px;padding-left:22px}ol.steps li{margin:4px 0;color:var(--m
   <div id="feedback"></div>
   <p class="footer"><span class="meonly"><a href="#data">Data &amp; flags</a> · <button class="linkbtn" data-act="widthchk">Width check</button> · </span><button class="linkbtn" data-act="walkshow">Quick start</button> · <button class="btn ghost small" data-act="key" aria-expanded="false" id="keybtn">How accurate are the numbers?</button></p>
   <div id="keyline"></div>
-  <p class="footer" style="margin-top:6px">Beta 0.1 · test 177 - data from the 28 Oct 2026 game update (game 1.3.40251)</p>
+  <p class="footer" style="margin-top:6px">Beta 0.1 · test 178 - data from the 28 Oct 2026 game update (game 1.3.40251)</p>
   <p class="footer" style="margin-top:0">Unofficial fan tool. Not made by, or connected to, the game's developers.</p>
   <div id="footlogo" class="footlogo"></div>
   <p class="totop"><button type="button" class="btn ghost small" data-act="totop">↑ Back to top</button></p>
@@ -687,6 +692,8 @@ async function boot(){
     try{state.libhand=localStorage.getItem('sunshine_libhand_v1')==='1'}catch(e){state.libhand=false}
     try{state.bkDone=localStorage.getItem('sunshine_backup_v1')==='1'}catch(e){state.bkDone=false}
     siteBits();drawTabs();render();
+    /* test 178: ask the browser not to clear this page's saved data (helps most on Android) */
+    try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{})}catch(_){}
   }catch(e){$('#subtitle').innerHTML='<span class="err">Could not load the data files.\n'+esc(e.message)+'</span>'}
 }
 function siteBits(){
@@ -694,7 +701,7 @@ function siteBits(){
   if(SITE.footlogo&&$('#footlogo'))$('#footlogo').innerHTML=`<img src="${esc(SITE.footlogo)}" alt="OJ Maestro" onerror="this.parentNode.hidden=true">`;
   if(SITE.coffee&&$('#coffee'))$('#coffee').innerHTML=`<div class="coffeecard"><p>Free tool, made by OJ Maestro. If it saved you time, you can say thanks with a small tip.</p><a class="coffeebtn" href="${esc(SITE.coffee)}" target="_blank" rel="noopener" aria-label="Buy me a coffee"><img class="bmcimg" hidden alt="" src="https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=&slug=ojmaestro&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" onload="this.hidden=false;this.nextElementSibling.hidden=true;this.parentNode.classList.add('official')" onerror="this.remove()"><span class="bmcfb"><svg viewBox="0 0 22 26" aria-hidden="true"><path d="M3 9h16l-1.6 14.5a2 2 0 0 1-2 1.5H6.6a2 2 0 0 1-2-1.5z" fill="#fff" stroke="#000" stroke-width="1.8" stroke-linejoin="round"/><path d="M2 9h18V6.5H2z" fill="#fff" stroke="#000" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 6.5V4.5c0-1 1-1.8 2-1.8h8c1 0 2 .8 2 1.8v2" fill="none" stroke="#000" stroke-width="1.8"/></svg> Buy me a coffee</span></a></div>`;
   const ab=$('#cogabout');
-  if(ab)ab.innerHTML=`<h2>Help &amp; feedback</h2><p class="sub" style="margin:0">Spot a bug or have an idea? Tell me.</p>${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p>Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}<div class="abrow"><button class="linkbtn" data-act="walkshow">Quick start</button><span class="meonly"><a href="#data">Data &amp; flags</a></span></div><p class="sub">This page counts visits with GoatCounter: no cookies, nothing personal is kept.</p><p class="sub">Made by OJ Maestro · Beta 0.1 · test 177</p>`;
+  if(ab)ab.innerHTML=`<h2>Help &amp; feedback</h2><p class="sub" style="margin:0">Spot a bug or have an idea? Tell me.</p>${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p>Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}<div class="abrow"><button class="linkbtn" data-act="walkshow">Quick start</button><span class="meonly"><a href="#data">Data &amp; flags</a></span></div><p class="sub">This page counts visits with GoatCounter: no cookies, nothing personal is kept.</p><p class="sub">Made by OJ Maestro · Beta 0.1 · test 178</p>`;
   const fb=$('#feedback');
   if(fb&&(SITE.feedback||SITE.email||SITE.discord))fb.innerHTML=`<p class="footer fbline">Spot a bug or have an idea? ${SITE.email?`Email <a href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?` or message <b>${esc(SITE.discord)}</b> on Discord`:''}.</p>`}
 document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.classList&&t.classList.contains('ovlist'))state.ovOpen=t.open},true);
@@ -861,9 +868,31 @@ function lvCells(list){const m=new Map();
   list.forEach((g)=>{const k=g.producer+'|'+g.level;let c=m.get(k);if(!c){c={key:k,producer:g.producer,island:g.island,level:g.level,recs:[]};m.set(k,c)}c.recs.push(g)});
   const out=[...m.values()];out.forEach((c)=>{c.count=c.recs.reduce((n,g)=>n+g.count,0)});out.sort((a,b)=>a.level-b.level);return out}
 function lvByKey(k){const q=String(k).split('|');return lvCells(setup.groups.filter((g)=>g.state==='active'&&g.producer===q[0]&&String(g.level)===q[1]))[0]}
+/* test 178: backup file, last-backup line, reminder */
+function bkLast(){try{return parseInt(localStorage.getItem('sunshine_lastbk_v1'),10)||0}catch(_){return 0}}
+function bkMark(){try{localStorage.setItem('sunshine_lastbk_v1',String(Date.now()))}catch(_){}}
+function bkLastText(){const t=bkLast();if(!t)return 'Last backup: <b>none yet</b>.';const d=Math.floor((Date.now()-t)/86400000);return 'Last backup: <b>'+(d<1?'today':d===1?'yesterday':d+' days ago')+'</b>.'}
+const bkLoadBtn=(cls)=>`<label class="${cls} bkload">Load a backup file<input type="file" accept=".txt,.json,text/plain,application/json" data-bkfile hidden></label>`;
+function bkSaveFile(){const pad=(n)=>String(n).padStart(2,'0'),d=new Date();
+  let gl=null;try{gl=JSON.parse(localStorage.getItem('sunshine_gl_v1'))}catch(_){}
+  const data={app:'Sunshine Island Calculator',saved:d.toISOString(),setup,guildLeader:gl};
+  const name='sunshine-backup-'+d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())+'.txt';
+  try{const blob=new Blob([JSON.stringify(data)],{type:'text/plain'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(url);a.remove()},4000);bkMark();return name}catch(_){return null}}
+function bkReadFile(f){if(!f)return;const r=new FileReader();r.onload=()=>{let o=null;try{o=JSON.parse(String(r.result))}catch(_){}
+    const s=o&&o.setup?o.setup:o;const ok=s&&typeof s==='object'&&(s.library||s.groups);
+    state.bsec='save';if(location.hash!=='#buildings')location.hash='buildings';
+    if(!ok){state.bkErr=true;render();msg('That file is not a calculator backup. Pick the file that starts with sunshine-backup.','err');return}
+    state.pendGl=o&&o.setup?o.guildLeader||null:null;state.pasteAsk=JSON.stringify(s);state.pasteOpen=false;render();try{window.scrollTo(0,0)}catch(_){}};
+  r.readAsText(f)}
+document.addEventListener('change',(e)=>{const el=e.target;if(el&&el.dataset&&el.dataset.bkfile!==undefined){bkReadFile(el.files&&el.files[0]);el.value=''}});
+function bkNag(){if(!setup.groups.length)return '';const t=bkLast();if(t&&Date.now()-t<14*86400000)return '';
+  try{if((parseInt(localStorage.getItem('sunshine_bksnooze_v1'),10)||0)>Date.now())return ''}catch(_){}
+  return `<div class="card bknag" role="status"><p style="margin:0 0 8px"><b>Keep a backup of your setup.</b> It is only kept in this browser${t?'. Last backup: '+Math.floor((Date.now()-t)/86400000)+' days ago':', and you have no backup yet'}.</p><div class="row"><button class="btn small" data-act="bknow">Back up now</button><button class="btn ghost small" data-act="bksnooze">Not now</button></div></div>`}
 function saveCard(){const me=/[?&]me=1(&|$)/.test(location.search);
-  return `<div class="card" id="j-save"><h2>Backup copy</h2>${hline('Keep a copy in a note, or move your setup to another phone or to the home-screen icon.','<ol class="steps"><li>Press <b>Copy my setup</b> and paste it into a note or message to yourself.</li><li>To bring it back, copy that text, press <b>Paste a setup</b>, paste it into the box and press <b>Load this text</b>.</li></ol><p>The home-screen icon and your browser keep separate copies, so this is also how you move your setup from one to the other.</p>')}
-    <div class="row" style="margin-top:8px"><button class="btn" data-act="copy">Copy my setup</button><button class="btn ghost" data-act="pasteopen">Paste a setup</button></div>${state.pasteAsk?`<div class="rune-ask" role="alert" style="margin-top:8px;flex-wrap:wrap">Load this setup? It replaces your current one. <button class="btn small" data-act="pasteyes">Yes</button><button class="btn ghost small" data-act="pasteno">No</button></div>`:''}${state.loadUndo?`<div class="row" style="margin-top:8px"><span class="sub" style="margin:0">Setup loaded.</span><button class="btn small" data-act="loadundo">Undo</button></div>`:''}<div id="profmsg" aria-live="polite"></div>
+  return `<div class="card" id="j-save"><h2>Backup copy</h2>${hline('Your setup is only kept in this browser. Keep a backup so you never lose it.','<ol class="steps"><li>Press <b>Save a backup file</b>. A small file is saved to your Downloads (on iPhone and iPad: the Files app, Downloads).</li><li>To bring it back, on this or any other device, browser or the home-screen icon, press <b>Load a backup file</b> and pick that file.</li></ol><p>Or press <b>Copy my setup</b> and paste it into a note. To bring it back, copy that text and press <b>Paste a setup</b>.</p>')}
+    <p class="bklast">${bkLastText()}</p>
+    <div class="row" style="margin-top:8px"><button class="btn" data-act="bkfile">Save a backup file</button>${bkLoadBtn('btn ghost')}</div>
+    <div class="row" style="margin-top:8px"><button class="btn ghost" data-act="copy">Copy my setup</button><button class="btn ghost" data-act="pasteopen">Paste a setup</button></div>${state.pasteAsk?`<div class="rune-ask" role="alert" style="margin-top:8px;flex-wrap:wrap">Load this setup? It replaces your current one. <button class="btn small" data-act="pasteyes">Yes</button><button class="btn ghost small" data-act="pasteno">No</button></div>`:''}${state.loadUndo?`<div class="row" style="margin-top:8px"><span class="sub" style="margin:0">Setup loaded.</span><button class="btn small" data-act="loadundo">Undo</button></div>`:''}<div id="profmsg" aria-live="polite"></div>
     <details class="proftext"${state.pasteOpen?' open':''}><summary>${state.pasteOpen?'Paste your copied setup into the box':'Show the text'}</summary><textarea id="prof" spellcheck="false" aria-label="Your setup as text">${esc(JSON.stringify(setup,null,1))}</textarea>
     <div class="row" style="margin-top:8px"><button class="btn" data-act="apply">Load this text</button><button class="btn ghost" data-act="clearbox">Clear box</button>${me&&files.myIsland?'<button class="btn ghost" data-act="loadfile">Load my saved island (28 Oct file)</button>':''}</div></details></div>`}
 function layoutsCard(){const T=curTour();
@@ -1715,7 +1744,8 @@ function renderSetup(){
   const startCard=anyLv?`<p class="sub" style="margin:6px 0"><button type="button" class="startlink" data-act="quickstart">Re-enter my levels from the Overview</button></p>`:`<p class="sub" style="margin:6px 0"><button type="button" class="startlink" data-act="quickstart">Fill in my levels from the Overview</button></p>`;
   const bkCard=`<div class="bkcard"><b>Keep a copy of your setup.</b> It is saved in this browser only. A copy in your Notes means you can always get it back.<div class="bkrow"><button type="button" class="btn small" data-act="gosave">Open Save</button><button type="button" class="startlink" data-act="bkdone">Not now</button></div></div>`;
   const welcome=!anyLv&&!qs&&!state.libhand;
-  const welcomeHtml=`<div class="card welcome"><h2>Welcome. Let's set up your Library</h2><p>Tell the calculator which research books you've finished.</p><p><b>The easy way:</b> screenshot your Library Overview in the game, and the calculator reads it for you. It takes a little while, but you only do it once.</p><div class="wbtns"><button type="button" class="btn" data-act="quickstart">Start here</button></div><p style="margin-top:14px;text-wrap:wrap"><b>Or the longer way:</b> set each level yourself.</p><div class="wbtns"><button type="button" class="startlink" data-act="libhand">I'll set my levels by hand</button></div><div class="wbtns"><button type="button" class="startlink" data-act="lookfirst">Have a look around first</button></div><p class="sub" style="margin:8px 0 0">If you already use the calculator in your browser, the home-screen icon keeps its own separate copy. Open <a href="#buildings" data-sec="save">My buildings, Save</a> in the browser to move your setup across.</p><p class="wcol">Prefer a lighter or different colour? Tap <b>Colours &amp; help</b>, top right.</p><details class="wsteps"><summary>What happens next</summary><ol><li><b>Runes.</b> Tap the rune buttons at the top to match the game.</li><li><b>Library.</b> Fill in your levels from the game's Overview, or set them on the shelves.</li><li><b>Buildings.</b> Open <a href="#buildings">My buildings</a> and add yours.</li><li><b>Try it.</b> Pick a project on <a href="#guild">Guild tournament</a>, or use <a href="#lookup">Look up</a>.</li></ol></details></div>`;
+  const rescue=!setup.groups.length?`<div class="card firstbox rescue"><p style="margin:0"><b>Used this calculator before?</b> In another browser, on another device or on the home-screen icon? Bring your setup back here.</p><div class="row" style="justify-content:center">${bkLoadBtn('btn')}<a class="startlink" href="#buildings" data-sec="save">or paste a copied setup</a></div></div>`:'';
+  const welcomeHtml=rescue+`<div class="card welcome"><h2>Welcome. Let's set up your Library</h2><p>Tell the calculator which research books you've finished.</p><p><b>The easy way:</b> screenshot your Library Overview in the game, and the calculator reads it for you. It takes a little while, but you only do it once.</p><div class="wbtns"><button type="button" class="btn" data-act="quickstart">Start here</button></div><p style="margin-top:14px;text-wrap:wrap"><b>Or the longer way:</b> set each level yourself.</p><div class="wbtns"><button type="button" class="startlink" data-act="libhand">I'll set my levels by hand</button></div><div class="wbtns"><button type="button" class="startlink" data-act="lookfirst">Have a look around first</button></div><p class="sub" style="margin:8px 0 0">If you already use the calculator in your browser, the home-screen icon keeps its own separate copy. Open <a href="#buildings" data-sec="save">My buildings, Save</a> in the browser to move your setup across.</p><p class="wcol">Prefer a lighter or different colour? Tap <b>Colours &amp; help</b>, top right.</p><details class="wsteps"><summary>What happens next</summary><ol><li><b>Runes.</b> Tap the rune buttons at the top to match the game.</li><li><b>Library.</b> Fill in your levels from the game's Overview, or set them on the shelves.</li><li><b>Buildings.</b> Open <a href="#buildings">My buildings</a> and add yours.</li><li><b>Try it.</b> Pick a project on <a href="#guild">Guild tournament</a>, or use <a href="#lookup">Look up</a>.</li></ol></details></div>`;
   if(welcome){$('#panel').innerHTML=welcomeHtml;return}
   let html=(qs||state.walkDone?'':walkCard())+(qs?`<div class="card"><h2>Fill in from the <b>Overview</b></h2><p style="margin:2px 0 8px"><button type="button" class="startlink" data-act="quickdone">← Back to Library</button></p>`:`<div class="card libcard"><h2>Library levels <button type="button" class="qbtn" data-act="help" data-k="library" aria-expanded="${!!hp}" aria-label="Help for this tab">?</button></h2>${helpHtml}${startCard}${anyLv&&!state.bkDone&&lt==='production'?bkCard:''}${ltabs}`);
   if(lt==='quick'){
@@ -1864,7 +1894,8 @@ function render(){try{closePick();pairClear()}catch(_){}
    const mL='<b>Your Library levels are not set yet.</b> These numbers leave out your Library bonuses until you set them. Open <a href="#setup">Library &amp; setup</a> and press Start here.';
    if(['guild','cruise'].includes(t)){if(noB&&noL)nm='<b>Set up your Library and buildings first.</b> The answers on this tab come from your Library levels and the buildings you own. Start with <a href="#setup">Library &amp; setup</a>, then <a href="#buildings">My buildings</a>.';else if(noL)nm=mL;else if(noB)nm='<b>You have no buildings yet.</b> The answers on this tab come from the buildings you own. Add them in <a href="#buildings">My buildings</a>.'}
    else if(t==='lookup'&&noL)nm=mL;
-   if(nm)$('#panel').insertAdjacentHTML('afterbegin','<div class="card" id="setupnote"><p style="margin:0">'+nm+'</p></div>')}
+   if(nm)$('#panel').insertAdjacentHTML('afterbegin','<div class="card" id="setupnote"><p style="margin:0">'+nm+'</p></div>')
+   else if(['buildings','guild','cruise','lookup','leader'].includes(t)&&!(t==='buildings'&&state.bsec==='save')){const bn=bkNag();if(bn)$('#panel').insertAdjacentHTML('afterbegin',bn)}}
   const isl=t==='buildings'?state.bIsland:t==='lookup'?(state.lookup||{}).island:null;
   if(isl)document.querySelectorAll('#panel .card').forEach((c)=>c.classList.add('isl-'+String(isl).toLowerCase()));
 }
@@ -2156,10 +2187,13 @@ document.addEventListener('click',(e)=>{
     const box=()=>{state.pasteOpen=true;state.pasteAsk=null;render();const ta=$('#prof');if(ta){ta.value='';ta.placeholder='Paste your copied setup here, then press Load this text.'}};
     try{if(navigator.clipboard&&navigator.clipboard.readText){navigator.clipboard.readText().then((t)=>{if(isSetup(t)){state.pasteAsk=t;state.pasteOpen=false;render()}else{box();msg('What you copied is not a saved setup. Copy the whole setup text, then try again, or paste it into the box.','err')}},()=>box());return}}catch(_){}
     box();return}
-  if(a==='pasteyes'){const t=state.pasteAsk;state.pasteAsk=null;render();const ta=$('#prof');if(ta&&t){ta.value=t;const ap=document.querySelector('[data-act="apply"]');if(ap)ap.click()}return}
-  if(a==='pasteno'){state.pasteAsk=null;render();return}
+  if(a==='pasteyes'){const t=state.pasteAsk;state.pasteAsk=null;if(state.pendGl){try{localStorage.setItem('sunshine_gl_v1',JSON.stringify(state.pendGl));state.gl=null}catch(_){}state.pendGl=null}render();const ta=$('#prof');if(ta&&t){ta.value=t;const ap=document.querySelector('[data-act="apply"]');if(ap)ap.click()}return}
+  if(a==='pasteno'){state.pasteAsk=null;state.pendGl=null;render();return}
+  if(a==='bkfile'){const n=bkSaveFile();render();msg(n?'Saved '+n+'. Find it in your Downloads (iPhone and iPad: the Files app).':'Could not save a file here. Use Copy my setup instead.',n?'ok':'err',8000);return}
+  if(a==='bknow'){state.bsec='save';if(location.hash!=='#buildings')location.hash='buildings';else render();try{window.scrollTo(0,0)}catch(_){}return}
+  if(a==='bksnooze'){try{localStorage.setItem('sunshine_bksnooze_v1',String(Date.now()+7*86400000))}catch(_){}render();return}
   if(a==='copy'){const ta=$('#prof');ta.select();const lab0=b.textContent;
-    const done=(ok)=>{if(ok){b.textContent='Copied \u2713';setTimeout(()=>{b.textContent=lab0},2000);msg('Copied. Paste it into a note to keep it.','ok',5000)}else msg('Could not copy. Select the text and copy it by hand.','err')};
+    const done=(ok)=>{if(ok){bkMark();b.textContent='Copied \u2713';setTimeout(()=>{b.textContent=lab0},2000);msg('Copied. Paste it into a note to keep it.','ok',5000)}else msg('Could not copy. Select the text and copy it by hand.','err')};
     try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(ta.value).then(()=>done(true),()=>fallbackCopy(ta,done));return}}catch(x){}
     fallbackCopy(ta,done)}
   if(a==='loadfile'&&files.myIsland&&ME){const f=JSON.parse(JSON.stringify(files.myIsland));const dr=JSON.stringify(C.defaultSetup(model).runes);if((setup.tournaments||[]).length)f.tournaments=setup.tournaments;if(JSON.stringify(setup.runes)!==dr)f.runes=setup.runes;if(Object.keys(setup.runeStart||{}).length)f.runeStart=setup.runeStart;if((setup.shelter||[]).length)f.shelter=setup.shelter;$('#prof').value=JSON.stringify(f);state.srcNext='your 28 Oct island file (loaded with the button)';state.notice='Loaded your saved island. Your Cruise cards, layouts and runes were kept.';document.querySelector('[data-act="apply"]').click();msg('Loaded your saved island. Your Cruise cards, layouts and runes were kept.');try{window.scrollTo(0,0)}catch(_){}return}
@@ -2173,7 +2207,7 @@ document.addEventListener('click',(e)=>{
   if(a==='loadundo'){if(state.loadUndo){try{setup=JSON.parse(state.loadUndo);(setup.groups||[]).forEach(fixGroup);fixUid();mergeGroups();save()}catch(_){}}state.loadUndo=null;render();msg('Your previous setup is back.');return}
   if(a==='apply'){try{const s=JSON.parse($('#prof').value);const d=C.defaultSetup(model);const prevSetup=JSON.stringify(setup);
       setup=Object.assign(d,{library:s.library||{},runes:Object.assign(d.runes,s.runes||{})});
-      setup.groups=(s.groups||[]).filter(validGroup);setup.groups.forEach(fixGroup);setup.storage=s.storage||{};setup.shelter=s.shelter||[];setup.tournaments=s.tournaments||[];setup.runeStart=s.runeStart||{};setup.sumRows=(s.sumRows||[]).filter(validGroup);setup.sumRows.forEach(fixGroup);fixUid();setup.cellState=s.cellState||{};setup.shelfLocked=s.shelfLocked||{};if(typeof s.shelterInclude==='boolean')setup.shelterInclude=s.shelterInclude;mergeGroups();
+      setup.groups=(s.groups||[]).filter(validGroup);setup.groups.forEach(fixGroup);setup.storage=s.storage||{};setup.shelter=s.shelter||[];setup.tournaments=s.tournaments||[];setup.runeStart=s.runeStart||{};setup.sumRows=(s.sumRows||[]).filter(validGroup);setup.sumRows.forEach(fixGroup);fixUid();setup.cellState=s.cellState||{};setup.shelfLocked=s.shelfLocked||{};if(typeof s.shelterInclude==='boolean')setup.shelterInclude=s.shelterInclude;if(Array.isArray(s.cruiseStars))setup.cruiseStars=s.cruiseStars.slice();mergeGroups();
       state.src=state.srcNext||'text you pasted and applied';state.srcNext=null;state.loadUndo=prevSetup;state.pasteOpen=false;save();{const tx=$('#prof').value;render();const pf=$('#prof');if(pf)pf.value=tx}msg('Loaded. Library levels, runes and buildings are now in use.')}catch(x){msg('That text is not a valid saved setup: '+x.message,'err')}}
   if(a==='reset'){setup.groups=[];setup.cellState={};setup.prevGroups=null;save();msg('Buildings cleared.')}
 });
