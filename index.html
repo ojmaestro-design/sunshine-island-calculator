@@ -7,7 +7,7 @@
 <title>Sunshine Calculator</title>
 <!-- V104: Browse products list, one saved card per product with a size strip, sizes green (can do) / grey (not yet); V92 (test 92): plain wording, ? panels, My buildings sections, Teal/Black/Light looks, separate quick-sum lines, shelter box fixed, undo stays 30 s; V91 jump highlight + bottom tabs and Back to top; V90 (checked at 340 to 430 px) slim status line + one Jump to drop-down on the island row; V89 island list folded, singular names, island remembered; V88 island-in-use line on My buildings; V87 reopen on the last tab used; V85 test build number in header chip; V84 Load my saved island button in the jump row; V83 no-building answer shows the scenario; V82 storage hint + link to My buildings on cruise cards; V81 jump links, None, reset ready counts, points totals; V80 Full now on Cruise cards; V79 warehouse box tidy; V78 warehouse wording; V77 card note shows number not code; V76 load-island keeps cards/layouts/runes; V75 undo bar sticky at the bottom; V74 2 Nov 2026: fields card, tab order, sticky picker, cruise rules v2, shortest-crop-first when a count is lowered -->
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="build" content="182">
+<meta name="build" content="183">
 <meta name="description" content="Sunshine Island Calculator. Beta 0.1 - data from the 28 Oct 2026 game update.">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=170"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=168"><meta name="apple-mobile-web-app-title" content="Sunshine">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -588,6 +588,17 @@ label.btn.bkload{color:var(--accent-fg)}label.btn.ghost.bkload{color:var(--fg)}
 .footlogo img{width:100%;height:auto}.footlogo .lg-light{display:none}
 :root:is([data-look="light"],[data-look="parchment"],[data-look="contrast"]) .footlogo .lg-dark{display:none}
 :root:is([data-look="light"],[data-look="parchment"],[data-look="contrast"]) .footlogo .lg-light{display:block}
+/* test 183 */
+.fbline{margin:22px auto 0;text-align:center;font-size:14px;color:var(--muted);line-height:1.5}.fbline p{margin:0}.fbline .fbq{font-weight:600;color:var(--fg)}
+.fbline a{color:var(--accent-ink);text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
+#cptoast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 24px);transform:translate(-50%,20px);z-index:150;padding:10px 18px;border-radius:999px;background:var(--ok);color:#0b1a10;font:700 15px var(--body);box-shadow:0 6px 20px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;white-space:nowrap}
+#cptoast.on{opacity:1;transform:translate(-50%,0)}#cptoast.bad{background:var(--bad)}
+@media (prefers-reduced-motion:reduce){#cptoast{transition:none}}
+/* button tidy: one main (gold), one secondary (outline), chips stay round; same corners and press feel */
+.btn{border-radius:10px}.btn.small{border-radius:8px}
+.btn.ghost{border:1.5px solid var(--line);background:transparent;color:var(--fg)}
+.btn:active,.cchip:active,.lchip:active,.glchip:active,.bislt:active,.cogopt:active{transform:scale(.98)}
+.footer{text-align:center}.footer .linkbtn,.footer .btn{vertical-align:middle}
 </style>
 <!-- test 173: visitor counter (GoatCounter: no cookies, nothing personal) -->
 <script data-goatcounter="https://ojmaestro.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
@@ -603,7 +614,7 @@ label.btn.bkload{color:var(--accent-fg)}label.btn.ghost.bkload{color:var(--fg)}
   <div id="feedback"></div>
   <p class="footer"><span class="meonly"><a href="#data">Data &amp; flags</a> · <button class="linkbtn" data-act="widthchk">Width check</button> · </span><button class="linkbtn" data-act="walkshow">Quick start</button> · <button class="btn ghost small" data-act="key" aria-expanded="false" id="keybtn">How accurate are the numbers?</button></p>
   <div id="keyline"></div>
-  <p class="footer" style="margin-top:6px">Beta 0.1 · test 182 - data from the 28 Oct 2026 game update (game 1.3.40251)</p>
+  <p class="footer" style="margin-top:6px">Beta 0.1 · test 183 - data from the 28 Oct 2026 game update (game 1.3.40251)</p>
   <p class="footer" style="margin-top:0">Unofficial fan tool. Not made by, or connected to, the game's developers.</p>
   <div id="footlogo" class="footlogo"></div>
   <p class="totop"><button type="button" class="btn ghost small" data-act="totop">↑ Back to top</button></p>
@@ -714,6 +725,8 @@ async function boot(){
     siteBits();drawTabs();render();
     /* test 178: ask the browser not to clear this page's saved data (helps most on Android) */
     try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{})}catch(_){}
+    /* test 183: keep a copy of the page and data so it still opens with a poor or no signal (always tries the internet first) */
+    try{if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost'))navigator.serviceWorker.register('sw.js').catch(()=>{})}catch(_){}
   }catch(e){$('#subtitle').innerHTML='<span class="err">Could not load the data files.\n'+esc(e.message)+'</span>'}
 }
 function siteBits(){
@@ -722,9 +735,9 @@ function siteBits(){
   if(SITE.footlogo&&$('#footlogo'))$('#footlogo').innerHTML=`<img class="lg-dark" src="oj-maestro-logo-dark.png?v=182" alt="OJ Maestro" onerror="this.src='${esc(SITE.footlogo)}'"><img class="lg-light" src="oj-maestro-logo-light.png?v=182" alt="OJ Maestro" onerror="this.src='${esc(SITE.footlogo)}'">`;
   if(SITE.coffee&&$('#coffee'))$('#coffee').innerHTML=`<div class="coffeecard"><p>Free tool, made by OJ Maestro. If it saved you time, you can say thanks with a small tip.</p><a class="coffeebtn" href="${esc(SITE.coffee)}" target="_blank" rel="noopener" aria-label="Buy me a coffee"><img class="bmcimg" hidden alt="" src="https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=&slug=ojmaestro&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" onload="this.hidden=false;this.nextElementSibling.hidden=true;this.parentNode.classList.add('official')" onerror="this.remove()"><span class="bmcfb"><svg viewBox="0 0 22 26" aria-hidden="true"><path d="M3 9h16l-1.6 14.5a2 2 0 0 1-2 1.5H6.6a2 2 0 0 1-2-1.5z" fill="#fff" stroke="#000" stroke-width="1.8" stroke-linejoin="round"/><path d="M2 9h18V6.5H2z" fill="#fff" stroke="#000" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 6.5V4.5c0-1 1-1.8 2-1.8h8c1 0 2 .8 2 1.8v2" fill="none" stroke="#000" stroke-width="1.8"/></svg> Buy me a coffee</span></a></div>`;
   const ab=$('#cogabout');
-  if(ab)ab.innerHTML=`<h2>Help &amp; feedback</h2><p class="sub" style="margin:0">Spot a bug or have an idea? Tell me.</p>${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p>Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}<div class="abrow"><button class="linkbtn" data-act="walkshow">Quick start</button><span class="meonly"><a href="#data">Data &amp; flags</a></span></div><p class="sub">This page counts visits with GoatCounter: no cookies, nothing personal is kept.</p><p class="sub">Made by OJ Maestro · Beta 0.1 · test 182</p>`;
+  if(ab)ab.innerHTML=`<h2>Help &amp; feedback</h2><p class="sub" style="margin:0">Spot a bug or have an idea? Tell me.</p>${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p>Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}<div class="abrow"><button class="linkbtn" data-act="walkshow">Quick start</button><span class="meonly"><a href="#data">Data &amp; flags</a></span></div><p class="sub">This page counts visits with GoatCounter: no cookies, nothing personal is kept.</p><p class="sub">Made by OJ Maestro · Beta 0.1 · test 183</p>`;
   const fb=$('#feedback');
-  if(fb&&(SITE.feedback||SITE.email||SITE.discord))fb.innerHTML=`<p class="footer fbline">Spot a bug or have an idea? ${SITE.email?`Email <a href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?` or message <b>${esc(SITE.discord)}</b> on Discord`:''}.</p>`}
+  if(fb&&(SITE.feedback||SITE.email||SITE.discord))fb.innerHTML=`<div class="fbline"><p class="fbq">Spot a bug or have an idea?</p>${SITE.email?`<p><a href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a></p>`:''}${SITE.discord?`<p>or message <b>${esc(SITE.discord)}</b> on Discord</p>`:''}</div>`}
 document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.classList&&t.classList.contains('ovlist'))state.ovOpen=t.open},true);
 /* test 175: the Quick count fold stays open when the card redraws */
 document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.dataset&&t.dataset.qcm!==undefined){state.qcOpen=state.qcOpen||{};state.qcOpen[t.dataset.qcm]=t.open}},true);
@@ -740,7 +753,10 @@ document.addEventListener('input',(e)=>{const el=e.target;if(!el||!el.dataset||e
   const tc0=document.getElementById('tickcnt');if(tc0)tc0.innerHTML=em.map((i)=>esc(pretty(i))+': <b>'+state.tickP[i].length+'</b> ticked').join(' · ');
   const ab=document.querySelector('[data-act="tickadd"]');if(ab)ab.disabled=!em.some((i)=>state.tickP[i].length)});
 document.addEventListener('click',(e)=>{const t=e.target.closest&&e.target.closest('#cogpanel [data-act="walkshow"], #cogpanel a[href="#data"]');if(t){const pn=document.getElementById('cogpanel');if(pn){pn.hidden=true;const cb=document.querySelector('.cogbtn');if(cb)cb.setAttribute('aria-expanded','false')}}});
-function copyText(text,done){
+/* test 183: one small "Copied" message for every Copy button */
+let cpT=null;function cpToast(ok){let el=document.getElementById('cptoast');if(!el){el=document.createElement('div');el.id='cptoast';el.setAttribute('role','status');document.body.appendChild(el)}
+  el.textContent=ok?'Copied \u2713 Ready to paste':'Could not copy';el.className=ok?'on':'on bad';clearTimeout(cpT);cpT=setTimeout(()=>{el.className=''},2200)}
+function copyText(text,done0){const done=(ok)=>{cpToast(ok);done0(ok)};
   const fb=()=>{let ok=false;const ta=document.createElement('textarea');ta.value=text;ta.setAttribute('readonly','');ta.style.cssText='position:fixed;left:-9999px;top:0';document.body.appendChild(ta);ta.select();try{ok=document.execCommand('copy')}catch(x){}ta.remove();done(ok)};
   try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(()=>done(true),fb);return}}catch(x){}
   fb()}
@@ -2233,7 +2249,7 @@ document.addEventListener('click',(e)=>{
   if(a==='bknow'){state.bsec='save';if(location.hash!=='#buildings')location.hash='buildings';else render();try{window.scrollTo(0,0)}catch(_){}return}
   if(a==='bksnooze'){try{localStorage.setItem('sunshine_bksnooze_v1',String(Date.now()+7*86400000))}catch(_){}render();return}
   if(a==='copy'){const ta=$('#prof');ta.select();const lab0=b.textContent;
-    const done=(ok)=>{if(ok){bkMark();b.textContent='Copied \u2713';setTimeout(()=>{b.textContent=lab0},2000);msg('Copied. Paste it into a note to keep it.','ok',5000)}else msg('Could not copy. Select the text and copy it by hand.','err')};
+    const done=(ok)=>{cpToast(ok);if(ok){bkMark();b.textContent='Copied \u2713';setTimeout(()=>{b.textContent=lab0},2000);msg('Copied. Paste it into a note to keep it.','ok',5000)}else msg('Could not copy. Select the text and copy it by hand.','err')};
     try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(ta.value).then(()=>done(true),()=>fallbackCopy(ta,done));return}}catch(x){}
     fallbackCopy(ta,done)}
   if(a==='loadfile'&&files.myIsland&&ME){const f=JSON.parse(JSON.stringify(files.myIsland));const dr=JSON.stringify(C.defaultSetup(model).runes);if((setup.tournaments||[]).length)f.tournaments=setup.tournaments;if(JSON.stringify(setup.runes)!==dr)f.runes=setup.runes;if(Object.keys(setup.runeStart||{}).length)f.runeStart=setup.runeStart;if((setup.shelter||[]).length)f.shelter=setup.shelter;$('#prof').value=JSON.stringify(f);state.srcNext='your 28 Oct island file (loaded with the button)';state.notice='Loaded your saved island. Your Cruise cards, layouts and runes were kept.';document.querySelector('[data-act="apply"]').click();msg('Loaded your saved island. Your Cruise cards, layouts and runes were kept.');try{window.scrollTo(0,0)}catch(_){}return}
