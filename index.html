@@ -7,7 +7,7 @@
 <title>Sunshine Calculator</title>
 <!-- V104: Browse products list, one saved card per product with a size strip, sizes green (can do) / grey (not yet); V92 (test 92): plain wording, ? panels, My buildings sections, Teal/Black/Light looks, separate quick-sum lines, shelter box fixed, undo stays 30 s; V91 jump highlight + bottom tabs and Back to top; V90 (checked at 340 to 430 px) slim status line + one Jump to drop-down on the island row; V89 island list folded, singular names, island remembered; V88 island-in-use line on My buildings; V87 reopen on the last tab used; V85 test build number in header chip; V84 Load my saved island button in the jump row; V83 no-building answer shows the scenario; V82 storage hint + link to My buildings on cruise cards; V81 jump links, None, reset ready counts, points totals; V80 Full now on Cruise cards; V79 warehouse box tidy; V78 warehouse wording; V77 card note shows number not code; V76 load-island keeps cards/layouts/runes; V75 undo bar sticky at the bottom; V74 2 Nov 2026: fields card, tab order, sticky picker, cruise rules v2, shortest-crop-first when a count is lowered -->
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="build" content="176">
+<meta name="build" content="177">
 <meta name="description" content="Sunshine Island Calculator. Beta 0.1 - data from the 28 Oct 2026 game update.">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=170"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=168"><meta name="apple-mobile-web-app-title" content="Sunshine">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -579,7 +579,7 @@ ol.steps{margin:0 0 8px;padding-left:22px}ol.steps li{margin:4px 0;color:var(--m
   <div id="feedback"></div>
   <p class="footer"><span class="meonly"><a href="#data">Data &amp; flags</a> · <button class="linkbtn" data-act="widthchk">Width check</button> · </span><button class="linkbtn" data-act="walkshow">Quick start</button> · <button class="btn ghost small" data-act="key" aria-expanded="false" id="keybtn">How accurate are the numbers?</button></p>
   <div id="keyline"></div>
-  <p class="footer" style="margin-top:6px">Beta 0.1 · test 176 - data from the 28 Oct 2026 game update (game 1.3.40251)</p>
+  <p class="footer" style="margin-top:6px">Beta 0.1 · test 177 - data from the 28 Oct 2026 game update (game 1.3.40251)</p>
   <p class="footer" style="margin-top:0">Unofficial fan tool. Not made by, or connected to, the game's developers.</p>
   <div id="footlogo" class="footlogo"></div>
   <p class="totop"><button type="button" class="btn ghost small" data-act="totop">↑ Back to top</button></p>
@@ -630,8 +630,9 @@ function tv(v,tag,d){const t=TAGTXT[tag]||'';const s=nf(v,d);
 function mins(m){if(m==null)return '–';const tot=Math.round(m*60),h=Math.floor(tot/3600),mm=Math.floor(tot%3600/60),s=tot%60;
   return ((h?h+'h ':'')+(mm?mm+'m ':'')+(s&&!h?s+'s':'')).trim()||'0m'}
 function tvText(txt,tag){if(tag==='estimated')return `<span class="v est">≈${txt}</span>`;if(tag==='unconfirmed')return `<span class="v unc">${txt}<i>?</i></span>`;return `<span class="v seen">${txt}</span>`}
-function minsFixed(m){if(m==null)return '–';const tot=Math.round(m*60),h=Math.floor(tot/3600),mm=Math.floor(tot%3600/60),sec=tot%60;if(h)return h+'h '+String(mm).padStart(2,'0')+'m';return ((mm?mm+'m ':'')+(sec?sec+'s':'')).trim()||'0m'}
-const tcFixed=(cyc)=>cyc?tvText(minsFixed(cyc.v),cyc.tag):'<span class="chip">Instant</span>';
+function minsFixed(m,ws){if(m==null)return '–';const tot=Math.round(m*60),h=Math.floor(tot/3600),mm=Math.floor(tot%3600/60),sec=tot%60;if(h)return h+'h '+String(mm).padStart(2,'0')+'m';if(ws)return mm+'m '+String(sec).padStart(2,'0')+'s';return ((mm?mm+'m ':'')+(sec?sec+'s':'')).trim()||'0m'}
+const tcFixed=(cyc,ws)=>cyc?tvText(minsFixed(cyc.v,ws),cyc.tag):'<span class="chip">Instant</span>';
+const hasSec=(cycs)=>cycs.some((c)=>c&&c.v<60&&Math.round(c.v*60)%60!==0);
 const tc=(cyc)=>cyc?tvText(mins(cyc.v),cyc.tag):'<span class="chip">Instant</span>';
 const tagChip=(tag)=>tvText(TAGTXT[tag],tag);
 const rng=(a,b,cur)=>{let o='';for(let i=a;i<=b;i++)o+=`<option value="${i}"${i===cur?' selected':''}>${i}</option>`;return o};
@@ -693,7 +694,7 @@ function siteBits(){
   if(SITE.footlogo&&$('#footlogo'))$('#footlogo').innerHTML=`<img src="${esc(SITE.footlogo)}" alt="OJ Maestro" onerror="this.parentNode.hidden=true">`;
   if(SITE.coffee&&$('#coffee'))$('#coffee').innerHTML=`<div class="coffeecard"><p>Free tool, made by OJ Maestro. If it saved you time, you can say thanks with a small tip.</p><a class="coffeebtn" href="${esc(SITE.coffee)}" target="_blank" rel="noopener" aria-label="Buy me a coffee"><img class="bmcimg" hidden alt="" src="https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=&slug=ojmaestro&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" onload="this.hidden=false;this.nextElementSibling.hidden=true;this.parentNode.classList.add('official')" onerror="this.remove()"><span class="bmcfb"><svg viewBox="0 0 22 26" aria-hidden="true"><path d="M3 9h16l-1.6 14.5a2 2 0 0 1-2 1.5H6.6a2 2 0 0 1-2-1.5z" fill="#fff" stroke="#000" stroke-width="1.8" stroke-linejoin="round"/><path d="M2 9h18V6.5H2z" fill="#fff" stroke="#000" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 6.5V4.5c0-1 1-1.8 2-1.8h8c1 0 2 .8 2 1.8v2" fill="none" stroke="#000" stroke-width="1.8"/></svg> Buy me a coffee</span></a></div>`;
   const ab=$('#cogabout');
-  if(ab)ab.innerHTML=`<h2>Help &amp; feedback</h2><p class="sub" style="margin:0">Spot a bug or have an idea? Tell me.</p>${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p>Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}<div class="abrow"><button class="linkbtn" data-act="walkshow">Quick start</button><span class="meonly"><a href="#data">Data &amp; flags</a></span></div><p class="sub">This page counts visits with GoatCounter: no cookies, nothing personal is kept.</p><p class="sub">Made by OJ Maestro · Beta 0.1 · test 176</p>`;
+  if(ab)ab.innerHTML=`<h2>Help &amp; feedback</h2><p class="sub" style="margin:0">Spot a bug or have an idea? Tell me.</p>${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p>Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}<div class="abrow"><button class="linkbtn" data-act="walkshow">Quick start</button><span class="meonly"><a href="#data">Data &amp; flags</a></span></div><p class="sub">This page counts visits with GoatCounter: no cookies, nothing personal is kept.</p><p class="sub">Made by OJ Maestro · Beta 0.1 · test 177</p>`;
   const fb=$('#feedback');
   if(fb&&(SITE.feedback||SITE.email||SITE.discord))fb.innerHTML=`<p class="footer fbline">Spot a bug or have an idea? ${SITE.email?`Email <a href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?` or message <b>${esc(SITE.discord)}</b> on Discord`:''}.</p>`}
 document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.classList&&t.classList.contains('ovlist'))state.ovOpen=t.open},true);
@@ -704,8 +705,8 @@ document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.dataset&&t.dat
 /* test 169: ticks follow the level as you type (no need to press Enter) */
 document.addEventListener('input',(e)=>{const el=e.target;if(!el||!el.dataset||el.dataset.plvl===undefined||!model)return;
   const v=parseInt(el.value,10),n=v>=1&&v<=200?v:null;state.playerLevel=n;try{if(n)localStorage.setItem('sunshine_playerlevel_v1',String(n));else localStorage.removeItem('sunshine_playerlevel_v1')}catch(_){}
-  const o0=producersOf(state.bIsland).map((p)=>p.id);const ids=n?o0.filter((p)=>UNLOCK[p]&&UNLOCK[p]<=n):['field','cow_shed','windmill','feed_mill','bakery'].filter((p)=>o0.includes(p));
-  const lvIds=(i)=>{const o=producersOf(i).map((p)=>p.id);return n?o.filter((p)=>UNLOCK[p]&&UNLOCK[p]<=n):['field','cow_shed','windmill','feed_mill','bakery'].filter((p)=>o.includes(p))};
+  const o0=producersGame(state.bIsland).map((p)=>p.id);const ids=n?o0.filter((p)=>UNLOCK[p]&&UNLOCK[p]<=n):['field','cow_shed','windmill','feed_mill','bakery'].filter((p)=>o0.includes(p));
+  const lvIds=(i)=>{const o=producersGame(i).map((p)=>p.id);return n?o.filter((p)=>UNLOCK[p]&&UNLOCK[p]<=n):['field','cow_shed','windmill','feed_mill','bakery'].filter((p)=>o.includes(p))};
   const em=model.islands.filter((i)=>!setup.groups.some((g)=>g.island===i));state.tickP={};em.forEach((i)=>{state.tickP[i]=lvIds(i)});
   document.querySelectorAll('.tickcard input[data-tick]').forEach((c)=>{c.checked=ids.includes(c.dataset.tick);const tc=c.closest('.tickrow').querySelector('.tc');const u=UNLOCK[c.dataset.tick];if(tc&&!/owned/.test(tc.textContent))tc.textContent=u&&(!n||u>n)?'unlocks at level '+u:''});
   const tc0=document.getElementById('tickcnt');if(tc0)tc0.innerHTML=em.map((i)=>esc(pretty(i))+': <b>'+state.tickP[i].length+'</b> ticked').join(' · ');
@@ -736,7 +737,10 @@ const sliderOpts=(P,product,mode,level)=>{const t=topOf(P,product,mode,level);co
   if(P.hasMaxCycles)a.push({id:'max',label:'Biggest stack (x'+t.top+(t.seen?'':', not confirmed')+')'});return a};
 const sliderOk=(P,g,product,mode,level)=>{if(g==='max')return !!P.hasMaxCycles;const t=topOf(P,product,mode,level);return g>=P.slider.min&&g<=t.top};
 const sliderDef=(P)=>P.hasMaxCycles?'max':(P.slider?P.slider.min:1);
-const producersOf=(isl)=>Object.values(model.producers).filter((p)=>p.island===isl);
+/* test 177: building lists are A to Z by name; producersGame keeps the game (unlock) order for the tick list */
+const producersGame=(isl)=>Object.values(model.producers).filter((p)=>p.island===isl);
+const azIds=()=>model._az||(model._az=Object.values(model.producers).slice().sort((a,b)=>bsing(a.name).localeCompare(bsing(b.name))).map((p)=>p.id));
+const producersOf=(isl)=>{const z=azIds();return producersGame(isl).sort((a,b)=>z.indexOf(a.id)-z.indexOf(b.id))};
 
 /* ---- my buildings data: lines of "N at level L", active or stored ---- */
 function newGroup(o){const P=model.producers[o.producer];const g=Object.assign({id:'g'+(uid++),island:P.island,count:1,level:1,state:'active',product:undefined,mode:'',slider:sliderDef(P),full:0},o);fixGroup(g);return g}
@@ -783,7 +787,7 @@ const MODES3=['regular','fine','instant'];
 const cellKey=(g)=>g.producer+'|'+g.level+'|'+(g.apart||'');
 function cellsOf(list){const m=new Map();
   list.forEach((g)=>{const k=cellKey(g);let c=m.get(k);if(!c){c={key:k,producer:g.producer,island:g.island,level:g.level,apart:g.apart||'',recs:[]};m.set(k,c)}c.recs.push(g)});
-  const isl=model.islands,ord=Object.keys(model.producers);const out=[...m.values()];
+  const isl=model.islands,ord=azIds();const out=[...m.values()];
   out.forEach((c)=>{c.count=c.recs.reduce((n,g)=>n+g.count,0);c.product=c.recs[0].product;c.slider=c.recs[0].slider;c.modes={};c.recs.forEach((g)=>{c.modes[g.mode]=(c.modes[g.mode]||0)+g.count})});
   out.sort((a,b)=>(isl.indexOf(a.island)-isl.indexOf(b.island))||(ord.indexOf(a.producer)-ord.indexOf(b.producer))||(b.level-a.level)||String(a.apart).localeCompare(String(b.apart)));
   return out}
@@ -872,7 +876,7 @@ function layoutsCard(){const T=curTour();
   return h+'</div>'}
 function statusLine(){const byI={},stoI={};let n=0,sto=0;setup.groups.forEach((g)=>{const P=model.producers[g.producer];if(!P)return;n+=g.count;if(g.state==='storage')sto+=g.count;const I=byI[g.island]=byI[g.island]||{};I[P.id]=(I[P.id]||0)+g.count;if(g.state==='storage'){const S=stoI[g.island]=stoI[g.island]||{};S[P.id]=(S[P.id]||0)+g.count}});
   const lib=Object.values(setup.library||{}).filter((v)=>v>0).length;
-  const list=model.islands.filter((i)=>byI[i]).map((i)=>`<div class="sl-isl isl-${esc(String(i).toLowerCase())}"><div class="sl-ih">${esc(pretty(i))}</div><ul class="sl-ul">${Object.entries(byI[i]).map(([k,v])=>{const nm=model.producers[k].name;const sv=(stoI[i]||{})[k]||0;return `<li><b>${v}</b> ${esc((v===1?bsing(nm):nm).toLowerCase())}${sv?` <span class="sub">(${sv} in storage)</span>`:''}</li>`}).join('')}</ul></div>`).join('');
+  const list=model.islands.filter((i)=>byI[i]).map((i)=>`<div class="sl-isl isl-${esc(String(i).toLowerCase())}"><div class="sl-ih">${esc(pretty(i))}</div><ul class="sl-ul">${Object.entries(byI[i]).sort((a,b)=>azIds().indexOf(a[0])-azIds().indexOf(b[0])).map(([k,v])=>{const nm=model.producers[k].name;const sv=(stoI[i]||{})[k]||0;return `<li><b>${v}</b> ${esc((v===1?bsing(nm):nm).toLowerCase())}${sv?` <span class="sub">(${sv} in storage)</span>`:''}</li>`}).join('')}</ul></div>`).join('');
   const cv=n?cvSummary():{n:0,ok:0},cn=cv.ok,tasks={length:cv.n};
   const head=[n?n+' buildings'+(sto?', including '+sto+' in storage':''):'No buildings yet',tasks.length?'Cruise: '+cn+' of '+tasks.length+' cards':''].filter(Boolean).join(' · ');
   return `<div class="card statusline isl-${esc(String(state.bIsland||model.islands[0]).toLowerCase())}"><details><summary><span class="sl-title">My island at a glance</span><span class="sl-head">${esc(head)}</span></summary><p class="sub" style="margin:6px 0 0">${setup.groups.length||lib?'Your setup is saved in this browser.':'Nothing saved yet.'} Library: ${lib} levels set.</p>${list?`<div class="sl-list">${list}</div>`:''}${tasks.length?`<p class="sub" style="margin:4px 0 0">Cruise cards your buildings can do now: <b>${cn} of ${tasks.length}</b> known cards.</p>`:''}</details></div>`}
@@ -896,8 +900,8 @@ function renderBuildings(){
   const islCard=`<div class="card isl-${esc(String(isl).toLowerCase())} islcard"><div class="islrow"><div class="islands">${model.islands.map((i)=>`<button class="btn ghost rune isl-${String(i).toLowerCase()} ${i===isl?'on':''}" data-act="bisl" data-isl="${esc(i)}">${esc(pretty(i))}</button>`).join('')}</div></div></div>`;
   if(sec==='buildings'){
     html+=islCard;
-    const order0=producersOf(isl).map((p)=>p.id);
-    const A=state.badd=state.badd||{};const pl=order0;if(!pl.includes(A.producer))A.producer=pl[0];const AP=model.producers[A.producer];if(capOf(AP)!==null&&A.count>capOf(AP))A.count=capOf(AP);
+    const order0=producersGame(isl).map((p)=>p.id);
+    const A=state.badd=state.badd||{};const pl=producersOf(isl).map((p)=>p.id);if(!pl.includes(A.producer))A.producer=pl[0];const AP=model.producers[A.producer];if(capOf(AP)!==null&&A.count>capOf(AP))A.count=capOf(AP);
     if(!(A.level>=1&&A.level<=AP.maxLevel))A.level=1;if(!(A.count>=1))A.count=1;
     const addHtml=`<div class="card addcard"><h2>+ Add buildings</h2>${baPick(isl,pl,A.producer)}<div class="grid" style="margin-top:10px">
     <label>How many<select data-ba="count">${countOpts(A.count,AP)}</select></label>
@@ -910,7 +914,7 @@ function renderBuildings(){
       const pl=state.playerLevel;
       const unlockedIds=()=>pl?order0.filter((p)=>UNLOCK[p]&&UNLOCK[p]<=pl):['field','cow_shed','windmill','feed_mill','bakery'].filter((p)=>order0.includes(p));
       const ulTag=(pid)=>{const u=UNLOCK[pid];return u&&(!pl||u>pl)?`<span class="tc">unlocks at level ${u}</span>`:''};
-      const tpIds=(i)=>{state.tickP=state.tickP||{};if(!state.tickP[i]){const o=producersOf(i).map((p)=>p.id);state.tickP[i]=pl?o.filter((p)=>UNLOCK[p]&&UNLOCK[p]<=pl):['field','cow_shed','windmill','feed_mill','bakery'].filter((p)=>o.includes(p))}return state.tickP[i]};
+      const tpIds=(i)=>{state.tickP=state.tickP||{};if(!state.tickP[i]){const o=producersGame(i).map((p)=>p.id);state.tickP[i]=pl?o.filter((p)=>UNLOCK[p]&&UNLOCK[p]<=pl):['field','cow_shed','windmill','feed_mill','bakery'].filter((p)=>o.includes(p))}return state.tickP[i]};
       const emptyIsl=model.islands.filter((i)=>!setup.groups.some((g)=>g.island===i));
       if(pend)tpIds(isl);
       let tk=`<div class="card tickcard"><h2>Tick the buildings you have</h2>`;
@@ -1091,20 +1095,20 @@ function renderLookup(){
     const showUses=P.category==='processing'&&rr.some((x)=>x.r.ok&&x.r.inputs.some((i)=>i.product!=='coins'));
     const anyEst=rr.some((x)=>x.r.ok&&(x.r.out.tag==='estimated'||(x.r.cycle&&x.r.cycle.tag==='estimated')));
     /* test 176: no repeated names. Same uses at every level = one line above the table; otherwise one narrow number column per input */
-    const okR=rr.filter((x)=>x.r.ok),uIds=[];okR.forEach((x)=>x.r.inputs.forEach((i)=>{if(i.product!=='coins'&&!uIds.includes(i.product))uIds.push(i.product)}));
+    const okR=rr.filter((x)=>x.r.ok),uIds=[];const wsL=hasSec(okR.map((x)=>x.r.cycle));okR.forEach((x)=>x.r.inputs.forEach((i)=>{if(i.product!=='coins'&&!uIds.includes(i.product))uIds.push(i.product)}));
     const qOf=(r,id)=>{const i=r.inputs.find((z)=>z.product===id);return i||null};
     const same=showUses&&okR.length>0&&uIds.every((id)=>okR.every((x)=>{const a=qOf(x.r,id),b=qOf(okR[0].r,id);return a&&b&&a.qty===b.qty}));
     const cols=showUses&&!same?uIds:[];
     const sl0=okR.length?okR[0].r.slider:null,oneStack=stk&&okR.every((x)=>x.r.slider===sl0);const stkC=stk&&!oneStack;
     const rows=rr.map(({lv,r})=>{
       if(!r.ok)return `<tr><td class="n">${lv}</td><td colspan="${2+cols.length+(stkC?1:0)}"><span class="empty">not seen yet</span></td></tr>`;
-      return `<tr class="${lv===L.level?'cur':''}"><td class="n">${lv}</td>${stkC?`<td class="n">x${r.slider}</td>`:''}<td class="n">${tv(r.out.v,r.out.tag)}</td><td class="n">${tcFixed(r.cycle)}</td>${cols.map((id)=>{const i=qOf(r,id);return `<td class="n">${i?tv(i.qty,i.tag,Number.isInteger(i.qty)?0:1):'–'}</td>`}).join('')}</tr>`}).join('');
+      return `<tr class="${lv===L.level?'cur':''}"><td class="n">${lv}</td>${stkC?`<td class="n">x${r.slider}</td>`:''}<td class="n">${tv(r.out.v,r.out.tag)}</td><td class="n">${tcFixed(r.cycle,wsL)}</td>${cols.map((id)=>{const i=qOf(r,id);return `<td class="n">${i?tv(i.qty,i.tag,Number.isInteger(i.qty)?0:1):'–'}</td>`}).join('')}</tr>`}).join('');
     const sameLine=same?`<p style="margin:0 0 8px">Uses ${okR[0].r.inputs.filter((i)=>i.product!=='coins').map((i)=>'<b>'+nf(i.qty,Number.isInteger(i.qty)?0:1)+'</b> '+esc(inName(i.product).toLowerCase())).join(' and ')} ${stk?'each time':'per cycle'}, at every level.</p>`:'';
     html+=`<div class="card"><h2>${stk?'Every level, at the biggest stack'+(oneStack&&sl0?' (x'+sl0+')':''):'Every level'}</h2>${sameLine}${anyEst?`<p class="sub" style="margin:0 0 8px"><span class="v est">≈</span> = estimated: worked out from other numbers, not read from the game.</p>`:''}${cols.length?`<p class="sub" style="margin:0 0 8px">The last ${cols.length===1?'column is':'columns are'} what it uses ${stk?'each time':'per cycle'}.</p>`:''}<div class="scroll"><table class="lutbl"><thead><tr><th class="n">Level</th>${stkC?'<th class="n">Stack</th>':''}<th class="n">${stk?'Makes':'Output'}</th><th class="n">${stk?'Time':'Cycle'}</th>${cols.map((id)=>`<th class="n inh">${esc(inName(id))}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div></div>`;
-    if(P.slider){let sr='';const topN=topOf(P,L.product,L.mode,L.level).top;const sIds=(res.inputs||[]).filter((i)=>i.product!=='coins').map((i)=>i.product);
+    if(P.slider){let sr='';const topN=topOf(P,L.product,L.mode,L.level).top;const sCyc=[];for(let n=P.slider.min;n<=topN;n++){const r=C.resolve(model,setup,Object.assign({},L,{slider:n}));if(r.ok)sCyc.push(r.cycle)}const wsS=hasSec(sCyc);const sIds=(res.inputs||[]).filter((i)=>i.product!=='coins').map((i)=>i.product);
       for(let n=P.slider.min;n<=topN;n++){const r=C.resolve(model,setup,Object.assign({},L,{slider:n}));
         if(!r.ok){sr+=`<tr><td class="n">x${n}</td><td colspan="${2+sIds.length}"><span class="empty">not available</span></td></tr>`;continue}
-        sr+=`<tr class="${n===res.slider?'cur':''}"><td class="n">x${n}</td><td class="n">${tv(r.out.v,r.out.tag)}${r.second?' + '+tv(r.second.v,r.second.tag)+' '+esc(pretty(r.second.product)):''}</td><td class="n">${tcFixed(r.cycle)}</td>${sIds.map((id)=>{const i=r.inputs.find((z)=>z.product===id);return `<td class="n">${i?nf(i.qty,Number.isInteger(i.qty)?0:1):'–'}</td>`}).join('')}</tr>`}
+        sr+=`<tr class="${n===res.slider?'cur':''}"><td class="n">x${n}</td><td class="n">${tv(r.out.v,r.out.tag)}${r.second?' + '+tv(r.second.v,r.second.tag)+' '+esc(pretty(r.second.product)):''}</td><td class="n">${tcFixed(r.cycle,wsS)}</td>${sIds.map((id)=>{const i=r.inputs.find((z)=>z.product===id);return `<td class="n">${i?nf(i.qty,Number.isInteger(i.qty)?0:1):'–'}</td>`}).join('')}</tr>`}
       html+=`<div class="card"><h2>Every stack size, ${esc(pn(L.product))}, level ${L.level}</h2>${sIds.length?`<p class="sub" style="margin:0 0 8px">The last ${sIds.length===1?'column is':'columns are'} what it uses.</p>`:''}<div class="scroll"><table class="lutbl"><thead><tr><th class="n">Stack</th><th class="n">Makes</th><th class="n">Time</th>${sIds.map((id)=>`<th class="n inh">${esc(inName(id))}</th>`).join('')}</tr></thead><tbody>${sr}</tbody></table></div></div>`}
   }
   html+=`<p class="golink"><a href="#buildings" data-sec="collect">Your own buildings: Quick count →</a></p>`;
@@ -1553,7 +1557,7 @@ function cfAuto(f,what){
   if(hit){if(!f.ptyped&&hit.points!=null)f.points=String(hit.points);
     if(!f.ltyped&&hit.time_h){const m=Math.round(hit.time_h*60);f.limit=CF_LIMITS.includes(m)?m:'other';f.other=CF_LIMITS.includes(m)?'':String(m)}}
   else{if(!f.ptyped)f.points='';if(!f.ltyped&&what==='product'){f.limit=0;f.other=''}}}
-function cfBrowseGroups(){if(!model._bgroups){const names=cruiseNames(),ord=Object.keys(model.producers),isl=model.islands,by={};
+function cfBrowseGroups(){if(!model._bgroups){const names=cruiseNames(),ord=azIds(),isl=model.islands,by={};
     Object.keys(names).forEach((id)=>{let key,sk;
       if(isOther(id)){key='Tasks every player can do';sk=1e6}
       else{const pids=id==='manure'?manureIds():(model.productProducers[id]||[]);
@@ -2054,7 +2058,7 @@ document.addEventListener('click',(e)=>{
   if(a==='bpick'){state.bsel=state.bsel||{};state.bsel[state.bIsland]=b.dataset.v;render();return}
   if(a==='bisl'){state.bIsland=b.dataset.isl;try{localStorage.setItem('sunshine_lastisl_v1',state.bIsland)}catch(e){}state.addMsg='';render()}
   if(a==='qisl'){state.q={island:b.dataset.isl};render()}
-  if(a==='lisl'){state.lookup=Object.assign(state.lookup||{},{island:b.dataset.isl,producer:'',product:'',mode:'',slider:'max'});state.lopen=null;state.llist=true;render()}
+  if(a==='lisl'){let mem={};try{mem=JSON.parse(localStorage.getItem('sunshine_lk_v1'))||{}}catch(_){}const m=mem[b.dataset.isl]||{};state.lookup=Object.assign(state.lookup||{},{island:b.dataset.isl,producer:m.producer||'',product:m.product||'',mode:'',slider:'max'});state.lopen='__none';state.llist=!m.producer;render()}
   if(a==='gstore'){const g=gOf();if(g&&noStore(model.producers[g.producer])){state.notice=model.producers[g.producer].name+' cannot be stored in the game.';render();return}if(g){const si=slotInfo(g.island);if(si.cap===null){state.notice='Type how many storage slots you have on this island first.';render();return}if(si.used>=si.cap){state.notice='Storage is full ('+si.used+' of '+si.cap+'). Nothing was stored.';render();return}}if(g)snap('Stored 1 '+model.producers[g.producer].name+' (Level '+g.level+')');moveOne(gid,'storage');save();render()}
   if(a==='undo'&&state.undo){setup.groups=state.undo.groups;setup.cellState=state.undo.cellState||{};state.undo=null;state.delAsk=null;setup.groups.forEach(fixGroup);save();render()}
   if(a==='undook'){state.undo=null;render()}
@@ -2110,10 +2114,10 @@ document.addEventListener('click',(e)=>{
   if(a==='cbrowse'){state.cbrowse=!state.cbrowse;render();return}
   if(a==='baopen'){state.baopen=true;render();return}
   if(a==='bapick'){const A=state.badd=state.badd||{};A.producer=b.dataset.v;A.level=1;A.count=1;state.addMsg='';state.baopen=false;render();return}
-  if(a==='llist'){state.llist=true;state.lopen=null;render();return}
+  if(a==='llist'){state.llist=true;state.lopen='__none';render();return}
   if(a==='lmode'){state.lookup.mode=b.dataset.m;render();return}
   if(a==='lopen'){state.lopen=state.lopen===b.dataset.v?'__none':b.dataset.v;render();return}
-  if(a==='lpick2'){const L=state.lookup;L.producer=b.dataset.p;L.product=b.dataset.v;L.mode='';L.slider='max';state.lopen=b.dataset.p;state.llist=false;render();return}
+  if(a==='lpick2'){const L=state.lookup;L.producer=b.dataset.p;L.product=b.dataset.v;try{const mem=JSON.parse(localStorage.getItem('sunshine_lk_v1'))||{};mem[L.island]={producer:L.producer,product:L.product};localStorage.setItem('sunshine_lk_v1',JSON.stringify(mem))}catch(_){}L.mode='';L.slider='max';state.lopen=b.dataset.p;state.llist=false;render();return}
   if(a==='lpick'){const L=state.lookup,k=b.dataset.k;L[k]=numOrStr(b.dataset.v);if(k==='producer'){L.product='';L.mode='';L.slider='max'}if(k==='product'){L.mode='';L.slider='max'}render();return}
   if(a==='cisl'){state.cisl=b.dataset.k;render();return}
   if(a==='chelp'){state.chelp=!state.chelp;render();return}
