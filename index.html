@@ -7,7 +7,7 @@
 <title>Sunshine Calculator</title>
 <!-- V104: Browse products list, one saved card per product with a size strip, sizes green (can do) / grey (not yet); V92 (test 92): plain wording, ? panels, My buildings sections, Teal/Black/Light looks, separate quick-sum lines, shelter box fixed, undo stays 30 s; V91 jump highlight + bottom tabs and Back to top; V90 (checked at 340 to 430 px) slim status line + one Jump to drop-down on the island row; V89 island list folded, singular names, island remembered; V88 island-in-use line on My buildings; V87 reopen on the last tab used; V85 test build number in header chip; V84 Load my saved island button in the jump row; V83 no-building answer shows the scenario; V82 storage hint + link to My buildings on cruise cards; V81 jump links, None, reset ready counts, points totals; V80 Full now on Cruise cards; V79 warehouse box tidy; V78 warehouse wording; V77 card note shows number not code; V76 load-island keeps cards/layouts/runes; V75 undo bar sticky at the bottom; V74 2 Nov 2026: fields card, tab order, sticky picker, cruise rules v2, shortest-crop-first when a count is lowered -->
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="build" content="171">
+<meta name="build" content="172">
 <meta name="description" content="Sunshine Island Calculator. Beta 0.1 - data from the 28 Oct 2026 game update.">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=170"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=168"><meta name="apple-mobile-web-app-title" content="Sunshine">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -520,7 +520,7 @@ label{font-size:13px}.help{font-size:13px}.chip{font-size:12.5px}th{font-size:12
 .footer a,.footer .linkbtn,.abrow a,.abrow .linkbtn{color:var(--accent-ink);text-decoration:underline;text-underline-offset:3px}
 .coghead{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .islcard{position:sticky;top:0;z-index:20;box-shadow:0 4px 10px rgba(0,0,0,.25)}
-html,body{overflow-x:clip;max-width:100%}
+html{overflow-x:hidden}body{overflow-x:clip;max-width:100%}
 .totop{margin:18px 0 10px}
 /* test 169 */
 .tickrow .tn{min-width:0}.tickrow .tc{flex:0 0 auto;text-align:right}.tnote{display:block;font-size:13px;color:var(--muted);font-weight:400}
@@ -549,6 +549,17 @@ ol.steps{margin:0 0 8px;padding-left:22px}ol.steps li{margin:4px 0;color:var(--m
 .cvrow.open .cvmain b::after{content:" ▴";color:var(--muted)}.cvmain b::after{content:" ▾";color:var(--muted);font-weight:400}
 .cvdet{padding:4px 4px 12px 48px}.cvsizes{margin:4px 0;padding-left:18px}.cvsizes li{margin:4px 0}
 @media (max-width:420px){.cvdet{padding-left:8px}}
+/* test 172 */
+.mbox input,.line .mbox input[type=number]{background:var(--fbg,var(--bg));color:var(--fg);border-color:var(--fline,var(--line))}
+.fbline{margin-top:16px;overflow-wrap:anywhere}
+.cvmain b,.cvline{max-width:100%;overflow-wrap:anywhere}
+.wrap{min-width:0}
+#wchk{position:fixed;left:12px;right:12px;top:12px;z-index:130;max-height:70vh;overflow:auto;padding:12px;border:2px solid var(--accent);border-radius:12px;background:var(--surface);color:var(--fg);font-size:14px;box-shadow:0 4px 18px rgba(0,0,0,.4)}
+#wchk ol{margin:6px 0;padding-left:20px;overflow-wrap:anywhere}
+.qcpick{margin:6px 0 4px}.qcres{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin:10px 0 4px;padding:10px 12px;border:2px solid var(--accent);border-radius:12px;background:color-mix(in srgb,var(--accent) 10%,var(--surface))}
+.qcres .big{font-size:32px}.qcres .qcsub{font-size:14px;color:var(--muted)}
+.qcrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:8px 0 0}.qcrow .tsel{width:auto;min-width:84px}.qcrow select{width:auto;min-width:84px}
+.qcmore{margin-top:8px}.qcmore>summary{min-height:40px;display:flex;align-items:center;font-size:14px}
 </style>
 </head><body>
 <div class="wrap">
@@ -560,9 +571,9 @@ ol.steps{margin:0 0 8px;padding-left:22px}ol.steps li{margin:4px 0;color:var(--m
   <div id="panel"></div>
   <div id="coffee"></div>
   <div id="feedback"></div>
-  <p class="footer"><span class="meonly"><a href="#data">Data &amp; flags</a> · </span><button class="linkbtn" data-act="walkshow">Quick start</button> · <button class="btn ghost small" data-act="key" aria-expanded="false" id="keybtn">How accurate are the numbers?</button></p>
+  <p class="footer"><span class="meonly"><a href="#data">Data &amp; flags</a> · <button class="linkbtn" data-act="widthchk">Width check</button> · </span><button class="linkbtn" data-act="walkshow">Quick start</button> · <button class="btn ghost small" data-act="key" aria-expanded="false" id="keybtn">How accurate are the numbers?</button></p>
   <div id="keyline"></div>
-  <p class="footer" style="margin-top:6px">Beta 0.1 · test 171 - data from the 28 Oct 2026 game update (game 1.3.40251)</p>
+  <p class="footer" style="margin-top:6px">Beta 0.1 · test 172 - data from the 28 Oct 2026 game update (game 1.3.40251)</p>
   <p class="footer" style="margin-top:0">Unofficial fan tool. Not made by, or connected to, the game's developers.</p>
   <div id="footlogo" class="footlogo"></div>
   <p class="totop"><button type="button" class="btn ghost small" data-act="totop">↑ Back to top</button></p>
@@ -662,6 +673,8 @@ async function boot(){
     $('#subtitle').textContent=model.islands.map(pretty).join(' · ');
     state.defTab=setup.groups.length?'guild':'setup';try{const li=localStorage.getItem('sunshine_lastisl_v1');if(li&&model.islands.includes(li))state.bIsland=li}catch(e){}try{const lt=localStorage.getItem('sunshine_lasttab_v1');if(setup.groups.length&&ALLTABS.some((t)=>t[0]===lt))state.defTab=lt}catch(e){}
     try{state.walkDone=localStorage.getItem('sunshine_walk_v1')==='1'}catch(e){state.walkDone=false}
+    /* test 172: reopen on the guild project picked last time */
+    try{const gp=localStorage.getItem('sunshine_gproj_v1');if(gp&&((files.guild&&files.guild.projects)||[]).some((x)=>x.id===gp))state.gproj=gp}catch(e){}
     try{state.libhand=localStorage.getItem('sunshine_libhand_v1')==='1'}catch(e){state.libhand=false}
     try{state.bkDone=localStorage.getItem('sunshine_backup_v1')==='1'}catch(e){state.bkDone=false}
     siteBits();drawTabs();render();
@@ -672,9 +685,9 @@ function siteBits(){
   if(SITE.footlogo&&$('#footlogo'))$('#footlogo').innerHTML=`<img src="${esc(SITE.footlogo)}" alt="OJ Maestro" onerror="this.parentNode.hidden=true">`;
   if(SITE.coffee&&$('#coffee'))$('#coffee').innerHTML=`<div class="coffeecard"><p>Free tool, made by OJ Maestro. If it saved you time, you can say thanks with a small tip.</p><a class="coffeebtn" href="${esc(SITE.coffee)}" target="_blank" rel="noopener" aria-label="Buy me a coffee"><img class="bmcimg" hidden alt="" src="https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=&slug=ojmaestro&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" onload="this.hidden=false;this.nextElementSibling.hidden=true;this.parentNode.classList.add('official')" onerror="this.remove()"><span class="bmcfb"><svg viewBox="0 0 22 26" aria-hidden="true"><path d="M3 9h16l-1.6 14.5a2 2 0 0 1-2 1.5H6.6a2 2 0 0 1-2-1.5z" fill="#fff" stroke="#000" stroke-width="1.8" stroke-linejoin="round"/><path d="M2 9h18V6.5H2z" fill="#fff" stroke="#000" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 6.5V4.5c0-1 1-1.8 2-1.8h8c1 0 2 .8 2 1.8v2" fill="none" stroke="#000" stroke-width="1.8"/></svg> Buy me a coffee</span></a></div>`;
   const ab=$('#cogabout');
-  if(ab)ab.innerHTML=`<h2>Help &amp; feedback</h2><p class="sub" style="margin:0">Spot a bug or have an idea? Tell me.</p>${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p>Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}<div class="abrow"><button class="linkbtn" data-act="walkshow">Quick start</button><span class="meonly"><a href="#data">Data &amp; flags</a></span></div><p class="sub">Made by OJ Maestro · Beta 0.1 · test 171</p>`;
+  if(ab)ab.innerHTML=`<h2>Help &amp; feedback</h2><p class="sub" style="margin:0">Spot a bug or have an idea? Tell me.</p>${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p>Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}<div class="abrow"><button class="linkbtn" data-act="walkshow">Quick start</button><span class="meonly"><a href="#data">Data &amp; flags</a></span></div><p class="sub">Made by OJ Maestro · Beta 0.1 · test 172</p>`;
   const fb=$('#feedback');
-  if(fb&&(SITE.feedback||SITE.email||SITE.discord))fb.innerHTML=`<div class="card fbcard"><h2>Spot a bug or have an idea?</h2>${SITE.feedback?`<p>${esc(SITE.feedback)}</p>`:''}${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p class="fbdisc">Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}</div>`}
+  if(fb&&(SITE.feedback||SITE.email||SITE.discord))fb.innerHTML=`<p class="footer fbline">Spot a bug or have an idea? ${SITE.email?`Email <a href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?` or message <b>${esc(SITE.discord)}</b> on Discord`:''}.</p>`}
 document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.classList&&t.classList.contains('ovlist'))state.ovOpen=t.open},true);
 /* test 169: remember whether "Add or tick buildings" is folded */
 document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.dataset&&t.dataset.setupfold!==undefined){state.setupOpen=t.open;if(!t.open)state.tickOpen=false;try{localStorage.setItem('sunshine_setupfold_v1',t.open?'1':'0')}catch(_){}}},true);
@@ -682,9 +695,11 @@ document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.dataset&&t.dat
 document.addEventListener('input',(e)=>{const el=e.target;if(!el||!el.dataset||el.dataset.plvl===undefined||!model)return;
   const v=parseInt(el.value,10),n=v>=1&&v<=200?v:null;state.playerLevel=n;try{if(n)localStorage.setItem('sunshine_playerlevel_v1',String(n));else localStorage.removeItem('sunshine_playerlevel_v1')}catch(_){}
   const o0=producersOf(state.bIsland).map((p)=>p.id);const ids=n?o0.filter((p)=>UNLOCK[p]&&UNLOCK[p]<=n):['field','cow_shed','windmill','feed_mill','bakery'].filter((p)=>o0.includes(p));
-  state.tickPend={isl:state.bIsland,ids:ids.slice()};
+  const lvIds=(i)=>{const o=producersOf(i).map((p)=>p.id);return n?o.filter((p)=>UNLOCK[p]&&UNLOCK[p]<=n):['field','cow_shed','windmill','feed_mill','bakery'].filter((p)=>o.includes(p))};
+  const em=model.islands.filter((i)=>!setup.groups.some((g)=>g.island===i));state.tickP={};em.forEach((i)=>{state.tickP[i]=lvIds(i)});
   document.querySelectorAll('.tickcard input[data-tick]').forEach((c)=>{c.checked=ids.includes(c.dataset.tick);const tc=c.closest('.tickrow').querySelector('.tc');const u=UNLOCK[c.dataset.tick];if(tc&&!/owned/.test(tc.textContent))tc.textContent=u&&(!n||u>n)?'unlocks at level '+u:''});
-  const ab=document.querySelector('[data-act="tickadd"]');if(ab)ab.disabled=!ids.length});
+  const tc0=document.getElementById('tickcnt');if(tc0)tc0.innerHTML=em.map((i)=>esc(pretty(i))+': <b>'+state.tickP[i].length+'</b> ticked').join(' · ');
+  const ab=document.querySelector('[data-act="tickadd"]');if(ab)ab.disabled=!em.some((i)=>state.tickP[i].length)});
 document.addEventListener('click',(e)=>{const t=e.target.closest&&e.target.closest('#cogpanel [data-act="walkshow"], #cogpanel a[href="#data"]');if(t){const pn=document.getElementById('cogpanel');if(pn){pn.hidden=true;const cb=document.querySelector('.cogbtn');if(cb)cb.setAttribute('aria-expanded','false')}}});
 function copyText(text,done){
   const fb=()=>{let ok=false;const ta=document.createElement('textarea');ta.value=text;ta.setAttribute('readonly','');ta.style.cssText='position:fixed;left:-9999px;top:0';document.body.appendChild(ta);ta.select();try{ok=document.execCommand('copy')}catch(x){}ta.remove();done(ok)};
@@ -860,7 +875,8 @@ function baPick(isl,pl,cur){const ic='isl-'+esc(String(isl).toLowerCase());
 function renderBuildings(){
   state.bIsland=model.islands.includes(state.bIsland)?state.bIsland:model.islands[0];
   const isl=state.bIsland,si=slotInfo(isl);
-  if(state.bsec==='layouts')state.bsec='save';const sec=['buildings','collect','save'].includes(state.bsec)?state.bsec:'buildings';
+  if(state.bsec===undefined){try{state.bsec=localStorage.getItem('sunshine_bsec_v1')||'buildings'}catch(_){state.bsec='buildings'}}
+  if(state.bsec==='layouts')state.bsec='save';try{localStorage.setItem('sunshine_bsec_v1',state.bsec)}catch(_){}const sec=['buildings','collect','save'].includes(state.bsec)?state.bsec:'buildings';
   const act=setup.groups.filter((g)=>g.island===isl&&g.state==='active');
   const sto=setup.groups.filter((g)=>g.island===isl&&g.state==='storage');
   const undoBar=state.undo?`<div class="card undobar" role="status"><div class="row" style="justify-content:space-between;align-items:center"><span>${esc(state.undo.label)}</span><span><button class="btn small" data-act="undo">Undo</button> <button class="btn ghost small" data-act="undook">Dismiss</button></span></div></div>`:'';
@@ -884,13 +900,16 @@ function renderBuildings(){
       const pl=state.playerLevel;
       const unlockedIds=()=>pl?order0.filter((p)=>UNLOCK[p]&&UNLOCK[p]<=pl):['field','cow_shed','windmill','feed_mill','bakery'].filter((p)=>order0.includes(p));
       const ulTag=(pid)=>{const u=UNLOCK[pid];return u&&(!pl||u>pl)?`<span class="tc">unlocks at level ${u}</span>`:''};
-      if(pend&&(!state.tickPend||state.tickPend.isl!==isl))state.tickPend={isl:isl,ids:unlockedIds()};
+      const tpIds=(i)=>{state.tickP=state.tickP||{};if(!state.tickP[i]){const o=producersOf(i).map((p)=>p.id);state.tickP[i]=pl?o.filter((p)=>UNLOCK[p]&&UNLOCK[p]<=pl):['field','cow_shed','windmill','feed_mill','bakery'].filter((p)=>o.includes(p))}return state.tickP[i]};
+      const emptyIsl=model.islands.filter((i)=>!setup.groups.some((g)=>g.island===i));
+      if(pend)tpIds(isl);
       let tk=`<div class="card tickcard"><h2>Tick the buildings you have</h2>`;
       if(pend){
         tk+=`<ol class="steps"><li>Type your level in the game (optional). The buildings you have unlocked are ticked for you.</li><li>Untick any you have not built yet, and tick any others you have.</li><li>Press <b>Add ticked buildings</b>. Each is added at Level 1. You can change the level or the number afterwards.</li></ol><label class="plvl">Your level in the game<input type="number" inputmode="numeric" min="1" max="200" step="1" data-plvl value="${pl||''}"></label>`;
         order0.forEach((pid)=>{const P=model.producers[pid];
-          tk+=`<label class="tickrow"><input type="checkbox" data-tick="${esc(pid)}"${state.tickPend.ids.includes(pid)?' checked':''}><span class="tn">${esc(bsing(P.name))}</span>${ulTag(pid)}</label>`});
-        tk+=`<div class="row" style="margin-top:10px"><button class="btn" data-act="tickadd"${state.tickPend.ids.length?'':' disabled'}>Add ticked buildings to ${esc(pretty(isl))}</button></div>`}
+          tk+=`<label class="tickrow"><input type="checkbox" data-tick="${esc(pid)}"${state.tickP[isl].includes(pid)?' checked':''}><span class="tn">${esc(bsing(P.name))}</span>${ulTag(pid)}</label>`});
+        const per=emptyIsl.map((i)=>({i,n:tpIds(i).length})),totT=per.reduce((a,x)=>a+x.n,0);
+        tk+=`<p class="sub" style="margin:10px 0 4px">${emptyIsl.length>1?'Your ticks are kept on each island. Use the island buttons above to check the others before you add.':''}</p><p id="tickcnt" style="margin:0 0 6px;font-size:14px">${per.map((x)=>`${esc(pretty(x.i))}: <b>${x.n}</b> ticked`).join(' · ')}</p><div class="row"><button class="btn" data-act="tickadd"${totT?'':' disabled'}>${emptyIsl.length>1?'Add ticked buildings on '+(emptyIsl.length===3?'all 3 islands':'these islands'):'Add ticked buildings to '+esc(pretty(isl))}</button></div>`}
       else if(!openT){tk+=`<p class="sub" style="margin:0 0 8px">Quicker than adding one at a time. Each tick adds one building at Level 1.</p><button class="btn" data-act="tickopen">Tick my buildings</button>`}
       else{
         tk+=`<p class="sub" style="margin:0 0 6px">Tick every building you have on ${esc(pretty(isl))}. Untick one to take it away. Use the island buttons above to go to the next island; this list stays open until you press <b>Done</b>.</p>`;
@@ -942,36 +961,50 @@ function renderBuildings(){
 
 
 /* ---- WHAT I CAN COLLECT: read from my buildings, nothing to type ---- */
-function collectCard(pid,gs){const P=model.producers[pid];
+/* test 172: Quick count gives ONE number. Pick the product, how many buildings (your highest levels are used first) and the mode; Copy gives one line for guild chat. Choices are remembered. */
+function qcS(){if(!state.qcs){let o={};try{o=JSON.parse(localStorage.getItem('sunshine_qc_v1'))||{}}catch(_){o={}}['sel','prod','n','mode'].forEach((k)=>{if(!o[k]||typeof o[k]!=='object')o[k]={}});state.qcs=o}return state.qcs}
+function qcSave(){try{localStorage.setItem('sunshine_qc_v1',JSON.stringify(state.qcs||{}))}catch(_){}}
+function collectCard(pid,gs){const P=model.producers[pid],S=qcS();
   const byLv={};gs.forEach((g)=>{byLv[g.level]=(byLv[g.level]||0)+g.count});
   const lvs=Object.keys(byLv).map(Number).sort((a,b)=>a-b),total=gs.reduce((n,g)=>n+g.count,0);
   const sl=P.slider?'max':1;
   const R=(prod,m,L)=>C.resolve(model,setup,{producer:pid,product:prod,mode:m,level:L,slider:sl});
-  const desc=lvs.map((L)=>byLv[L]+' at level '+L).join(', ');
-  let h=`<div class="card"><div class="row" style="justify-content:space-between;align-items:flex-start"><h2 style="margin:0">${esc(P.name)}</h2><span class="chip">You have ${total}</span></div><p class="sub" style="margin:4px 0 8px">${esc(desc)}</p>`;
-  prodsOf(P).forEach((prod)=>{const ml=modeList(P,prod).slice().sort((a,b)=>['regular','fine','instant'].indexOf(a)-['regular','fine','instant'].indexOf(b));
-    let rows='',up='';const cp=[];
-    ml.forEach((m)=>{let tot=0,tag='seen',cyc=null,bad=false;
-      lvs.forEach((L)=>{const r=R(prod,m,L);if(!r.ok){bad=true;return}tot+=r.out.v*byLv[L];tag=C.worst(tag,r.out.tag);if(r.cycle&&(!cyc||r.cycle.v>cyc.v))cyc=r.cycle});
-      if(!bad)cp.push((m==='none'?'':modeLabel(P,prod,m)+' ')+nf(tot));
-      rows+=bad?`<tr><td>${m==='none'?'Per collection':esc(modeLabel(P,prod,m))}</td><td colspan="2"><span class="empty">not worked out for every level yet</span></td></tr>`:`<tr><td>${m==='none'?'Per collection':esc(modeLabel(P,prod,m))}</td><td class="n">${tv(tot,tag)}</td><td class="n">${tc(cyc)}</td></tr>`});
-    const m0=ml.includes('regular')?'regular':ml[0],parts=[];
-    const one=bsing(P.name).toLowerCase(),mtag=m0==='none'?'':' ('+modeLabel(P,prod,m0)+')';
-    lvs.forEach((L)=>{if(L>=P.maxLevel)return;const a=R(prod,m0,L),b=R(prod,m0,L+1);if(a.ok&&b.ok&&b.out.v>a.out.v){const d=b.out.v-a.out.v;parts.push('Upgrade a level '+L+' '+one+' to level '+(L+1)+': adds '+nf(d,Number.isInteger(d)?0:1)+' '+amtName(prod,d)+mtag)}});
-    if(parts.length)up='<div class="upbox">'+parts.slice(0,3).map((t)=>`<p>${esc(t)}</p>`).join('')+'</div>';
-    const ctext=pretty(prod)+' ('+total+' '+(total===1?bsing(P.name):P.name).toLowerCase()+'): '+cp.join(' · ');
-    h+=`<div class="ptlrow"><h3 class="ptl">${esc(pretty(prod))}</h3>${cp.length?`<button type="button" class="btn small" data-act="qccopy" data-t="${esc(ctext)}" aria-label="Copy the ${esc(pretty(prod).toLowerCase())} totals">Copy</button>`:''}</div><div class="scroll"><table class="ctbl"><thead><tr><th>${ml[0]==='none'?'':'Mode'}</th><th class="n">You can collect</th><th class="n">Time</th></tr></thead><tbody>${rows}</tbody></table></div>${up}`});
+  const prods=prodsOf(P),prod=prods.includes(S.prod[pid])?S.prod[pid]:prods[0];
+  const ml=modeList(P,prod).slice().sort((a,b)=>['regular','fine','instant'].indexOf(a)-['regular','fine','instant'].indexOf(b));
+  const key=pid+'|'+prod,mode=ml.includes(S.mode[key])?S.mode[key]:(ml.includes('regular')?'regular':ml[0]);
+  const n=Math.min(total,Math.max(1,parseInt(S.n[key],10)||total));
+  const noun=(k)=>(k===1?bsing(P.name):P.name).toLowerCase();
+  let h=`<div class="card"><div class="row" style="justify-content:space-between;align-items:flex-start"><h2 style="margin:0">${esc(P.name)}</h2><span class="chip">You have ${total}</span></div>`;
+  if(prods.length>1)h+=`<div class="cchips lchips qcpick">${prods.map((x)=>`<button type="button" class="cchip lchip${x===prod?' on':''}" data-act="qcprod" data-p="${esc(pid)}" data-v="${esc(x)}" aria-pressed="${x===prod}">${esc(pretty(x))}</button>`).join('')}</div>`;
+  /* highest levels first */
+  let rem=n,tot=0,tag='seen',cyc=null,bad=false;const used=[];
+  [...lvs].reverse().forEach((L)=>{if(rem<=0)return;const k=Math.min(rem,byLv[L]);rem-=k;used.push(k+' at level '+L);const r=R(prod,mode,L);if(!r.ok){bad=true;return}tot+=r.out.v*k;tag=C.worst(tag,r.out.tag);if(r.cycle&&(!cyc||r.cycle.v>cyc.v))cyc=r.cycle});
+  h+=`<div class="qcrow"><label style="flex-direction:row;align-items:center;gap:8px;font-size:15px;color:var(--fg)">How many?<select data-qcn="${esc(key)}" aria-label="How many ${esc(noun(2))}">${rng(1,total,n)}</select></label><span class="sub" style="margin:0">of your ${total} ${esc(noun(total))}</span></div>`;
+  if(ml[0]!=='none')h+=`<div class="lmodes" style="margin-top:8px">${ml.map((m)=>`<button type="button" class="btn small gallbtn m-${esc(m)}${m===mode?' on':''}" data-act="qcmode" data-k="${esc(key)}" data-m="${esc(m)}" aria-pressed="${m===mode}">${m===mode?'✓ ':''}${esc(modeLabel(P,prod,m))}</button>`).join('')}</div>`;
+  const mlab=ml[0]==='none'?'':' ('+modeLabel(P,prod,mode)+')';
+  const line=pretty(prod)+mlab+', '+n+' '+noun(n)+': '+nf(tot);
+  if(bad)h+=`<p class="warn">Not worked out for every level yet.</p>`;
+  else h+=`<div class="qcres" role="status"><div><span class="big">${tv(tot,tag)}</span> <b>${esc(pretty(prod).toLowerCase())}</b><div class="qcsub">${cyc?'every '+esc(mins(cyc.v)):(mode==='instant'?'straight away':'')}${n<total||lvs.length>1?(cyc||mode==='instant'?' · ':'')+'using your best: '+esc(used.join(', ')):''}</div></div><button type="button" class="btn" data-act="qccopy" data-t="${esc(line)}" aria-label="Copy: ${esc(line)}">Copy</button></div>`;
+  /* the old full table and upgrade tips, folded away */
+  let rows='',up='';
+  ml.forEach((m)=>{let t2=0,tg='seen',cy=null,bd=false;lvs.forEach((L)=>{const r=R(prod,m,L);if(!r.ok){bd=true;return}t2+=r.out.v*byLv[L];tg=C.worst(tg,r.out.tag);if(r.cycle&&(!cy||r.cycle.v>cy.v))cy=r.cycle});
+    rows+=bd?`<tr><td>${m==='none'?'Per collection':esc(modeLabel(P,prod,m))}</td><td colspan="2"><span class="empty">not worked out for every level yet</span></td></tr>`:`<tr><td>${m==='none'?'Per collection':esc(modeLabel(P,prod,m))}</td><td class="n">${tv(t2,tg)}</td><td class="n">${tc(cy)}</td></tr>`});
+  const m0=ml.includes('regular')?'regular':ml[0],parts=[],one=bsing(P.name).toLowerCase(),mtag=m0==='none'?'':' ('+modeLabel(P,prod,m0)+')';
+  lvs.forEach((L)=>{if(L>=P.maxLevel)return;const a=R(prod,m0,L),b=R(prod,m0,L+1);if(a.ok&&b.ok&&b.out.v>a.out.v){const d=b.out.v-a.out.v;parts.push('Upgrade a level '+L+' '+one+' to level '+(L+1)+': adds '+nf(d,Number.isInteger(d)?0:1)+' '+amtName(prod,d)+mtag)}});
+  if(parts.length)up='<div class="upbox">'+parts.slice(0,3).map((t)=>`<p>${esc(t)}</p>`).join('')+'</div>';
+  h+=`<details class="qcmore"><summary>All ${total} ${esc(noun(total))}, every mode${parts.length?', upgrade tips':''}</summary><div class="scroll"><table class="ctbl"><thead><tr><th>${ml[0]==='none'?'':'Mode'}</th><th class="n">You can collect</th><th class="n">Time</th></tr></thead><tbody>${rows}</tbody></table></div>${up}</details>`;
   return h+'</div>'}
 function renderCollect(){
   const act=setup.groups.filter((g)=>g.state==='active'&&model.producers[g.producer]);
   const ids=[];model.islands.forEach((i)=>producersOf(i).forEach((p)=>{if(act.some((g)=>g.producer===p.id))ids.push(p.id)}));
   if(!ids.length)return `<div class="card"><h2>Quick count</h2><p class="empty">No buildings yet. Add them in the <a href="#buildings" data-sec="buildings">Buildings</a> section first.</p></div>`;
   const isls=model.islands.filter((i)=>ids.some((x)=>String(model.producers[x].island)===String(i)));
-  if(!isls.includes(state.cisl2))state.cisl2=isls.includes(state.bIsland)?state.bIsland:isls[0];
+  if(!isls.includes(state.cisl2))state.cisl2=isls.includes(qcS().isl)?qcS().isl:(isls.includes(state.bIsland)?state.bIsland:isls[0]);
+  if(state.csel===undefined)state.csel=qcS().sel[state.cisl2]||'all';
   const inIsl=ids.filter((x)=>String(model.producers[x].island)===String(state.cisl2));
   state.csel=(state.csel==='all'||inIsl.includes(state.csel))?state.csel:'all';
   const cap=(t)=>{t=String(t);return t.charAt(0).toUpperCase()+t.slice(1)};
-  let h=`<div class="card"><div class="hline"><h2 style="margin:0;flex:1">Quick count</h2>${qh('<p>What your own buildings can make in one go, for every product. Nothing to type: it reads your buildings.</p><p>Press <b>Copy</b> under a product to copy its totals, ready to paste into guild chat.</p>')}</div><p class="sub" style="margin:4px 0 0">What your buildings make in one go. Press <b>Copy</b> under a product for guild chat.</p></div>`;
+  let h=`<div class="card"><div class="hline"><h2 style="margin:0;flex:1">Quick count</h2>${qh('<ol class="steps"><li>Pick the island and the building.</li><li>Tap the product, then choose <b>How many?</b> and Regular, Fine or Instant. Your highest-level buildings are counted first.</li><li>Press <b>Copy</b> and paste it into guild chat, for example "Carrots (Fine), 7 fields:" followed by the total.</li></ol><p>It remembers your last choices. Open the fold under the number to see every mode and upgrade tips.</p>')}</div><p class="sub" style="margin:4px 0 0">Pick the product, how many and the mode. Press <b>Copy</b> to paste the number in guild chat.</p></div>`;
   h+=`<div class="qbar" role="region" aria-label="Island">`;
   if(isls.length>1)h+=`<div class="bisltabs" role="tablist" aria-label="Island">${isls.map((k)=>`<button type="button" role="tab" aria-selected="${k===state.cisl2}" class="bislt isl-${esc(String(k).toLowerCase())}${k===state.cisl2?' on':''}" data-act="cisl2" data-k="${esc(k)}">${esc(cap(k))}</button>`).join('')}</div>`;
   h+='</div>';
@@ -1001,55 +1034,6 @@ function renderShelter(){const sl=shelter(),ids=shelterIds();
       <button class="btn small" data-act="scollect" ${x.product||x.amount?'':'disabled'}>Collected</button></div>`}).join('')}</div>`:''}</div>`}
 
 /* ---- QUICK OUTPUT: my buildings of one type, by island ---- */
-function renderQuick(){
-  const Q=state.q=state.q||{};Q.island=model.islands.includes(Q.island)?Q.island:(setup.groups.find((g)=>g.state==='active')||{island:model.islands[0]}).island;
-  const pl=producersOf(Q.island);
-  const has=(p)=>setup.groups.some((g)=>g.producer===p&&g.state==='active');
-  if(!Q.producer||model.producers[Q.producer]&&model.producers[Q.producer].island!==Q.island||!model.producers[Q.producer])Q.producer=(pl.find((p)=>has(p.id))||pl[0]).id;
-  const P=model.producers[Q.producer];
-  const lines=setup.groups.filter((g)=>g.producer===Q.producer&&g.state==='active');
-  let html=`<div class="islands">${model.islands.map((i)=>`<button class="btn ghost rune isl-${String(i).toLowerCase()} ${i===Q.island?'on':''}" data-act="qisl" data-isl="${esc(i)}">${esc(pretty(i))}</button>`).join('')}</div>
-   <div class="card"><label>Building<select data-qp="1">${opts(pl.map((p)=>({id:p.id,label:bsing(p.name)+(has(p.id)?' ('+setup.groups.filter((g)=>g.producer===p.id&&g.state==='active').reduce((n,g)=>n+g.count,0)+')':'')})),Q.producer)}</select></label></div>`;
-  if(!lines.length){html+=`<div class="card"><p class="empty">You have no ${esc(P.name.toLowerCase())} listed on ${esc(pretty(Q.island))}. Add them in <a href="#buildings">My buildings</a>.</p></div>`}
-  else{
-    const prods=prodsOf(P);
-    // set everything at once
-    const S=Q.all=Q.all||{};if(S.product===undefined||(S.product!==''&&!prods.includes(S.product)))S.product=prods[0];
-    const sml=S.product?modeList(P,S.product):['none'];if(!sml.includes(S.mode))S.mode=sml.includes('regular')?'regular':sml[0];
-    if(prods.length>1||sml.length>1)html+=`<div class="card"><h2>Set all my ${esc(P.name.toLowerCase())} to</h2><div class="grid">
-      ${prods.length>1?`<label>Product<select data-qa="product">${opts(prods.map((p)=>({id:p,label:pretty(p)})),S.product)}</select></label>`:''}
-      ${sml[0]!=='none'?`<label>${modeTitle(P,S.product)}<select data-qa="mode">${opts(sml.map((m)=>({id:m,label:modeLabel(P,S.product,m)})),S.mode)}</select></label>`:''}</div>
-      <div class="row" style="margin-top:10px"><button class="btn" data-act="qapply">Apply to all</button></div></div>`;
-    // lines + totals
-    const out={};let linesHtml='';
-    lines.forEach((g)=>{const ml=g.product?modeList(P,g.product):['none'];
-      const res=g.product?C.resolve(model,setup,{producer:g.producer,product:g.product,mode:g.mode,level:g.level,slider:g.slider}):null;
-      if(res&&res.ok){const o=(out[g.product]=out[g.product]||{v:0,full:0,fv:0,tag:'seen',cyc:null,second:{}});
-        o.v+=res.out.v*g.count;o.fv+=res.out.v*(g.full||0);o.full+=g.full||0;o.tag=C.worst(o.tag,res.out.tag);if(res.cycle&&(!o.cyc||res.cycle.v>o.cyc.v))o.cyc=res.cycle;
-        if(res.second){const q=(o.second[res.second.product]=o.second[res.second.product]||{v:0,tag:'seen'});q.v+=res.second.v*g.count;q.tag=C.worst(q.tag,res.second.tag)}}
-      linesHtml+=`<div class="line" data-gid="${g.id}">
-        <div style="min-width:96px"><b>${g.count} × Level ${g.level}</b></div>
-        ${prods.length>1?`<label>Making<select data-g="product"><option value="" ${g.product?'':'selected'}>Idle</option>${opts(prods.map((p)=>({id:p,label:pretty(p)})),g.product)}</select></label>`:''}
-        ${g.product&&ml[0]!=='none'?`<label>${modeTitle(P,g.product)}<select data-g="mode">${opts(ml.map((m)=>({id:m,label:modeLabel(P,g.product,m)})),g.mode)}</select></label>`:''}
-        ${g.product&&P.slider?`<label>Stack<select data-g="slider">${opts(sliderOpts(P,g.product,g.mode,g.level),g.slider)}</select></label>`:''}
-        ${g.product?`<label>Ready to collect (of ${g.count})<select data-g="full">${rng(0,g.count,Math.min(g.full||0,g.count))}</select></label>
-        <button class="btn ghost small" data-act="gfull">All ready</button><button class="btn ghost small" data-act="gnone">None</button>`:''}
-        </div>`});
-    const sh=shelterUsed();
-    const keys=Object.keys(out);
-    if(!keys.length)html+='<div class="card"><p class="empty">Everything of this type is idle. Choose what each is making below, or use “Apply to all”.</p></div>';
-    keys.forEach((p)=>{const o=out[p],w=sh.find((x)=>x.product===p&&x.amount>0);
-      html+=`<div class="card"><h2 style="margin-bottom:4px">${esc(pretty(p))}</h2>
-        <div class="kv"><div><span class="k">When the cycle finishes${o.cyc?' ('+mins(o.cyc.v)+')':''}</span><span class="big">${tv(o.v,o.tag)}</span></div>
-        <div><span class="k">Ready to collect now</span><span class="big">${tv(o.fv,o.tag)}</span><span class="sub" style="display:block">${o.full} ready</span></div></div>
-        ${Object.entries(o.second).map(([k,v])=>`<p class="sub" style="margin:0">+ ${tv(v.v,v.tag)} ${esc(pretty(k))}</p>`).join('')}
-        ${w?`<p class="sub" style="margin:6px 0 0">+ ${tv(w.amount,'seen')} waiting in the Animal Shelter (separate)</p>`:''}</div>`});
-    html+=`<div class="card"><h2>Your ${esc(P.name.toLowerCase())}</h2>${linesHtml}</div>`;
-  }
-  html+=renderShelter();
-  $('#panel').innerHTML=html;
-}
-
 /* ---- LOOK UP: one building, one level ---- */
 function fixLookup(L){
   L.island=model.islands.includes(L.island)?L.island:model.islands[0];
@@ -1559,12 +1543,6 @@ function cfBrowseGroups(){if(!model._bgroups){const names=cruiseNames(),ord=Obje
       (by[key]=by[key]||{sk,ids:[],isl:key.indexOf(' · ')>0?key.split(' · ')[1]:''}).ids.push(id)});
     model._bgroups=Object.entries(by).sort((a,b)=>a[1].sk-b[1].sk).map(([k,v])=>({title:k,isl:v.isl,ids:v.ids.sort((x,y)=>names[x].localeCompare(names[y]))}))}
   return model._bgroups}
-function cfBrowseHtml(T){const names=cruiseNames(),saved=new Set(T.tasks.map((t)=>t.product));
-  const gs=cfBrowseGroups(),tabOf=(g)=>g.isl||(g.title.indexOf('every player')>=0?'Every player':'Other'),tabs=[];
-  gs.forEach((g)=>{const k=tabOf(g);if(!tabs.includes(k))tabs.push(k)});
-  const cur=tabs.includes(state.cisl)?state.cisl:tabs[0];
-  const bar='<div class="bisltabs" role="tablist">'+tabs.map((k)=>'<button type="button" role="tab" aria-selected="'+(k===cur)+'" class="bislt isl-'+(k==='Every player'?'all':slug(k))+(k===cur?' on':'')+'" data-act="cisl" data-k="'+esc(k)+'">'+esc(k)+'</button>').join('')+'</div>';
-  return '<div class="cbrowse"><p class="sub help" style="margin:8px 0 4px">Every product in the game is here, whether or not you own the building. Pick an island, tap a building, then the product. A tick means you already have a card for it.</p>'+bar+gs.filter((g)=>tabOf(g)===cur).map((g)=>'<details class="bgrp'+(g.isl?' isl-'+slug(g.isl):(g.title.indexOf('every player')>=0?' isl-all':''))+'"><summary>'+esc(g.isl?g.title.split(' \u00b7 ')[0]:g.title)+' ('+g.ids.length+')</summary><div class="cchips">'+g.ids.map((id)=>'<button type="button" class="cchip" data-act="cbrowsepick" data-id="'+esc(id)+'">'+(saved.has(id)?'\u2713 ':'')+esc(names[id])+'</button>').join('')+'</div></details>').join('')+'</div>'}
 const CF_LIMITS=[30,60,75,90,120,150,180,240,300,360,540,720,1080,1440];
 const CF_BADGE={seen:'SEEN',seen_time_inferred:'SEEN',seen_unchecked:'UNCHECKED',predicted:'PREDICTED'};
 function cfRec(f){const id=slug(f.product),amt=parseInt(f.amount,10)||0;if(!id||!amt)return null;
@@ -1578,15 +1556,7 @@ function cfBadge(f){const hit=cfFind(f),p=f.points===''||f.points==null?null:par
   if(rec&&CF_BADGE[rec.state])return CF_BADGE[rec.state];
   if(cfPredict(f))return 'PREDICTED';
   return ''}
-function cfChips(id){const best={},rank={seen:3,seen_time_inferred:3,seen_unchecked:2,predicted:1};
-  const put=(a,st)=>{if(a==null)return;if(!best[a]||(rank[st]||0)>(rank[best[a]]||0))best[a]=st};
-  cardList().forEach((c)=>{if(c.id===id)put(c.amount,'seen')});
-  cfStepRows(id).forEach((x)=>put(x.amount,x.state));
-  const pr=((files.cruiseRules||{}).products||{})[id];((pr&&pr.lookup)||[]).forEach((x)=>put(x.amount,'seen'));
-  return Object.keys(best).map(Number).sort((a,b)=>a-b).map((a)=>({amt:a,st:best[a]}))}
 const badgeHtml=(b)=>b?`<span class="chip badge b-${b.toLowerCase()}">${b}</span>`:'';
-function cfLimitOpts(f){const cur=f.limit==='other'?'other':(parseInt(f.limit,10)||0);
-  return `<option value="0" ${!cur?'selected':''}>No time limit</option>`+CF_LIMITS.map((m)=>`<option value="${m}" ${cur===m?'selected':''}>${limitText(m)}</option>`).join('')+`<option value="other" ${cur==='other'?'selected':''}>Other</option>`}
 /* size strip: the six sizes (steps) of a product, shown by the points the game tile shows */
 function cfSizes(id){return cfStepRows(id).filter((x)=>x.points!=null)}
 function cfProdMin(id){const pr=((files.cruiseRules||{}).products||{})[id];return pr&&pr.time_min?pr.time_min:0}
@@ -1602,69 +1572,7 @@ function cfPreselect(f){const id=slug(f.product);if(!id||!cruiseNames()[id])retu
   if(!pick){const k=st.find((q)=>q.x.amount!=null);pick=k&&k.x}
   if(!pick)return;f.points=String(pick.points);f.spick=pick.points;f.ptyped=true;f.amount=String(pick.amount);
   const m=cfProdMin(id);if(!f.ltyped&&m){f.limit=CF_LIMITS.includes(m)?m:'other';f.other=CF_LIMITS.includes(m)?'':String(m)}}
-function cfStrip(id,cur,act,lm,instant){const rows=cfSizes(id);if(!rows.length)return '';
-  const cp=parseInt(cur.points,10)||0,ca=parseInt(cur.amount,10)||0,st=cfSizeStatus(id,lm,instant);
-  return '<div class="cstrip">'+st.map((q)=>{const x=q.x,on=cp===x.points&&(x.amount==null||!ca||ca===x.amount);
-    const sc=x.amount==null?'unk':(x.state==='seen_time_inferred'?'seen':x.state);
-    const lab=q.ok===true?'✓':'';
-    return '<button type="button" class="cstep st-'+sc+(on?' on':'')+(q.ok===true?' can':'')+(q.ok===false?' cant':'')+'" data-act="'+act+'" data-step="'+x.step+'" aria-pressed="'+on+'"'+(act==='tstep'&&x.amount==null?' disabled':'')+'><b>'+nf(x.points)+'</b><small class="cl">points</small><small>'+(x.amount==null?'not seen yet':'amount '+nf(x.amount))+'</small>'+(lab?'<small class="cs">'+lab+'</small>':'')+'</button>'}).join('')+'</div>'}
-function cfStripHtml(id,f){const rows=cfSizes(id);if(!rows.length)return '';
-  const lm=(f.limit?cfLimit(f):0)||cfProdMin(id);
-  return '<p class="sub help" style="margin:8px 0 0">Pick a size '+qh('<p>The <b>big number</b> is the points on the tile. <b>Amount</b> is how many the card asks for.</p><p>A <b>green tick</b> means your buildings can do it now. Grey means not yet.</p><p>A <b>faded</b> tile has no known amount yet. It stays faded until someone types the amount from a real card. The calculator does not guess.</p><p>Solid edge = seen on a card. Dashed = from a forum table, not checked. Dotted = a guess. Bigger cards may exist in the game.</p>')+'</p>'+cfStrip(id,f,'cstep',lm,f.instant)+(state.chelp?'<p class="sub help" style="margin:4px 0 0">'+(setup.groups.length&&canCalc(id)&&!isOther(id)?'✓ green = your buildings can do it now. Grey = not yet. ':'')+'Solid edge = seen on a card. Dashed = from a forum table, not checked. Dotted = guessed. Faded = amount not known yet: type it from the card.</p>':'')}
 /* how big a card of this product your buildings can do now (uses the same answer as a saved card) */
-function cfMaxHtml(id,f){if(!canCalc(id)||!setup.groups.length)return '';
-  const rows=cfSizes(id);if(!rows.length)return '';
-  const lm=(f.limit?cfLimit(f):0)||cfProdMin(id);
-  const res=rows.filter((x)=>x.amount!=null).map((x)=>{let a=null;try{a=taskAnswer({product:id,target:x.amount,h:Math.floor(lm/60),m:lm%60,instant:!!f.instant,have:{}})}catch(e){a=null}
-    return {x,a,ok:!!(a&&a.head&&a.head.cls==='good')}});
-  if(!res.length)return '';
-  const nm=(cruiseNames()[id]||pretty(id)).toLowerCase(),unk=rows.length-res.length;
-  let best=-1;res.forEach((r,i)=>{if(r.ok)best=i});
-  const nxt=res[best+1];
-  const why=(x)=>x.state==='seen_unchecked'?' (amount from a forum table, not checked)':(x.state==='predicted'?' (amount is a guess)':'');
-  const tag=(x)=>x.state==='seen_unchecked'?' · forum table, not checked':(x.state==='predicted'?' · a guess':'');
-  const more=[];let h='<div class="cmax">';
-  if(best>=0)h+='<b>Biggest you can do now:</b> '+nf(res[best].x.points)+' points · x'+nf(res[best].x.amount)+'<span class="sub">'+tag(res[best].x)+'</span>';
-  else h+='<b>You cannot do any known size of '+esc(nm)+' yet.</b>';
-  if(nxt){const fix=(nxt.a&&nxt.a.opts?nxt.a.opts:[]).filter((o)=>!/^Now:/.test(o));
-    const fx=fix.length?'<div class="sub cfix" style="margin:4px 0 0"><b>To reach it:</b><ul style="margin:2px 0 0;padding-left:18px">'+fix.map((o)=>'<li>'+o+'</li>').join('')+'</ul></div>':'';
-    const nl='<div class="sub" style="margin:4px 0 0">Next size, '+nf(nxt.x.points)+' points (x'+nf(nxt.x.amount)+')'+why(nxt.x)+': '+(nxt.a&&nxt.a.head?cmpHead(nxt.a.head.text):'')+'</div>'+fx;if(best>=0)more.push(nl);else h+=nl}
-  if(more.length)h+='<details class="cmore"><summary>More about this</summary>'+more.join('')+'</details>';
-  return h+'</div>'}
-function cruiseForm(T){
-  const f=state.cf=state.cf||{product:'',amount:'',limit:0,other:'',points:'',instant:false};
-  const id=slug(f.product),amt=parseInt(f.amount,10)||0,hit=cfFind(f),pred=!hit&&f.points===''?cfPredict(f):null;
-  const known=id?cardList().filter((c)=>c.id===id&&c.amount!=null):[];
-  const dup=id&&amt?T.tasks.find((t)=>t.product===id):null;
-  const chips=id?cfChips(id):[];const manual=!!state.cmanual||!!(id&&(!cfSizes(id).length||!amt));
-  const stripHtml=id?cfStripHtml(id,f):'';
-  const chipsHtml=stripHtml?stripHtml+cfMaxHtml(id,f):(chips.length?`<p class="sub" style="margin:8px 0 0">Pick the card you see in the game (solid = seen, dashed = unchecked, dotted = guessed):</p><div class="cchips">${chips.map((c)=>`<button type="button" class="cchip st-${c.st}${c.amt===amt?' on':''}" data-act="cpick" data-amt="${c.amt}">${nf(c.amt)}</button>`).join('')}</div>`:'');
-  const msgs=[];
-  if(state.cmsg)msgs.push(`<p class="warn" style="margin:6px 0">${esc(state.cmsg)}</p>`);
-  if(id&&!amt&&known.length)msgs.push(`<p class="sub" style="margin:6px 0 0">Cards already known for ${esc(cruiseNames()[id]||pretty(id))}: ${[...new Set(known.map((c)=>nf(c.amount)))].join(', ')}.</p>`);
-  if(hit)msgs.push(`<p class="sub" style="margin:6px 0 0">Card list: ${nf(hit.points)} points${hit.time_h?', '+limitText(Math.round(hit.time_h*60)):''}.${hit.differs?` <b>Points can differ between players: ${hit.differs.join(' or ')}.</b>`:''}</p>`);
-  if(pred)msgs.push(`<p class="sub" style="margin:6px 0 0"><i>Predicted about ${nf(pred.points)} points. This is an estimate from the pattern, not from a card.</i></p>`);
-  if(dup)msgs.push((parseInt(dup.target,10)||0)===amt?`<p class="sub" style="margin:6px 0 0">You already saved this card${dup.points?' ('+nf(dup.points)+' points)':''}.</p>`:`<p class="sub" style="margin:6px 0 0">You already have a ${esc(dup.name||pretty(dup.product))} card (${nf(parseInt(dup.target,10)||0)}). Saving changes it to this size. You do not get a second card.</p>`);
-  if(id&&amt&&isOther(id))msgs.push(`<p class="sub" style="margin:6px 0 0">${otherNote(id)} The card can still be saved.</p>`);
-  else if(id&&amt&&!canCalc(id))msgs.push(`<p class="sub" style="margin:6px 0 0">The calculator has no game data for this product, so it will save the card but cannot work out an answer.</p>`);
-  const names=Object.entries(cruiseNames()).map(([k,v])=>v).sort((a,b)=>a.localeCompare(b));
-  return `<div class="card cform"><h2 style="margin:0 0 8px">Add a task card</h2><div class="grid">
-    <label>Product<input type="text" list="cprods" data-cf="product" value="${esc(f.product)}" placeholder="Type a product, e.g. jac" autocomplete="off" autocapitalize="none" spellcheck="false"></label>
-    </div>
-    <div class="row" style="margin-top:8px"><button type="button" class="btn" data-act="cbrowse" aria-expanded="${!!state.cbrowse}">${state.cbrowse?'Close the list':'Browse products'}</button><span class="sub" style="margin:0">Or type a name above.</span></div>
-    ${state.cbrowse?cfBrowseHtml(T):''}
-    ${chipsHtml}
-    <button type="button" class="btn ghost small" data-act="cmanual" style="margin-top:18px" aria-expanded="${!!manual}">${manual?'Hide the typing boxes':'Card not in the list? Type it yourself'}</button>
-    ${manual?`<div class="grid" style="margin-top:8px">
-    <label>Amount<input type="number" inputmode="numeric" min="0" step="1" data-cf="amount" value="${esc(f.amount)}"></label>
-    <label>Time limit<select data-cf="limit">${cfLimitOpts(f)}</select></label>
-    ${f.limit==='other'?`<label>Other, in minutes<input type="number" inputmode="numeric" min="0" step="1" data-cf="other" value="${esc(f.other)}"></label>`:''}
-    <label>Points on the card<input type="number" inputmode="numeric" min="0" step="1" data-cf="points" value="${esc(f.points)}" placeholder="${pred?'≈'+pred.points:'from the game'}">${cfBadge(f)?`<span style="display:block;margin-top:4px">${badgeHtml(cfBadge(f))}</span>`:''}</label></div>`:''}
-    <datalist id="cprods">${names.map((n)=>`<option value="${esc(n)}"></option>`).join('')}</datalist>
-    <label class="chk" style="display:flex;flex-direction:row;gap:8px;align-items:center;margin-top:8px"><input type="checkbox" data-cf="instant" ${f.instant?'checked':''} style="width:24px;height:24px;min-height:0;flex:none"> <span><b>Instant task</b> (tick if the card must be completed in one go)</span></label>
-    ${msgs.join('')}
-    ${id&&amt?`<div class="cready" role="status"><b>Ready to save:</b> ${esc(cruiseNames()[id]||pretty(id))} × ${nf(amt)}${f.points?' · '+nf(parseInt(f.points,10)||0)+' points':''}${cfLimit(f)?' · '+limitText(cfLimit(f)):''}<span class="sub" style="display:block;margin:2px 0 0">Tap another size above to change it.</span></div>`:''}
-    <div class="row" style="margin-top:10px"><button class="btn" data-act="csave">Save card</button><button class="btn ghost" data-act="cclear">Clear fields</button></div></div>`}
 /* ---- CRUISE (test 170): every known card is worked out automatically; nothing to save. Stars mark favourites. ---- */
 function cvTime(id){const m=cfProdMin(id);if(m)return m;const c=cardList().find((x)=>x.id===id&&x.time_h);return c?Math.round(c.time_h*60):0}
 /* sizes with an amount seen on a real card or in the forum table; guesses are left out */
@@ -1720,36 +1628,33 @@ function renderTournament(){
   <label class="cvsearch">Find a product<input type="search" data-cq placeholder="e.g. jacket" value="${esc(state.cq||'')}" autocomplete="off" autocapitalize="none" spellcheck="false"></label>
   <div class="cvfilt" role="group" aria-label="Show">${[['can','Can do now'],['not','Not yet'],['all','All']].concat(stars.length?[['star','★ Starred']]:[]).map(([k,l])=>`<button type="button" class="cchip${k===f?' on':''}" data-act="cvf" data-v="${k}" aria-pressed="${k===f}">${l}</button>`).join('')}</div></div>`;
   state.rdone=null;
+  /* test 172: island buttons, kept at the top while you scroll; a search looks on every island */
+  if(state.cvIsl===undefined){try{state.cvIsl=localStorage.getItem('sunshine_cvisl_v1')||'all'}catch(_){state.cvIsl='all'}}
+  const cvI=['all'].concat(model.islands.map((i)=>String(i).toLowerCase()));if(!cvI.includes(state.cvIsl))state.cvIsl='all';
+  html+=`<div class="qbar"><div class="bisltabs" role="tablist" aria-label="Island">${cvI.map((k)=>`<button type="button" role="tab" aria-selected="${k===state.cvIsl}" class="bislt isl-${esc(k)}${k===state.cvIsl?' on':''}" data-act="cvisl" data-k="${esc(k)}">${k==='all'?'All':esc(pretty(k))}</button>`).join('')}</div></div>`;
   const keep=(p)=>f==='all'?true:f==='star'?stars.includes(p.id):f==='can'?p.sizes.some((s)=>s.ok):(p.t&&p.calc&&p.sizes.length&&!p.sizes.some((s)=>s.ok));
   const starred=Object.values(D).filter((p)=>stars.includes(p.id)&&keep(p));
   if(starred.length&&f!=='star')html+=`<div class="card cvgrp"><h3 class="cvgh">★ Starred</h3>${starred.map((p)=>cvRow(p,stars)).join('')}</div>`;
   let shown=0;
   cfBrowseGroups().forEach((g)=>{const ps=g.ids.filter((id)=>D[id]).map((id)=>D[id]).filter((p)=>keep(p)&&(f==='star'||!stars.includes(p.id)||!starred.length));
     if(!ps.length)return;shown+=ps.length;
-    html+=`<div class="card cvgrp${g.isl?' isl-'+esc(slug(g.isl)):''}"><h3 class="cvgh">${esc(g.title)}</h3>${ps.map((p)=>cvRow(p,stars)).join('')}</div>`});
+    html+=`<div class="card cvgrp${g.isl?' isl-'+esc(slug(g.isl)):''}" data-isl="${esc(slug(g.isl||''))}"><h3 class="cvgh">${esc(g.title)}</h3>${ps.map((p)=>cvRow(p,stars)).join('')}</div>`});
   if(!shown&&!starred.length)html+=`<p class="empty">Nothing to show here. Try <b>All</b>.</p>`;
   html+=`<p class="sub cvempty" hidden>No product matches that name.</p><div class="card"><p class="sub" style="margin:0"><b>Market orders, fishing, ships, planes and market boats:</b> every player can do these, so they are not listed. All of them except fishing are filled from your warehouse.</p></div>`;
   $('#panel').innerHTML=html;cvFilterDom();
 }
-function cvFilterDom(){const q=String(state.cq||'').trim().toLowerCase();let any=false;
-  document.querySelectorAll('.cvrow').forEach((r)=>{const hit=!q||r.dataset.name.indexOf(q)>=0;r.hidden=!hit;if(hit)any=true});
+function cvFilterDom(){const q=String(state.cq||'').trim().toLowerCase();let any=false;const iz=q?'all':(state.cvIsl||'all');
+  document.querySelectorAll('.cvrow').forEach((r)=>{const g=r.closest('.cvgrp'),gi=g&&g.dataset.isl;const hit=(!q||r.dataset.name.indexOf(q)>=0)&&(iz==='all'||gi===undefined||gi===iz);r.hidden=!hit;if(hit)any=true});
   document.querySelectorAll('.cvgrp').forEach((g)=>{g.hidden=![...g.querySelectorAll('.cvrow')].some((r)=>!r.hidden)});
-  const e=document.querySelector('.cvempty');if(e)e.hidden=any||!q}
+  const e=document.querySelector('.cvempty');if(e){e.hidden=any||(!q&&iz==='all');e.textContent=q?'No product matches that name.':'Nothing on this island for this choice. Try All.'}}
 document.addEventListener('input',(e)=>{const el=e.target;if(el&&el.dataset&&el.dataset.cq!==undefined){state.cq=el.value;cvFilterDom()}});
+/* test 172: Width check (?me=1 only) - names anything wider than the screen, to find the iPad sideways drift */
+document.addEventListener('click',(e)=>{const t=e.target.closest&&e.target.closest('[data-act="widthchk"],[data-act="wchkx"]');if(!t)return;const old=document.getElementById('wchk');if(old)old.remove();if(t.dataset.act==='wchkx')return;
+  const W=document.documentElement.clientWidth,list=[];document.querySelectorAll('body *').forEach((el)=>{if(el.closest('#wchk'))return;const r=el.getBoundingClientRect();if(!r.width||el.closest('.pstrip,.scroll'))return;if(r.right>W+1||r.left<-1){const pe=el.parentElement;const pr=pe?pe.getBoundingClientRect():null;if(pr&&(pr.right>W+1||pr.left<-1)&&pe!==document.body)return;list.push(el.tagName.toLowerCase()+(el.className&&typeof el.className==='string'?'.'+el.className.trim().split(/\s+/).slice(0,3).join('.'):'')+' ('+Math.round(r.left)+' to '+Math.round(r.right)+') '+String(el.textContent||'').trim().slice(0,40))}});
+  const d=document.createElement('div');d.id='wchk';d.innerHTML='<b>Width check</b> · tab '+esc(curTab())+'<br>Screen '+W+' px, page '+document.documentElement.scrollWidth+' px, window '+window.innerWidth+' px, zoom '+(window.visualViewport?window.visualViewport.scale.toFixed(2):'?')+'<ol>'+(list.length?list.slice(0,12).map((x)=>'<li>'+esc(x)+'</li>').join(''):'<li>Nothing wider than the screen.</li>')+'</ol><button class="btn small" data-act="wchkx">Close</button>';document.body.appendChild(d)});
 
 function supplyNote(pid,short){if(!model.productProducers[pid])return '';const U=capUnits(pid);if(!U.length)return (short?'none listed':'Your buildings: none listed');let per=0,cyc=0,tag='seen';U.forEach((x)=>{per+=x.g.count*x.base.gain;if(x.base.cyc)cyc=Math.max(cyc,x.base.cyc);tag=C.worst(tag,x.base.tag)});return `${short?'':'Your buildings make '}${tv(per,tag)}${cyc?' per '+mins(cyc):''}`}
-function inputsHtml(t,a){if(!a||!a.inputs||!a.inputs.length)return '';const h=t.have||{};
-  return `<div style="margin-top:8px"><div class="sub" style="margin:0 0 4px"><b>Needed for ${nf(a.N)}, all cycles.</b> The last column shows what your buildings make. Type how much you have in the warehouse to see if you are short.</div><div class="scroll"><table><thead><tr><th>Needs</th><th class="n">Amount</th><th>In the warehouse</th><th></th><th>Your buildings make</th></tr></thead><tbody>${a.inputs.map((i)=>{const hv=h[i.product];const st=hv===undefined?'':(hv>=i.need?'<span class="good">enough</span>':`<span class="bad">short by ${nf(i.need-hv)}</span>`);
-  return `<tr><td>${esc(inName(i.product))}</td><td class="n">${tv(i.need,i.tag,0)}</td><td><input type="number" min="0" step="1" data-t="have:${esc(i.product)}" value="${hv===undefined?'':hv}" placeholder="in stock" aria-label="Stock in the warehouse" style="width:110px"></td><td>${st}</td><td class="sub">${supplyNote(i.product,1)}</td></tr>`}).join('')}</tbody></table></div></div>`}
 function loadoutSummary(L){const by={};L.groups.forEach((g)=>{if(!model.producers[g.producer])return;const i=model.producers[g.producer].island;const x=(by[i]=by[i]||{a:0,s:0});if(g.state==='storage')x.s+=g.count;else x.a+=g.count});return by}
-function renderLoadouts(T){
-  let h=`<details class="card"><summary><b>Save and swap building layouts (optional)</b></summary><p class="sub">Not needed for the tasks above. This saves how your buildings are set up right now under a name, so you can switch back to it later.</p><div class="row" style="align-items:flex-end"><label style="flex:1;min-width:160px">Layout name<input type="text" data-lname="1" placeholder="Name for this layout" value="${esc(state.lname||'')}"></label><button class="btn" data-act="lsave">Save my layout</button></div>`;
-  T.loadouts.forEach((L)=>{const sm=loadoutSummary(L);
-    h+=`<div class="line" data-lid="${L.id}"><div style="flex:1;min-width:150px"><b>${esc(L.name)}</b><div class="sub" style="margin:0">${Object.entries(sm).map(([i,x])=>esc(pretty(i))+': '+x.a+' active, '+x.s+' stored').join(' · ')}</div></div>
-      <button class="btn small" data-act="lapply">Use</button><button class="btn ghost small" data-act="lupdate">Replace with current</button><button class="btn ghost small" data-act="ldel">Delete</button></div>`});
-  if(setup.prevGroups)h+=`<div class="row" style="margin-top:10px"><button class="btn ghost small" data-act="lundo">Undo last “Use”</button></div>`;
-  return h+'</details>'}
-
 /* ---- LIBRARY & PROFILE ---- */
 function renderSetup(){
   const GU=model.lib.game_upgrades;
@@ -1959,7 +1864,7 @@ document.addEventListener('keydown',(e)=>{if(e.key==='Escape')tsClose()});
 ['input','change'].forEach((ev)=>document.addEventListener(ev,(e)=>{const el=e.target;if(el&&el.dataset&&el.dataset.gsn!==undefined){const l=el.parentElement&&el.parentElement.querySelector('[data-gsl]');if(l)l.textContent=(parseInt(el.value,10)===1?l.dataset.sg:l.dataset.pl)+' to'}}));
 document.addEventListener('change',(e)=>{
   const el=e.target;if(!model)return;
-  if(el.dataset&&el.dataset.gproj!==undefined){state.gproj=el.value;render();return}
+  if(el.dataset&&el.dataset.gproj!==undefined){state.gproj=el.value;try{localStorage.setItem('sunshine_gproj_v1',state.gproj)}catch(_){}render();return}
   if(el.dataset&&el.dataset.jump!==undefined){if(el.value==='loadfile'){const lb=document.getElementById('loadfilebtn');el.value='';if(lb)lb.click();return}const t=el.value&&document.getElementById(el.value);if(t){const h=(document.querySelector('.jump')||{}).offsetHeight||0;const y=t.getBoundingClientRect().top+window.scrollY-h-12;window.scrollTo({top:Math.max(0,y),behavior:'smooth'});hlJump(t)}el.value='';return}
   const lineOf=()=>setup.groups.find((x)=>x.id===el.closest('[data-gid]').dataset.gid);
   if(el.dataset.cap){const v=parseInt(el.value,10);setup.storage=setup.storage||{};if(isFinite(v)&&v>=0)setup.storage[el.dataset.cap]={capacity:v};else delete setup.storage[el.dataset.cap];save();render();return}
@@ -1991,11 +1896,12 @@ document.addEventListener('change',(e)=>{
   if(el.dataset.ga){const G=state.gadd;const k=el.dataset.ga;G[k]=numOrStr(el.value);if(k==='producer'){G.product='';G.mode='';G.slider='max';G.level=1;G.count=1}if(k==='product')G.mode='';render();return}
   if(el.dataset.lc){state.lcount=Math.max(1,parseInt(el.value,10)||1);return}
   if(el.dataset.qp){state.q.producer=el.value;render();return}
+  if(el.dataset.qcn!==undefined){qcS().n[el.dataset.qcn]=parseInt(el.value,10)||1;qcSave();render();return}
   if(el.dataset.qa){state.q.all[el.dataset.qa]=el.value;if(el.dataset.qa==='product')state.q.all.mode='';render();return}
   if(el.dataset.plvl!==undefined){const v=parseInt(el.value,10),n=v>=1&&v<=200?v:null;state.playerLevel=n;try{if(n)localStorage.setItem('sunshine_playerlevel_v1',String(n));else localStorage.removeItem('sunshine_playerlevel_v1')}catch(e){}
-    const o0=producersOf(state.bIsland).map((p)=>p.id);state.tickPend={isl:state.bIsland,ids:n?o0.filter((p)=>UNLOCK[p]&&UNLOCK[p]<=n):['field','cow_shed','windmill','feed_mill','bakery'].filter((p)=>o0.includes(p))};render();return}
+    return}
   if(el.dataset.tick!==undefined){const pid=el.dataset.tick,P=model.producers[pid];if(!P)return;
-    if(state.tickPend&&state.tickPend.isl===state.bIsland&&!setup.groups.some((g)=>g.island===state.bIsland)){const ta=state.tickPend.ids,ti=ta.indexOf(pid);if(el.checked&&ti<0)ta.push(pid);if(!el.checked&&ti>=0)ta.splice(ti,1);render();return}
+    if(state.tickP&&state.tickP[state.bIsland]&&!setup.groups.some((g)=>g.island===state.bIsland)){const ta=state.tickP[state.bIsland],ti=ta.indexOf(pid);if(el.checked&&ti<0)ta.push(pid);if(!el.checked&&ti>=0)ta.splice(ti,1);render();return}
     const og=setup.groups.filter((g)=>g.producer===pid),tot=og.reduce((n,g)=>n+g.count,0);
     if(el.checked){if(!tot){snap('Added 1 '+bsing(P.name).toLowerCase());setup.groups.push(newGroup({producer:pid,level:1,count:1,state:'active'}));mergeGroups();save()}state.tickAsk=null;render();return}
     if(tot===1&&og.every((g)=>g.level===1)){snap('Removed 1 '+bsing(P.name).toLowerCase());setup.groups=setup.groups.filter((g)=>g.producer!==pid);mergeGroups();state.tickAsk=null;save();render();return}
@@ -2041,7 +1947,7 @@ document.addEventListener('click',(e)=>{
   if(a==='libtab'){state.libtab=b.dataset.t;render();return}
   if(a==='shelflock'){if(b.disabled)return;setup.shelfLocked=setup.shelfLocked||{};const r=Number(b.dataset.r);const all=[...new Set(Object.values((model.lib&&model.lib.player_levels)||{}).map((x)=>x.shelf_row).filter((x)=>typeof x==='number'))];
     if(all.some((q)=>q<=r&&setup.shelfLocked[q])){all.filter((q)=>q<=r).forEach((q)=>{delete setup.shelfLocked[q]})}else{all.filter((q)=>q>=r).forEach((q)=>{setup.shelfLocked[q]=true})}save();render();return}
-  if(a==='gpick'){state.gproj=b.dataset.p;state.gchange=false;state.lastCollect=null;try{projectDefaults(curProject())}catch(x){}render();return}
+  if(a==='gpick'){state.gproj=b.dataset.p;try{localStorage.setItem('sunshine_gproj_v1',state.gproj)}catch(_){}state.gchange=false;state.lastCollect=null;try{projectDefaults(curProject())}catch(x){}render();return}
   if(a==='gchange'){state.gchange=true;render();return}
   if(a==='gallmode'){const pr=b.dataset.pr,isl=b.dataset.isl,m=b.dataset.m,P=model.producers[pr];if(!P)return;
     const cs=activeCells().filter((x)=>x.island===isl&&x.producer===pr&&x.product&&modeList(P,x.product)[0]!=='none'&&modeList(P,x.product).includes(m));
@@ -2094,6 +2000,7 @@ document.addEventListener('click',(e)=>{
   if(a==='rno'){state.rready=false;render();return}
   if(a==='cvready'){state.cvReady=b.dataset.v;try{localStorage.setItem('sunshine_cvready_v1',state.cvReady)}catch(_){}render();return}
   if(a==='cvf'){state.cvF=b.dataset.v;render();return}
+  if(a==='cvisl'){state.cvIsl=b.dataset.k;try{localStorage.setItem('sunshine_cvisl_v1',state.cvIsl)}catch(_){}document.querySelectorAll('[data-act="cvisl"]').forEach((x)=>{const on=x.dataset.k===state.cvIsl;x.classList.toggle('on',on);x.setAttribute('aria-selected',String(on))});cvFilterDom();return}
   if(a==='cvopen'){const id=b.closest('[data-cvid]').dataset.cvid;state.cvOpen=state.cvOpen===id?null:id;render();const r=document.querySelector('[data-cvid="'+id+'"]');if(r&&state.cvOpen){try{r.scrollIntoView({block:'nearest'})}catch(_){}}return}
   if(a==='cvstar'){const id=b.closest('[data-cvid]').dataset.cvid,S=cvStars(),k=S.indexOf(id);if(k>=0)S.splice(k,1);else S.push(id);save();render();return}
   if(a==='ryes'){Object.keys(setup.cellState||{}).forEach((k)=>{setup.cellState[k]={full:0,coll:0}});state.rready=false;state.rdone='Done: every ready count is now 0.';save();render();return}
@@ -2104,8 +2011,10 @@ document.addEventListener('click',(e)=>{
   if(a==='rune'){const x=b.dataset.rune;if(setup.runes[x]){state.runeAsk=x;drawRunes()}else{setup.runes[x]=true;setup.runeStart[x]=Date.now();save();render()}}
   if(a==='runeoff'){const x=b.dataset.rune;setup.runes[x]=false;delete setup.runeStart[x];state.runeAsk=null;save();render()}
   if(a==='runekeep'){state.runeAsk=null;drawRunes()}
-  if(a==='cisl2'){state.cisl2=b.dataset.k;state.csel='all';render();try{const q=document.querySelector('.qbar');if(q&&q.getBoundingClientRect().top<=1)q.scrollIntoView()}catch(_){}return}
-  if(a==='qcpick'){state.csel=b.dataset.v;render();return}
+  if(a==='cisl2'){state.cisl2=b.dataset.k;state.csel=qcS().sel[b.dataset.k]||'all';qcS().isl=b.dataset.k;qcSave();render();try{const q=document.querySelector('.qbar');if(q&&q.getBoundingClientRect().top<=1)q.scrollIntoView()}catch(_){}return}
+  if(a==='qcpick'){state.csel=b.dataset.v;qcS().sel[state.cisl2]=b.dataset.v;qcSave();render();return}
+  if(a==='qcprod'){qcS().prod[b.dataset.p]=b.dataset.v;qcSave();render();return}
+  if(a==='qcmode'){qcS().mode[b.dataset.k]=b.dataset.m;qcSave();render();return}
   if(a==='qccopy'){const t=b.dataset.t;copyText(t,(ok)=>{b.textContent=ok?'Copied \u2713':'Could not copy';setTimeout(()=>{b.textContent='Copy'},2000)});return}
   if(a==='bpick'){state.bsel=state.bsel||{};state.bsel[state.bIsland]=b.dataset.v;render();return}
   if(a==='bisl'){state.bIsland=b.dataset.isl;try{localStorage.setItem('sunshine_lastisl_v1',state.bIsland)}catch(e){}state.addMsg='';render()}
@@ -2215,7 +2124,7 @@ document.addEventListener('click',(e)=>{
     try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(ta.value).then(()=>done(true),()=>fallbackCopy(ta,done));return}}catch(x){}
     fallbackCopy(ta,done)}
   if(a==='loadfile'&&files.myIsland&&ME){const f=JSON.parse(JSON.stringify(files.myIsland));const dr=JSON.stringify(C.defaultSetup(model).runes);if((setup.tournaments||[]).length)f.tournaments=setup.tournaments;if(JSON.stringify(setup.runes)!==dr)f.runes=setup.runes;if(Object.keys(setup.runeStart||{}).length)f.runeStart=setup.runeStart;if((setup.shelter||[]).length)f.shelter=setup.shelter;$('#prof').value=JSON.stringify(f);state.srcNext='your 28 Oct island file (loaded with the button)';state.notice='Loaded your saved island. Your Cruise cards, layouts and runes were kept.';document.querySelector('[data-act="apply"]').click();msg('Loaded your saved island. Your Cruise cards, layouts and runes were kept.');try{window.scrollTo(0,0)}catch(_){}return}
-  if(a==='tickadd'){const ids=(state.tickPend&&state.tickPend.ids||[]).filter((p)=>model.producers[p]);if(!ids.length)return;snap('Added '+ids.length+' building'+(ids.length>1?'s':''));ids.forEach((pid)=>{setup.groups.push(newGroup({producer:pid,level:1,count:1,state:'active'}))});mergeGroups();state.tickPend=null;state.tickOpen=null;save();state.notice='Added '+ids.length+' building'+(ids.length>1?'s':'')+' at Level 1. Change the level or number of any of them below. You can press Undo.';render();return}
+  if(a==='tickadd'){const ids=[];model.islands.filter((i)=>!setup.groups.some((g)=>g.island===i)).forEach((i)=>{((state.tickP||{})[i]||[]).forEach((p)=>{if(model.producers[p]&&!ids.includes(p))ids.push(p)})});if(!ids.length)return;snap('Added '+ids.length+' building'+(ids.length>1?'s':''));ids.forEach((pid)=>{setup.groups.push(newGroup({producer:pid,level:1,count:1,state:'active'}))});mergeGroups();state.tickP=null;state.tickOpen=null;save();state.notice='Added '+ids.length+' building'+(ids.length>1?'s':'')+' at Level 1. Change the level or number of any of them below. You can press Undo.';render();return}
   if(a==='tickopen'){state.tickOpen=true;state.setupOpen=true;state.tickAsk=null;render();return}
   if(a==='tickclose'){state.tickOpen=null;state.tickAsk=null;render();return}
   if(a==='tickno'){state.tickAsk=null;render();return}
