@@ -7,7 +7,7 @@
 <title>Sunshine Calculator</title>
 <!-- V104: Browse products list, one saved card per product with a size strip, sizes green (can do) / grey (not yet); V92 (test 92): plain wording, ? panels, My buildings sections, Teal/Black/Light looks, separate quick-sum lines, shelter box fixed, undo stays 30 s; V91 jump highlight + bottom tabs and Back to top; V90 (checked at 340 to 430 px) slim status line + one Jump to drop-down on the island row; V89 island list folded, singular names, island remembered; V88 island-in-use line on My buildings; V87 reopen on the last tab used; V85 test build number in header chip; V84 Load my saved island button in the jump row; V83 no-building answer shows the scenario; V82 storage hint + link to My buildings on cruise cards; V81 jump links, None, reset ready counts, points totals; V80 Full now on Cruise cards; V79 warehouse box tidy; V78 warehouse wording; V77 card note shows number not code; V76 load-island keeps cards/layouts/runes; V75 undo bar sticky at the bottom; V74 2 Nov 2026: fields card, tab order, sticky picker, cruise rules v2, shortest-crop-first when a count is lowered -->
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="build" content="184">
+<meta name="build" content="185">
 <meta name="description" content="Sunshine Island Calculator. Beta 0.1 - data from the 28 Oct 2026 game update.">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=170"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=168"><meta name="apple-mobile-web-app-title" content="Sunshine">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -628,7 +628,7 @@ label.btn.bkload{color:var(--accent-fg)}label.btn.ghost.bkload{color:var(--fg)}
   <div id="feedback"></div>
   <p class="footer"><span class="meonly"><a href="#data">Data &amp; flags</a> · <button class="linkbtn" data-act="widthchk">Width check</button> · </span><button class="linkbtn" data-act="walkshow">Quick start</button> · <button class="btn ghost small" data-act="key" aria-expanded="false" id="keybtn">How accurate are the numbers?</button></p>
   <div id="keyline"></div>
-  <p class="footer" style="margin-top:6px">Beta 0.1 · test 184 - data from the 28 Oct 2026 game update (game 1.3.40251)</p>
+  <p class="footer" style="margin-top:6px">Beta 0.1 · test 185 - data from the 28 Oct 2026 game update (game 1.3.40251)</p>
   <p class="footer" style="margin-top:0">Unofficial fan tool. Not made by, or connected to, the game's developers.</p>
   <div id="footlogo" class="footlogo"></div>
   <p class="totop"><button type="button" class="btn ghost small" data-act="totop">↑ Back to top</button></p>
@@ -751,7 +751,7 @@ function siteBits(){
   if(SITE.footlogo&&$('#footlogo'))$('#footlogo').innerHTML=`<img class="lg-dark" src="oj-maestro-logo-dark.png?v=182" alt="OJ Maestro" onerror="this.src='${esc(SITE.footlogo)}'"><img class="lg-light" src="oj-maestro-logo-light.png?v=182" alt="OJ Maestro" onerror="this.src='${esc(SITE.footlogo)}'">`;
   if(SITE.coffee&&$('#coffee'))$('#coffee').innerHTML=`<div class="coffeecard"><p>Free tool, made by OJ Maestro. If it saved you time, you can say thanks with a small tip.</p><a class="coffeebtn" href="${esc(SITE.coffee)}" target="_blank" rel="noopener" aria-label="Buy me a coffee"><img class="bmcimg" hidden alt="" src="https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=&slug=ojmaestro&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" onload="this.hidden=false;this.nextElementSibling.hidden=true;this.parentNode.classList.add('official')" onerror="this.remove()"><span class="bmcfb"><svg viewBox="0 0 22 26" aria-hidden="true"><path d="M3 9h16l-1.6 14.5a2 2 0 0 1-2 1.5H6.6a2 2 0 0 1-2-1.5z" fill="#fff" stroke="#000" stroke-width="1.8" stroke-linejoin="round"/><path d="M2 9h18V6.5H2z" fill="#fff" stroke="#000" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 6.5V4.5c0-1 1-1.8 2-1.8h8c1 0 2 .8 2 1.8v2" fill="none" stroke="#000" stroke-width="1.8"/></svg> Buy me a coffee</span></a></div>`;
   const ab=$('#cogabout');
-  if(ab)ab.innerHTML=`<h2>Help &amp; feedback</h2><p class="sub" style="margin:0">Spot a bug or have an idea? Tell me.</p>${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p>Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}<div class="abrow"><button class="linkbtn" data-act="walkshow">Quick start</button><span class="meonly"><a href="#data">Data &amp; flags</a></span></div><p class="sub">This page counts visits with GoatCounter: no cookies, nothing personal is kept.</p><p class="sub">Made by OJ Maestro · Beta 0.1 · test 184</p>`;
+  if(ab)ab.innerHTML=`<h2>Help &amp; feedback</h2><p class="sub" style="margin:0">Spot a bug or have an idea? Tell me.</p>${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p>Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}<div class="abrow"><button class="linkbtn" data-act="walkshow">Quick start</button><span class="meonly"><a href="#data">Data &amp; flags</a></span></div><p class="sub">This page counts visits with GoatCounter: no cookies, nothing personal is kept.</p><p class="sub">Made by OJ Maestro · Beta 0.1 · test 185</p>`;
   const fb=$('#feedback');
   if(fb&&(SITE.feedback||SITE.email||SITE.discord))fb.innerHTML=`<div class="fbline"><p class="fbq">Spot a bug or have an idea?</p>${SITE.email?`<p><a href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a></p>`:''}${SITE.discord?`<p>or message <b>${esc(SITE.discord)}</b> on Discord</p>`:''}</div>`}
 document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.classList&&t.classList.contains('ovlist'))state.ovOpen=t.open},true);
@@ -1148,7 +1148,7 @@ function shelter(){const n=(files.manifest.shelter_products&&files.manifest.shel
 function shInc(){if(setup.shelterInclude===true||setup.shelterInclude===false)return setup.shelterInclude;return shelter().some((x)=>x.product&&x.amount>0)}
 const shelterUsed=()=>shInc()?shelter():[];
 function renderShelter(){const sl=shelter(),ids=shelterIds();
-  const isOpen=state.shelterOpen!==false;
+  const isOpen=state.shelterOpen===undefined?shInc():state.shelterOpen!==false;
   return `<div class="card" data-shel="1"><button class="shelhead" data-act="shel" aria-expanded="${isOpen}">Animal Shelter <span>${isOpen?'Hide':'Show'}</span></button>${isOpen?`
    ${hline('Type what is waiting in the shelter right now.','<ul class="opt"><li>Pick the animal and type how much it has made so far.</li><li>Tick "Include the Animal Shelter" to add it to your totals and to Copy, on its own line.</li><li>Press Collected after you have collected it in the game.</li></ul>')}
    <label class="chk" style="display:flex;flex-direction:row;gap:8px;align-items:center;font-size:14px;color:var(--fg)"><input type="checkbox" data-shinc="1" ${shInc()?'checked':''} style="width:auto;min-height:0"> Include the Animal Shelter</label>
@@ -1291,7 +1291,7 @@ function projCells(pr){const ids=new Set(pr.products.map((p)=>p.product_id));
   return {ids,shown,counted:shown.filter((c)=>c.product&&ids.has(c.product))}}
 function projAgg(pr){const pc=projCells(pr);return aggregate(guildItems(pc.counted))}
 function projectPicker(){const gp=guildProjects();if(!gp.length)return '';const pr=curProject();
-  return `<div class="card pcard"><h3 style="margin:0 0 8px">Guild project</h3><div class="pwrap"><div class="pstrip" role="listbox" aria-label="Guild project">${gp.map((x)=>`<button class="btn ghost small pbtn${pr&&pr.id===x.id?' on':''}" role="option" aria-selected="${!!(pr&&pr.id===x.id)}" data-act="gpick" data-p="${esc(x.id)}">${esc(x.title)}</button>`).join('')}</div></div>${pr?`<p class="sub" style="margin:6px 0 0">Makes ${esc(pr.products.map((p)=>plu(p.product_id)).join(' + '))}</p>`:'<p class="sub" style="margin:6px 0 0">Swipe or scroll sideways to see all the projects.</p>'}</div>`}
+  return `<div class="card pcard"><div class="hline" style="margin:0 0 8px"><h3 style="margin:0;flex:1">Guild project</h3>${qh('<p>Pick the project your guild is doing. Your buildings below are filled in for it, and the totals show what you can collect.</p><p>In the game, guilds unlock at level 12.</p>')}</div><div class="pwrap"><div class="pstrip" role="listbox" aria-label="Guild project">${gp.map((x)=>`<button class="btn ghost small pbtn${pr&&pr.id===x.id?' on':''}" role="option" aria-selected="${!!(pr&&pr.id===x.id)}" data-act="gpick" data-p="${esc(x.id)}">${esc(x.title)}</button>`).join('')}</div></div>${pr?`<p class="sub" style="margin:6px 0 0">Makes ${esc(pr.products.map((p)=>plu(p.product_id)).join(' + '))}</p>`:'<p class="sub" style="margin:6px 0 0">Swipe or scroll sideways to see all the projects.</p>'}</div>`}
 function modeBox(c,P,m,resBy){const r=resBy[m],n=c.modes[m]||0;
   return `<div class="mbox m-${m}"><span class="mname">${esc(pretty(m))}</span><input type="number" inputmode="numeric" min="0" max="${c.count}" step="1" data-gm="${m}" value="${n}" aria-label="${esc(pretty(m))} buildings"><span class="mout">${r&&r.ok?tv(r.out.v,r.out.tag)+' each'+(r.cycle?'<br>'+tvText(mins(r.cycle.v),r.cycle.tag):'<br>no wait'):'<span class="empty">not seen yet</span>'}</span></div>`}
 /* thin strip above the buildings: only the ready numbers, kept up to date while you type in Full now */
@@ -1445,7 +1445,7 @@ function glRangeHtml(){const G=state.gl;
 function renderLeader(){
   if(!state.gl)state.gl=glLoad();glSel=null;const G=state.gl,pr=glProj(),keys=glKeys();
   const setB=G.cl&&G.al;
-  let h=`<div class="card"><p class="sub" style="margin:0">In the game, guilds unlock at level 12.</p></div><div class="card"><h2 style="margin:0 0 4px">Guild leader helper</h2><p class="sub" style="margin:0">Have you got enough for the project? Add up what members have ready to collect. It is an estimate, not a promise.</p>
+  let h=`<div class="card"><div class="hline" style="margin:0 0 4px"><h2 style="margin:0;flex:1">Guild leader helper</h2>${qh('<p>For guild leaders: add up what your members have ready, to see which star the guild can reach.</p><p>In the game, guilds unlock at level 12.</p>')}</div><p class="sub" style="margin:0">Have you got enough for the project? Add up what members have ready to collect. It is an estimate, not a promise.</p>
   <h3 style="margin:10px 0 6px">Guild project</h3><div class="pwrap"><div class="pstrip" id="glstrip" role="listbox" aria-label="Guild project">${GSTARS.map((x)=>`<button type="button" class="btn ghost small pbtn${x.id===pr.id?' on':''}" role="option" aria-selected="${x.id===pr.id}" data-glproj="${esc(x.id)}">${esc(x.title)}</button>`).join('')}</div></div><p class="sub" style="margin:6px 0 0">Makes ${esc(pr.items.map((x)=>plu(x)).join(' + '))}.<br><small>Swipe or scroll sideways to see all the projects.</small></p>
   <details class="glbon"${setB?'':' open'}><summary id="glbonsum">${esc(glBonSum())}</summary><p class="sub" style="margin:0">Set once. It is saved on this device until your guild upgrades.</p><div class="gltiles">${glTile('cl')}${glTile('al')}</div></details></div>`;
   h+=`<div class="card"><h3 style="margin:0 0 2px">Add what members have ready</h3><p class="sub" style="margin:0">Type what each member has ready to collect, then press Enter. It adds to the total.</p>${keys.map((pid)=>`<div class="glrep"><label class="glrl" for="glnum_${esc(pid)}">${esc(plu(pid))}</label><div class="glnumrow"><input type="text" inputmode="numeric" autocomplete="off" enterkeyhint="done" id="glnum_${esc(pid)}" class="glnum" data-p="${esc(pid)}" placeholder="e.g. 3500" aria-label="Number of ${esc(plu(pid).toLowerCase())} one member has ready to collect"><button type="button" class="btn ghost" data-glk1000="${esc(pid)}" aria-label="Multiply by 1000">×1000</button><button type="button" class="btn" data-gladd="${esc(pid)}">Add</button></div><div id="gltot_${esc(pid)}">${glTot(pid)}</div></div>`).join('')}</div>`;
@@ -1495,7 +1495,7 @@ document.addEventListener('click',(e)=>{const c=e.target&&e.target.closest?e.tar
     glRefresh()}});
 function renderGuild(){
   const act=setup.groups.filter((g)=>g.state==='active'),pr=curProject(),sh=shelterUsed();
-  let html='<div class="card"><p class="sub" style="margin:0">In the game, guilds unlock at level 12.</p></div>'+projectPicker();
+  let html=projectPicker();
   if(state.undo){armUndo();
     if(state.undo.ptitle)html+=`<div class="card gu-card" id="gundo" role="status"><p class="gu-cap">Buildings filled in for</p><div class="gu-row"><span class="gu-badge">${esc(state.undo.ptitle)}</span><button class="btn small" data-act="undo">Undo</button></div><p class="sub gu-note">Change them below if you like.</p></div>`;
     else html+=`<div class="card" id="gundo" style="padding:8px 12px"><div class="row" style="justify-content:space-between;align-items:center"><span>${esc(state.undo.label)}</span><button class="btn small" data-act="undo">Undo</button></div></div>`}
@@ -1763,6 +1763,7 @@ function cvDetail(p){const nb=cvNoBuild(p);if(nb)return nb;const nm=cruiseNames(
 function renderTournament(){
   const stars=cvStars(),D=cvCompute(false),ready=cvReady();
   let n=0,ok=0;Object.values(D).forEach((p)=>{if(!p.t||!p.calc)return;p.sizes.forEach((s)=>{n++;if(s.ok)ok++})});
+  if(state.cvF===undefined){try{state.cvF=localStorage.getItem('sunshine_cvf_v1')||(setup.groups.length?'can':'all')}catch(_){state.cvF='all'}}
   const f=['can','not','all','star'].includes(state.cvF)?state.cvF:'all';
   let html=`<div class="card"><div class="hline"><h2 style="margin:0;flex:1">Cruise tournament</h2>${qh('<p>Every Cruise card we know about is worked out against your buildings. Nothing to save.</p><ol class="steps"><li>Type a product name in the box, or scroll.</li><li>Tap a product to see each size, how long it takes and what you would need.</li><li>Tap the star to keep a product at the top.</li></ol><p>Only amounts seen on real cards are used. Sizes marked <b>not checked</b> come from a forum table. Guesses are left out.</p>')}</div>
   ${setup.groups.length?`<p class="cvcount"><b>You can do ${ok} of ${n}</b> known cards with your buildings.</p>`:`<p class="sub">Add your buildings in <a href="#buildings" data-sec="buildings">My buildings</a> first, then this tab works out which cards you can do.</p>`}
@@ -2148,7 +2149,7 @@ document.addEventListener('click',(e)=>{
   if(a==='rask'){state.rready=true;render();return}
   if(a==='rno'){state.rready=false;render();return}
   if(a==='cvready'){state.cvReady=b.dataset.v;try{localStorage.setItem('sunshine_cvready_v1',state.cvReady)}catch(_){}render();return}
-  if(a==='cvf'){state.cvF=b.dataset.v;render();return}
+  if(a==='cvf'){state.cvF=b.dataset.v;try{localStorage.setItem('sunshine_cvf_v1',state.cvF)}catch(_){}render();return}
   if(a==='cvisl'){state.cvIsl=b.dataset.k;try{localStorage.setItem('sunshine_cvisl_v1',state.cvIsl)}catch(_){}document.querySelectorAll('[data-act="cvisl"]').forEach((x)=>{const on=x.dataset.k===state.cvIsl;x.classList.toggle('on',on);x.setAttribute('aria-selected',String(on))});cvFilterDom();return}
   if(a==='cvopen'){const id=b.closest('[data-cvid]').dataset.cvid;state.cvOpen=state.cvOpen===id?null:id;render();const r=document.querySelector('[data-cvid="'+id+'"]');if(r&&state.cvOpen){try{r.scrollIntoView({block:'nearest'})}catch(_){}}return}
   if(a==='cvstar'){const id=b.closest('[data-cvid]').dataset.cvid,S=cvStars(),k=S.indexOf(id);if(k>=0)S.splice(k,1);else S.push(id);save();render();return}
