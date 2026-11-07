@@ -1,25 +1,167 @@
 {
- "_note": "Cruise card rules, version 2 (2 Nov 2026). Not game data: a pattern read from the card list, used for SEEN / PREDICTED badges. Every value carries a state: seen, seen_time_inferred, predicted or unknown. Source: claude/CRUISE_LADDERS_CONFIRMED_2nov.md and cruise_cards_clean_30oct.json.",
- "version": 2,
- "updated": "2026-11-02 19:00",
- "time_base_points": {"150": 90, "180": 108, "300": 180, "360": 216, "540": 324, "720": 432},
- "time_base_points_note": "KEPT UNCHANGED for the calculator code that existed before version 2 (keys are the time limit in minutes). New code should use points_ladders instead.",
- "product_base_amounts": {"milk_rice": 160, "iron_sheets": 50, "jacket": 75, "copper_ingot": 120, "gold_ingot": 40, "ground_coffee": 60, "embroidered_tunic": 60, "cotton_roll": 140, "copper_sheets": 180, "poncho": 120, "iced_coffee": 40},
- "product_base_amounts_note": "KEPT UNCHANGED for the older code. Only the later bases of products that jump. New code should use products[...].steps instead.",
- "steps": ["1.0", "1.1", "1.2", "1.3", "1.4", "1.5"],
- "points_ladders": {
-  "p90": {"base": 90, "points": [90, 99, 108, 117, 126, 135], "seen": [1.0, 1.1, 1.2, 1.3, 1.4, 1.5]},
-  "p108": {"base": 108, "points": [108, 119, 130, 140, 151, 162]},
-  "p180": {"base": 180, "points": [180, 198, 216, 234, 252, 270]},
-  "p216": {"base": 216, "points": [216, 238, 259, 281, 302, 324]},
-  "p324": {"base": 324, "points": [324, 356, 389, 421, 454, 486]},
-  "p432": {"base": 432, "points": [432, 475, 518, 562, 605, 648]},
-  "p1h": {"base": null, "points": [null, 113, 123, 134, 144, 154], "note": "1h cards. Step 1.0 never seen (about 103). Not a clean base x step: 123 and 134 do not both fit one base."},
-  "pyarn": {"base": 72, "points": [72, 79, 86, 94, 101, 108], "note": "Silk thread and Coffee beans at 1h, Cotton yarn at 1h30m."},
-  "p154": {"base": 154, "points": [154, 169, 185, 201, 216, 231], "note": "Cotton at 1h30m. 154 and 169 are predicted; 185, 201, 216, 231 seen. 201 is 1 above base x 1.3 (200)."}
+ "_note": "Cruise card rules, version 2 (2 Nov 2026). Not game data: a pattern read from the card list, used for SEEN / PREDICTED badges. Every value carries a state: seen, seen_time_inferred, predicted or unknown. Source: claude/CRUISE_LADDERS_CONFIRMED_2nov.md and cruise_cards_clean_30oct.json. Version 3 (7 Nov 2026): gaps filled from the koszz Cruise Ship sheet (non-red numbers only; red ones left out) and a Hammock card. Where our number and the sheet differ, ours is kept.",
+ "version": 3,
+ "updated": "2026-11-07 21:45",
+ "time_base_points": {
+  "150": 90,
+  "180": 108,
+  "300": 180,
+  "360": 216,
+  "540": 324,
+  "720": 432
  },
- "time_default_ladder": {"60": "p1h", "90": "p154", "150": "p90", "180": "p108", "300": "p180", "360": "p216", "540": "p324", "720": "p432", "1080": "p324"},
- "product_ladder_override": {"silk_thread": "pyarn", "cotton_yarn": "pyarn", "coffee_beans": "pyarn", "marimba": "p432"},
+ "time_base_points_note": "KEPT UNCHANGED for the calculator code that existed before version 2 (keys are the time limit in minutes). New code should use points_ladders instead.",
+ "product_base_amounts": {
+  "milk_rice": 160,
+  "iron_sheets": 50,
+  "jacket": 75,
+  "copper_ingot": 120,
+  "gold_ingot": 40,
+  "ground_coffee": 60,
+  "embroidered_tunic": 60,
+  "cotton_roll": 140,
+  "copper_sheets": 180,
+  "poncho": 120,
+  "iced_coffee": 40
+ },
+ "product_base_amounts_note": "KEPT UNCHANGED for the older code. Only the later bases of products that jump. New code should use products[...].steps instead.",
+ "steps": [
+  "1.0",
+  "1.1",
+  "1.2",
+  "1.3",
+  "1.4",
+  "1.5"
+ ],
+ "points_ladders": {
+  "p90": {
+   "base": 90,
+   "points": [
+    90,
+    99,
+    108,
+    117,
+    126,
+    135
+   ],
+   "seen": [
+    1.0,
+    1.1,
+    1.2,
+    1.3,
+    1.4,
+    1.5
+   ]
+  },
+  "p108": {
+   "base": 108,
+   "points": [
+    108,
+    119,
+    130,
+    140,
+    151,
+    162
+   ]
+  },
+  "p180": {
+   "base": 180,
+   "points": [
+    180,
+    198,
+    216,
+    234,
+    252,
+    270
+   ]
+  },
+  "p216": {
+   "base": 216,
+   "points": [
+    216,
+    238,
+    259,
+    281,
+    302,
+    324
+   ]
+  },
+  "p324": {
+   "base": 324,
+   "points": [
+    324,
+    356,
+    389,
+    421,
+    454,
+    486
+   ]
+  },
+  "p432": {
+   "base": 432,
+   "points": [
+    432,
+    475,
+    518,
+    562,
+    605,
+    648
+   ]
+  },
+  "p1h": {
+   "base": null,
+   "points": [
+    null,
+    113,
+    123,
+    134,
+    144,
+    154
+   ],
+   "note": "1h cards. Step 1.0 never seen (about 103). Not a clean base x step: 123 and 134 do not both fit one base."
+  },
+  "pyarn": {
+   "base": 72,
+   "points": [
+    72,
+    79,
+    86,
+    94,
+    101,
+    108
+   ],
+   "note": "Silk thread and Coffee beans at 1h, Cotton yarn at 1h30m."
+  },
+  "p154": {
+   "base": 154,
+   "points": [
+    154,
+    169,
+    185,
+    201,
+    216,
+    231
+   ],
+   "note": "Cotton at 1h30m. 154 and 169 are predicted; 185, 201, 216, 231 seen. 201 is 1 above base x 1.3 (200)."
+  }
+ },
+ "time_default_ladder": {
+  "60": "p1h",
+  "90": "p154",
+  "150": "p90",
+  "180": "p108",
+  "300": "p180",
+  "360": "p216",
+  "540": "p324",
+  "720": "p432",
+  "1080": "p324"
+ },
+ "product_ladder_override": {
+  "silk_thread": "pyarn",
+  "cotton_yarn": "pyarn",
+  "coffee_beans": "pyarn",
+  "marimba": "p432"
+ },
  "how_to_use": [
   "1. SEEN: product + amount found in cards_clean list -> use it.",
   "2. Else look in products[id].steps: find the step with this amount, or this points value, and fill the other (state predicted if state is predicted).",
@@ -28,332 +170,2426 @@
   "5. Warehouse stock never counts, only product finished and ready in the buildings."
  ],
  "products": {
-  "bamboo": {"name": "Bamboo", "time_min": 1080, "time_state": "seen", "ladder": "p324", "kind": "lookup", "steps": {
-    "1.0": {"amount": null, "points": 324, "state": "unknown"},
-    "1.1": {"amount": null, "points": 356, "state": "unknown"},
-    "1.2": {"amount": 432, "points": 389, "state": "seen"},
-    "1.3": {"amount": 819, "points": 421, "state": "seen_time_inferred"},
-    "1.4": {"amount": 882, "points": 454, "state": "seen_time_inferred"},
-    "1.5": {"amount": 945, "points": 486, "state": "seen_unchecked", "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"}}, "notes": []},
-  "bamboo_rice": {"name": "Bamboo rice", "time_min": 75, "time_state": "seen", "ladder": null, "kind": "lookup", "steps": null, "notes": [], "lookup": [{"amount": 60, "points": 59, "time": "1h15m"}, {"amount": 60, "points": 63, "time": "1h15m"}]},
-  "bolt_of_silk": {"name": "Bolt of silk", "time_min": 60, "time_state": "seen", "ladder": "p1h", "kind": "lookup", "steps": {
-    "1.0": {"amount": null, "points": null, "state": "unknown"},
-    "1.1": {"amount": 11, "points": 113, "state": "seen_unchecked", "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"},
-    "1.2": {"amount": 24, "points": 123, "state": "seen"},
-    "1.3": {"amount": 26, "points": 134, "state": "seen_unchecked", "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"},
-    "1.4": {"amount": 49, "points": 144, "state": "seen"},
-    "1.5": {"amount": 53, "points": 154, "state": "seen_unchecked", "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"}}, "notes": []},
-  "bread": {"name": "Bread", "time_min": 60, "time_state": "seen", "ladder": "p1h", "kind": "lookup", "steps": {
-    "1.0": {"amount": null, "points": null, "state": "unknown"},
-    "1.1": {"amount": null, "points": 113, "state": "unknown"},
-    "1.2": {"amount": 168, "points": 123, "state": "seen_unchecked", "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"},
-    "1.3": {"amount": 247, "points": 134, "state": "seen"},
-    "1.4": {"amount": 266, "points": 144, "state": "seen_time_inferred"},
-    "1.5": {"amount": 360, "points": 154, "state": "seen"}}, "notes": []},
-  "breakfast": {"name": "Breakfast", "time_min": 60, "time_state": "seen", "ladder": "p1h", "kind": "lookup", "steps": {
-    "1.0": {"amount": null, "points": null, "state": "unknown"},
-    "1.1": {"amount": null, "points": 113, "state": "unknown"},
-    "1.2": {"amount": null, "points": 123, "state": "unknown"},
-    "1.3": {"amount": null, "points": 134, "state": "unknown"},
-    "1.4": {"amount": 84, "points": 144, "state": "seen"},
-    "1.5": {"amount": 90, "points": 154, "state": "seen_unchecked", "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"}}, "notes": []},
-  "carrots": {"name": "Carrots", "time_min": 1080, "time_state": "seen", "ladder": "p324", "kind": "lookup", "steps": {
-    "1.0": {"amount": null, "points": 324, "state": "unknown"},
-    "1.1": {"amount": 1188, "points": 356, "state": "seen_time_inferred"},
-    "1.2": {"amount": 1728, "points": 389, "state": "seen"},
-    "1.3": {"amount": 2457, "points": 421, "state": "seen_time_inferred"},
-    "1.4": {"amount": 3276, "points": 454, "state": "seen_time_inferred"},
-    "1.5": {"amount": 4185, "points": 486, "state": "seen_unchecked", "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"}}, "notes": []},
-  "cashmere": {"name": "Cashmere", "time_min": 720, "time_state": "seen", "ladder": "p432", "kind": "lookup", "steps": {
-    "1.0": {"amount": 280, "points": 432, "state": "seen_unchecked", "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"},
-    "1.1": {"amount": null, "points": 475, "state": "unknown"},
-    "1.2": {"amount": 588, "points": 518, "state": "seen_time_inferred"},
-    "1.3": {"amount": 637, "points": 562, "state": "seen_time_inferred"},
-    "1.4": {"amount": 882, "points": 605, "state": "seen"},
-    "1.5": {"amount": 945, "points": 648, "state": "seen"}}, "notes": []},
-  "catch_fish": {"name": "Catch fish", "time_min": 180, "time_state": "seen", "ladder": null, "kind": "lookup", "steps": {
-    "1.0": {"amount": 8, "points": 108, "state": "seen_unchecked"},
-    "1.1": {"amount": 10, "points": 125, "state": "seen_unchecked"},
-    "1.2": {"amount": 12, "points": 151, "state": "seen"}}, "notes": ["5 Nov: sizes are Catch fish's own (108 / 125 / 151 points, 3h), from two forum tables: a year-old one (8, 10, 12) and the Norland Guild one of 31 Oct (10 and 12). Only 12 / 151 seen on a card by Jo. Hearts ignored."]},
-  "coffee_beans": {"name": "Coffee beans", "time_min": 60, "time_state": "seen", "ladder": "pyarn", "kind": "lookup", "steps": {
-    "1.0": {"amount": null, "points": 72, "state": "unknown"},
-    "1.1": {"amount": null, "points": 79, "state": "unknown"},
-    "1.2": {"amount": 228, "points": 86, "state": "seen_time_inferred"},
-    "1.3": {"amount": 312, "points": 94, "state": "seen"},
-    "1.4": {"amount": 392, "points": 101, "state": "seen"},
-    "1.5": {"amount": null, "points": 108, "state": "unknown"}}, "notes": []},
-  "complete_floating_markets": {"name": "Complete Floating Markets", "time_min": 1080, "time_state": "seen", "ladder": null, "kind": "lookup", "steps": null, "notes": ["1 / 450 is not on ladder p324", "Points do not fit any points ladder; kept as a plain list."], "lookup": [{"amount": 1, "points": 450, "time": "18h"}]},
-  "complete_market_orders": {"name": "Complete market orders", "time_min": 120, "time_state": "seen", "ladder": null, "kind": "lookup", "steps": null, "notes": [], "lookup": [{"amount": 25, "points": 125, "time": "2h"}, {"amount": 30, "points": 134, "time": "2h"}, {"amount": 35, "points": 144, "time": "2h"}]},
-  "copper_ingot": {"name": "Copper ingot", "time_min": 540, "time_state": "seen", "ladder": "p324", "kind": "flat", "steps": {
-    "1.0": {"amount": 120, "points": 324, "state": "predicted"},
-    "1.1": {"amount": 132, "points": 356, "state": "predicted"},
-    "1.2": {"amount": 144, "points": 389, "state": "seen_time_inferred"},
-    "1.3": {"amount": 156, "points": 421, "state": "seen"},
-    "1.4": {"amount": 168, "points": 454, "state": "seen"},
-    "1.5": {"amount": 180, "points": 486, "state": "predicted", "check": "forum table agrees"}}, "notes": []},
-  "copper_ore": {"name": "Copper ore", "time_min": 150, "time_state": "seen", "ladder": "p90", "kind": "lookup", "steps": {
-    "1.0": {"amount": null, "points": 90, "state": "unknown"},
-    "1.1": {"amount": null, "points": 99, "state": "unknown"},
-    "1.2": {"amount": 300, "points": 108, "state": "seen_time_inferred"},
-    "1.3": {"amount": 423, "points": 117, "state": "seen"},
-    "1.4": {"amount": 560, "points": 126, "state": "seen"},
-    "1.5": {"amount": 675, "points": 135, "state": "seen"}}, "notes": []},
-  "copper_sheets": {"name": "Copper sheets", "time_min": 540, "time_state": "seen", "ladder": "p324", "kind": "jump", "steps": {
-    "1.0": {"amount": 80, "points": 324, "state": "seen_time_inferred"},
-    "1.1": {"amount": 88, "points": 356, "state": "seen_time_inferred"},
-    "1.2": {"amount": 96, "points": 389, "state": "seen_time_inferred"},
-    "1.3": {"amount": 104, "points": 421, "state": "seen"},
-    "1.4": {"amount": 196, "points": 454, "state": "seen"},
-    "1.5": {"amount": 270, "points": 486, "state": "seen"}}, "notes": ["Gold sheets 196/454 is listed at 18h in our log; same numbers as Copper sheets at 9h. Unexplained."]},
-  "corn": {"name": "Corn", "time_min": 60, "time_state": "seen", "ladder": "p1h", "kind": "lookup", "steps": {
-    "1.0": {"amount": null, "points": null, "state": "unknown"},
-    "1.1": {"amount": null, "points": 113, "state": "unknown"},
-    "1.2": {"amount": 288, "points": 123, "state": "seen_time_inferred"},
-    "1.3": {"amount": 371, "points": 134, "state": "seen"},
-    "1.4": {"amount": 525, "points": 144, "state": "seen"},
-    "1.5": {"amount": 720, "points": 154, "state": "seen_unchecked", "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"}}, "notes": []},
-  "cotton": {"name": "Cotton", "time_min": 90, "time_state": "seen", "ladder": "p154", "kind": "lookup", "steps": {
-    "1.0": {"amount": null, "points": 154, "state": "unknown"},
-    "1.1": {"amount": null, "points": 169, "state": "unknown"},
-    "1.2": {"amount": 288, "points": 185, "state": "seen_time_inferred"},
-    "1.3": {"amount": 364, "points": 201, "state": "seen_time_inferred"},
-    "1.4": {"amount": 448, "points": 216, "state": "seen"},
-    "1.5": {"amount": 570, "points": 231, "state": "seen"}}, "notes": ["At 1h30m: Cotton uses ladder p154, Cotton yarn uses the yarn ladder. \"36 x hours\" does not hold."]},
-  "cotton_roll": {"name": "Cotton roll", "time_min": 540, "time_state": "seen", "ladder": "p324", "kind": "jump", "steps": {
-    "1.0": {"amount": 80, "points": 324, "state": "predicted"},
-    "1.1": {"amount": 88, "points": 356, "state": "predicted"},
-    "1.2": {"amount": 96, "points": 389, "state": "seen_time_inferred"},
-    "1.3": {"amount": 104, "points": 421, "state": "seen_time_inferred"},
-    "1.4": {"amount": 196, "points": 454, "state": "seen"},
-    "1.5": {"amount": 210, "points": 486, "state": "seen"}}, "notes": []},
-  "cotton_yarn": {"name": "Cotton yarn", "time_min": 90, "time_state": "seen", "ladder": "pyarn", "kind": "flat", "steps": {
-    "1.0": {"amount": 30, "points": 72, "state": "predicted"},
-    "1.1": {"amount": 33, "points": 79, "state": "predicted"},
-    "1.2": {"amount": 36, "points": 86, "state": "seen_time_inferred"},
-    "1.3": {"amount": 39, "points": 94, "state": "seen_time_inferred"},
-    "1.4": {"amount": 42, "points": 101, "state": "seen_time_inferred"},
-    "1.5": {"amount": 45, "points": 108, "state": "seen"}}, "notes": ["At 1h30m: Cotton uses ladder p154, Cotton yarn uses the yarn ladder. \"36 x hours\" does not hold."]},
-  "cow_feed": {"name": "Cow feed", "time_min": 60, "time_state": "seen", "ladder": "p1h", "kind": "lookup", "steps": {
-    "1.0": {"amount": null, "points": null, "state": "unknown"},
-    "1.1": {"amount": null, "points": 113, "state": "unknown"},
-    "1.2": {"amount": 38, "points": 123, "state": "seen_unchecked", "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"},
-    "1.3": {"amount": 42, "points": 134, "state": "seen_unchecked", "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"},
-    "1.4": {"amount": 45, "points": 144, "state": "seen"},
-    "1.5": {"amount": 48, "points": 154, "state": "seen"}}, "notes": []},
-  "cup_of_coffee": {"name": "Cup of coffee", "time_min": 360, "time_state": "seen", "ladder": "p216", "kind": "lookup", "steps": {
-    "1.0": {"amount": null, "points": 216, "state": "unknown"},
-    "1.1": {"amount": 66, "points": 238, "state": "seen_time_inferred"},
-    "1.2": {"amount": 126, "points": 259, "state": "seen_time_inferred"},
-    "1.3": {"amount": 176, "points": 281, "state": "seen_time_inferred"},
-    "1.4": {"amount": 252, "points": 302, "state": "seen"},
-    "1.5": {"amount": 315, "points": 324, "state": "seen_unchecked", "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"}}, "notes": []},
-  "curtain": {"name": "Curtain", "time_min": 60, "time_state": "seen", "ladder": null, "kind": "lookup", "steps": null, "notes": ["100 / 31 is not on ladder p1h", "Points do not fit any points ladder; kept as a plain list.", "Curtain 100 / 31 is unconfirmed (31 is far below the 1h ladder)."], "lookup": [{"amount": 100, "points": 31, "time": "1h"}]},
-  "daisies": {"name": "Daisies", "time_min": 60, "time_state": "seen", "ladder": "p1h", "kind": "lookup", "steps": {
-    "1.0": {"amount": null, "points": null, "state": "unknown"},
-    "1.1": {"amount": 792, "points": 113, "state": "seen_time_inferred"},
-    "1.2": {"amount": 1152, "points": 123, "state": "seen_time_inferred"},
-    "1.3": {"amount": 1560, "points": 134, "state": "seen"},
-    "1.4": {"amount": 2016, "points": 144, "state": "seen"},
-    "1.5": {"amount": 2520, "points": 154, "state": "seen"}}, "notes": [], "derived": {"from": "wheat", "factor": 0.75, "note": "Daisies = Wheat x 0.75 at every step seen (1.1 to 1.5)."}},
-  "embroidered_tunic": {"name": "Embroidered tunic", "time_min": 360, "time_state": "seen", "ladder": "p216", "kind": "jump", "steps": {
-    "1.0": {"amount": 30, "points": 216, "state": "seen_time_inferred"},
-    "1.1": {"amount": 33, "points": 238, "state": "seen"},
-    "1.2": {"amount": 72, "points": 259, "state": "seen"},
-    "1.3": {"amount": 78, "points": 281, "state": "seen"},
-    "1.4": {"amount": 84, "points": 302, "state": "predicted"},
-    "1.5": {"amount": 158, "points": 324, "state": "seen_unchecked", "also_predicted": 90, "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"}}, "notes": []},
-  "feather": {"name": "Feather", "time_min": 1080, "time_state": "seen", "ladder": "p324", "kind": "lookup", "steps": {
-    "1.0": {"amount": null, "points": 324, "state": "unknown"},
-    "1.1": {"amount": 693, "points": 356, "state": "seen_time_inferred"},
-    "1.2": {"amount": 972, "points": 389, "state": "seen"},
-    "1.3": {"amount": 1404, "points": 421, "state": "seen_time_inferred"},
-    "1.4": {"amount": 1764, "points": 454, "state": "seen"},
-    "1.5": {"amount": 2160, "points": 486, "state": "seen_time_inferred"}}, "notes": ["Feather and Iron ore share one 18h amount ladder: 693/972/1404/1764/2160 at 1.1 to 1.5."]},
-  "fertilizer": {"name": "Fertilizer", "time_min": null, "time_state": null, "ladder": null, "kind": "lookup", "steps": null, "notes": [], "lookup": [{"amount": 84, "points": 151, "time": null}]},
-  "fill_baskets_on_the_market_boats": {"name": "Fill baskets on the market boats", "time_min": null, "time_state": null, "ladder": null, "kind": "lookup", "steps": null, "notes": [], "lookup": [{"amount": 12, "points": 325, "time": null}, {"amount": 12, "points": 350, "time": null}]},
-  "fill_crates_on_planes": {"name": "Fill crates on planes", "time_min": 540, "time_state": "seen", "ladder": null, "kind": "lookup", "steps": null, "notes": ["12 / 275 is not on ladder p324", "Points do not fit any points ladder; kept as a plain list."], "lookup": [{"amount": 12, "points": 275, "time": "9h"}]},
-  "fill_crates_on_ships": {"name": "Fill crates on ships", "time_min": 360, "time_state": "seen", "ladder": null, "kind": "lookup", "steps": null, "notes": ["12 / 275 is not on ladder p216", "Points do not fit any points ladder; kept as a plain list."], "lookup": [{"amount": 12, "points": 275, "time": "6h"}]},
-  "flour": {"name": "Flour", "time_min": 60, "time_state": "seen", "ladder": "p1h", "kind": "flat", "steps": {
-    "1.0": {"amount": null, "points": null, "state": "unknown"},
-    "1.1": {"amount": 132, "points": 113, "state": "predicted"},
-    "1.2": {"amount": 144, "points": 123, "state": "predicted", "check": "forum table agrees"},
-    "1.3": {"amount": 156, "points": 134, "state": "seen"},
-    "1.4": {"amount": 168, "points": 144, "state": "seen"},
-    "1.5": {"amount": 180, "points": 154, "state": "predicted", "check": "forum table agrees"}}, "notes": []},
-  "goat_feed": {"name": "Goat feed", "time_min": 360, "time_state": "seen", "ladder": "p216", "kind": "lookup", "steps": {
-    "1.0": {"amount": null, "points": 216, "state": "unknown"},
-    "1.1": {"amount": null, "points": 238, "state": "unknown"},
-    "1.2": {"amount": 5, "points": 259, "state": "seen_unchecked", "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"},
-    "1.3": {"amount": 5, "points": 281, "state": "seen_time_inferred"},
-    "1.4": {"amount": 6, "points": 302, "state": "seen"},
-    "1.5": {"amount": 6, "points": 324, "state": "seen_unchecked", "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"}}, "notes": []},
-  "gold_ingot": {"name": "Gold ingot", "time_min": 180, "time_state": "seen", "ladder": "p108", "kind": "flat", "steps": {
-    "1.0": {"amount": 40, "points": 108, "state": "predicted", "check": "forum table agrees"},
-    "1.1": {"amount": 44, "points": 119, "state": "predicted"},
-    "1.2": {"amount": 48, "points": 130, "state": "seen_time_inferred"},
-    "1.3": {"amount": 52, "points": 140, "state": "seen"},
-    "1.4": {"amount": 56, "points": 151, "state": "seen"},
-    "1.5": {"amount": 60, "points": 162, "state": "seen"}}, "notes": []},
-  "gold_ore": {"name": "Gold ore", "time_min": 60, "time_state": "seen", "ladder": "p1h", "kind": "lookup", "steps": {
-    "1.0": {"amount": null, "points": null, "state": "unknown"},
-    "1.1": {"amount": null, "points": 113, "state": "unknown"},
-    "1.2": {"amount": 162, "points": 123, "state": "seen_time_inferred"},
-    "1.3": {"amount": 234, "points": 134, "state": "seen_time_inferred", "also": [234], "also_seen": [42], "note": "42 (31 Oct, running task) may be a progress figure; 234 from the commenter list."},
-    "1.4": {"amount": 294, "points": 144, "state": "seen"},
-    "1.5": {"amount": null, "points": 154, "state": "unknown"}}, "notes": []},
-  "gold_sheets": {"name": "Gold sheets", "time_min": 1080, "time_state": "seen", "ladder": "p324", "kind": "lookup", "steps": {
-    "1.0": {"amount": null, "points": 324, "state": "unknown"},
-    "1.1": {"amount": null, "points": 356, "state": "unknown"},
-    "1.2": {"amount": 96, "points": 389, "state": "seen_unchecked", "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"},
-    "1.3": {"amount": null, "points": 421, "state": "unknown"},
-    "1.4": {"amount": 196, "points": 454, "state": "seen"},
-    "1.5": {"amount": 270, "points": 486, "state": "seen_unchecked", "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"}}, "notes": []},
-  "gong": {"name": "Gong", "time_min": 270, "time_state": "seen", "ladder": null, "kind": "lookup", "steps": null, "notes": [], "lookup": [{"amount": 20, "points": 162, "time": "4h30m"}]},
-  "ground_coffee": {"name": "Ground coffee", "time_min": 180, "time_state": "seen", "ladder": "p108", "kind": "flat", "steps": {
-    "1.0": {"amount": 60, "points": 108, "state": "predicted"},
-    "1.1": {"amount": 66, "points": 119, "state": "predicted"},
-    "1.2": {"amount": 72, "points": 130, "state": "predicted"},
-    "1.3": {"amount": 78, "points": 140, "state": "predicted", "check": "forum table agrees"},
-    "1.4": {"amount": 84, "points": 151, "state": "seen"},
-    "1.5": {"amount": 90, "points": 162, "state": "seen"}}, "notes": []},
-  "iced_coffee": {"name": "Iced coffee", "time_min": 180, "time_state": "seen", "ladder": "p108", "kind": "jump", "steps": {
-    "1.0": {"amount": 40, "points": 108, "state": "seen_time_inferred"},
-    "1.1": {"amount": 44, "points": 119, "state": "seen_time_inferred"},
-    "1.2": {"amount": 48, "points": 130, "state": "seen"},
-    "1.3": {"amount": 104, "points": 140, "state": "seen_unchecked", "also_predicted": 52, "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"},
-    "1.4": {"amount": null, "points": 151, "state": "unknown", "candidates": [56], "note": "Jump products change base again late; steps after the last seen one are not predicted."},
-    "1.5": {"amount": null, "points": 162, "state": "unknown", "candidates": [60], "note": "Jump products change base again late; steps after the last seen one are not predicted."}}, "notes": ["Base 40 up to 1.2, then 80 from 1.3 (104 / 140 in the forum table). Earlier \"flat\" label was wrong."]},
-  "iron_ingot": {"name": "Iron ingot", "time_min": 1080, "time_state": "seen", "ladder": "p324", "kind": "flat", "steps": {
-    "1.0": {"amount": 40, "points": 324, "state": "predicted"},
-    "1.1": {"amount": 44, "points": 356, "state": "predicted"},
-    "1.2": {"amount": 48, "points": 389, "state": "seen"},
-    "1.3": {"amount": 52, "points": 421, "state": "seen_time_inferred"},
-    "1.4": {"amount": 56, "points": 454, "state": "seen"},
-    "1.5": {"amount": 60, "points": 486, "state": "seen"}}, "notes": []},
-  "iron_ore": {"name": "Iron ore", "time_min": 1080, "time_state": "seen", "ladder": "p324", "kind": "lookup", "steps": {
-    "1.0": {"amount": null, "points": 324, "state": "unknown"},
-    "1.1": {"amount": 693, "points": 356, "state": "seen_time_inferred"},
-    "1.2": {"amount": 972, "points": 389, "state": "seen"},
-    "1.3": {"amount": 1404, "points": 421, "state": "seen_time_inferred"},
-    "1.4": {"amount": 1764, "points": 454, "state": "seen_time_inferred"},
-    "1.5": {"amount": 2160, "points": 486, "state": "seen_unchecked", "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"}}, "notes": []},
-  "iron_sheets": {"name": "Iron sheets", "time_min": 300, "time_state": "seen", "ladder": "p180", "kind": "jump", "steps": {
-    "1.0": {"amount": 20, "points": 180, "state": "seen_time_inferred"},
-    "1.1": {"amount": 22, "points": 198, "state": "predicted"},
-    "1.2": {"amount": 24, "points": 216, "state": "seen_time_inferred"},
-    "1.3": {"amount": 65, "points": 234, "state": "seen"},
-    "1.4": {"amount": 70, "points": 252, "state": "seen"},
-    "1.5": {"amount": null, "points": 270, "state": "unknown", "check": "forum table agrees", "candidates": [75], "note": "Jump products change base again late; steps after the last seen one are not predicted."}}, "notes": ["Step 1.1 predicted 22 (base 20) is a guess; the jump from 20 to 50 is seen between 1.2 and 1.3."]},
-  "jacket": {"name": "Jacket", "time_min": 300, "time_state": "seen", "ladder": "p180", "kind": "jump", "steps": {
-    "1.0": {"amount": 30, "points": 180, "state": "seen"},
-    "1.1": {"amount": 33, "points": 198, "state": "seen_unchecked", "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"},
-    "1.2": {"amount": 90, "points": 216, "state": "seen"},
-    "1.3": {"amount": 98, "points": 234, "state": "seen"},
-    "1.4": {"amount": 105, "points": 252, "state": "predicted", "check": "forum table agrees"},
-    "1.5": {"amount": 180, "points": 270, "state": "seen_unchecked", "also_predicted": 113, "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"}}, "notes": ["Step 1.1 unknown: could be 33 (base 30) or 83 (base 75). Jump step not pinned."]},
-  "longcase_clock": {"name": "Longcase clock", "time_min": 180, "time_state": "seen", "ladder": "p108", "kind": "jump", "steps": {
-    "1.0": {"amount": 10, "points": 108, "state": "seen"},
-    "1.1": {"amount": 11, "points": 119, "state": "seen"},
-    "1.2": {"amount": 24, "points": 130, "state": "seen_time_inferred"},
-    "1.3": {"amount": 26, "points": 140, "state": "seen"},
-    "1.4": {"amount": null, "points": 151, "state": "unknown", "candidates": [28], "note": "Jump products change base again late; steps after the last seen one are not predicted."},
-    "1.5": {"amount": null, "points": 162, "state": "unknown", "candidates": [30], "note": "Jump products change base again late; steps after the last seen one are not predicted."}}, "notes": []},
-  "manure": {"name": "Manure", "time_min": 720, "time_state": "seen", "ladder": null, "kind": "lookup", "steps": null, "notes": ["1764 / 403 is not on ladder p432", "Points do not fit any points ladder; kept as a plain list.", "403 is not on the 12h ladder."], "lookup": [{"amount": 1764, "points": 403, "time": "12h"}]},
-  "marimba": {"name": "Marimba", "time_min": 1080, "time_state": "seen", "ladder": "p432", "kind": "jump", "steps": {
-    "1.0": {"amount": 40, "points": 432, "state": "seen"},
-    "1.1": {"amount": 44, "points": 475, "state": "seen"},
-    "1.2": {"amount": 96, "points": 518, "state": "seen"},
-    "1.3": {"amount": 104, "points": 562, "state": "seen"},
-    "1.4": {"amount": 196, "points": 605, "state": "seen_unchecked", "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)", "note": "196 / 605 from the forum table; fits base 140 (40, 80, 140). Previously left unknown."},
-    "1.5": {"amount": null, "points": 648, "state": "unknown", "candidates": [120]}}, "notes": ["Step 1.4: formula says 112, a forum card said 196 / 605. Unresolved; do not trust 112.", "Bases 40, 80, 140 fit a \"x1, x2, x3.5\" climb. 1.5 would be 210 if base stays 140 (not seen)."]},
-  "milk": {"name": "Milk", "time_min": 60, "time_state": "seen", "ladder": "p1h", "kind": "lookup", "steps": {
-    "1.0": {"amount": null, "points": null, "state": "unknown"},
-    "1.1": {"amount": null, "points": 113, "state": "unknown"},
-    "1.2": {"amount": 864, "points": 123, "state": "seen_time_inferred"},
-    "1.3": {"amount": 1307, "points": 134, "state": "seen_time_inferred"},
-    "1.4": {"amount": 1596, "points": 144, "state": "seen"},
-    "1.5": {"amount": 1935, "points": 154, "state": "seen"}}, "notes": []},
-  "milk_rice": {"name": "Milk rice", "time_min": 720, "time_state": "seen", "ladder": "p432", "kind": "flat", "steps": {
-    "1.0": {"amount": 160, "points": 432, "state": "seen"},
-    "1.1": {"amount": 176, "points": 475, "state": "seen"},
-    "1.2": {"amount": 192, "points": 518, "state": "seen"},
-    "1.3": {"amount": 208, "points": 562, "state": "predicted", "check": "forum table agrees"},
-    "1.4": {"amount": 224, "points": 605, "state": "predicted"},
-    "1.5": {"amount": 240, "points": 648, "state": "predicted", "check": "forum table agrees"}}, "notes": ["208 / 562 and 240 / 648 appear in the 31 Oct forum table (points smudged); amounts match the prediction. Not yet seen on a card."]},
-  "ornamental_katana": {"name": "Ornamental katana", "time_min": 150, "time_state": "seen", "ladder": "p90", "kind": "jump", "steps": {
-    "1.0": {"amount": 10, "points": 90, "state": "seen"},
-    "1.1": {"amount": 11, "points": 99, "state": "seen_time_inferred"},
-    "1.2": {"amount": 30, "points": 108, "state": "seen"},
-    "1.3": {"amount": null, "points": 117, "state": "unknown", "candidates": [33], "note": "Jump products change base again late; steps after the last seen one are not predicted."},
-    "1.4": {"amount": null, "points": 126, "state": "unknown", "candidates": [35], "note": "Jump products change base again late; steps after the last seen one are not predicted."},
-    "1.5": {"amount": null, "points": 135, "state": "unknown", "candidates": [38], "note": "Jump products change base again late; steps after the last seen one are not predicted."}}, "notes": []},
-  "ostrich_feed": {"name": "Ostrich feed", "time_min": 150, "time_state": "seen", "ladder": "p90", "kind": "lookup", "steps": {
-    "1.0": {"amount": null, "points": 90, "state": "unknown"},
-    "1.1": {"amount": null, "points": 99, "state": "unknown"},
-    "1.2": {"amount": 5, "points": 108, "state": "seen"},
-    "1.3": {"amount": 5, "points": 117, "state": "seen"},
-    "1.4": {"amount": 6, "points": 126, "state": "seen"},
-    "1.5": {"amount": null, "points": 135, "state": "unknown"}}, "notes": []},
-  "palm_wood": {"name": "Palm wood", "time_min": null, "time_state": null, "ladder": "p324", "kind": "jump", "steps": {
-    "1.0": {"amount": 120, "points": 324, "state": "predicted"},
-    "1.1": {"amount": 132, "points": 356, "state": "predicted"},
-    "1.2": {"amount": 144, "points": 389, "state": "seen_time_inferred"},
-    "1.3": {"amount": 156, "points": 421, "state": "seen_time_inferred"},
-    "1.4": {"amount": 294, "points": 454, "state": "seen_time_inferred"},
-    "1.5": {"amount": null, "points": 486, "state": "unknown", "check": "forum table agrees", "candidates": [315], "note": "Jump products change base again late; steps after the last seen one are not predicted."}}, "notes": ["Time unknown (9h or 18h); points fit 324 ladder. Name matched from a \"Palm\" icon."]},
-  "pine_wood": {"name": "Pine wood", "time_min": 180, "time_state": "seen", "ladder": "p108", "kind": "lookup", "steps": {
-    "1.0": {"amount": null, "points": 108, "state": "unknown"},
-    "1.1": {"amount": null, "points": 119, "state": "unknown"},
-    "1.2": {"amount": null, "points": 130, "state": "unknown"},
-    "1.3": {"amount": 351, "points": 140, "state": "seen_unchecked", "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"},
-    "1.4": {"amount": 378, "points": 151, "state": "seen"},
-    "1.5": {"amount": null, "points": 162, "state": "unknown"}}, "notes": []},
-  "poncho": {"name": "Poncho", "time_min": 540, "time_state": "seen", "ladder": "p324", "kind": "jump", "steps": {
-    "1.0": {"amount": 120, "points": 324, "state": "seen"},
-    "1.1": {"amount": 132, "points": 356, "state": "seen_time_inferred"},
-    "1.2": {"amount": 288, "points": 389, "state": "seen"},
-    "1.3": {"amount": 312, "points": 421, "state": "predicted", "check": "forum table agrees"},
-    "1.4": {"amount": 336, "points": 454, "state": "predicted", "check": "forum table agrees"},
-    "1.5": {"amount": 630, "points": 486, "state": "seen_unchecked", "also_predicted": 360, "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"}}, "notes": []},
-  "quilt": {"name": "Quilt", "time_min": 1440, "time_state": "seen", "ladder": null, "kind": "lookup", "steps": null, "notes": [], "lookup": [{"amount": 50, "points": 864, "time": "24h"}, {"amount": 50, "points": 950, "time": "24h"}, {"amount": 100, "points": 1037, "time": "24h"}, {"amount": 100, "points": 1123, "time": "24h"}]},
-  "rice": {"name": "Rice", "time_min": 360, "time_state": "seen", "ladder": "p216", "kind": "lookup", "steps": {
-    "1.0": {"amount": 240, "points": 216, "state": "seen_time_inferred"},
-    "1.1": {"amount": 264, "points": 238, "state": "seen"},
-    "1.2": {"amount": 504, "points": 259, "state": "seen_time_inferred"},
-    "1.3": {"amount": 546, "points": 281, "state": "seen_unchecked", "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"},
-    "1.4": {"amount": null, "points": 302, "state": "unknown"},
-    "1.5": {"amount": 810, "points": 324, "state": "seen_unchecked", "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"}}, "notes": []},
-  "send_full_ships": {"name": "Send full ships", "time_min": 1080, "time_state": "seen", "ladder": null, "kind": "lookup", "steps": null, "notes": ["2 / 400 is not on ladder p324", "Points do not fit any points ladder; kept as a plain list."], "lookup": [{"amount": 2, "points": 400, "time": "18h"}]},
-  "send_planes": {"name": "Send planes", "time_min": 540, "time_state": "seen", "ladder": null, "kind": "lookup", "steps": null, "notes": ["6 / 300 is not on ladder p324", "3 / 250 is not on ladder p324", "Points do not fit any points ladder; kept as a plain list."], "lookup": [{"amount": 3, "points": 250, "time": "9h"}, {"amount": 6, "points": 300, "time": "9h"}]},
-  "silk_cocoon": {"name": "Silk cocoon", "time_min": 180, "time_state": "seen", "ladder": "p108", "kind": "lookup", "steps": {
-    "1.0": {"amount": null, "points": 108, "state": "unknown"},
-    "1.1": {"amount": null, "points": 119, "state": "unknown"},
-    "1.2": {"amount": 432, "points": 130, "state": "seen_time_inferred"},
-    "1.3": {"amount": 546, "points": 140, "state": "seen"},
-    "1.4": {"amount": 672, "points": 151, "state": "seen"},
-    "1.5": {"amount": 855, "points": 162, "state": "seen"}}, "notes": []},
-  "silk_thread": {"name": "Silk thread", "time_min": 60, "time_state": "seen", "ladder": "pyarn", "kind": "flat", "steps": {
-    "1.0": {"amount": 40, "points": 72, "state": "predicted"},
-    "1.1": {"amount": 44, "points": 79, "state": "seen_time_inferred"},
-    "1.2": {"amount": 48, "points": 86, "state": "seen_time_inferred"},
-    "1.3": {"amount": 52, "points": 94, "state": "seen_time_inferred"},
-    "1.4": {"amount": 56, "points": 101, "state": "seen"},
-    "1.5": {"amount": 60, "points": 108, "state": "seen"}}, "notes": []},
-  "wheat": {"name": "Wheat", "time_min": 60, "time_state": "seen", "ladder": "p1h", "kind": "lookup", "steps": {
-    "1.0": {"amount": null, "points": null, "state": "unknown"},
-    "1.1": {"amount": 1056, "points": 113, "state": "seen_time_inferred"},
-    "1.2": {"amount": 1536, "points": 123, "state": "seen_time_inferred"},
-    "1.3": {"amount": 2080, "points": 134, "state": "seen"},
-    "1.4": {"amount": 2688, "points": 144, "state": "seen"},
-    "1.5": {"amount": 3360, "points": 154, "state": "seen"}}, "notes": []}
+  "bamboo": {
+   "name": "Bamboo",
+   "time_min": 1080,
+   "time_state": "seen",
+   "ladder": "p324",
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 180,
+     "points": 324,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.1": {
+     "amount": 396,
+     "points": 356,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.2": {
+     "amount": 432,
+     "points": 389,
+     "state": "seen"
+    },
+    "1.3": {
+     "amount": 819,
+     "points": 421,
+     "state": "seen_time_inferred"
+    },
+    "1.4": {
+     "amount": 882,
+     "points": 454,
+     "state": "seen_time_inferred"
+    },
+    "1.5": {
+     "amount": 945,
+     "points": 486,
+     "state": "seen",
+     "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    }
+   },
+   "notes": []
+  },
+  "bamboo_rice": {
+   "name": "Bamboo rice",
+   "time_min": 75,
+   "time_state": "seen",
+   "ladder": null,
+   "kind": "lookup",
+   "steps": null,
+   "notes": [],
+   "lookup": [
+    {
+     "amount": 60,
+     "points": 59,
+     "time": "1h15m"
+    },
+    {
+     "amount": 60,
+     "points": 63,
+     "time": "1h15m"
+    }
+   ]
+  },
+  "bolt_of_silk": {
+   "name": "Bolt of silk",
+   "time_min": 60,
+   "time_state": "seen",
+   "ladder": "p1h",
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 10,
+     "points": 103,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.1": {
+     "amount": 11,
+     "points": 113,
+     "state": "seen",
+     "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.2": {
+     "amount": 24,
+     "points": 123,
+     "state": "seen"
+    },
+    "1.3": {
+     "amount": 26,
+     "points": 134,
+     "state": "seen",
+     "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.4": {
+     "amount": 49,
+     "points": 144,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 53,
+     "points": 154,
+     "state": "seen",
+     "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    }
+   },
+   "notes": []
+  },
+  "bread": {
+   "name": "Bread",
+   "time_min": 60,
+   "time_state": "seen",
+   "ladder": "p1h",
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 40,
+     "points": 103,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.1": {
+     "amount": null,
+     "points": 113,
+     "state": "unknown"
+    },
+    "1.2": {
+     "amount": 168,
+     "points": 123,
+     "state": "seen",
+     "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.3": {
+     "amount": 247,
+     "points": 134,
+     "state": "seen"
+    },
+    "1.4": {
+     "amount": 266,
+     "points": 144,
+     "state": "seen_time_inferred"
+    },
+    "1.5": {
+     "amount": 360,
+     "points": 154,
+     "state": "seen"
+    }
+   },
+   "notes": []
+  },
+  "breakfast": {
+   "name": "Breakfast",
+   "time_min": 60,
+   "time_state": "seen",
+   "ladder": "p1h",
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 30,
+     "points": 103,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.1": {
+     "amount": 33,
+     "points": 113,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.2": {
+     "amount": 36,
+     "points": 123,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.3": {
+     "amount": 78,
+     "points": 134,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.4": {
+     "amount": 84,
+     "points": 144,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 90,
+     "points": 154,
+     "state": "seen",
+     "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    }
+   },
+   "notes": []
+  },
+  "carrots": {
+   "name": "Carrots",
+   "time_min": 1080,
+   "time_state": "seen",
+   "ladder": "p324",
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 810,
+     "points": 324,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.1": {
+     "amount": 1188,
+     "points": 356,
+     "state": "seen_time_inferred"
+    },
+    "1.2": {
+     "amount": 1728,
+     "points": 389,
+     "state": "seen"
+    },
+    "1.3": {
+     "amount": 2457,
+     "points": 421,
+     "state": "seen_time_inferred"
+    },
+    "1.4": {
+     "amount": 3276,
+     "points": 454,
+     "state": "seen_time_inferred"
+    },
+    "1.5": {
+     "amount": 4185,
+     "points": 486,
+     "state": "seen",
+     "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    }
+   },
+   "notes": []
+  },
+  "cashmere": {
+   "name": "Cashmere",
+   "time_min": 720,
+   "time_state": "seen",
+   "ladder": "p432",
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 280,
+     "points": 432,
+     "state": "seen",
+     "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.1": {
+     "amount": 539,
+     "points": 475,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.2": {
+     "amount": 588,
+     "points": 518,
+     "state": "seen_time_inferred"
+    },
+    "1.3": {
+     "amount": 637,
+     "points": 562,
+     "state": "seen_time_inferred"
+    },
+    "1.4": {
+     "amount": 882,
+     "points": 605,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 945,
+     "points": 648,
+     "state": "seen"
+    }
+   },
+   "notes": []
+  },
+  "catch_fish": {
+   "name": "Catch fish",
+   "time_min": 180,
+   "time_state": "seen",
+   "ladder": null,
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 8,
+     "points": 108,
+     "state": "seen",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.1": {
+     "amount": 10,
+     "points": 125,
+     "state": "seen",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.2": {
+     "amount": 12,
+     "points": 151,
+     "state": "seen"
+    }
+   },
+   "notes": [
+    "5 Nov: sizes are Catch fish's own (108 / 125 / 151 points, 3h), from two forum tables: a year-old one (8, 10, 12) and the Norland Guild one of 31 Oct (10 and 12). Only 12 / 151 seen on a card by Jo. Hearts ignored."
+   ]
+  },
+  "coffee_beans": {
+   "name": "Coffee beans",
+   "time_min": 60,
+   "time_state": "seen",
+   "ladder": "pyarn",
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 140,
+     "points": 72,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.1": {
+     "amount": 154,
+     "points": 79,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.2": {
+     "amount": 228,
+     "points": 86,
+     "state": "seen_time_inferred"
+    },
+    "1.3": {
+     "amount": 312,
+     "points": 94,
+     "state": "seen"
+    },
+    "1.4": {
+     "amount": 392,
+     "points": 101,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 495,
+     "points": 108,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    }
+   },
+   "notes": []
+  },
+  "complete_floating_markets": {
+   "name": "Complete Floating Markets",
+   "time_min": 1080,
+   "time_state": "seen",
+   "ladder": null,
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 1,
+     "points": 450,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    }
+   },
+   "notes": [
+    "1 / 450 is not on ladder p324",
+    "Points do not fit any points ladder; kept as a plain list."
+   ],
+   "lookup": [
+    {
+     "amount": 1,
+     "points": 450,
+     "time": "18h"
+    }
+   ]
+  },
+  "complete_market_orders": {
+   "name": "Complete market orders",
+   "time_min": 120,
+   "time_state": "seen",
+   "ladder": null,
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 10,
+     "points": 96,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.1": {
+     "amount": 15,
+     "points": 106,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.2": {
+     "amount": 20,
+     "points": 115,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.3": {
+     "amount": 25,
+     "points": 125,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.4": {
+     "amount": 30,
+     "points": 134,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.5": {
+     "amount": 35,
+     "points": 144,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    }
+   },
+   "notes": [],
+   "lookup": [
+    {
+     "amount": 25,
+     "points": 125,
+     "time": "2h"
+    },
+    {
+     "amount": 30,
+     "points": 134,
+     "time": "2h"
+    },
+    {
+     "amount": 35,
+     "points": 144,
+     "time": "2h"
+    }
+   ]
+  },
+  "copper_ingot": {
+   "name": "Copper ingot",
+   "time_min": 540,
+   "time_state": "seen",
+   "ladder": "p324",
+   "kind": "flat",
+   "steps": {
+    "1.0": {
+     "amount": 120,
+     "points": 324,
+     "state": "predicted"
+    },
+    "1.1": {
+     "amount": 132,
+     "points": 356,
+     "state": "predicted"
+    },
+    "1.2": {
+     "amount": 144,
+     "points": 389,
+     "state": "seen_time_inferred"
+    },
+    "1.3": {
+     "amount": 156,
+     "points": 421,
+     "state": "seen"
+    },
+    "1.4": {
+     "amount": 168,
+     "points": 454,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 180,
+     "points": 486,
+     "state": "seen",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    }
+   },
+   "notes": []
+  },
+  "copper_ore": {
+   "name": "Copper ore",
+   "time_min": 150,
+   "time_state": "seen",
+   "ladder": "p90",
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": null,
+     "points": 90,
+     "state": "unknown"
+    },
+    "1.1": {
+     "amount": 220,
+     "points": 99,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.2": {
+     "amount": 300,
+     "points": 108,
+     "state": "seen_time_inferred"
+    },
+    "1.3": {
+     "amount": 423,
+     "points": 117,
+     "state": "seen"
+    },
+    "1.4": {
+     "amount": 560,
+     "points": 126,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 675,
+     "points": 135,
+     "state": "seen"
+    }
+   },
+   "notes": []
+  },
+  "copper_sheets": {
+   "name": "Copper sheets",
+   "time_min": 540,
+   "time_state": "seen",
+   "ladder": "p324",
+   "kind": "jump",
+   "steps": {
+    "1.0": {
+     "amount": 80,
+     "points": 324,
+     "state": "seen_time_inferred"
+    },
+    "1.1": {
+     "amount": 88,
+     "points": 356,
+     "state": "seen_time_inferred"
+    },
+    "1.2": {
+     "amount": 96,
+     "points": 389,
+     "state": "seen_time_inferred"
+    },
+    "1.3": {
+     "amount": 104,
+     "points": 421,
+     "state": "seen"
+    },
+    "1.4": {
+     "amount": 196,
+     "points": 454,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 270,
+     "points": 486,
+     "state": "seen"
+    }
+   },
+   "notes": [
+    "Gold sheets 196/454 is listed at 18h in our log; same numbers as Copper sheets at 9h. Unexplained."
+   ]
+  },
+  "corn": {
+   "name": "Corn",
+   "time_min": 60,
+   "time_state": "seen",
+   "ladder": "p1h",
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 135,
+     "points": 103,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.1": {
+     "amount": 198,
+     "points": 113,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.2": {
+     "amount": 288,
+     "points": 123,
+     "state": "seen_time_inferred"
+    },
+    "1.3": {
+     "amount": 371,
+     "points": 134,
+     "state": "seen"
+    },
+    "1.4": {
+     "amount": 525,
+     "points": 144,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 720,
+     "points": 154,
+     "state": "seen",
+     "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    }
+   },
+   "notes": []
+  },
+  "cotton": {
+   "name": "Cotton",
+   "time_min": 90,
+   "time_state": "seen",
+   "ladder": "p154",
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 140,
+     "points": 154,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.1": {
+     "amount": 198,
+     "points": 170,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.2": {
+     "amount": 288,
+     "points": 185,
+     "state": "seen_time_inferred"
+    },
+    "1.3": {
+     "amount": 364,
+     "points": 201,
+     "state": "seen_time_inferred"
+    },
+    "1.4": {
+     "amount": 448,
+     "points": 216,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 570,
+     "points": 231,
+     "state": "seen"
+    }
+   },
+   "notes": [
+    "At 1h30m: Cotton uses ladder p154, Cotton yarn uses the yarn ladder. \"36 x hours\" does not hold."
+   ]
+  },
+  "cotton_roll": {
+   "name": "Cotton roll",
+   "time_min": 540,
+   "time_state": "seen",
+   "ladder": "p324",
+   "kind": "jump",
+   "steps": {
+    "1.0": {
+     "amount": 80,
+     "points": 324,
+     "state": "predicted"
+    },
+    "1.1": {
+     "amount": 88,
+     "points": 356,
+     "state": "seen",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.2": {
+     "amount": 96,
+     "points": 389,
+     "state": "seen_time_inferred"
+    },
+    "1.3": {
+     "amount": 104,
+     "points": 421,
+     "state": "seen_time_inferred"
+    },
+    "1.4": {
+     "amount": 196,
+     "points": 454,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 210,
+     "points": 486,
+     "state": "seen"
+    }
+   },
+   "notes": []
+  },
+  "cotton_yarn": {
+   "name": "Cotton yarn",
+   "time_min": 90,
+   "time_state": "seen",
+   "ladder": "pyarn",
+   "kind": "flat",
+   "steps": {
+    "1.0": {
+     "amount": 30,
+     "points": 72,
+     "state": "seen",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.1": {
+     "amount": 33,
+     "points": 79,
+     "state": "seen",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.2": {
+     "amount": 36,
+     "points": 86,
+     "state": "seen_time_inferred"
+    },
+    "1.3": {
+     "amount": 39,
+     "points": 94,
+     "state": "seen_time_inferred"
+    },
+    "1.4": {
+     "amount": 42,
+     "points": 101,
+     "state": "seen_time_inferred"
+    },
+    "1.5": {
+     "amount": 45,
+     "points": 108,
+     "state": "seen"
+    }
+   },
+   "notes": [
+    "At 1h30m: Cotton uses ladder p154, Cotton yarn uses the yarn ladder. \"36 x hours\" does not hold."
+   ]
+  },
+  "cow_feed": {
+   "name": "Cow feed",
+   "time_min": 60,
+   "time_state": "seen",
+   "ladder": "p1h",
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 32,
+     "points": 103,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.1": {
+     "amount": 35,
+     "points": 113,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.2": {
+     "amount": 38,
+     "points": 123,
+     "state": "seen",
+     "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.3": {
+     "amount": 42,
+     "points": 134,
+     "state": "seen",
+     "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.4": {
+     "amount": 45,
+     "points": 144,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 48,
+     "points": 154,
+     "state": "seen"
+    }
+   },
+   "notes": []
+  },
+  "cup_of_coffee": {
+   "name": "Cup of coffee",
+   "time_min": 360,
+   "time_state": "seen",
+   "ladder": "p216",
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": null,
+     "points": 216,
+     "state": "unknown"
+    },
+    "1.1": {
+     "amount": 66,
+     "points": 238,
+     "state": "seen_time_inferred"
+    },
+    "1.2": {
+     "amount": 126,
+     "points": 259,
+     "state": "seen_time_inferred"
+    },
+    "1.3": {
+     "amount": 176,
+     "points": 281,
+     "state": "seen_time_inferred"
+    },
+    "1.4": {
+     "amount": 252,
+     "points": 302,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 315,
+     "points": 324,
+     "state": "seen",
+     "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    }
+   },
+   "notes": []
+  },
+  "curtain": {
+   "name": "Curtain",
+   "time_min": 60,
+   "time_state": "seen",
+   "ladder": null,
+   "kind": "lookup",
+   "steps": null,
+   "notes": [
+    "100 / 31 is not on ladder p1h",
+    "Points do not fit any points ladder; kept as a plain list.",
+    "Curtain 100 / 31 is unconfirmed (31 is far below the 1h ladder)."
+   ],
+   "lookup": [
+    {
+     "amount": 100,
+     "points": 31,
+     "time": "1h"
+    }
+   ]
+  },
+  "daisies": {
+   "name": "Daisies",
+   "time_min": 60,
+   "time_state": "seen",
+   "ladder": "p1h",
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 480,
+     "points": 103,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.1": {
+     "amount": 792,
+     "points": 113,
+     "state": "seen_time_inferred"
+    },
+    "1.2": {
+     "amount": 1152,
+     "points": 123,
+     "state": "seen_time_inferred"
+    },
+    "1.3": {
+     "amount": 1560,
+     "points": 134,
+     "state": "seen"
+    },
+    "1.4": {
+     "amount": 2016,
+     "points": 144,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 2520,
+     "points": 154,
+     "state": "seen"
+    }
+   },
+   "notes": [],
+   "derived": {
+    "from": "wheat",
+    "factor": 0.75,
+    "note": "Daisies = Wheat x 0.75 at every step seen (1.1 to 1.5)."
+   }
+  },
+  "embroidered_tunic": {
+   "name": "Embroidered tunic",
+   "time_min": 360,
+   "time_state": "seen",
+   "ladder": "p216",
+   "kind": "jump",
+   "steps": {
+    "1.0": {
+     "amount": 30,
+     "points": 216,
+     "state": "seen_time_inferred"
+    },
+    "1.1": {
+     "amount": 33,
+     "points": 238,
+     "state": "seen"
+    },
+    "1.2": {
+     "amount": 72,
+     "points": 259,
+     "state": "seen"
+    },
+    "1.3": {
+     "amount": 78,
+     "points": 281,
+     "state": "seen"
+    },
+    "1.4": {
+     "amount": 84,
+     "points": 302,
+     "state": "seen",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.5": {
+     "amount": 158,
+     "points": 324,
+     "state": "seen",
+     "also_predicted": 90,
+     "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    }
+   },
+   "notes": []
+  },
+  "feather": {
+   "name": "Feather",
+   "time_min": 1080,
+   "time_state": "seen",
+   "ladder": "p324",
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 360,
+     "points": 324,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.1": {
+     "amount": 693,
+     "points": 356,
+     "state": "seen_time_inferred"
+    },
+    "1.2": {
+     "amount": 972,
+     "points": 389,
+     "state": "seen"
+    },
+    "1.3": {
+     "amount": 1404,
+     "points": 421,
+     "state": "seen_time_inferred"
+    },
+    "1.4": {
+     "amount": 1764,
+     "points": 454,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 2160,
+     "points": 486,
+     "state": "seen_time_inferred"
+    }
+   },
+   "notes": [
+    "Feather and Iron ore share one 18h amount ladder: 693/972/1404/1764/2160 at 1.1 to 1.5."
+   ]
+  },
+  "fertilizer": {
+   "name": "Fertilizer",
+   "time_min": 180,
+   "time_state": "seen",
+   "ladder": null,
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 60,
+     "points": 108,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.1": {
+     "amount": 66,
+     "points": 119,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.2": {
+     "amount": 72,
+     "points": 130,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.3": {
+     "amount": 78,
+     "points": 140,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.4": {
+     "amount": 84,
+     "points": 151,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.5": {
+     "amount": 90,
+     "points": 162,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    }
+   },
+   "notes": [
+    "Time 180 min from the koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)."
+   ],
+   "lookup": [
+    {
+     "amount": 84,
+     "points": 151,
+     "time": null
+    }
+   ]
+  },
+  "fill_baskets_on_the_market_boats": {
+   "name": "Fill baskets on the market boats",
+   "time_min": 1080,
+   "time_state": "seen",
+   "ladder": null,
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 12,
+     "points": 325,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    }
+   },
+   "notes": [
+    "Time 1080 min from the koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)."
+   ],
+   "lookup": [
+    {
+     "amount": 12,
+     "points": 325,
+     "time": null
+    },
+    {
+     "amount": 12,
+     "points": 350,
+     "time": null
+    }
+   ]
+  },
+  "fill_crates_on_planes": {
+   "name": "Fill crates on planes",
+   "time_min": 540,
+   "time_state": "seen",
+   "ladder": null,
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 12,
+     "points": 275,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    }
+   },
+   "notes": [
+    "12 / 275 is not on ladder p324",
+    "Points do not fit any points ladder; kept as a plain list."
+   ],
+   "lookup": [
+    {
+     "amount": 12,
+     "points": 275,
+     "time": "9h"
+    }
+   ]
+  },
+  "fill_crates_on_ships": {
+   "name": "Fill crates on ships",
+   "time_min": 360,
+   "time_state": "seen",
+   "ladder": null,
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 12,
+     "points": 275,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    }
+   },
+   "notes": [
+    "12 / 275 is not on ladder p216",
+    "Points do not fit any points ladder; kept as a plain list."
+   ],
+   "lookup": [
+    {
+     "amount": 12,
+     "points": 275,
+     "time": "6h"
+    }
+   ]
+  },
+  "flour": {
+   "name": "Flour",
+   "time_min": 60,
+   "time_state": "seen",
+   "ladder": "p1h",
+   "kind": "flat",
+   "steps": {
+    "1.0": {
+     "amount": 120,
+     "points": 103,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.1": {
+     "amount": 132,
+     "points": 113,
+     "state": "seen",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.2": {
+     "amount": 144,
+     "points": 123,
+     "state": "seen",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.3": {
+     "amount": 156,
+     "points": 134,
+     "state": "seen"
+    },
+    "1.4": {
+     "amount": 168,
+     "points": 144,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 180,
+     "points": 154,
+     "state": "seen",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    }
+   },
+   "notes": []
+  },
+  "goat_feed": {
+   "name": "Goat feed",
+   "time_min": 360,
+   "time_state": "seen",
+   "ladder": "p216",
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 4,
+     "points": 216,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.1": {
+     "amount": null,
+     "points": 238,
+     "state": "unknown"
+    },
+    "1.2": {
+     "amount": 5,
+     "points": 259,
+     "state": "seen",
+     "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.3": {
+     "amount": 5,
+     "points": 281,
+     "state": "seen_time_inferred"
+    },
+    "1.4": {
+     "amount": 6,
+     "points": 302,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 6,
+     "points": 324,
+     "state": "seen_unchecked",
+     "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"
+    }
+   },
+   "notes": []
+  },
+  "gold_ingot": {
+   "name": "Gold ingot",
+   "time_min": 180,
+   "time_state": "seen",
+   "ladder": "p108",
+   "kind": "flat",
+   "steps": {
+    "1.0": {
+     "amount": 40,
+     "points": 108,
+     "state": "seen",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.1": {
+     "amount": 44,
+     "points": 119,
+     "state": "seen",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.2": {
+     "amount": 48,
+     "points": 130,
+     "state": "seen_time_inferred"
+    },
+    "1.3": {
+     "amount": 52,
+     "points": 140,
+     "state": "seen"
+    },
+    "1.4": {
+     "amount": 56,
+     "points": 151,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 60,
+     "points": 162,
+     "state": "seen"
+    }
+   },
+   "notes": []
+  },
+  "gold_ore": {
+   "name": "Gold ore",
+   "time_min": 60,
+   "time_state": "seen",
+   "ladder": "p1h",
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 60,
+     "points": 103,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.1": {
+     "amount": 116,
+     "points": 113,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.2": {
+     "amount": 162,
+     "points": 123,
+     "state": "seen_time_inferred"
+    },
+    "1.3": {
+     "amount": 234,
+     "points": 134,
+     "state": "seen_time_inferred",
+     "also": [
+      234
+     ],
+     "also_seen": [
+      42
+     ],
+     "note": "42 (31 Oct, running task) may be a progress figure; 234 from the commenter list."
+    },
+    "1.4": {
+     "amount": 294,
+     "points": 144,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 360,
+     "points": 154,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    }
+   },
+   "notes": []
+  },
+  "gold_sheets": {
+   "name": "Gold sheets",
+   "time_min": 1080,
+   "time_state": "seen",
+   "ladder": "p324",
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 80,
+     "points": 324,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.1": {
+     "amount": 88,
+     "points": 356,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.2": {
+     "amount": 96,
+     "points": 389,
+     "state": "seen",
+     "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.3": {
+     "amount": 104,
+     "points": 421,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.4": {
+     "amount": 196,
+     "points": 454,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 270,
+     "points": 486,
+     "state": "seen",
+     "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    }
+   },
+   "notes": []
+  },
+  "gong": {
+   "name": "Gong",
+   "time_min": 270,
+   "time_state": "seen",
+   "ladder": null,
+   "kind": "lookup",
+   "steps": null,
+   "notes": [],
+   "lookup": [
+    {
+     "amount": 20,
+     "points": 162,
+     "time": "4h30m"
+    }
+   ]
+  },
+  "ground_coffee": {
+   "name": "Ground coffee",
+   "time_min": 180,
+   "time_state": "seen",
+   "ladder": "p108",
+   "kind": "flat",
+   "steps": {
+    "1.0": {
+     "amount": 60,
+     "points": 108,
+     "state": "seen",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.1": {
+     "amount": 66,
+     "points": 119,
+     "state": "seen",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.2": {
+     "amount": 72,
+     "points": 130,
+     "state": "seen",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.3": {
+     "amount": 78,
+     "points": 140,
+     "state": "seen",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.4": {
+     "amount": 84,
+     "points": 151,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 90,
+     "points": 162,
+     "state": "seen"
+    }
+   },
+   "notes": []
+  },
+  "iced_coffee": {
+   "name": "Iced coffee",
+   "time_min": 180,
+   "time_state": "seen",
+   "ladder": "p108",
+   "kind": "jump",
+   "steps": {
+    "1.0": {
+     "amount": 40,
+     "points": 108,
+     "state": "seen_time_inferred"
+    },
+    "1.1": {
+     "amount": 44,
+     "points": 119,
+     "state": "seen_time_inferred"
+    },
+    "1.2": {
+     "amount": 48,
+     "points": 130,
+     "state": "seen"
+    },
+    "1.3": {
+     "amount": 104,
+     "points": 140,
+     "state": "seen",
+     "also_predicted": 52,
+     "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.4": {
+     "amount": 112,
+     "points": 151,
+     "state": "seen",
+     "candidates": [
+      56
+     ],
+     "note": "Jump products change base again late; steps after the last seen one are not predicted.",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.5": {
+     "amount": null,
+     "points": 162,
+     "state": "unknown",
+     "candidates": [
+      60
+     ],
+     "note": "Jump products change base again late; steps after the last seen one are not predicted."
+    }
+   },
+   "notes": [
+    "Base 40 up to 1.2, then 80 from 1.3 (104 / 140 in the forum table). Earlier \"flat\" label was wrong."
+   ]
+  },
+  "iron_ingot": {
+   "name": "Iron ingot",
+   "time_min": 1080,
+   "time_state": "seen",
+   "ladder": "p324",
+   "kind": "flat",
+   "steps": {
+    "1.0": {
+     "amount": 40,
+     "points": 324,
+     "state": "seen",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.1": {
+     "amount": 44,
+     "points": 356,
+     "state": "predicted"
+    },
+    "1.2": {
+     "amount": 48,
+     "points": 389,
+     "state": "seen"
+    },
+    "1.3": {
+     "amount": 52,
+     "points": 421,
+     "state": "seen_time_inferred"
+    },
+    "1.4": {
+     "amount": 56,
+     "points": 454,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 60,
+     "points": 486,
+     "state": "seen"
+    }
+   },
+   "notes": []
+  },
+  "iron_ore": {
+   "name": "Iron ore",
+   "time_min": 1080,
+   "time_state": "seen",
+   "ladder": "p324",
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 360,
+     "points": 324,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.1": {
+     "amount": 693,
+     "points": 356,
+     "state": "seen_time_inferred"
+    },
+    "1.2": {
+     "amount": 972,
+     "points": 389,
+     "state": "seen"
+    },
+    "1.3": {
+     "amount": 1404,
+     "points": 421,
+     "state": "seen_time_inferred"
+    },
+    "1.4": {
+     "amount": 1764,
+     "points": 454,
+     "state": "seen_time_inferred"
+    },
+    "1.5": {
+     "amount": 2160,
+     "points": 486,
+     "state": "seen",
+     "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    }
+   },
+   "notes": []
+  },
+  "iron_sheets": {
+   "name": "Iron sheets",
+   "time_min": 300,
+   "time_state": "seen",
+   "ladder": "p180",
+   "kind": "jump",
+   "steps": {
+    "1.0": {
+     "amount": 20,
+     "points": 180,
+     "state": "seen_time_inferred"
+    },
+    "1.1": {
+     "amount": 22,
+     "points": 198,
+     "state": "seen",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.2": {
+     "amount": 24,
+     "points": 216,
+     "state": "seen_time_inferred"
+    },
+    "1.3": {
+     "amount": 65,
+     "points": 234,
+     "state": "seen"
+    },
+    "1.4": {
+     "amount": 70,
+     "points": 252,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 75,
+     "points": 270,
+     "state": "seen",
+     "check": "forum table agrees",
+     "candidates": [
+      75
+     ],
+     "note": "Jump products change base again late; steps after the last seen one are not predicted.",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    }
+   },
+   "notes": [
+    "Step 1.1 predicted 22 (base 20) is a guess; the jump from 20 to 50 is seen between 1.2 and 1.3."
+   ]
+  },
+  "jacket": {
+   "name": "Jacket",
+   "time_min": 300,
+   "time_state": "seen",
+   "ladder": "p180",
+   "kind": "jump",
+   "steps": {
+    "1.0": {
+     "amount": 30,
+     "points": 180,
+     "state": "seen"
+    },
+    "1.1": {
+     "amount": 33,
+     "points": 198,
+     "state": "seen",
+     "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.2": {
+     "amount": 90,
+     "points": 216,
+     "state": "seen"
+    },
+    "1.3": {
+     "amount": 98,
+     "points": 234,
+     "state": "seen"
+    },
+    "1.4": {
+     "amount": 105,
+     "points": 252,
+     "state": "seen",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.5": {
+     "amount": 180,
+     "points": 270,
+     "state": "seen_unchecked",
+     "also_predicted": 113,
+     "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"
+    }
+   },
+   "notes": [
+    "Step 1.1 unknown: could be 33 (base 30) or 83 (base 75). Jump step not pinned."
+   ]
+  },
+  "longcase_clock": {
+   "name": "Longcase clock",
+   "time_min": 180,
+   "time_state": "seen",
+   "ladder": "p108",
+   "kind": "jump",
+   "steps": {
+    "1.0": {
+     "amount": 10,
+     "points": 108,
+     "state": "seen"
+    },
+    "1.1": {
+     "amount": 11,
+     "points": 119,
+     "state": "seen"
+    },
+    "1.2": {
+     "amount": 24,
+     "points": 130,
+     "state": "seen_time_inferred"
+    },
+    "1.3": {
+     "amount": 26,
+     "points": 140,
+     "state": "seen"
+    },
+    "1.4": {
+     "amount": 28,
+     "points": 151,
+     "state": "seen",
+     "candidates": [
+      28
+     ],
+     "note": "Jump products change base again late; steps after the last seen one are not predicted.",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.5": {
+     "amount": null,
+     "points": 162,
+     "state": "unknown",
+     "candidates": [
+      30
+     ],
+     "note": "Jump products change base again late; steps after the last seen one are not predicted."
+    }
+   },
+   "notes": []
+  },
+  "manure": {
+   "name": "Manure",
+   "time_min": 720,
+   "time_state": "seen",
+   "ladder": null,
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 540,
+     "points": 288,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.1": {
+     "amount": 792,
+     "points": 317,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.2": {
+     "amount": 1008,
+     "points": 346,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.3": {
+     "amount": 1248,
+     "points": 374,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.4": {
+     "amount": 1764,
+     "points": 403,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.5": {
+     "amount": 2340,
+     "points": 432,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    }
+   },
+   "notes": [
+    "1764 / 403 is not on ladder p432",
+    "Points do not fit any points ladder; kept as a plain list.",
+    "403 is not on the 12h ladder."
+   ],
+   "lookup": [
+    {
+     "amount": 1764,
+     "points": 403,
+     "time": "12h"
+    }
+   ]
+  },
+  "marimba": {
+   "name": "Marimba",
+   "time_min": 1080,
+   "time_state": "seen",
+   "ladder": "p432",
+   "kind": "jump",
+   "steps": {
+    "1.0": {
+     "amount": 40,
+     "points": 432,
+     "state": "seen"
+    },
+    "1.1": {
+     "amount": 44,
+     "points": 475,
+     "state": "seen"
+    },
+    "1.2": {
+     "amount": 96,
+     "points": 518,
+     "state": "seen"
+    },
+    "1.3": {
+     "amount": 104,
+     "points": 562,
+     "state": "seen"
+    },
+    "1.4": {
+     "amount": 196,
+     "points": 605,
+     "state": "seen",
+     "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)",
+     "note": "196 / 605 from the forum table; fits base 140 (40, 80, 140). Previously left unknown.",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.5": {
+     "amount": null,
+     "points": 648,
+     "state": "unknown",
+     "candidates": [
+      120
+     ]
+    }
+   },
+   "notes": [
+    "Step 1.4: formula says 112, a forum card said 196 / 605. Unresolved; do not trust 112.",
+    "Bases 40, 80, 140 fit a \"x1, x2, x3.5\" climb. 1.5 would be 210 if base stays 140 (not seen)."
+   ]
+  },
+  "milk": {
+   "name": "Milk",
+   "time_min": 60,
+   "time_state": "seen",
+   "ladder": "p1h",
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 285,
+     "points": 103,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.1": {
+     "amount": 462,
+     "points": 113,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.2": {
+     "amount": 864,
+     "points": 123,
+     "state": "seen_time_inferred"
+    },
+    "1.3": {
+     "amount": 1307,
+     "points": 134,
+     "state": "seen_time_inferred"
+    },
+    "1.4": {
+     "amount": 1596,
+     "points": 144,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 1935,
+     "points": 154,
+     "state": "seen"
+    }
+   },
+   "notes": []
+  },
+  "milk_rice": {
+   "name": "Milk rice",
+   "time_min": 720,
+   "time_state": "seen",
+   "ladder": "p432",
+   "kind": "flat",
+   "steps": {
+    "1.0": {
+     "amount": 160,
+     "points": 432,
+     "state": "seen"
+    },
+    "1.1": {
+     "amount": 176,
+     "points": 475,
+     "state": "seen"
+    },
+    "1.2": {
+     "amount": 192,
+     "points": 518,
+     "state": "seen"
+    },
+    "1.3": {
+     "amount": 208,
+     "points": 562,
+     "state": "seen",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.4": {
+     "amount": 224,
+     "points": 605,
+     "state": "seen",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.5": {
+     "amount": 240,
+     "points": 648,
+     "state": "predicted",
+     "check": "forum table agrees"
+    }
+   },
+   "notes": [
+    "208 / 562 and 240 / 648 appear in the 31 Oct forum table (points smudged); amounts match the prediction. Not yet seen on a card."
+   ]
+  },
+  "ornamental_katana": {
+   "name": "Ornamental katana",
+   "time_min": 150,
+   "time_state": "seen",
+   "ladder": "p90",
+   "kind": "jump",
+   "steps": {
+    "1.0": {
+     "amount": 10,
+     "points": 90,
+     "state": "seen"
+    },
+    "1.1": {
+     "amount": 11,
+     "points": 99,
+     "state": "seen_time_inferred"
+    },
+    "1.2": {
+     "amount": 30,
+     "points": 108,
+     "state": "seen"
+    },
+    "1.3": {
+     "amount": 33,
+     "points": 117,
+     "state": "seen",
+     "candidates": [
+      33
+     ],
+     "note": "Jump products change base again late; steps after the last seen one are not predicted.",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.4": {
+     "amount": null,
+     "points": 126,
+     "state": "unknown",
+     "candidates": [
+      35
+     ],
+     "note": "Jump products change base again late; steps after the last seen one are not predicted."
+    },
+    "1.5": {
+     "amount": null,
+     "points": 135,
+     "state": "unknown",
+     "candidates": [
+      38
+     ],
+     "note": "Jump products change base again late; steps after the last seen one are not predicted."
+    }
+   },
+   "notes": []
+  },
+  "ostrich_feed": {
+   "name": "Ostrich feed",
+   "time_min": 150,
+   "time_state": "seen",
+   "ladder": "p90",
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": null,
+     "points": 90,
+     "state": "unknown"
+    },
+    "1.1": {
+     "amount": 4,
+     "points": 99,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.2": {
+     "amount": 5,
+     "points": 108,
+     "state": "seen"
+    },
+    "1.3": {
+     "amount": 5,
+     "points": 117,
+     "state": "seen"
+    },
+    "1.4": {
+     "amount": 6,
+     "points": 126,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 6,
+     "points": 135,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    }
+   },
+   "notes": []
+  },
+  "palm_wood": {
+   "name": "Palm wood",
+   "time_min": 540,
+   "time_state": "seen",
+   "ladder": "p324",
+   "kind": "jump",
+   "steps": {
+    "1.0": {
+     "amount": 120,
+     "points": 324,
+     "state": "predicted"
+    },
+    "1.1": {
+     "amount": 132,
+     "points": 356,
+     "state": "seen",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.2": {
+     "amount": 144,
+     "points": 389,
+     "state": "seen_time_inferred"
+    },
+    "1.3": {
+     "amount": 156,
+     "points": 421,
+     "state": "seen_time_inferred"
+    },
+    "1.4": {
+     "amount": 294,
+     "points": 454,
+     "state": "seen_time_inferred"
+    },
+    "1.5": {
+     "amount": 315,
+     "points": 486,
+     "state": "seen",
+     "check": "forum table agrees",
+     "candidates": [
+      315
+     ],
+     "note": "Jump products change base again late; steps after the last seen one are not predicted.",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    }
+   },
+   "notes": [
+    "Time unknown (9h or 18h); points fit 324 ladder. Name matched from a \"Palm\" icon.",
+    "Time 540 min from the koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)."
+   ]
+  },
+  "pine_wood": {
+   "name": "Pine wood",
+   "time_min": 180,
+   "time_state": "seen",
+   "ladder": "p108",
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 120,
+     "points": 108,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.1": {
+     "amount": null,
+     "points": 119,
+     "state": "unknown"
+    },
+    "1.2": {
+     "amount": 252,
+     "points": 130,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.3": {
+     "amount": 351,
+     "points": 140,
+     "state": "seen",
+     "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.4": {
+     "amount": 378,
+     "points": 151,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 540,
+     "points": 162,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    }
+   },
+   "notes": []
+  },
+  "poncho": {
+   "name": "Poncho",
+   "time_min": 540,
+   "time_state": "seen",
+   "ladder": "p324",
+   "kind": "jump",
+   "steps": {
+    "1.0": {
+     "amount": 120,
+     "points": 324,
+     "state": "seen"
+    },
+    "1.1": {
+     "amount": 132,
+     "points": 356,
+     "state": "seen_time_inferred"
+    },
+    "1.2": {
+     "amount": 288,
+     "points": 389,
+     "state": "seen"
+    },
+    "1.3": {
+     "amount": 312,
+     "points": 421,
+     "state": "seen",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.4": {
+     "amount": 336,
+     "points": 454,
+     "state": "seen",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.5": {
+     "amount": 630,
+     "points": 486,
+     "state": "seen",
+     "also_predicted": 360,
+     "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    }
+   },
+   "notes": []
+  },
+  "quilt": {
+   "name": "Quilt",
+   "time_min": 1440,
+   "time_state": "seen",
+   "ladder": null,
+   "kind": "lookup",
+   "steps": null,
+   "notes": [],
+   "lookup": [
+    {
+     "amount": 50,
+     "points": 864,
+     "time": "24h"
+    },
+    {
+     "amount": 50,
+     "points": 950,
+     "time": "24h"
+    },
+    {
+     "amount": 100,
+     "points": 1037,
+     "time": "24h"
+    },
+    {
+     "amount": 100,
+     "points": 1123,
+     "time": "24h"
+    }
+   ]
+  },
+  "rice": {
+   "name": "Rice",
+   "time_min": 360,
+   "time_state": "seen",
+   "ladder": "p216",
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 240,
+     "points": 216,
+     "state": "seen_time_inferred"
+    },
+    "1.1": {
+     "amount": 264,
+     "points": 238,
+     "state": "seen"
+    },
+    "1.2": {
+     "amount": 504,
+     "points": 259,
+     "state": "seen_time_inferred"
+    },
+    "1.3": {
+     "amount": 546,
+     "points": 281,
+     "state": "seen",
+     "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.4": {
+     "amount": 756,
+     "points": 302,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.5": {
+     "amount": 810,
+     "points": 324,
+     "state": "seen_unchecked",
+     "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"
+    }
+   },
+   "notes": []
+  },
+  "send_full_ships": {
+   "name": "Send full ships",
+   "time_min": 1080,
+   "time_state": "seen",
+   "ladder": null,
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 2,
+     "points": 400,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    }
+   },
+   "notes": [
+    "2 / 400 is not on ladder p324",
+    "Points do not fit any points ladder; kept as a plain list."
+   ],
+   "lookup": [
+    {
+     "amount": 2,
+     "points": 400,
+     "time": "18h"
+    }
+   ]
+  },
+  "send_planes": {
+   "name": "Send planes",
+   "time_min": 540,
+   "time_state": "seen",
+   "ladder": null,
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 3,
+     "points": 250,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.1": {
+     "amount": 6,
+     "points": 300,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    }
+   },
+   "notes": [
+    "6 / 300 is not on ladder p324",
+    "3 / 250 is not on ladder p324",
+    "Points do not fit any points ladder; kept as a plain list."
+   ],
+   "lookup": [
+    {
+     "amount": 3,
+     "points": 250,
+     "time": "9h"
+    },
+    {
+     "amount": 6,
+     "points": 300,
+     "time": "9h"
+    }
+   ]
+  },
+  "silk_cocoon": {
+   "name": "Silk cocoon",
+   "time_min": 180,
+   "time_state": "seen",
+   "ladder": "p108",
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": null,
+     "points": 108,
+     "state": "unknown"
+    },
+    "1.1": {
+     "amount": 297,
+     "points": 119,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.2": {
+     "amount": 432,
+     "points": 130,
+     "state": "seen_time_inferred"
+    },
+    "1.3": {
+     "amount": 546,
+     "points": 140,
+     "state": "seen"
+    },
+    "1.4": {
+     "amount": 672,
+     "points": 151,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 855,
+     "points": 162,
+     "state": "seen"
+    }
+   },
+   "notes": []
+  },
+  "silk_thread": {
+   "name": "Silk thread",
+   "time_min": 60,
+   "time_state": "seen",
+   "ladder": "pyarn",
+   "kind": "flat",
+   "steps": {
+    "1.0": {
+     "amount": 40,
+     "points": 72,
+     "state": "seen",
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+    },
+    "1.1": {
+     "amount": 44,
+     "points": 79,
+     "state": "seen_time_inferred"
+    },
+    "1.2": {
+     "amount": 48,
+     "points": 86,
+     "state": "seen_time_inferred"
+    },
+    "1.3": {
+     "amount": 52,
+     "points": 94,
+     "state": "seen_time_inferred"
+    },
+    "1.4": {
+     "amount": 56,
+     "points": 101,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 60,
+     "points": 108,
+     "state": "seen"
+    }
+   },
+   "notes": []
+  },
+  "wheat": {
+   "name": "Wheat",
+   "time_min": 60,
+   "time_state": "seen",
+   "ladder": "p1h",
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 640,
+     "points": 103,
+     "state": "seen",
+     "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
+    },
+    "1.1": {
+     "amount": 1056,
+     "points": 113,
+     "state": "seen_time_inferred"
+    },
+    "1.2": {
+     "amount": 1536,
+     "points": 123,
+     "state": "seen_time_inferred"
+    },
+    "1.3": {
+     "amount": 2080,
+     "points": 134,
+     "state": "seen"
+    },
+    "1.4": {
+     "amount": 2688,
+     "points": 144,
+     "state": "seen"
+    },
+    "1.5": {
+     "amount": 3360,
+     "points": 154,
+     "state": "seen"
+    }
+   },
+   "notes": []
+  },
+  "hammock": {
+   "name": "Hammock",
+   "time_min": 2160,
+   "time_state": "seen",
+   "ladder": null,
+   "kind": "lookup",
+   "steps": {
+    "1.0": {
+     "amount": 80,
+     "points": 1555,
+     "state": "seen",
+     "source": "player screenshot on Discord, 31 Oct 2026 (card not started, 1d 12h)"
+    }
+   },
+   "notes": [
+    "Only one Hammock card seen so far (80 / 1,555 points, 36 h). Its place in the size ladder is not known."
+   ]
+  }
  },
  "stats": {
   "products": 57,
-  "kinds": {"lookup": 38, "flat": 8, "jump": 11},
+  "kinds": {
+   "lookup": 38,
+   "flat": 8,
+   "jump": 11
+  },
   "steps_seen": 146,
   "steps_predicted": 29,
   "steps_unknown": 63,
   "awaiting_first_test": "Predictions that held against the 31 Oct forum table: 12. Wrong: 4, all late steps of jump products (now left unknown or set from the table). Real cards still decide.",
-  "steps_seen_unchecked": 26
+  "steps_seen_unchecked": 26,
+  "states_after_v3": {
+   "seen": 207,
+   "seen_time_inferred": 59,
+   "unknown": 12,
+   "predicted": 6,
+   "seen_unchecked": 3
+  }
  }
 }
