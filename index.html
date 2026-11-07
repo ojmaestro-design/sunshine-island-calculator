@@ -7,7 +7,7 @@
 <title>Sunshine Calculator</title>
 <!-- V104: Browse products list, one saved card per product with a size strip, sizes green (can do) / grey (not yet); V92 (test 92): plain wording, ? panels, My buildings sections, Teal/Black/Light looks, separate quick-sum lines, shelter box fixed, undo stays 30 s; V91 jump highlight + bottom tabs and Back to top; V90 (checked at 340 to 430 px) slim status line + one Jump to drop-down on the island row; V89 island list folded, singular names, island remembered; V88 island-in-use line on My buildings; V87 reopen on the last tab used; V85 test build number in header chip; V84 Load my saved island button in the jump row; V83 no-building answer shows the scenario; V82 storage hint + link to My buildings on cruise cards; V81 jump links, None, reset ready counts, points totals; V80 Full now on Cruise cards; V79 warehouse box tidy; V78 warehouse wording; V77 card note shows number not code; V76 load-island keeps cards/layouts/runes; V75 undo bar sticky at the bottom; V74 2 Nov 2026: fields card, tab order, sticky picker, cruise rules v2, shortest-crop-first when a count is lowered -->
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="build" content="175">
+<meta name="build" content="176">
 <meta name="description" content="Sunshine Island Calculator. Beta 0.1 - data from the 28 Oct 2026 game update.">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=170"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=168"><meta name="apple-mobile-web-app-title" content="Sunshine">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -561,6 +561,9 @@ ol.steps{margin:0 0 8px;padding-left:22px}ol.steps li{margin:4px 0;color:var(--m
 .qcrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:8px 0 0}.qcrow .tsel{width:auto;min-width:84px}.qcrow select{width:auto;min-width:84px}
 .qcmore{margin-top:8px}.qcmore>summary{min-height:40px;display:flex;align-items:center;font-size:14px}
 .cvother>summary{min-height:44px;display:flex;align-items:center;color:var(--fg)}
+.lutbl th.inh{white-space:normal;text-transform:none;letter-spacing:0;font-size:13px;line-height:1.15;vertical-align:bottom}
+.lutbl td,.lutbl th{padding-left:6px;padding-right:6px}
+@media (max-width:420px){.lutbl{font-size:13px}.lutbl td,.lutbl th{padding-left:3px;padding-right:3px}.lutbl th{letter-spacing:.03em}}
 </style>
 <!-- test 173: visitor counter (GoatCounter: no cookies, nothing personal) -->
 <script data-goatcounter="https://ojmaestro.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
@@ -576,7 +579,7 @@ ol.steps{margin:0 0 8px;padding-left:22px}ol.steps li{margin:4px 0;color:var(--m
   <div id="feedback"></div>
   <p class="footer"><span class="meonly"><a href="#data">Data &amp; flags</a> · <button class="linkbtn" data-act="widthchk">Width check</button> · </span><button class="linkbtn" data-act="walkshow">Quick start</button> · <button class="btn ghost small" data-act="key" aria-expanded="false" id="keybtn">How accurate are the numbers?</button></p>
   <div id="keyline"></div>
-  <p class="footer" style="margin-top:6px">Beta 0.1 · test 175 - data from the 28 Oct 2026 game update (game 1.3.40251)</p>
+  <p class="footer" style="margin-top:6px">Beta 0.1 · test 176 - data from the 28 Oct 2026 game update (game 1.3.40251)</p>
   <p class="footer" style="margin-top:0">Unofficial fan tool. Not made by, or connected to, the game's developers.</p>
   <div id="footlogo" class="footlogo"></div>
   <p class="totop"><button type="button" class="btn ghost small" data-act="totop">↑ Back to top</button></p>
@@ -592,13 +595,15 @@ const $=(s,r)=> (r||document).querySelector(s);
 const esc=(s)=>String(s).replace(/[&<>"]/g,(c)=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const pretty=(id)=>{const s=String(id).replace(/_/g,' ');return s.charAt(0).toUpperCase()+s.slice(1)};
 /* Display-only plural for the Guild section. Only countable products are listed; milk, flour, corn, bread, iron ore, wood etc. stay as they are. Library and data are not touched. */
-const PLU={feather:'Feathers',cup_of_coffee:'Cups of coffee',silk_cocoon:'Silk cocoons',bolt_of_silk:'Bolts of silk'};
+const PLU={feather:'Feathers',cup_of_coffee:'Cups',silk_cocoon:'Silk cocoons',bolt_of_silk:'Bolts of silk'};
 const plu=(id)=>PLU[id]||pretty(id);
 /* test 169: plural word for an amount ("3 jackets", "6 cups of coffee"); products that are not counted one by one stay as they are */
-const PLN={feather:'feathers',cup_of_coffee:'cups of coffee',silk_cocoon:'silk cocoons',bolt_of_silk:'bolts of silk',gold_ingot:'gold ingots',copper_ingot:'copper ingots',iron_ingot:'iron ingots',embroidered_tunic:'embroidered tunics',curtain:'curtains',ornamental_katana:'ornamental katanas',cotton_roll:'cotton rolls',iced_coffee:'iced coffees',poncho:'ponchos',hammock:'hammocks',marimba:'marimbas',gong:'gongs',jacket:'jackets',quilt:'quilts',longcase_clock:'longcase clocks',breakfast:'breakfasts'};
-const amtName=(id,n)=>n===1?pretty(id).toLowerCase():(PLN[id]||pretty(id).toLowerCase());
+const PLN={feather:'feathers',cup_of_coffee:'cups',silk_cocoon:'silk cocoons',bolt_of_silk:'bolts of silk',gold_ingot:'gold ingots',copper_ingot:'copper ingots',iron_ingot:'iron ingots',embroidered_tunic:'embroidered tunics',curtain:'curtains',ornamental_katana:'ornamental katanas',cotton_roll:'cotton rolls',iced_coffee:'iced coffees',poncho:'ponchos',hammock:'hammocks',marimba:'marimbas',gong:'gongs',jacket:'jackets',quilt:'quilts',longcase_clock:'longcase clocks',breakfast:'breakfasts'};
+/* test 176: cup of coffee is shown as "Cups" (what guilds call them); Library books and Cruise cards keep the game's own wording */
+const pn=(id)=>id==='cup_of_coffee'?'Cups':pretty(id);
+const amtName=(id,n)=>n===1?(id==='cup_of_coffee'?'cup':pretty(id).toLowerCase()):(PLN[id]||pretty(id).toLowerCase());
 const isPlaceholder=(id)=>/^unidentified_input_|^(fine|instant)_.*_input$/.test(String(id));
-const inName=(id)=>{const m=String(id).match(/^unidentified_input_.*_(\d+)$/);if(m)return 'Item '+m[1]+' (icon only)';const f=String(id).match(/^(fine|instant)_(.*)_input$/);if(f)return pretty(f[1])+' '+f[2].replace(/_/g,' ')+' item';return pretty(id)};
+const inName=(id)=>{const m=String(id).match(/^unidentified_input_.*_(\d+)$/);if(m)return 'Item '+m[1]+' (icon only)';const f=String(id).match(/^(fine|instant)_(.*)_input$/);if(f)return pretty(f[1])+' '+f[2].replace(/_/g,' ')+' item';return pn(id)};
 /* Fill these in when ready; empty values stay hidden. */
 const SITE={logo:'',footlogo:'oj-maestro-logo.png',made:'Made by OJ Maestro',coffee:'https://buymeacoffee.com/ojmaestro',email:'hello.ojmaestro@gmail.com',feedback:'Beta: if a number looks different from the game, something is unclear, or you have an idea for a new feature, let me know. If a Cruise card is not in the calculator, send me a screenshot.',discord:'OJ Maestro'};
 /* Player level at which each building unlocks. From Jo's Your Journey bar, 4 Nov 2026 (levels 1 to 58). Used only for the tick list. */
@@ -688,7 +693,7 @@ function siteBits(){
   if(SITE.footlogo&&$('#footlogo'))$('#footlogo').innerHTML=`<img src="${esc(SITE.footlogo)}" alt="OJ Maestro" onerror="this.parentNode.hidden=true">`;
   if(SITE.coffee&&$('#coffee'))$('#coffee').innerHTML=`<div class="coffeecard"><p>Free tool, made by OJ Maestro. If it saved you time, you can say thanks with a small tip.</p><a class="coffeebtn" href="${esc(SITE.coffee)}" target="_blank" rel="noopener" aria-label="Buy me a coffee"><img class="bmcimg" hidden alt="" src="https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=&slug=ojmaestro&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" onload="this.hidden=false;this.nextElementSibling.hidden=true;this.parentNode.classList.add('official')" onerror="this.remove()"><span class="bmcfb"><svg viewBox="0 0 22 26" aria-hidden="true"><path d="M3 9h16l-1.6 14.5a2 2 0 0 1-2 1.5H6.6a2 2 0 0 1-2-1.5z" fill="#fff" stroke="#000" stroke-width="1.8" stroke-linejoin="round"/><path d="M2 9h18V6.5H2z" fill="#fff" stroke="#000" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 6.5V4.5c0-1 1-1.8 2-1.8h8c1 0 2 .8 2 1.8v2" fill="none" stroke="#000" stroke-width="1.8"/></svg> Buy me a coffee</span></a></div>`;
   const ab=$('#cogabout');
-  if(ab)ab.innerHTML=`<h2>Help &amp; feedback</h2><p class="sub" style="margin:0">Spot a bug or have an idea? Tell me.</p>${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p>Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}<div class="abrow"><button class="linkbtn" data-act="walkshow">Quick start</button><span class="meonly"><a href="#data">Data &amp; flags</a></span></div><p class="sub">This page counts visits with GoatCounter: no cookies, nothing personal is kept.</p><p class="sub">Made by OJ Maestro · Beta 0.1 · test 175</p>`;
+  if(ab)ab.innerHTML=`<h2>Help &amp; feedback</h2><p class="sub" style="margin:0">Spot a bug or have an idea? Tell me.</p>${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p>Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}<div class="abrow"><button class="linkbtn" data-act="walkshow">Quick start</button><span class="meonly"><a href="#data">Data &amp; flags</a></span></div><p class="sub">This page counts visits with GoatCounter: no cookies, nothing personal is kept.</p><p class="sub">Made by OJ Maestro · Beta 0.1 · test 176</p>`;
   const fb=$('#feedback');
   if(fb&&(SITE.feedback||SITE.email||SITE.discord))fb.innerHTML=`<p class="footer fbline">Spot a bug or have an idea? ${SITE.email?`Email <a href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?` or message <b>${esc(SITE.discord)}</b> on Discord`:''}.</p>`}
 document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.classList&&t.classList.contains('ovlist'))state.ovOpen=t.open},true);
@@ -980,16 +985,16 @@ function collectCard(pid,gs){const P=model.producers[pid],S=qcS();
   const n=Math.min(total,Math.max(1,parseInt(S.n[key],10)||total));
   const noun=(k)=>(k===1?bsing(P.name):P.name).toLowerCase();
   let h=`<div class="card"><div class="row" style="justify-content:space-between;align-items:flex-start"><h2 style="margin:0">${esc(P.name)}</h2><span class="chip">You have ${total}</span></div>`;
-  if(prods.length>1)h+=`<div class="cchips lchips qcpick">${prods.map((x)=>`<button type="button" class="cchip lchip${x===prod?' on':''}" data-act="qcprod" data-p="${esc(pid)}" data-v="${esc(x)}" aria-pressed="${x===prod}">${esc(pretty(x))}</button>`).join('')}</div>`;
+  if(prods.length>1)h+=`<div class="cchips lchips qcpick">${prods.map((x)=>`<button type="button" class="cchip lchip${x===prod?' on':''}" data-act="qcprod" data-p="${esc(pid)}" data-v="${esc(x)}" aria-pressed="${x===prod}">${esc(pn(x))}</button>`).join('')}</div>`;
   /* highest levels first */
   let rem=n,tot=0,tag='seen',cyc=null,bad=false;const used=[];
   [...lvs].reverse().forEach((L)=>{if(rem<=0)return;const k=Math.min(rem,byLv[L]);rem-=k;used.push(k+' at level '+L);const r=R(prod,mode,L);if(!r.ok){bad=true;return}tot+=r.out.v*k;tag=C.worst(tag,r.out.tag);if(r.cycle&&(!cyc||r.cycle.v>cyc.v))cyc=r.cycle});
   h+=`<div class="qcrow"><label style="flex-direction:row;align-items:center;gap:8px;font-size:15px;color:var(--fg)">How many?<select data-qcn="${esc(key)}" aria-label="How many ${esc(noun(2))}">${rng(1,total,n)}</select></label><span class="sub" style="margin:0">of your ${total} ${esc(noun(total))}</span></div>`;
   if(ml[0]!=='none')h+=`<div class="lmodes" style="margin-top:8px">${ml.map((m)=>`<button type="button" class="btn small gallbtn m-${esc(m)}${m===mode?' on':''}" data-act="qcmode" data-k="${esc(key)}" data-m="${esc(m)}" aria-pressed="${m===mode}">${m===mode?'✓ ':''}${esc(modeLabel(P,prod,m))}</button>`).join('')}</div>`;
   const mlab=ml[0]==='none'?'':' ('+modeLabel(P,prod,mode)+')';
-  const line=pretty(prod)+mlab+', '+n+' '+noun(n)+': '+nf(tot);
+  const line=pn(prod)+mlab+', '+n+' '+noun(n)+': '+nf(tot);
   if(bad)h+=`<p class="warn">Not worked out for every level yet.</p>`;
-  else h+=`<div class="qcres" role="status"><div><span class="big">${tv(tot,tag)}</span> <b>${esc(pretty(prod).toLowerCase())}</b><div class="qcsub">${cyc?'every '+esc(mins(cyc.v)):(mode==='instant'?'straight away':'')}${n<total||lvs.length>1?(cyc||mode==='instant'?' · ':'')+'using your best: '+esc(used.join(', ')):''}</div></div><button type="button" class="btn" data-act="qccopy" data-t="${esc(line)}" aria-label="Copy: ${esc(line)}">Copy</button></div>`;
+  else h+=`<div class="qcres" role="status"><div><span class="big">${tv(tot,tag)}</span> <b>${esc(pn(prod).toLowerCase())}</b><div class="qcsub">${cyc?'every '+esc(mins(cyc.v)):(mode==='instant'?'straight away':'')}${n<total||lvs.length>1?(cyc||mode==='instant'?' · ':'')+'using your best: '+esc(used.join(', ')):''}</div></div><button type="button" class="btn" data-act="qccopy" data-t="${esc(line)}" aria-label="Copy: ${esc(line)}">Copy</button></div>`;
   /* the old full table and upgrade tips, folded away */
   let rows='',up='';
   ml.forEach((m)=>{let t2=0,tg='seen',cy=null,bd=false;lvs.forEach((L)=>{const r=R(prod,m,L);if(!r.ok){bd=true;return}t2+=r.out.v*byLv[L];tg=C.worst(tg,r.out.tag);if(r.cycle&&(!cy||r.cycle.v>cy.v))cy=r.cycle});
@@ -1058,9 +1063,9 @@ function quickSumHtml(){
   if(B.idle.length)h+=idleCards(B.idle,'q');
   return h+`<div class="card"><div class="row" style="justify-content:space-between;align-items:center"><span class="sub" style="margin:0">${setup.sumRows.length} ${setup.sumRows.length===1?'line':'lines'} added so far</span><button class="btn ghost small" data-act="sclear">Clear the list</button></div></div>`}
 function lbuild(L){const open=state.lopen||L.producer;
-  if(!state.llist){const P0=model.producers[L.producer];return '<div class="lrow"><button type="button" class="lsum isl-'+esc(String(L.island).toLowerCase())+'" data-act="llist"><span><b>'+esc(bsing(P0.name))+'</b> · '+esc(pretty(L.product))+'</span><span>Change ▾</span></button></div>'}
+  if(!state.llist){const P0=model.producers[L.producer];return '<div class="lrow"><button type="button" class="lsum isl-'+esc(String(L.island).toLowerCase())+'" data-act="llist"><span><b>'+esc(bsing(P0.name))+'</b> · '+esc(pn(L.product))+'</span><span>Change ▾</span></button></div>'}
   return '<div class="lrow"><div class="lt">Pick a building, then its product</div>'+producersOf(L.island).map((p)=>{const pr=prodsOf(p),isOpen=open===p.id,cur=L.producer===p.id;
-    return '<div class="lbg isl-'+esc(String(L.island).toLowerCase())+(cur?' cur':'')+'"><button type="button" class="lbtn" data-act="lopen" data-v="'+esc(p.id)+'" aria-expanded="'+isOpen+'"><span>'+esc(bsing(p.name))+(cur?' · '+esc(pretty(L.product)):'')+'</span><span>'+(isOpen?'▴':'▾')+'</span></button>'+(isOpen?'<div class="cchips'+(pr.length===4||pr.length===6?' g2':'')+'">'+pr.map((x)=>'<button type="button" class="cchip lchip'+(cur&&L.product===x?' on':'')+'" data-act="lpick2" data-p="'+esc(p.id)+'" data-v="'+esc(x)+'">'+esc(pretty(x))+'</button>').join('')+'</div>':'')+'</div>'}).join('')+'</div>'}
+    return '<div class="lbg isl-'+esc(String(L.island).toLowerCase())+(cur?' cur':'')+'"><button type="button" class="lbtn" data-act="lopen" data-v="'+esc(p.id)+'" aria-expanded="'+isOpen+'"><span>'+esc(bsing(p.name))+(cur?' · '+esc(pn(L.product)):'')+'</span><span>'+(isOpen?'▴':'▾')+'</span></button>'+(isOpen?'<div class="cchips'+(pr.length===4||pr.length===6?' g2':'')+'">'+pr.map((x)=>'<button type="button" class="cchip lchip'+(cur&&L.product===x?' on':'')+'" data-act="lpick2" data-p="'+esc(p.id)+'" data-v="'+esc(x)+'">'+esc(pn(x))+'</button>').join('')+'</div>':'')+'</div>'}).join('')+'</div>'}
 function lchips(title,list,cur,k,isl){return '<div class="lrow"><div class="lt">'+esc(title)+'</div><div class="cchips lchips">'+list.map((x)=>'<button type="button" class="cchip lchip'+(isl?' isl-'+esc(String(isl).toLowerCase()):'')+(String(x.id)===String(cur)?' on':'')+'" data-act="lpick" data-k="'+k+'" data-v="'+esc(String(x.id))+'" aria-pressed="'+(String(x.id)===String(cur))+'">'+esc(x.label)+'</button>').join('')+'</div></div>'}
 function renderLookup(){
   const L=state.lookup=state.lookup||{};fixLookup(L);const P=model.producers[L.producer];
@@ -1076,7 +1081,7 @@ function renderLookup(){
   if(!res.ok)html+=`<div class="card"><div class="warn">${esc(res.reason)}</div></div>`;
   else{
     const ins=P.category==='processing'?res.inputs.filter((i)=>i.product!=='coins'):[];
-    html+=`<div class="card"><h2>${esc(pretty(L.product))} · level ${L.level}${res.slider>1?' · stack of x'+res.slider+(L.slider==='max'?' (biggest)':''):''}</h2><div class="kv">
+    html+=`<div class="card"><h2>${esc(pn(L.product))} · level ${L.level}${res.slider>1?' · stack of x'+res.slider+(L.slider==='max'?' (biggest)':''):''}</h2><div class="kv">
       <div><span class="k">${res.slider>1?'Makes':'Output '+(res.instant?'per use':'per cycle')}</span><span class="big">${tv(res.out.v,res.out.tag)}</span></div>
       ${res.second?`<div><span class="k">+ ${esc(pretty(res.second.product))}</span><span class="big">${tv(res.second.v,res.second.tag)}</span></div>`:''}
       <div><span class="k">${res.slider>1?'Time':'Cycle'}</span><span class="big" style="font-size:22px">${tc(res.cycle)}</span></div></div>
@@ -1085,15 +1090,22 @@ function renderLookup(){
     const rr=levelsOf(P).map((lv)=>({lv,r:C.resolve(model,setup,Object.assign({},L,{level:lv},stk?{slider:'max'}:{}))}));
     const showUses=P.category==='processing'&&rr.some((x)=>x.r.ok&&x.r.inputs.some((i)=>i.product!=='coins'));
     const anyEst=rr.some((x)=>x.r.ok&&(x.r.out.tag==='estimated'||(x.r.cycle&&x.r.cycle.tag==='estimated')));
+    /* test 176: no repeated names. Same uses at every level = one line above the table; otherwise one narrow number column per input */
+    const okR=rr.filter((x)=>x.r.ok),uIds=[];okR.forEach((x)=>x.r.inputs.forEach((i)=>{if(i.product!=='coins'&&!uIds.includes(i.product))uIds.push(i.product)}));
+    const qOf=(r,id)=>{const i=r.inputs.find((z)=>z.product===id);return i||null};
+    const same=showUses&&okR.length>0&&uIds.every((id)=>okR.every((x)=>{const a=qOf(x.r,id),b=qOf(okR[0].r,id);return a&&b&&a.qty===b.qty}));
+    const cols=showUses&&!same?uIds:[];
+    const sl0=okR.length?okR[0].r.slider:null,oneStack=stk&&okR.every((x)=>x.r.slider===sl0);const stkC=stk&&!oneStack;
     const rows=rr.map(({lv,r})=>{
-      if(!r.ok)return `<tr><td class="n">${lv}</td><td colspan="${(showUses?3:2)+(stk?1:0)}"><span class="empty">not seen yet</span></td></tr>`;
-      return `<tr class="${lv===L.level?'cur':''}"><td class="n">${lv}</td>${stk?`<td class="n">x${r.slider}</td>`:''}<td class="n">${tv(r.out.v,r.out.tag)}</td><td class="n">${tcFixed(r.cycle)}</td>${showUses?`<td class="uses">${usesText(r)}</td>`:''}</tr>`}).join('');
-    html+=`<div class="card"><h2>${stk?'Every level, at the biggest stack':'Every level'}</h2>${anyEst?`<p class="sub" style="margin:0 0 8px"><span class="v est">≈</span> = estimated: worked out from other numbers, not read from the game.</p>`:''}<div class="scroll"><table><thead><tr><th class="n">Level</th>${stk?'<th class="n">Stack</th>':''}<th class="n">${stk?'Makes':'Output'}</th><th class="n">${stk?'Time':'Cycle'}</th>${showUses?`<th class="uses">${stk?'Uses':'Uses per cycle'}</th>`:''}</tr></thead><tbody>${rows}</tbody></table></div></div>`;
-    if(P.slider){let sr='';const topN=topOf(P,L.product,L.mode,L.level).top;for(let n=P.slider.min;n<=topN;n++){const r=C.resolve(model,setup,Object.assign({},L,{slider:n}));
-        if(!r.ok){sr+=`<tr><td class="n">x${n}</td><td colspan="3"><span class="empty">not available</span></td></tr>`;continue}
-        const ui=r.inputs.filter((i)=>i.product!=='coins').map((i)=>nf(i.qty,Number.isInteger(i.qty)?0:1)+' '+esc(inName(i.product).toLowerCase())).join(', ');
-        sr+=`<tr class="${n===res.slider?'cur':''}"><td class="n">x${n}</td><td class="n">${tv(r.out.v,r.out.tag)}${r.second?' + '+tv(r.second.v,r.second.tag)+' '+esc(pretty(r.second.product)):''}</td><td class="n">${tcFixed(r.cycle)}</td><td>${ui}</td></tr>`}
-      html+=`<div class="card"><h2>Every stack size, ${esc(pretty(L.product))}, level ${L.level}</h2><div class="scroll"><table><thead><tr><th class="n">Stack</th><th class="n">Makes</th><th class="n">Time</th><th>Uses</th></tr></thead><tbody>${sr}</tbody></table></div></div>`}
+      if(!r.ok)return `<tr><td class="n">${lv}</td><td colspan="${2+cols.length+(stkC?1:0)}"><span class="empty">not seen yet</span></td></tr>`;
+      return `<tr class="${lv===L.level?'cur':''}"><td class="n">${lv}</td>${stkC?`<td class="n">x${r.slider}</td>`:''}<td class="n">${tv(r.out.v,r.out.tag)}</td><td class="n">${tcFixed(r.cycle)}</td>${cols.map((id)=>{const i=qOf(r,id);return `<td class="n">${i?tv(i.qty,i.tag,Number.isInteger(i.qty)?0:1):'–'}</td>`}).join('')}</tr>`}).join('');
+    const sameLine=same?`<p style="margin:0 0 8px">Uses ${okR[0].r.inputs.filter((i)=>i.product!=='coins').map((i)=>'<b>'+nf(i.qty,Number.isInteger(i.qty)?0:1)+'</b> '+esc(inName(i.product).toLowerCase())).join(' and ')} ${stk?'each time':'per cycle'}, at every level.</p>`:'';
+    html+=`<div class="card"><h2>${stk?'Every level, at the biggest stack'+(oneStack&&sl0?' (x'+sl0+')':''):'Every level'}</h2>${sameLine}${anyEst?`<p class="sub" style="margin:0 0 8px"><span class="v est">≈</span> = estimated: worked out from other numbers, not read from the game.</p>`:''}${cols.length?`<p class="sub" style="margin:0 0 8px">The last ${cols.length===1?'column is':'columns are'} what it uses ${stk?'each time':'per cycle'}.</p>`:''}<div class="scroll"><table class="lutbl"><thead><tr><th class="n">Level</th>${stkC?'<th class="n">Stack</th>':''}<th class="n">${stk?'Makes':'Output'}</th><th class="n">${stk?'Time':'Cycle'}</th>${cols.map((id)=>`<th class="n inh">${esc(inName(id))}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div></div>`;
+    if(P.slider){let sr='';const topN=topOf(P,L.product,L.mode,L.level).top;const sIds=(res.inputs||[]).filter((i)=>i.product!=='coins').map((i)=>i.product);
+      for(let n=P.slider.min;n<=topN;n++){const r=C.resolve(model,setup,Object.assign({},L,{slider:n}));
+        if(!r.ok){sr+=`<tr><td class="n">x${n}</td><td colspan="${2+sIds.length}"><span class="empty">not available</span></td></tr>`;continue}
+        sr+=`<tr class="${n===res.slider?'cur':''}"><td class="n">x${n}</td><td class="n">${tv(r.out.v,r.out.tag)}${r.second?' + '+tv(r.second.v,r.second.tag)+' '+esc(pretty(r.second.product)):''}</td><td class="n">${tcFixed(r.cycle)}</td>${sIds.map((id)=>{const i=r.inputs.find((z)=>z.product===id);return `<td class="n">${i?nf(i.qty,Number.isInteger(i.qty)?0:1):'–'}</td>`}).join('')}</tr>`}
+      html+=`<div class="card"><h2>Every stack size, ${esc(pn(L.product))}, level ${L.level}</h2>${sIds.length?`<p class="sub" style="margin:0 0 8px">The last ${sIds.length===1?'column is':'columns are'} what it uses.</p>`:''}<div class="scroll"><table class="lutbl"><thead><tr><th class="n">Stack</th><th class="n">Makes</th><th class="n">Time</th>${sIds.map((id)=>`<th class="n inh">${esc(inName(id))}</th>`).join('')}</tr></thead><tbody>${sr}</tbody></table></div></div>`}
   }
   html+=`<p class="golink"><a href="#buildings" data-sec="collect">Your own buildings: Quick count →</a></p>`;
   $('#panel').innerHTML=html;
