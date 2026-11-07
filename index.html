@@ -603,13 +603,16 @@ label.btn.bkload{color:var(--accent-fg)}label.btn.ghost.bkload{color:var(--fg)}
 #subtitle:empty{display:none}
 .runebar{display:block!important;margin:0 0 10px;position:static}.runebar[hidden]{display:none!important}
 .runebar .rtiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:8px}
-.rstr{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:4px 6px 4px 10px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface)}
+.rstr{display:flex;flex-wrap:wrap;align-items:center;gap:4px;padding:4px 6px 4px 10px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface)}
 .rstr>.qh{flex:0 0 auto}.rstr>.qh[open]{flex-basis:100%;order:3}
-.rsbtn{flex:1 1 0;min-width:0;min-height:40px;display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;background:none;border:0;padding:4px 0;color:var(--fg);font:600 13px var(--body);cursor:pointer;text-align:left}
+.rsbtn{flex:1 1 0;min-width:0;min-height:40px;display:flex;flex-wrap:nowrap;align-items:center;gap:8px;background:none;border:0;padding:4px 0;color:var(--fg);font:600 13px var(--body);cursor:pointer;text-align:left}
 .rslab{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.rsc{--ic:var(--line);display:inline-flex;align-items:center;gap:5px;color:var(--muted);white-space:nowrap}.rsc.isl-haven{--ic:var(--c-haven)}.rsc.isl-tropicalis{--ic:var(--c-tropicalis)}.rsc.isl-jade{--ic:var(--c-jade)}
+.rsc{--ic:var(--line);display:inline-flex;align-items:center;gap:4px;font-size:12.5px;color:var(--muted);white-space:nowrap}.rsc.isl-haven{--ic:var(--c-haven)}.rsc.isl-tropicalis{--ic:var(--c-tropicalis)}.rsc.isl-jade{--ic:var(--c-jade)}
 .rsc i{width:10px;height:10px;border-radius:50%;border:2px solid var(--ic);box-sizing:border-box}.rsc.on{color:var(--fg)}.rsc.on i{background:var(--ic);box-shadow:0 0 6px var(--ic)}
-.rsar{margin-left:auto;color:var(--muted);font-size:12px}
+.rsar{margin-left:auto;color:var(--accent-ink);font-size:13px;font-weight:700;white-space:nowrap}
+.rshint{color:var(--fg);font-weight:600}
+.rschips{flex:1 1 auto;min-width:0;display:flex;flex-wrap:wrap;gap:2px 9px}.rshint{flex:1 1 auto;min-width:0}.rsar{flex:0 0 auto}
+@media (max-width:440px){.rstr{padding:4px 4px 4px 8px}.rsbtn{gap:6px}.rschips{gap:2px 7px}.rsc{font-size:12px;gap:3px}.rsc i{width:9px;height:9px}.rslab{letter-spacing:.04em;font-size:10.5px}.rsar{font-size:12.5px}}
 </style>
 <!-- test 173: visitor counter (GoatCounter: no cookies, nothing personal) -->
 <script data-goatcounter="https://ojmaestro.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
@@ -729,7 +732,8 @@ async function boot(){
     $('#subtitle').textContent='';
     state.defTab=setup.groups.length?'guild':'setup';try{const li=localStorage.getItem('sunshine_lastisl_v1');if(li&&model.islands.includes(li))state.bIsland=li}catch(e){}try{const lt=localStorage.getItem('sunshine_lasttab_v1');if(setup.groups.length&&ALLTABS.some((t)=>t[0]===lt))state.defTab=lt}catch(e){}
     try{state.walkDone=localStorage.getItem('sunshine_walk_v1')==='1'}catch(e){state.walkDone=false}
-    try{state.runeOpen=localStorage.getItem('sunshine_runeopen_v1')==='1'}catch(e){state.runeOpen=false}
+    /* open at first for anyone who has never set a rune; afterwards it remembers */
+    try{const ro=localStorage.getItem('sunshine_runeopen_v1');state.runeOpen=ro===null?!Object.keys(setup.runeStart||{}).length&&!Object.values(setup.runes||{}).some(Boolean):ro==='1'}catch(e){state.runeOpen=false}
     /* test 172: reopen on the guild project picked last time */
     try{const gp=localStorage.getItem('sunshine_gproj_v1');if(gp&&((files.guild&&files.guild.projects)||[]).some((x)=>x.id===gp))state.gproj=gp}catch(e){}
     try{state.libhand=localStorage.getItem('sunshine_libhand_v1')==='1'}catch(e){state.libhand=false}
@@ -905,7 +909,8 @@ function runeSince(r){const on=!!setup.runes[r.id],st=setup.runeStart&&setup.run
 function drawRunes(){const rb=$('#runebar');const t=curTab();rb.hidden=!['buildings','guild','cruise','lookup'].includes(t);if(rb.hidden)return;
   const help='<p>Runes in the game add a boost to fields, plantations or mines for 48 hours.</p><p>Tap this line, then tap a rune to switch it on when it is on in your game. It glows, and your totals include its boost. To switch one off, tap it and answer <b>Yes</b>.</p>';
   const chips=Object.values(model.runes).map((r)=>{const on=!!setup.runes[r.id];return `<span class="rsc isl-${esc(String(r.island||'').toLowerCase())}${on?' on':''}"><i aria-hidden="true"></i>${esc(pretty(r.id))}<span class="sr"> ${on?'on':'off'}</span></span>`}).join('');
-  const strip=`<div class="rstr"><button type="button" class="rsbtn" data-act="runeopen" aria-expanded="${!!state.runeOpen}"><span class="rslab">Runes</span>${chips}<span class="rsar" aria-hidden="true">${state.runeOpen?'▴':'▾'}</span></button>${qh(help)}</div>`;
+  /* closed: names + dots + "Change"; open: the instruction + "Close" (the tiles below carry the names) */
+  const strip=`<div class="rstr"><button type="button" class="rsbtn" data-act="runeopen" aria-expanded="${!!state.runeOpen}"><span class="rslab">Runes</span>${state.runeOpen?'<span class="rshint">Tap a rune to switch it on or off</span>':'<span class="rschips">'+chips+'</span>'}<span class="rsar">${state.runeOpen?'Close ▴':'Change ▾'}</span></button>${qh(help)}</div>`;
   if(!state.runeOpen){rb.classList.add('closed');rb.innerHTML=strip;return}
   rb.classList.remove('closed');rb.innerHTML=strip+'<div class="rtiles">'+Object.values(model.runes).map((r)=>{const on=!!setup.runes[r.id],nm=esc(pretty(r.id)),isl='isl-'+esc(String(r.island||'').toLowerCase());
   const sn=runeSince(r);
