@@ -6,6 +6,7 @@
   "update_23_55": "Added Gong 20/162, Marimba 44/475; renamed the two 'red cloth icon' cards to Marimba (104/562 read on card, 96/518 from matching icon); Coffee beans 392 time now seen; quilt times inferred 24h from comments; 5 page-typed cards merged in; Dee's name removed."
  },
  "product_cards": [
+  {"product":"Bamboo rice","amount":30,"points":50,"time_limit":"1h15m","time_h":1.25,"time_status":"seen_on_card","building":"Jade · Food stand","type":"product","note":"7 Nov, Jo's card. Hearts 27 (ignored)."},
   {"product":"Longcase clock","amount":10,"points":108,"time_limit":"3h","time_h":3,"time_status":"inferred_from_same_product","building":"Haven · Crafting workshop","type":"product","note":"28 Oct"},
   {"product":"Copper ingot","amount":156,"points":421,"time_limit":"9h","time_h":9,"time_status":"inferred_from_same_product","building":"Jade · Foundry","type":"product","note":"28 Oct"},
   {"product":"Bread","amount":266,"points":144,"time_limit":"1h","time_h":1,"time_status":"inferred_from_same_product","building":"Haven · Bakery","type":"product","note":"28 Oct"},

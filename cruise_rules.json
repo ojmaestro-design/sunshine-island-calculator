@@ -1,7 +1,7 @@
 {
- "_note": "Cruise card rules, version 2 (2 Nov 2026). Not game data: a pattern read from the card list, used for SEEN / PREDICTED badges. Every value carries a state: seen, seen_time_inferred, predicted or unknown. Source: claude/CRUISE_LADDERS_CONFIRMED_2nov.md and cruise_cards_clean_30oct.json. Version 3 (7 Nov 2026): gaps filled from the koszz Cruise Ship sheet (non-red numbers only; red ones left out) and a Hammock card. Where our number and the sheet differ, ours is kept.",
- "version": 3,
- "updated": "2026-11-07 21:45",
+ "_note": "Cruise card rules, version 2 (2 Nov 2026). Not game data: a pattern read from the card list, used for SEEN / PREDICTED badges. Every value carries a state: seen, seen_time_inferred, predicted or unknown. Source: claude/CRUISE_LADDERS_CONFIRMED_2nov.md and cruise_cards_clean_30oct.json. Version 3 (7 Nov 2026): gaps filled from the koszz Cruise Ship sheet (non-red numbers only; red ones left out) and a Hammock card. Where our number and the sheet differ, ours is kept. Version 4 (8 Nov 2026): hearts/points audit (no points value was a hearts number); unproven 90-point sizes of Copper ore and Ostrich feed removed; Bamboo rice x30 added; Cotton yarn 1h30m confirmed on cards.",
+ "version": 4,
+ "updated": "2026-11-08 01:00",
  "time_base_points": {
   "150": 90,
   "180": 108,
@@ -224,6 +224,12 @@
    "notes": [],
    "lookup": [
     {
+     "amount": 30,
+     "points": 50,
+     "time": "1h15m",
+     "source": "Jo's card, read 7 Nov 2026"
+    },
+    {
      "amount": 60,
      "points": 59,
      "time": "1h15m"
@@ -310,7 +316,8 @@
     "1.3": {
      "amount": 247,
      "points": 134,
-     "state": "seen"
+     "state": "seen",
+     "jo_card": "Jo's card, read 8 Nov 2026"
     },
     "1.4": {
      "amount": 266,
@@ -320,7 +327,8 @@
     "1.5": {
      "amount": 360,
      "points": 154,
-     "state": "seen"
+     "state": "seen",
+     "jo_card": "Jo's card, read 8 Nov 2026"
     }
    },
    "notes": []
@@ -666,11 +674,6 @@
    "ladder": "p90",
    "kind": "lookup",
    "steps": {
-    "1.0": {
-     "amount": null,
-     "points": 90,
-     "state": "unknown"
-    },
     "1.1": {
      "amount": 220,
      "points": 99,
@@ -695,10 +698,13 @@
     "1.5": {
      "amount": 675,
      "points": 135,
-     "state": "seen"
+     "state": "seen",
+     "jo_card": "Jo's card, read 8 Nov 2026"
     }
    },
-   "notes": []
+   "notes": [
+    "8 Nov 2026: the 90-point size (step 1.0) was removed: no card or sheet shows it (the koszz sheet starts at 99). A 90 seen on a card is the HEARTS of the biggest card, not points. Add it back only if a real card shows 90 points."
+   ]
   },
   "copper_sheets": {
    "name": "Copper sheets",
@@ -908,12 +914,14 @@
     "1.5": {
      "amount": 45,
      "points": 108,
-     "state": "seen"
+     "state": "seen",
+     "source": "4 of Jo's cards, read 8 Nov 2026 (x45, 1h30m, 108 points)"
     }
    },
    "notes": [
     "At 1h30m: Cotton uses ladder p154, Cotton yarn uses the yarn ladder. \"36 x hours\" does not hold."
-   ]
+   ],
+   "time_source": "1h30m seen on 4 of Jo's cards (x45, 108 points), read 8 Nov 2026. The koszz sheet's 1h is wrong."
   },
   "cow_feed": {
    "name": "Cow feed",
@@ -998,7 +1006,8 @@
      "points": 324,
      "state": "seen",
      "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)",
-     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees",
+     "jo_card": "Jo's card, read 8 Nov 2026"
     }
    },
    "notes": []
@@ -2116,11 +2125,6 @@
    "ladder": "p90",
    "kind": "lookup",
    "steps": {
-    "1.0": {
-     "amount": null,
-     "points": 90,
-     "state": "unknown"
-    },
     "1.1": {
      "amount": 4,
      "points": 99,
@@ -2149,7 +2153,9 @@
      "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
     }
    },
-   "notes": []
+   "notes": [
+    "8 Nov 2026: the 90-point size (step 1.0) was removed: no card or sheet shows it (the koszz sheet starts at 99). A 90 seen on a card is the HEARTS of the biggest card, not points. Add it back only if a real card shows 90 points."
+   ]
   },
   "palm_wood": {
    "name": "Palm wood",
