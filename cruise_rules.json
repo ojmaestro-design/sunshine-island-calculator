@@ -1,7 +1,7 @@
 {
  "_note": "Cruise card rules, version 2 (2 Nov 2026). Not game data: a pattern read from the card list, used for SEEN / PREDICTED badges. Every value carries a state: seen, seen_time_inferred, predicted or unknown. Source: claude/CRUISE_LADDERS_CONFIRMED_2nov.md and cruise_cards_clean_30oct.json. Version 3 (7 Nov 2026): gaps filled from the koszz Cruise Ship sheet (non-red numbers only; red ones left out) and a Hammock card. Where our number and the sheet differ, ours is kept. Version 4 (8 Nov 2026): hearts/points audit (no points value was a hearts number); unproven 90-point sizes of Copper ore and Ostrich feed removed; Bamboo rice x30 added; Cotton yarn 1h30m confirmed on cards.",
  "version": 4,
- "updated": "2026-11-08 01:00",
+ "updated": "2026-11-08 09:30",
  "time_base_points": {
   "150": 90,
   "180": 108,
@@ -959,7 +959,8 @@
     "1.4": {
      "amount": 45,
      "points": 144,
-     "state": "seen"
+     "state": "seen",
+     "jo_card": "x45, 1h, 144 points, Jo's screenshots, read 8 Nov 2026"
     },
     "1.5": {
      "amount": 48,
@@ -1274,7 +1275,8 @@
      "points": 275,
      "time": "9h"
     }
-   ]
+   ],
+   "time_source": "9h seen on 2 cards (x12, 275 points), Jo's screenshots, read 8 Nov 2026. The koszz sheet's 6h is wrong."
   },
   "fill_crates_on_ships": {
    "name": "Fill crates on ships",
@@ -1300,7 +1302,8 @@
      "points": 275,
      "time": "6h"
     }
-   ]
+   ],
+   "time_source": "6h seen on a card (x12, 275 points), Jo's screenshots, read 8 Nov 2026."
   },
   "flour": {
    "name": "Flour",
@@ -1369,17 +1372,20 @@
      "points": 259,
      "state": "seen",
      "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)",
-     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees"
+     "check": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026) agrees",
+     "jo_card": "x5, 6h, 259 and 281 points on two cards (Facebook post), Jo's screenshots, read 8 Nov 2026"
     },
     "1.3": {
      "amount": 5,
      "points": 281,
-     "state": "seen_time_inferred"
+     "state": "seen",
+     "jo_card": "x5, 6h, 259 and 281 points on two cards (Facebook post), Jo's screenshots, read 8 Nov 2026"
     },
     "1.4": {
      "amount": 6,
      "points": 302,
-     "state": "seen"
+     "state": "seen",
+     "jo_card": "x6 (6/6), 302 points, Jo's screenshots, read 8 Nov 2026"
     },
     "1.5": {
      "amount": 6,
@@ -1541,7 +1547,8 @@
     {
      "amount": 20,
      "points": 162,
-     "time": "4h30m"
+     "time": "4h30m",
+     "source": "x20, 4h30m, 162 points seen on a card (Facebook screenshot), Jo's screenshots, read 8 Nov 2026"
     }
    ]
   },
@@ -1609,7 +1616,8 @@
     "1.2": {
      "amount": 48,
      "points": 130,
-     "state": "seen"
+     "state": "seen",
+     "jo_card": "x48, 3h, 130 points on two cards, Jo's screenshots, read 8 Nov 2026"
     },
     "1.3": {
      "amount": 104,
@@ -1786,7 +1794,8 @@
     "1.0": {
      "amount": 30,
      "points": 180,
-     "state": "seen"
+     "state": "seen",
+     "jo_card": "x30, 5h, 180 points, Jo's screenshots, read 8 Nov 2026"
     },
     "1.1": {
      "amount": 33,
@@ -1803,7 +1812,8 @@
     "1.3": {
      "amount": 98,
      "points": 234,
-     "state": "seen"
+     "state": "seen",
+     "jo_card": "x98, 5h, 234 points, Jo's screenshots, read 8 Nov 2026"
     },
     "1.4": {
      "amount": 105,
