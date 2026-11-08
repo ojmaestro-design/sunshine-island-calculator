@@ -1,7 +1,7 @@
 {
  "_note": "Cruise card rules, version 2 (2 Nov 2026). Not game data: a pattern read from the card list, used for SEEN / PREDICTED badges. Every value carries a state: seen, seen_time_inferred, predicted or unknown. Source: claude/CRUISE_LADDERS_CONFIRMED_2nov.md and cruise_cards_clean_30oct.json. Version 3 (7 Nov 2026): gaps filled from the koszz Cruise Ship sheet (non-red numbers only; red ones left out) and a Hammock card. Where our number and the sheet differ, ours is kept. Version 4 (8 Nov 2026): hearts/points audit (no points value was a hearts number); unproven 90-point sizes of Copper ore and Ostrich feed removed; Bamboo rice x30 added; Cotton yarn 1h30m confirmed on cards.",
  "version": 4,
- "updated": "2026-11-08 09:30",
+ "updated": "2026-11-08 10:30",
  "time_base_points": {
   "150": 90,
   "180": 108,
@@ -862,7 +862,8 @@
     "1.3": {
      "amount": 104,
      "points": 421,
-     "state": "seen_time_inferred"
+     "state": "seen",
+     "card": "x104, 9h, 421 points on a player's card (Discord), read 8 Nov 2026"
     },
     "1.4": {
      "amount": 196,
@@ -1023,13 +1024,20 @@
    "notes": [
     "100 / 31 is not on ladder p1h",
     "Points do not fit any points ladder; kept as a plain list.",
-    "Curtain 100 / 31 is unconfirmed (31 is far below the 1h ladder)."
+    "Curtain points are far below other 1h cards (26 and 31) on every card seen; points are not shown in the calculator."
    ],
    "lookup": [
     {
+     "amount": 50,
+     "points": 26,
+     "time": "1h",
+     "source": "two players' cards (Discord, 28 and 31 Oct 2026), read 8 Nov 2026"
+    },
+    {
      "amount": 100,
      "points": 31,
-     "time": "1h"
+     "time": "1h",
+     "check": "Confirmed by a second card (Polish, 30 Oct 2026), read 8 Nov 2026"
     }
    ]
   },
