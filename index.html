@@ -7,7 +7,7 @@
 <title>Sunshine Calculator</title>
 <!-- V104: Browse products list, one saved card per product with a size strip, sizes green (can do) / grey (not yet); V92 (test 92): plain wording, ? panels, My buildings sections, Teal/Black/Light looks, separate quick-sum lines, shelter box fixed, undo stays 30 s; V91 jump highlight + bottom tabs and Back to top; V90 (checked at 340 to 430 px) slim status line + one Jump to drop-down on the island row; V89 island list folded, singular names, island remembered; V88 island-in-use line on My buildings; V87 reopen on the last tab used; V85 test build number in header chip; V84 Load my saved island button in the jump row; V83 no-building answer shows the scenario; V82 storage hint + link to My buildings on cruise cards; V81 jump links, None, reset ready counts, points totals; V80 Full now on Cruise cards; V79 warehouse box tidy; V78 warehouse wording; V77 card note shows number not code; V76 load-island keeps cards/layouts/runes; V75 undo bar sticky at the bottom; V74 2 Nov 2026: fields card, tab order, sticky picker, cruise rules v2, shortest-crop-first when a count is lowered -->
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="build" content="195">
+<meta name="build" content="196">
 <meta name="description" content="Sunshine Island Calculator. Beta 0.1 - data from the 28 Oct 2026 game update.">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=170"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=168"><meta name="apple-mobile-web-app-title" content="Sunshine">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -626,6 +626,11 @@ input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea{f
 .rescue{border:1px solid var(--line);border-radius:12px;background:var(--surface)}.rescue .btn,.rescue label.btn.bkload{background:transparent;color:var(--fg);border:1.5px solid var(--line);box-shadow:none;animation:none}
 .coffeecard{border:1px solid var(--line);background:var(--surface)}
 .plok{color:var(--ok);font-weight:700;font-size:15px}
+/* test 196: Quick count Copy always top-right, whatever the text length; guild Clear all beside Undo */
+.qcres{flex-wrap:nowrap;align-items:flex-start}
+.qcres>div{flex:1 1 auto;min-width:0}
+.qcres>button{flex:none}
+.glbtns{display:flex;flex-wrap:wrap;gap:8px}
 </style>
 <!-- test 173: visitor counter (GoatCounter: no cookies, nothing personal) -->
 <script data-goatcounter="https://ojmaestro.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
@@ -641,7 +646,7 @@ input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea{f
   <div id="feedback"></div>
   <p class="footer"><span class="meonly"><a href="#data">Data &amp; flags</a> · <button class="linkbtn" data-act="widthchk">Width check</button> · </span><button class="linkbtn" data-act="walkshow">Quick start</button> · <button class="linkbtn" data-act="key" aria-expanded="false" id="keybtn">How accurate are the numbers?</button></p>
   <div id="keyline"></div>
-  <p class="footer" style="margin-top:6px">Beta&nbsp;0.1 · test&nbsp;195 · data from the 28&nbsp;Oct&nbsp;2026 game update (game&nbsp;1.3.40251)</p>
+  <p class="footer" style="margin-top:6px">Beta&nbsp;0.1 · test&nbsp;196 · data from the 28&nbsp;Oct&nbsp;2026 game update (game&nbsp;1.3.40251)</p>
   <p class="footer" style="margin-top:0">Unofficial fan tool. Not made by, or connected to, the game's developers.</p>
   <div id="footlogo" class="footlogo"></div>
   <p class="totop"><button type="button" class="btn ghost small" data-act="totop">↑ Back to top</button></p>
@@ -983,7 +988,7 @@ function bkNag(){if(!setup.groups.length)return '';const t=bkLast();if(t&&Date.n
   try{if((parseInt(localStorage.getItem('sunshine_bksnooze_v1'),10)||0)>Date.now())return ''}catch(_){}
   return `<div class="card bknag" role="status"><p style="margin:0 0 8px"><b>Keep a backup of your setup.</b> It is only kept in this browser${t?'. Last backup: '+Math.floor((Date.now()-t)/86400000)+' days ago':', and you have no backup yet'}.</p><div class="row"><button class="btn small" data-act="bknow">Back up now</button><button class="btn ghost small" data-act="bksnooze">Not now</button></div></div>`}
 function saveCard(){const me=/[?&]me=1(&|$)/.test(location.search);
-  return `<div class="card" id="j-save"><h2>Backup copy</h2>${hline('Your setup is only kept in this browser. Keep a backup so you never lose it.','<ol class="steps"><li>Press <b>Save a backup file</b>. A small file is saved to your Downloads (on iPhone and iPad: the Files app, Downloads).</li><li>To bring it back, on this or any other device, browser or the home-screen icon, press <b>Load a backup file</b> and pick that file.</li></ol><p>Or press <b>Copy my setup</b> and paste it into a note. To bring it back, copy that text and press <b>Paste a setup</b>.</p>')}
+  return `<div class="card" id="j-save"><h2>Backup copy</h2>${hline('Your setup is only kept in this browser. Keep a backup so you never lose it.','<ol class="steps"><li>Press <b>Save a backup file</b>. A small file is saved to your Downloads (on iPhone and iPad: the Files app, Downloads). Its name starts with <b>sunshine-backup</b>, then the date, and ends in .txt.</li><li>If your iPhone or iPad asks where to save it, choose <b>iCloud Drive</b>, not On My iPhone or On My iPad. Then you can open it on your other devices too.</li><li>To bring it back, on this or any other device, browser or the home-screen icon, press <b>Load a backup file</b> and pick that file.</li></ol><p>Or press <b>Copy my setup</b> and paste it into a note. To bring it back, copy that text and press <b>Paste a setup</b>.</p>')}
     <p class="bklast">${bkLastText()}</p>
     <div class="row" style="margin-top:8px"><button class="btn" data-act="bkfile">Save a backup file</button>${bkLoadBtn('btn ghost')}</div>
     <div class="row" style="margin-top:8px"><button class="btn ghost" data-act="copy">Copy my setup</button><button class="btn ghost" data-act="pasteopen">Paste a setup</button></div>${state.pasteAsk?`<div class="rune-ask" role="alert" style="margin-top:8px;flex-wrap:wrap">Load this setup? It replaces your current one. <button class="btn small" data-act="pasteyes">Yes</button><button class="btn ghost small" data-act="pasteno">No</button></div>`:''}${state.loadUndo?`<div class="row" style="margin-top:8px"><span class="sub" style="margin:0">Setup loaded.</span><button class="btn small" data-act="loadundo">Undo</button></div>`:''}<div id="profmsg" aria-live="polite"></div>
@@ -1448,7 +1453,7 @@ function openGlPick(k){closeGlPick();const o=GL_OPTS[k],G=state.gl,tile=document
 function glTot(pid){const L=glRep(pid).map((r,i)=>({r,i})).filter((o)=>o.r.v!==''&&o.r.v!==null&&!isNaN(+o.r.v)),st=glRepStats(pid),nm=esc(plu(pid).toLowerCase());
   const last=L.length?glN(+L[L.length-1].r.v):'';
   const sel=glSel&&glSel.pid===pid?L.find((o)=>o.i===glSel.i):null;
-  let h=`<div class="gltotrow"><p class="gltot" style="margin:0">${st.n?`<b>${glN(st.R)}</b> ${nm} so far <span class="sub">(${st.n} member${st.n===1?'':'s'})</span>`:`<span class="sub">No ${nm} added yet.</span>`}</p><button type="button" class="btn ghost small" data-glundo="${esc(pid)}"${st.n?'':' disabled'}>${st.n?'Undo last ('+last+')':'Undo'}</button></div>`;
+  let h=`<div class="gltotrow"><p class="gltot" style="margin:0">${st.n?`<b>${glN(st.R)}</b> ${nm} so far <span class="sub">(${st.n} member${st.n===1?'':'s'})</span>`:`<span class="sub">No ${nm} added yet.</span>`}</p><span class="glbtns"><button type="button" class="btn ghost small" data-glundo="${esc(pid)}"${st.n?'':' disabled'}>${st.n?'Undo last ('+last+')':'Undo'}</button>${L.length>1?`<button type="button" class="btn ghost small" data-glclr1="${esc(pid)}" data-n="${L.length}">Clear all</button>`:''}</span></div>`;
   if(L.length){h+=`<div class="glchips glnums">${L.map((o)=>`<button type="button" class="glchip" data-gled="${esc(pid)}" data-i="${o.i}" aria-pressed="${!!(sel&&sel.i===o.i)}">${glN(+o.r.v)}</button>`).join('')}</div><p class="sub" style="margin:4px 0 0">Tap a number to change or remove it.</p>`}
   if(sel)h+=`<div class="glsed"><p class="gls-lab">Change ${glN(+sel.r.v)}</p><div class="glnumrow"><input type="text" inputmode="numeric" autocomplete="off" enterkeyhint="done" id="glse_${esc(pid)}" class="glse" data-p="${esc(pid)}" value="${esc(String(sel.r.v))}" aria-label="New number"><button type="button" class="btn" data-glsave="${esc(pid)}">Save</button></div><div class="glbtns"><button type="button" class="btn ghost small" data-glrem="${esc(pid)}">Remove this number</button><button type="button" class="btn ghost small" data-glcan="${esc(pid)}">Cancel</button></div></div>`;
   return h}
@@ -1492,6 +1497,7 @@ document.addEventListener('click',(e)=>{const c=e.target&&e.target.closest?e.tar
   const k=c.closest('[data-glk]');if(k){const pr=glProj(),pid=k.dataset.glk;let cur=glKeys().slice();const i=cur.indexOf(pid);if(i>=0){if(cur.length>1)cur.splice(i,1)}else cur.push(pid);G.keyp[pr.id]=pr.items.filter((x)=>cur.indexOf(x)>=0);glSave();renderLeader();const ms=document.querySelector('.glms');if(ms)ms.open=true;return}
   const ad=c.closest('[data-gladd]');if(ad){glAddNum(ad.dataset.gladd);return}
   const th=c.closest('[data-glk1000]');if(th){const inp=document.getElementById('glnum_'+th.dataset.glk1000);if(inp){const v=glParse(inp.value);if(v!==null){inp.value=String(v*1000);inp.style.borderColor=''}inp.focus()}return}
+  const c1=c.closest('[data-glclr1]');if(c1){if(c1.dataset.armed==='1'){clearTimeout(glClrT);glRep(c1.dataset.glclr1).length=0;glSel=null;glSave();glRefresh()}else{c1.dataset.armed='1';c1.textContent='Tap again: clear all '+c1.dataset.n;clearTimeout(glClrT);glClrT=setTimeout(()=>{c1.dataset.armed='0';c1.textContent='Clear all'},4000)}return}
   const un=c.closest('[data-glundo]');if(un){const pid=un.dataset.glundo,L=glRep(pid);while(L.length&&(L[L.length-1].v===''||isNaN(+L[L.length-1].v)))L.pop();L.pop();glSel=null;glSave();glRefresh();return}
   const pj=c.closest('[data-glproj]');if(pj){G.proj=pj.dataset.glproj;glSave();renderLeader();return}
   const sp=c.closest('[data-glsp]');if(sp){G.spread=+sp.dataset.glsp;glSave();renderLeader();const ms=document.querySelector('.glms');if(ms)ms.open=true;return}
