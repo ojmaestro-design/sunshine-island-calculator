@@ -1034,7 +1034,7 @@ function renderBuildings(){
     const addHtml=`<div class="card addcard"><h2>+ Add buildings</h2>${baPick(isl,pl,A.producer)}<div class="grid" style="margin-top:10px">
     <label>How many<select data-ba="count">${countOpts(A.count,AP)}</select></label>
     <label>Level<select data-ba="level">${opts(levelsOf(AP),A.level)}</select></label></div>
-    <div class="row" style="margin-top:10px"><button class="btn" data-act="gadd">Add</button>${noStore(AP)?'<span class="sub" style="align-self:center">This building cannot be stored in the game.</span>':'<button class="btn ghost" data-act="gadd-store">Add 1 to storage</button>'}<span class="sub addmsg" id="addmsg" role="status" aria-live="polite">${esc(state.addMsg||'')}</span></div></div>`;
+    <div class="row" style="margin-top:10px"><button class="btn" data-act="gadd">Add</button>${noStore(AP)?'<span class="sub" style="align-self:center">This building cannot be stored in the game.</span>':'<button class="btn ghost" data-act="gadd-store">Add 1 that\u2019s already in storage</button>'}<span class="sub addmsg" id="addmsg" role="status" aria-live="polite">${esc(state.addMsg||'')}</span></div>${!noStore(AP)&&setup.groups.some((g)=>g.producer===A.producer&&g.state==='active')?'<p class="sub" style="margin:8px 0 0">Moving one you already have? Use <b>Put 1 in storage</b> on its line below. <b>Add 1 that\u2019s already in storage</b> adds one more.</p>':''}</div>`;
     {const ownedOf=(pid)=>setup.groups.filter((g)=>g.producer===pid);
       const openT=!!state.tickOpen;
       const pend=!setup.groups.some((g)=>g.island===isl);
@@ -2138,7 +2138,7 @@ document.addEventListener('click',(e)=>{
     const si=slotInfo(c.island);
     if(si.cap===null){state.notice='Type how many storage slots you have on this island first.';render();return}
     if(si.used>=si.cap){state.notice='Storage is full ('+si.used+' of '+si.cap+'). Nothing was stored.';render();return}
-    snap('Stored 1 '+bsing(P.name)+' (Level '+c.level+')');const g=[...c.recs].sort((x,y)=>y.count-x.count)[0];moveOne(g.id,'storage');save();render();return}
+    snap('Moved 1 '+bsing(P.name)+' (Level '+c.level+') to storage. Your total stays the same.');const g=[...c.recs].sort((x,y)=>y.count-x.count)[0];moveOne(g.id,'storage');save();render();return}
   if(a==='lvdel'){const c=lvByKey(b.closest('[data-lv]').dataset.lv);if(!c)return;
     if(c.count>1){state.delAsk=c.key;render()}else{snap('Removed 1 '+bsing(model.producers[c.producer].name)+' (Level '+c.level+')');setup.groups=setup.groups.filter((x)=>!c.recs.includes(x));mergeGroups();save();render()}return}
   if(a==='lvdelyes'){const c=lvByKey(b.closest('[data-lv]').dataset.lv);if(c){snap('Removed '+c.count+' '+model.producers[c.producer].name.toLowerCase()+' (Level '+c.level+')');setup.groups=setup.groups.filter((x)=>!c.recs.includes(x));mergeGroups()}state.delAsk=null;save();render();return}
@@ -2169,7 +2169,7 @@ document.addEventListener('click',(e)=>{
     const si=slotInfo(c.island);
     if(si.cap===null){state.notice='Type how many storage slots you have on this island first.';render();return}
     if(si.used>=si.cap){state.notice='Storage is full ('+si.used+' of '+si.cap+'). Nothing was stored.';render();return}
-    snap('Stored 1 '+P.name+' (Level '+c.level+')');const g=[...c.recs].sort((x,y)=>y.count-x.count)[0];moveOne(g.id,'storage');save();render();return}
+    snap('Moved 1 '+P.name+' (Level '+c.level+') to storage. Your total stays the same.');const g=[...c.recs].sort((x,y)=>y.count-x.count)[0];moveOne(g.id,'storage');save();render();return}
   if(a==='cdel'){const c=cOf();if(c&&c.count>1){state.delAsk=c.key;render()}else if(c){snap('Removed 1 '+model.producers[c.producer].name+' (Level '+c.level+')');setup.groups=setup.groups.filter((x)=>!c.recs.includes(x));mergeGroups();save();render()}return}
   if(a==='cdelyes'){const c=cOf();if(c){snap('Removed all '+c.count+' '+model.producers[c.producer].name+' (Level '+c.level+')');setup.groups=setup.groups.filter((x)=>!c.recs.includes(x));mergeGroups()}state.delAsk=null;save();render();return}
   if(a==='cdelno'){state.delAsk=null;render();return}
@@ -2199,7 +2199,7 @@ document.addEventListener('click',(e)=>{
   if(a==='bisl'){state.bIsland=b.dataset.isl;try{localStorage.setItem('sunshine_lastisl_v1',state.bIsland)}catch(e){}state.addMsg='';render()}
   if(a==='qisl'){state.q={island:b.dataset.isl};render()}
   if(a==='lisl'){let mem={};try{mem=JSON.parse(localStorage.getItem('sunshine_lk_v1'))||{}}catch(_){}const m=mem[b.dataset.isl]||{};state.lookup=Object.assign(state.lookup||{},{island:b.dataset.isl,producer:m.producer||'',product:m.product||'',mode:'',slider:'max'});state.lopen='__none';state.llist=!m.producer;render()}
-  if(a==='gstore'){const g=gOf();if(g&&noStore(model.producers[g.producer])){state.notice=model.producers[g.producer].name+' cannot be stored in the game.';render();return}if(g){const si=slotInfo(g.island);if(si.cap===null){state.notice='Type how many storage slots you have on this island first.';render();return}if(si.used>=si.cap){state.notice='Storage is full ('+si.used+' of '+si.cap+'). Nothing was stored.';render();return}}if(g)snap('Stored 1 '+model.producers[g.producer].name+' (Level '+g.level+')');moveOne(gid,'storage');save();render()}
+  if(a==='gstore'){const g=gOf();if(g&&noStore(model.producers[g.producer])){state.notice=model.producers[g.producer].name+' cannot be stored in the game.';render();return}if(g){const si=slotInfo(g.island);if(si.cap===null){state.notice='Type how many storage slots you have on this island first.';render();return}if(si.used>=si.cap){state.notice='Storage is full ('+si.used+' of '+si.cap+'). Nothing was stored.';render();return}}if(g)snap('Moved 1 '+model.producers[g.producer].name+' (Level '+g.level+') to storage. Your total stays the same.');moveOne(gid,'storage');save();render()}
   if(a==='undo'&&state.undo){setup.groups=state.undo.groups;setup.cellState=state.undo.cellState||{};state.undo=null;state.delAsk=null;setup.groups.forEach(fixGroup);save();render()}
   if(a==='undook'){state.undo=null;render()}
   if(a==='gdelyes'){const g=gOf();if(g){snap('Removed all '+g.count+' '+model.producers[g.producer].name+' (Level '+g.level+')');setup.groups=setup.groups.filter((x)=>x.id!==gid)}state.delAsk=null;save();render()}
@@ -2217,7 +2217,7 @@ document.addEventListener('click',(e)=>{
       setup.groups.push(newGroup(o));mergeGroups();save();
       const sing=bsing(P2.name).toLowerCase(),noun=n===1?sing:P2.name.toLowerCase();
       const total=setup.groups.filter((g)=>g.producer===A.producer).reduce((x,g)=>x+g.count,0);
-      state.addMsg='Added '+n+' '+noun+(st?' to storage':' at Level '+A.level)+'. You now have '+total+'.';render()}}
+      state.addMsg=st?'Added 1 more '+sing+', straight into storage. You now have '+total+'.':'Added '+n+' '+noun+' at Level '+A.level+'. You now have '+total+'.';render()}}
   if(a==='gisl'){state.gadd=Object.assign(state.gadd||{},{island:b.dataset.isl,producer:'',product:'',mode:'',level:1,count:1});render()}
   if(a==='sadd'){const G=state.gadd;setup.sumRows.push(newGroup({producer:G.producer,product:G.product,mode:G.mode,level:G.level,slider:G.slider,count:G.count||1}));save();render()}
   if(a==='sfull'||a==='snone'||a==='sdel'){const r=setup.sumRows.find((x)=>x.id===b.closest('[data-sid]').dataset.sid);if(r){if(a==='sdel')setup.sumRows=setup.sumRows.filter((x)=>x!==r);else r.full=a==='sfull'?r.count:0;save();render()}}
