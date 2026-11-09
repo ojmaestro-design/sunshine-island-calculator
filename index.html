@@ -633,6 +633,7 @@ input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea{f
 .glbtns{display:flex;flex-wrap:wrap;gap:8px}
 /* test 197: guild "How this is worked out" list */
 .glhow{margin:0;padding-left:20px}.glhow li{margin:0 0 4px}
+.glnw{white-space:nowrap}
 </style>
 <!-- test 173: visitor counter (GoatCounter: no cookies, nothing personal) -->
 <script data-goatcounter="https://ojmaestro.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
@@ -1433,7 +1434,7 @@ function glResultHtml(){const G=state.gl,pr=glProj();
   h+=V.rows.map((r)=>{
     let b=`<div class="glrow${r.locked?' locked':''}"><div class="glhead"><b>${'★'.repeat(r.star)}</b><span class="sub" style="margin:0">Reward ${r.reward}</span></div>`;
     if(r.lock&&!r.locked)b+=`<p class="glline sub" style="margin:0 0 4px">Needs ${r.lock} finished at ${r.star-1} stars first.</p>`;
-    b+=r.items.map((x)=>`<p class="glline"><b>${esc(plu(x.pid))}</b>: about ${glN(x.mid)}${x.low!==x.high?` (range ${glN(x.low)} to ${glN(x.high)})`:''}, target ${glN(x.T)}${glAdv()>0?` <span class="sub">incl. ${glN(x.ad)} from adverts</span>`:''}</p>`).join('');
+    b+=r.items.map((x)=>`<p class="glline"><b>${esc(plu(x.pid))}</b>: <span class="glnw">about ${glN(x.mid)}</span>${glAdv()>0?` <span class="glnw sub">(incl. ${glN(x.ad)} from adverts)</span>`:''}${x.low!==x.high?` <span class="glnw sub">range ${glN(x.low)} to ${glN(x.high)}</span>`:''}</p><p class="glline">Target ${glN(x.T)}</p>`).join('');
     if(!r.locked&&r.verdict!=='ok'){
       if(r.more!==null&&r.more>0)b+=`<p class="glmore">About ${r.more} more member${r.more===1?'':'s'} online at the average would close it (the most short: ${esc(plu(r.lim.pid))}).</p>`;
       else b+=`<p class="glmore">The usual amount reaches it; the low end does not. The most short: ${esc(plu(r.lim.pid))}.</p>`}
