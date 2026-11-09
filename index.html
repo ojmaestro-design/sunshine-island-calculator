@@ -634,6 +634,10 @@ input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea{f
 /* test 197: guild "How this is worked out" list */
 .glhow{margin:0;padding-left:20px}.glhow li{margin:0 0 4px}
 .glnw{white-space:nowrap}
+/* test 197: Undo / Clear all on their own line, left, under the total, away from Add */
+.gltotrow{flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:14px;margin-top:10px}
+.gltotrow .glbtns{justify-content:flex-start;margin-top:0;gap:12px}
+.gltotrow .glbtns button[data-glundo][disabled]{display:none}
 </style>
 <!-- test 173: visitor counter (GoatCounter: no cookies, nothing personal) -->
 <script data-goatcounter="https://ojmaestro.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
