@@ -7,7 +7,7 @@
 <title>Sunshine Calculator</title>
 <!-- V104: Browse products list, one saved card per product with a size strip, sizes green (can do) / grey (not yet); V92 (test 92): plain wording, ? panels, My buildings sections, Teal/Black/Light looks, separate quick-sum lines, shelter box fixed, undo stays 30 s; V91 jump highlight + bottom tabs and Back to top; V90 (checked at 340 to 430 px) slim status line + one Jump to drop-down on the island row; V89 island list folded, singular names, island remembered; V88 island-in-use line on My buildings; V87 reopen on the last tab used; V85 test build number in header chip; V84 Load my saved island button in the jump row; V83 no-building answer shows the scenario; V82 storage hint + link to My buildings on cruise cards; V81 jump links, None, reset ready counts, points totals; V80 Full now on Cruise cards; V79 warehouse box tidy; V78 warehouse wording; V77 card note shows number not code; V76 load-island keeps cards/layouts/runes; V75 undo bar sticky at the bottom; V74 2 Nov 2026: fields card, tab order, sticky picker, cruise rules v2, shortest-crop-first when a count is lowered -->
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="build" content="198">
+<meta name="build" content="199">
 <meta name="description" content="Sunshine Island Calculator. Beta 0.1 - data from the 28 Oct 2026 game update.">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=170"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=168"><meta name="apple-mobile-web-app-title" content="Sunshine">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -655,9 +655,9 @@ input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea{f
   <div id="panel"></div>
   <div id="coffee"></div>
   <div id="feedback"></div>
-  <p class="footer"><span class="meonly"><a href="#data">Data &amp; flags</a> · <button class="linkbtn" data-act="widthchk">Width check</button> · </span><button class="linkbtn" data-act="walkshow">Quick start</button> · <button class="linkbtn" data-act="key" aria-expanded="false" id="keybtn">How accurate are the numbers?</button></p>
+  <p class="footer"><span class="meonly"><a href="#data">Data &amp; flags</a> · <button class="linkbtn" data-act="widthchk">Width check</button> · </span><button class="linkbtn" data-act="walkshow">Set-up guide</button> · <button class="linkbtn" data-act="key" aria-expanded="false" id="keybtn">How accurate are the numbers?</button></p>
   <div id="keyline"></div>
-  <p class="footer" style="margin-top:6px">Beta&nbsp;0.1 · test&nbsp;198 · data from the 28&nbsp;Oct&nbsp;2026 game update (game&nbsp;1.3.40251)</p>
+  <p class="footer" style="margin-top:6px">Beta&nbsp;0.1 · test&nbsp;199 · data from the 28&nbsp;Oct&nbsp;2026 game update (game&nbsp;1.3.40251)</p>
   <p class="footer" style="margin-top:0">Unofficial fan tool. Not made by, or connected to, the game's developers.</p>
   <div id="footlogo" class="footlogo"></div>
   <p class="totop"><button type="button" class="btn ghost small" data-act="totop">↑ Back to top</button></p>
@@ -784,7 +784,7 @@ function siteBits(){
   if(SITE.footlogo&&$('#footlogo'))$('#footlogo').innerHTML=`<img class="lg-dark" src="oj-maestro-logo-dark.png?v=182" alt="OJ Maestro" onerror="this.src='${esc(SITE.footlogo)}'"><img class="lg-light" src="oj-maestro-logo-light.png?v=182" alt="OJ Maestro" onerror="this.src='${esc(SITE.footlogo)}'">`;
   if(SITE.coffee&&$('#coffee'))$('#coffee').innerHTML=`<div class="coffeecard"><p>Free tool, made by OJ Maestro. If it saved you time, you can say thanks with a small tip.</p><a class="coffeebtn" href="${esc(SITE.coffee)}" target="_blank" rel="noopener" aria-label="Buy me a coffee"><span class="bmcfb"><svg viewBox="0 0 22 26" aria-hidden="true"><path d="M3 9h16l-1.6 14.5a2 2 0 0 1-2 1.5H6.6a2 2 0 0 1-2-1.5z" fill="#fff" stroke="#000" stroke-width="1.8" stroke-linejoin="round"/><path d="M2 9h18V6.5H2z" fill="#fff" stroke="#000" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 6.5V4.5c0-1 1-1.8 2-1.8h8c1 0 2 .8 2 1.8v2" fill="none" stroke="#000" stroke-width="1.8"/></svg> Buy me a coffee</span></a></div>`;
   const ab=$('#cogabout');
-  if(ab)ab.innerHTML=`<h2>Help &amp; feedback</h2><p class="sub" style="margin:0">Spot a bug or have an idea? Get in touch:</p>${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p>Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}<div class="abrow"><button class="linkbtn" data-act="walkshow">Quick start</button><span class="meonly"><a href="#data">Data &amp; flags</a></span></div><p class="sub">This page counts visits with GoatCounter: no cookies, nothing personal is kept.</p><p class="sub">Made by OJ Maestro · Beta 0.1 · test 193</p>`;
+  if(ab)ab.innerHTML=`<h2>Help &amp; feedback</h2><p class="sub" style="margin:0">Spot a bug or have an idea? Get in touch:</p>${SITE.email?`<a class="fbbtn" href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>`:''}${SITE.discord?`<p>Or message <b>${esc(SITE.discord)}</b> on Discord.</p>`:''}<div class="abrow"><button class="linkbtn" data-act="walkshow">Set-up guide</button><span class="meonly"><a href="#data">Data &amp; flags</a></span></div><p class="sub">This page counts visits with GoatCounter: no cookies, nothing personal is kept.</p><p class="sub">Made by OJ Maestro · Beta 0.1 · test 193</p>`;
   const fb=$('#feedback');
   if(fb&&(SITE.feedback||SITE.email||SITE.discord))fb.innerHTML=`<div class="fbline"><p class="fbq">Spot a bug or have an idea?</p>${SITE.email?`<p><a href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a></p>`:''}${SITE.discord?`<p>or message <b>${esc(SITE.discord)}</b> on Discord</p>`:''}</div>`}
 document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.classList&&t.classList.contains('ovlist'))state.ovOpen=t.open},true);
@@ -2008,9 +2008,13 @@ function renderData(){if(!ME){$('#panel').innerHTML=`<div class="card"><h2>How a
 /* test 198: set-up guide for new players (Library, buildings, runes), one step at a time */
 function guideGet(){try{return JSON.parse(localStorage.getItem('sunshine_guide_v1')||'{}')||{}}catch(_){return {}}}
 function guideSet(g){try{localStorage.setItem('sunshine_guide_v1',JSON.stringify(g))}catch(_){}}
-function guideBar(n,w){const names=['Library','Buildings','Runes'];if(w&&(guideGet().done||guideGet().lib))return '';
+function guideBar(n,w,st){st=st||[];const names=['Library','Buildings','Runes'];if(w&&(guideGet().done||guideGet().lib))return '';
   if(w&&!guideGet().on){const g=guideGet();g.on=1;guideSet(g)}
-  return `<div class="gbar"><p class="sub" style="margin:0">Setting up · <span class="nw">Step ${n+1} of 3</span></p><p class="gsteps">${names.map((x,i)=>`<span class="nw${i===n?' cur':''}">${i<n?'✓':i+1} ${x}</span>`).join('<span aria-hidden="true"> · </span>')}</p>${w?`<button type="button" class="startlink" data-act="guideskip" data-k="lib">Skip for now</button>`:''}</div>`}
+  return `<div class="gbar"><p class="sub" style="margin:0">Setting up${n>=0?` · <span class="nw">Step ${n+1} of 3</span>`:''}</p><p class="gsteps">${names.map((x,i)=>`<span class="nw${i===n?' cur':''}">${st[i]==='done'?'✓ '+x:st[i]==='skip'?x+' (skipped)':(i+1)+' '+x}</span>`).join('<span aria-hidden="true"> · </span>')}</p>${w?`<button type="button" class="startlink" data-act="guideskip" data-k="lib">Skip for now</button>`:''}</div>`}
+function guideGo(){const noL=!Object.keys(model.lib.game_upgrades).some((id)=>C.libLevel(model,setup,id)>0);
+  if(noL){state.libscreen=null;state.libhand=false;if(location.hash!=='#setup')location.hash='setup';else render()}
+  else{state.bsec='buildings';if(location.hash!=='#buildings')location.hash='buildings';else render()}
+  try{window.scrollTo(0,0)}catch(_){}}
 function guideHtml(t){
   if(t==='setup'&&state.libscreen==='quick')return '';
   const g=guideGet();if(g.done)return '';
@@ -2019,13 +2023,16 @@ function guideHtml(t){
   const steps=[
     {k:'lib',done:!noL,title:'Your Library',txt:'It adds your research bonuses to every answer.',here:t==='setup',hereTxt:'Use the buttons below.',btn:'Set my Library'},
     {k:'bld',done:!noB,title:'Your buildings',txt:'Tick the buildings you have on each island.',here:t==='buildings'&&state.bsec==='buildings',hereTxt:'Use the tick list below.',btn:'Tick my buildings'},
-    {k:'rune',done:false,title:'Your runes',txt:'A rune boosts all your fields, plantations or mines for 48 hours. If one is on in your game right now, tap the same one at the very top of this page (<b>Fields</b>, <b>Plantations</b> or <b>Mines</b>) so it glows. If none is on, just press <b>Done</b>.',here:false,btn:'Done'}];
+    {k:'rune',done:!!g.rok,title:'Your runes',txt:'A rune boosts all your fields, plantations or mines for 48 hours. If one is on in your game right now, tap the same one at the very top of this page (<b>Fields</b>, <b>Plantations</b> or <b>Mines</b>) so it glows. If none is on, just press <b>Done</b>.',here:false,btn:'Done'}];
   const n=steps.findIndex((x)=>!x.done&&!g[x.k]);
   {const key=n<0?'done':n;if(state.gKey!==undefined&&state.gKey!==key)state.gScroll=true;state.gKey=key}
   if(n===0&&state.gWelcome)return '';
+  const st=steps.map((x,i)=>x.done?'done':g[x.k]?'skip':'');
+  const sk=steps.filter((x)=>!x.done&&g[x.k]);
+  if(n<0&&sk.length)return `<div class="card guide">${guideBar(-1,false,st)}<h2>Nearly set up</h2><p style="margin:0 0 10px">You skipped: ${sk.map((x)=>x.title.replace('Your ','')).join(', ')}. The answers are more accurate once ${sk.length>1?'these are':'this is'} done. You can come back any time with <b>Set-up guide</b> at the bottom of the page.</p><div class="row"><button class="btn" data-act="guideback">Go back to them</button><button class="btn ghost" data-act="guideclose">Close</button></div></div>`;
   if(n<0)return `<div class="card guide"><h2>You’re set up</h2><p style="margin:0 0 10px">Your answers now use your buildings and Library. You can change them any time.</p><div class="row"><button class="btn" data-act="guidetry">Try Quick count</button><button class="btn ghost" data-act="guideclose">Close</button></div></div>`;
   const x=steps[n];
-  return `<div class="card guide">${guideBar(n)}<h2>${x.title}</h2><p style="margin:0 0 10px">${x.txt}${x.here?' '+x.hereTxt:''}</p><div class="row">${x.here?'':`<button class="btn" data-act="guidego" data-k="${x.k}">${x.btn}</button>`}<button class="btn ghost" data-act="guideskip" data-k="${x.k}">Skip for now</button></div></div>`}
+  return `<div class="card guide">${guideBar(n,false,st)}<h2>${x.title}</h2><p style="margin:0 0 10px">${x.txt}${x.here?' '+x.hereTxt:''}</p><div class="row">${x.here?'':`<button class="btn" data-act="guidego" data-k="${x.k}">${x.btn}</button>`}<button class="btn ghost" data-act="guideskip" data-k="${x.k}">Skip for now</button></div></div>`}
 function render(){state.gWelcome=false;try{closePick();pairClear()}catch(_){}
 
   drawRunes();
@@ -2260,12 +2267,14 @@ document.addEventListener('click',(e)=>{
   if(a==='sclear'){setup.sumRows=[];save();render()}
   if(a==='gosave'){state.bkDone=true;state.bsec='save';try{localStorage.setItem('sunshine_backup_v1','1')}catch(x){}location.hash='buildings';render();try{window.scrollTo(0,0)}catch(_){}return}
   if(a==='bkdone'){state.bkDone=true;try{localStorage.setItem('sunshine_backup_v1','1')}catch(x){}render();return}
-  if(a==='guideskip'||(a==='guidego'&&b.dataset.k==='rune')){const g=guideGet();g[b.dataset.k]=1;guideSet(g);render();return}
+  if(a==='guideskip'){const g=guideGet();g[b.dataset.k]=1;guideSet(g);render();return}
+  if(a==='guidego'&&b.dataset.k==='rune'){const g=guideGet();g.rok=1;delete g.rune;guideSet(g);render();return}
+  if(a==='guideback'){const g=guideGet();['lib','bld','rune'].forEach((k)=>delete g[k]);guideSet(g);guideGo();return}
   if(a==='guidego'){if(b.dataset.k==='lib'){state.libscreen=null;if(location.hash!=='#setup')location.hash='setup';else render()}else{state.bsec='buildings';if(location.hash!=='#buildings')location.hash='buildings';else render()}try{window.scrollTo(0,0)}catch(_){}return}
   if(a==='guideclose'){const g=guideGet();g.done=1;guideSet(g);render();return}
   if(a==='guidetry'){const g=guideGet();g.done=1;guideSet(g);state.bsec='collect';if(location.hash!=='#buildings')location.hash='buildings';else render();try{window.scrollTo(0,0)}catch(_){}return}
   if(a==='walkdone'){state.walkDone=true;try{localStorage.setItem('sunshine_walk_v1','1')}catch(x){}render()}
-  if(a==='walkshow'){state.walkDone=false;try{localStorage.removeItem('sunshine_walk_v1')}catch(x){}location.hash='setup';render();window.scrollTo(0,0)}
+  if(a==='walkshow'){guideSet({on:1});guideGo();return}
   if(a==='shel'){state.shelterOpen=state.shelterOpen===false;render()}
   if(a==='gsplit'){const g=gOf();if(g&&g.count>1){snap('Split 1 off '+model.producers[g.producer].name+' (Level '+g.level+')');g.count-=1;g.full=Math.min(g.full||0,g.count);setup.groups.push(Object.assign({},g,{id:'g'+(uid++),count:1,full:0}));save();render()}}
   if(a==='gcopy'){const act=setup.groups.filter((g)=>g.state==='active'),sh=shelterUsed();let txt='';
