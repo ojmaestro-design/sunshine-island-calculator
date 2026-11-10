@@ -7,7 +7,7 @@
 <title>Sunshine Calculator</title>
 <!-- V104: Browse products list, one saved card per product with a size strip, sizes green (can do) / grey (not yet); V92 (test 92): plain wording, ? panels, My buildings sections, Teal/Black/Light looks, separate quick-sum lines, shelter box fixed, undo stays 30 s; V91 jump highlight + bottom tabs and Back to top; V90 (checked at 340 to 430 px) slim status line + one Jump to drop-down on the island row; V89 island list folded, singular names, island remembered; V88 island-in-use line on My buildings; V87 reopen on the last tab used; V85 test build number in header chip; V84 Load my saved island button in the jump row; V83 no-building answer shows the scenario; V82 storage hint + link to My buildings on cruise cards; V81 jump links, None, reset ready counts, points totals; V80 Full now on Cruise cards; V79 warehouse box tidy; V78 warehouse wording; V77 card note shows number not code; V76 load-island keeps cards/layouts/runes; V75 undo bar sticky at the bottom; V74 2 Nov 2026: fields card, tab order, sticky picker, cruise rules v2, shortest-crop-first when a count is lowered -->
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="build" content="197">
+<meta name="build" content="198">
 <meta name="description" content="Sunshine Island Calculator. Beta 0.1 - data from the 28 Oct 2026 game update.">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=170"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=168"><meta name="apple-mobile-web-app-title" content="Sunshine">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -638,6 +638,7 @@ input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea{f
 .gltotrow{flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:14px;margin-top:10px}
 .gltotrow .glbtns{justify-content:flex-start;margin-top:0;gap:12px}
 .gltotrow .glbtns button[data-glundo][disabled]{display:none}
+.setupfold>summary{justify-content:space-between;gap:10px;cursor:pointer}.setupfold>summary::-webkit-details-marker{display:none}.setupfold>summary::after{content:'Open \25BE';font:500 15px var(--body,inherit);opacity:.85;white-space:nowrap}.setupfold[open]>summary::after{content:'Close \25B4'}
 </style>
 <!-- test 173: visitor counter (GoatCounter: no cookies, nothing personal) -->
 <script data-goatcounter="https://ojmaestro.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
@@ -653,7 +654,7 @@ input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea{f
   <div id="feedback"></div>
   <p class="footer"><span class="meonly"><a href="#data">Data &amp; flags</a> · <button class="linkbtn" data-act="widthchk">Width check</button> · </span><button class="linkbtn" data-act="walkshow">Quick start</button> · <button class="linkbtn" data-act="key" aria-expanded="false" id="keybtn">How accurate are the numbers?</button></p>
   <div id="keyline"></div>
-  <p class="footer" style="margin-top:6px">Beta&nbsp;0.1 · test&nbsp;197 · data from the 28&nbsp;Oct&nbsp;2026 game update (game&nbsp;1.3.40251)</p>
+  <p class="footer" style="margin-top:6px">Beta&nbsp;0.1 · test&nbsp;198 · data from the 28&nbsp;Oct&nbsp;2026 game update (game&nbsp;1.3.40251)</p>
   <p class="footer" style="margin-top:0">Unofficial fan tool. Not made by, or connected to, the game's developers.</p>
   <div id="footlogo" class="footlogo"></div>
   <p class="totop"><button type="button" class="btn ghost small" data-act="totop">↑ Back to top</button></p>
@@ -787,7 +788,7 @@ document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.classList&&t.c
 /* test 175: the Quick count fold stays open when the card redraws */
 document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.dataset&&t.dataset.qcm!==undefined){state.qcOpen=state.qcOpen||{};state.qcOpen[t.dataset.qcm]=t.open}},true);
 /* test 169: remember whether "Add or tick buildings" is folded */
-document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.dataset&&t.dataset.setupfold!==undefined){state.setupOpen=t.open;if(!t.open)state.tickOpen=false;try{localStorage.setItem('sunshine_setupfold_v1',t.open?'1':'0')}catch(_){}}},true);
+document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.dataset&&t.dataset.setupfold!==undefined){state.setupOpen=t.open;if(!t.open)state.tickOpen=false;}},true);
 /* test 169: ticks follow the level as you type (no need to press Enter) */
 let plT=null;function plSaid(el){clearTimeout(plT);const v=parseInt(el.value,10),good=v>=1&&v<=200,ok=el.closest('label')&&el.closest('label').querySelector('.plok');if(!ok)return;ok.textContent=good?'Saved \u2713':(el.value===''?'Cleared':'Type 1 to 200');ok.style.color=good||el.value===''?'':'var(--bad)'}
 document.addEventListener('change',(e)=>{const el=e.target;if(el&&el.dataset&&el.dataset.plvl!==undefined)plSaid(el)});
@@ -1041,7 +1042,8 @@ function renderBuildings(){
     const addHtml=`<div class="card addcard"><h2>+ Add buildings</h2>${baPick(isl,pl,A.producer)}<div class="grid" style="margin-top:10px">
     <label>How many<select data-ba="count">${countOpts(A.count,AP)}</select></label>
     <label>Level<select data-ba="level">${opts(levelsOf(AP),A.level)}</select></label></div>
-    <div class="row" style="margin-top:10px"><button class="btn" data-act="gadd">Add</button>${noStore(AP)?'<span class="sub" style="align-self:center">This building cannot be stored in the game.</span>':'<button class="btn ghost" data-act="gadd-store">Add 1 that\u2019s already in storage</button>'}<span class="sub addmsg" id="addmsg" role="status" aria-live="polite">${esc(state.addMsg||'')}</span></div>${!noStore(AP)&&setup.groups.some((g)=>g.producer===A.producer&&g.state==='active')?'<p class="sub" style="margin:8px 0 0">Moving one you already have? Use <b>Put 1 in storage</b> on its line below. <b>Add 1 that\u2019s already in storage</b> adds one more.</p>':''}</div>`;
+    <div class="row" style="margin-top:10px"><button class="btn" data-act="gadd">Add</button>${noStore(AP)?'<span class="sub" style="align-self:center">This building cannot be stored in the game.</span>':'<button class="btn ghost" data-act="gadd-store">Add 1 that\u2019s already in storage</button>'}<span class="sub addmsg" id="addmsg" role="status" aria-live="polite">${esc(state.addMsg||'')}</span></div>${!noStore(AP)&&setup.groups.some((g)=>g.producer===A.producer&&g.state==='active')?'<p class="sub" style="margin:8px 0 0">Moving one you already have? Use <b>Put 1 in storage</b> on its line above. <b>Add 1 that\u2019s already in storage</b> adds one more.</p>':''}</div>`;
+    let foldHtml='';
     {const ownedOf=(pid)=>setup.groups.filter((g)=>g.producer===pid);
       const openT=!!state.tickOpen;
       const pend=!setup.groups.some((g)=>g.island===isl);
@@ -1068,11 +1070,11 @@ function renderBuildings(){
           if(state.tickAsk===pid)tk+=`<div class="rune-ask tickask">Remove all ${tot} ${esc(P.name.toLowerCase())}? <button class="btn small" data-act="tickyes" data-p="${esc(pid)}">Yes</button><button class="btn ghost small" data-act="tickno">No</button></div>`});
         tk+=`<div class="row" style="margin-top:10px"><button class="btn" data-act="tickclose">Done</button></div>`}
       if(pend)html+=tk+'</div>'+addHtml;
-      else{const op=state.setupOpen===undefined?(()=>{try{return localStorage.getItem('sunshine_setupfold_v1')==='1'}catch(e){return false}})():state.setupOpen;
-        html+=`<details class="card setupfold" data-setupfold${op||openT?' open':''}><summary>Add or tick buildings</summary>${tk}</div>${addHtml}</details>`}}
+      else{const op=!!state.setupOpen;
+        foldHtml=`<details class="card setupfold" data-setupfold${op||openT?' open':''}><summary><span>Add new buildings</span></summary><p class="sub" style="margin:0 0 10px">Only for buildings you don\u2019t have yet. To change a level or a number, use the lines above.</p>${tk}</div>${addHtml}</details>`}}
     const order=producersOf(isl).map((p)=>p.id);
     const have=order.filter((p)=>act.some((g)=>g.producer===p));
-    if(!have.length)html+='<div class="card"><p class="empty">No buildings here yet. Add them above.</p></div>';
+    if(!have.length)html+=`<div class="card"><p class="empty">No buildings here yet. Add them ${foldHtml?'below':'above'}.</p></div>`;
     state.bsel=state.bsel||{};
     const selId=have.includes(state.bsel[isl])||state.bsel[isl]==='all'?state.bsel[isl]:(have[0]||'all');
     if(have.length>1)html+=`<div class="card"><div class="lt" style="font-size:14px;opacity:.8">Show one building at a time</div><div class="cchips lchips">${['all'].concat(have).map((x)=>`<button type="button" class="cchip lchip isl-${esc(String(isl).toLowerCase())}${x===selId?' on':''}" data-act="bpick" data-v="${esc(x)}" aria-pressed="${x===selId}">${x==='all'?'All':esc(model.producers[x].name)}</button>`).join('')}</div></div>`;
@@ -1090,6 +1092,7 @@ function renderBuildings(){
         </div>`});
       if(canMore)html+=`<div class="row" style="margin-top:6px"><button class="btn ghost small" data-act="lvadd" data-p="${esc(pid)}">+ Add another level</button></div>`;
       html+='</div>'});
+    html+=foldHtml;
   /* Storage now sits at the bottom of the Buildings section */
     html+=`<div class="card" id="j-storage"><div class="row" style="justify-content:space-between"><h2 style="margin:0">Storage</h2><label style="flex-direction:row;align-items:center;gap:8px;font-size:14px">Slots on ${esc(pretty(isl))} <input type="number" min="0" step="1" style="width:76px" data-cap="${esc(isl)}" value="${si.cap!==null?si.cap:''}" placeholder="?"></label></div><div class="tiles">`;
     sto.forEach((g)=>{for(let k=0;k<g.count;k++)html+=`<div class="tile" data-gid="${g.id}"><b>${esc(model.producers[g.producer].name)}</b><span>Level ${g.level}</span><button class="btn ghost small" data-act="gtake">Put back</button></div>`});
