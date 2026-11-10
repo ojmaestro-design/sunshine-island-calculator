@@ -639,6 +639,8 @@ input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea{f
 .gltotrow .glbtns{justify-content:flex-start;margin-top:0;gap:12px}
 .gltotrow .glbtns button[data-glundo][disabled]{display:none}
 .setupfold>summary{justify-content:space-between;gap:10px;cursor:pointer}.setupfold>summary::-webkit-details-marker{display:none}.setupfold>summary::after{content:'Open \25BE';font:500 15px var(--body,inherit);opacity:.85;white-space:nowrap}.setupfold[open]>summary::after{content:'Close \25B4'}
+.setupfold .card[class*="isl-"],.setupfold>.card{border:0;background:transparent;padding-left:0;padding-right:0;box-shadow:none}
+.guide .nw{white-space:nowrap}
 </style>
 <!-- test 173: visitor counter (GoatCounter: no cookies, nothing personal) -->
 <script data-goatcounter="https://ojmaestro.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
@@ -1042,7 +1044,7 @@ function renderBuildings(){
     const addHtml=`<div class="card addcard"><h2>+ Add buildings</h2>${baPick(isl,pl,A.producer)}<div class="grid" style="margin-top:10px">
     <label>How many<select data-ba="count">${countOpts(A.count,AP)}</select></label>
     <label>Level<select data-ba="level">${opts(levelsOf(AP),A.level)}</select></label></div>
-    <div class="row" style="margin-top:10px"><button class="btn" data-act="gadd">Add</button>${noStore(AP)?'<span class="sub" style="align-self:center">This building cannot be stored in the game.</span>':'<button class="btn ghost" data-act="gadd-store">Add 1 that\u2019s already in storage</button>'}<span class="sub addmsg" id="addmsg" role="status" aria-live="polite">${esc(state.addMsg||'')}</span></div>${!noStore(AP)&&setup.groups.some((g)=>g.producer===A.producer&&g.state==='active')?'<p class="sub" style="margin:8px 0 0">Moving one you already have? Use <b>Put 1 in storage</b> on its line above. <b>Add 1 that\u2019s already in storage</b> adds one more.</p>':''}</div>`;
+    <div class="row" style="margin-top:10px"><button class="btn" data-act="gadd">Add</button><span class="sub addmsg" id="addmsg" role="status" aria-live="polite">${esc(state.addMsg||'')}</span></div></div>`;
     let foldHtml='';
     {const ownedOf=(pid)=>setup.groups.filter((g)=>g.producer===pid);
       const openT=!!state.tickOpen;
@@ -2002,6 +2004,22 @@ function renderData(){if(!ME){$('#panel').innerHTML=`<div class="card"><h2>How a
   $('#panel').innerHTML=html;
 }
 
+/* test 198: set-up guide for new players (Library, buildings, runes), one step at a time */
+function guideGet(){try{return JSON.parse(localStorage.getItem('sunshine_guide_v1')||'{}')||{}}catch(_){return {}}}
+function guideSet(g){try{localStorage.setItem('sunshine_guide_v1',JSON.stringify(g))}catch(_){}}
+function guideHtml(t){
+  if(t==='setup'&&state.libscreen==='quick')return '';
+  const g=guideGet();if(g.done)return '';
+  const noB=!setup.groups.length,noL=!Object.keys(model.lib.game_upgrades).some((id)=>C.libLevel(model,setup,id)>0);
+  if(!g.on){if(!noB&&!noL)return '';g.on=1;guideSet(g)}
+  const steps=[
+    {k:'lib',done:!noL,title:'Your Library',txt:'It adds your research bonuses to every answer.',here:t==='setup',hereTxt:'Use the buttons below.',btn:'Set my Library'},
+    {k:'bld',done:!noB,title:'Your buildings',txt:'Tick the buildings you have on each island.',here:t==='buildings'&&state.bsec==='buildings',hereTxt:'Use the tick list below.',btn:'Tick my buildings'},
+    {k:'rune',done:false,title:'Your runes',txt:'Tap the rune buttons at the very top (Fields, Plantations, Mines) so they match the game.',here:false,btn:'My runes match the game'}];
+  const n=steps.findIndex((x)=>!x.done&&!g[x.k]);
+  if(n<0)return `<div class="card guide"><h2>You’re set up</h2><p style="margin:0 0 10px">Your answers now use your buildings and Library. You can change them any time.</p><div class="row"><button class="btn" data-act="guidetry">Try Quick count</button><button class="btn ghost" data-act="guideclose">Close</button></div></div>`;
+  const x=steps[n];
+  return `<div class="card guide"><p class="sub" style="margin:0 0 2px">Setting up · <span class="nw">Step ${n+1} of ${steps.length}</span></p><h2>${x.title}</h2><p style="margin:0 0 10px">${x.txt}${x.here?' '+x.hereTxt:''}</p><div class="row">${x.here?'':`<button class="btn" data-act="guidego" data-k="${x.k}">${x.btn}</button>`}<button class="btn ghost" data-act="guideskip" data-k="${x.k}">Skip for now</button></div></div>`}
 function render(){try{closePick();pairClear()}catch(_){}
 
   drawRunes();
@@ -2013,7 +2031,9 @@ function render(){try{closePick();pairClear()}catch(_){}
    const mL='<b>Your Library levels are not set yet.</b> These numbers leave out your Library bonuses until you set them. Open <a href="#setup">Library &amp; setup</a> and press Start here.';
    if(['guild','cruise'].includes(t)){if(noB&&noL)nm='<b>Set up your Library and buildings first.</b> The answers on this tab come from your Library levels and the buildings you own. Start with <a href="#setup">Library &amp; setup</a>, then <a href="#buildings">My buildings</a>.';else if(noL)nm=mL;else if(noB)nm='<b>You have no buildings yet.</b> The answers on this tab come from the buildings you own. Add them in <a href="#buildings">My buildings</a>.'}
    else if(t==='lookup'&&noL)nm=mL;
-   if(nm)$('#panel').insertAdjacentHTML('afterbegin','<div class="card" id="setupnote"><p style="margin:0">'+nm+'</p></div>')
+   const gd=guideHtml(t);
+   if(gd)$('#panel').insertAdjacentHTML('afterbegin',gd);
+   else if(nm)$('#panel').insertAdjacentHTML('afterbegin','<div class="card" id="setupnote"><p style="margin:0">'+nm+'</p></div>')
    else if(['buildings','guild','cruise','lookup','leader'].includes(t)&&!(t==='buildings'&&state.bsec==='save')){const bn=bkNag();if(bn)$('#panel').insertAdjacentHTML('afterbegin',bn)}}
   const isl=t==='buildings'?state.bIsland:t==='lookup'?(state.lookup||{}).island:null;
   if(isl)document.querySelectorAll('#panel .card').forEach((c)=>c.classList.add('isl-'+String(isl).toLowerCase()));
@@ -2234,6 +2254,10 @@ document.addEventListener('click',(e)=>{
   if(a==='sclear'){setup.sumRows=[];save();render()}
   if(a==='gosave'){state.bkDone=true;state.bsec='save';try{localStorage.setItem('sunshine_backup_v1','1')}catch(x){}location.hash='buildings';render();try{window.scrollTo(0,0)}catch(_){}return}
   if(a==='bkdone'){state.bkDone=true;try{localStorage.setItem('sunshine_backup_v1','1')}catch(x){}render();return}
+  if(a==='guideskip'||(a==='guidego'&&b.dataset.k==='rune')){const g=guideGet();g[b.dataset.k]=1;guideSet(g);render();return}
+  if(a==='guidego'){if(b.dataset.k==='lib'){state.libscreen=null;if(location.hash!=='#setup')location.hash='setup';else render()}else{state.bsec='buildings';if(location.hash!=='#buildings')location.hash='buildings';else render()}try{window.scrollTo(0,0)}catch(_){}return}
+  if(a==='guideclose'){const g=guideGet();g.done=1;guideSet(g);render();return}
+  if(a==='guidetry'){const g=guideGet();g.done=1;guideSet(g);state.bsec='collect';if(location.hash!=='#buildings')location.hash='buildings';else render();try{window.scrollTo(0,0)}catch(_){}return}
   if(a==='walkdone'){state.walkDone=true;try{localStorage.setItem('sunshine_walk_v1','1')}catch(x){}render()}
   if(a==='walkshow'){state.walkDone=false;try{localStorage.removeItem('sunshine_walk_v1')}catch(x){}location.hash='setup';render();window.scrollTo(0,0)}
   if(a==='shel'){state.shelterOpen=state.shelterOpen===false;render()}
