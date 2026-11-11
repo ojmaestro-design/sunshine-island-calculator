@@ -7,7 +7,7 @@
 <title>Sunshine Calculator</title>
 <!-- V104: Browse products list, one saved card per product with a size strip, sizes green (can do) / grey (not yet); V92 (test 92): plain wording, ? panels, My buildings sections, Teal/Black/Light looks, separate quick-sum lines, shelter box fixed, undo stays 30 s; V91 jump highlight + bottom tabs and Back to top; V90 (checked at 340 to 430 px) slim status line + one Jump to drop-down on the island row; V89 island list folded, singular names, island remembered; V88 island-in-use line on My buildings; V87 reopen on the last tab used; V85 test build number in header chip; V84 Load my saved island button in the jump row; V83 no-building answer shows the scenario; V82 storage hint + link to My buildings on cruise cards; V81 jump links, None, reset ready counts, points totals; V80 Full now on Cruise cards; V79 warehouse box tidy; V78 warehouse wording; V77 card note shows number not code; V76 load-island keeps cards/layouts/runes; V75 undo bar sticky at the bottom; V74 2 Nov 2026: fields card, tab order, sticky picker, cruise rules v2, shortest-crop-first when a count is lowered -->
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="build" content="203">
+<meta name="build" content="204">
 <meta name="description" content="Sunshine Island Calculator. Beta 0.1 - data from the 28 Oct 2026 game update.">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=170"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=168"><meta name="apple-mobile-web-app-title" content="Sunshine">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -660,7 +660,7 @@ input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea{f
   <div id="feedback"></div>
   <p class="footer"><span class="meonly"><a href="#data">Data &amp; flags</a> · <button class="linkbtn" data-act="widthchk">Width check</button> · </span><button class="linkbtn" data-act="walkshow">Set-up guide</button> · <button class="linkbtn" data-act="key" aria-expanded="false" id="keybtn">How accurate are the numbers?</button></p>
   <div id="keyline"></div>
-  <p class="footer" style="margin-top:6px">Beta&nbsp;0.1 · test&nbsp;203 · data from the 28&nbsp;Oct&nbsp;2026 game update (game&nbsp;1.3.40251)</p>
+  <p class="footer" style="margin-top:6px">Beta&nbsp;0.1 · test&nbsp;204 · data from the 28&nbsp;Oct&nbsp;2026 game update (game&nbsp;1.3.40251)</p>
   <p class="footer" style="margin-top:0">Unofficial fan tool. Not made by, or connected to, the game's developers.</p>
   <div id="footlogo" class="footlogo"></div>
   <p class="totop"><button type="button" class="btn ghost small" data-act="totop">↑ Back to top</button></p>
@@ -1608,6 +1608,36 @@ function boostPlan(U,need,rounds,allowInstant){const units=[],owner=[];
   const sol=solveMCK(units,need);if(!sol)return null;const items={},modes={};
   sol.picks.forEach((k,i)=>{const o=units[i][k];if(o.cost)items[o.item||'boost item']=(items[o.item||'boost item']||0)+o.cost;if(o.mode==='fine'||o.mode==='instant'){const n=U[owner[i]].g.level;const key=pretty(o.mode)+' on Level '+n;modes[key]=(modes[key]||0)+1}});
   return {cost:sol.cost,items,modes}}
+/* test 204: choices to reach a Cruise amount in R rounds, cheapest first: storage, Fine/Instant, the smallest upgrade, new Level 1 buildings, bigger upgrades */
+function cvPlan(U,need,R,limit,pids,primOf,gainOf,per){const out=[],memo={};
+  const unit=(pid,lv)=>{const k=pid+'|'+lv;if(k in memo)return memo[k];const P=model.producers[pid],prim=primOf(P),ml=modeList(P,prim),m=ml.includes('regular')?'regular':ml.includes('none')?'none':ml[0];
+    const r=C.resolve(model,setup,{producer:pid,product:prim,mode:m,level:lv,slider:slFor({producer:pid,level:lv,product:''},P,prim,m,limit)});return memo[k]=r.ok?gainOf(r):0};
+  const nmOf=(pid,k)=>{const P=model.producers[pid];return (k===1?bsing(P.name):P.name).toLowerCase()};
+  const enough=(v)=>v*R>=need-1e-9;
+  /* 1 storage */
+  {const st=[];setup.groups.filter((g)=>g.state==='storage'&&pids.includes(g.producer)).forEach((g)=>{for(let i=0;i<g.count;i++)st.push({pid:g.producer,lv:g.level,v:unit(g.producer,g.level)})});
+   st.sort((x,y)=>y.v-x.v);let v=per;const used={};for(const x of st){if(enough(v))break;v+=x.v;const k=x.pid+'|'+x.lv;used[k]=(used[k]||0)+1}
+   if(Object.keys(used).length&&enough(v))out.push(`Bring back ${Object.entries(used).map(([k,n])=>{const [pid,lv]=k.split('|');return n+' Level '+lv+' '+esc(nmOf(pid,n))}).join(' and ')} from storage.`)}
+  /* 2 Fine / Instant */
+  if(U.some((x)=>x.opts.some((o)=>o.cost>0))){const fmt=(p)=>Object.entries(p.items).map(([k,v])=>`${nf(v)} × ${esc(k)}`).join(', ');
+    const f=boostPlan(U,need,R,false),a=boostPlan(U,need,R,true);
+    if(f)out.push(`Use Fine: ${fmt(f)}.`);if(a&&(!f||a.cost<f.cost))out.push(`Use Instant: ${fmt(a)}.`)}
+  /* 3 the smallest upgrade: one building, one level at a time */
+  const bl=[];U.forEach((x)=>{for(let i=0;i<x.g.count;i++)bl.push({pid:x.g.producer,from:x.g.level,lv:x.g.level})});
+  let found=false;{let v=per;const max=(pid)=>model.producers[pid].maxLevel||0;
+    for(let step=0;step<3&&!enough(v);step++){let bi=-1,bd=0;bl.forEach((b,i)=>{if(b.lv>=max(b.pid))return;const d=unit(b.pid,b.lv+1)-unit(b.pid,b.lv);if(d>bd+1e-9){bd=d;bi=i}});if(bi<0)break;v+=bd;bl[bi].lv++}
+    if(enough(v)&&v>per){found=true;const grp={};bl.filter((b)=>b.lv>b.from).forEach((b)=>{const k=b.pid+'|'+b.from+'|'+b.lv;grp[k]=(grp[k]||0)+1});
+      out.push(`Upgrade ${Object.entries(grp).map(([k,n])=>{const [pid,f,t]=k.split('|');return n+' Level '+f+' '+esc(nmOf(pid,n))+' to Level '+t}).join(' and ')}.`)}}
+  /* 4 new Level 1 buildings */
+  {const bestP=pids.map((pid)=>({pid,v:unit(pid,1)})).filter((x)=>x.v>0).sort((x,y)=>y.v-x.v)[0];
+   if(bestP){const extra=Math.ceil((need-per*R)/(bestP.v*R)-1e-9),P=model.producers[bestP.pid],cp=capOf(P),owned=setup.groups.filter((g)=>g.producer===bestP.pid).reduce((n,g)=>n+g.count,0);
+     if(extra>0)out.push(cp!==null&&owned+extra>cp?`Adding new buildings would not be enough: only ${cp} ${esc(P.name.toLowerCase())} are allowed.`:`Add ${extra} Level 1 ${esc(nmOf(bestP.pid,extra))}.`)}}
+  /* 5 bigger upgrades */
+  if(!found){const grp=U.slice().sort((a,b)=>b.g.count-a.g.count)[0];if(grp){const P=grp.P;let lv=null;
+    for(let l=grp.g.level+1;l<=(P.maxLevel||0);l++){if(enough(per+grp.g.count*(unit(P.id,l)-unit(P.id,grp.g.level)))){lv=l;break}}
+    if(lv)out.push(`Or upgrade ${grp.g.count===1?'your':'all '+grp.g.count} Level ${grp.g.level} ${esc(nmOf(P.id,grp.g.count))} to Level ${lv}.`)}}
+  if(!out.length)out.push('None of these would be enough on their own.');
+  return out}
 function taskAnswer(t,quick){
   const N=Math.max(0,parseInt(t.target,10)||0);if(!N||!t.product)return null;
   if(isOther(t.product))return {N,nm:pretty(t.product),opts:[],limit:null,other:true,head:{cls:'info',text:otherNote(t.product)}};
@@ -1632,35 +1662,18 @@ function taskAnswer(t,quick){
   if(N-ready<=0){res.head={cls:'good',text:`Ready now: ${nf(ready)} waiting, enough for ${nf(N)}.`};return res}
   const r=Math.ceil(need/per-1e-9),time=cyc?r*cyc:0,fits=!limit||!cyc||time<=limit;
   res.head=inst?(fits?{cls:(limit0&&cyc>limit0)?'bad':'good',text:`Instant OK: ${tv(per,tag)} per cycle (${mins(cyc)}), enough for ${nf(N)}.${limit0&&cyc>limit0?' One cycle is over the '+mins(limit0)+' limit.':''}`}:{cls:'bad',text:`Not instant: ${tv(per,tag)} per cycle, short by ${nf(N-per)}. Needs ${r} cycles, about ${mins(time)}.`}):{cls:fits?'good':'bad',text:`Needs ${r} cycle${r===1?'':'s'}${cyc?', about '+mins(time):''}${limit?(fits?'. Fits the '+mins(limit)+' limit.':'. Over the '+mins(limit)+' limit.'):'.'}`};
+  res.rounds=r;res.fits=fits;
   if(!fits&&!inst&&limit&&cyc&&U.some((x)=>x.opts.some((o)=>o.cost>0))){const rT0=Math.max(1,Math.floor(limit/cyc));
-    const ff=boostPlan(U,need,rT0,false),aa=ff?null:boostPlan(U,need,rT0,true),pp=ff||aa;
-    if(pp)res.via={mode:ff?'Fine':'Instant',items:Object.entries(pp.items).map(([k,v])=>`${nf(v)} × ${esc(k)}`).join(', ')}}
+    for(let k=1;k<=rT0&&!res.via;k++){const ff=boostPlan(U,need,k,false),aa=ff?null:boostPlan(U,need,k,true),pp=ff||aa;
+      if(pp)res.via={mode:ff?'Fine':'Instant',rounds:k,items:Object.entries(pp.items).map(([k2,v])=>`${nf(v)} × ${esc(k2)}`).join(', ')}}}
   if(quick)return res;
   {const agg={};let outAgg=0;U.forEach((x)=>{outAgg+=x.g.count*x.base.gain;(x.base.inp||[]).forEach((i)=>{const a=agg[i.product]=agg[i.product]||{q:0,h:0,tag:'seen'};a.q+=x.g.count*i.qty;if(x.base.cyc)a.h+=x.g.count*i.qty*60/x.base.cyc;a.tag=C.worst(a.tag,i.tag)})});
    res.inputs=outAgg>0?Object.entries(agg).map(([p,a])=>({product:p,need:Math.ceil(a.q/outAgg*Math.max(need,0)-1e-9),tag:a.tag,useHr:a.h})):[]}
   const rT=limit&&cyc?Math.max(1,Math.floor(limit/cyc)):1;
   res.stk.forEach((k)=>res.opts.unshift(`Use a stack of <b>x${k.to}</b> on your Level ${k.lv} ${esc(k.nm.toLowerCase())}, so each cycle fits the time limit.`));
-  res.opts.push(`Now: ${nf(ready)} ready, ${tv(per,tag)} more per cycle (${cyc?mins(cyc)+' each':'instant'}).`);
-  if(fits&&limit)return res;
-  const hasBoost=U.some((x)=>x.opts.some((o)=>o.cost>0));
-  const fmt=(p)=>Object.entries(p.items).map(([k,v])=>`${nf(v)} × ${esc(k)}`).join(', ');
-  const how=(p)=>Object.entries(p.modes).map(([k,v])=>v+' × '+k).join(', ');
-  if(hasBoost){
-    const first=(inst)=>{if(limit&&cyc){const p=boostPlan(U,need,rT,inst);return p?{k:rT,p}:null}for(let k=1;k<r;k++){const p=boostPlan(U,need,k,inst);if(p)return {k,p}}return null};
-    const f=first(false),a=first(true);
-    const line=(lab,x)=>`${lab}: ${x.k===1?'1 cycle':x.k+' cycles'}${cyc?', about '+mins(x.k*cyc):''}. Use ${fmt(x.p)}${how(x.p)?' ('+how(x.p)+')':''}.`;
-    if(f)res.opts.push(line('Fine',f));
-    if(a&&(!f||a.k<f.k||a.p.cost<f.p.cost))res.opts.push(line('Instant',a));
-    if(!f&&!a)res.opts.push(`Fine or Instant would not speed it up.`)}
-  // more buildings
-  const best=U.reduce((a,x)=>{const o=x.opts.reduce((p,q)=>q.gain>p.gain?q:p);return !a||o.gain>a.gain?{gain:o.gain,P:x.P,level:x.g.level,mode:o.mode}:a},null);
-  const stillNeed=need-per*rT;
-  if(stillNeed>0&&best){const extra=Math.ceil(stillNeed/best.gain),owned=setup.groups.filter((g)=>g.producer===best.P.id).reduce((n,g)=>n+g.count,0);
-    res.opts.push(`To finish in ${rT===1?'1 cycle':rT+' cycles'}: add about ${extra} more ${extra===1?bsing(best.P.name).toLowerCase():best.P.name.toLowerCase()} like your best (Level ${best.level}).${best.P.maxOwned!==null&&owned+extra>best.P.maxOwned?` <span class="bad">Only ${best.P.maxOwned} allowed.</span>`:''}`)}
-  const grp=U.slice().sort((a,b)=>b.g.count-a.g.count)[0];
-  if(grp&&stillNeed>0){const P=grp.P,m=grp.base.mode;let lv=null;
-    for(let l=grp.g.level+1;l<=P.maxLevel;l++){const rr=C.resolve(model,setup,{producer:P.id,product:primOf(P),mode:m,level:l,slider:1});if(rr.ok&&grp.g.count*gainOf(rr)*rT+(per-grp.g.count*grp.base.gain)*rT>=need){lv=l;break}}
-    res.opts.push(lv?`Or level up ${grp.g.count===1?'your':'all '+grp.g.count} Level ${grp.g.level} ${P.name.toLowerCase()} to Level ${lv}.`:`Levelling up alone would not be enough.`)}
+  const plan=(R)=>cvPlan(U,need,R,limit,pids,primOf,gainOf,per);
+  if(fits&&limit){if(r>1&&!inst)res.one=plan(1);return res}
+  res.opts=res.opts.concat(plan(rT));
   return res}
 /* ---- CRUISE: short form + saved cards. Card list and rules come from cruise_cards_clean_30oct.json and cruise_rules.json ---- */
 const cmpHead=(t)=>String(t==null?'':t).replace(/^Needs (\d+) cycles?, about (.+?)\. Fits the (.+?) limit\.$/,(m,n,tm,l)=>'<span class="nw">'+n+(n==='1'?' cycle':' cycles')+' = '+tm+'</span> <span class="nw">· fits the '+l+' time limit</span>').replace(/^Needs (\d+) cycles?, about (.+?)\. Over the (.+?) limit\.$/,(m,n,tm,l)=>'· takes longer than <span class="nw">the '+l+' time limit</span>');
@@ -1758,11 +1771,11 @@ function cvSizes(id){const rows=cfStepRows(id).filter((x)=>x.amount!=null&&(x.st
 function cvUnseen(id){return cfStepRows(id).filter((x)=>x.amount==null).length}
 function cvIds(){const R=((files.cruiseRules||{}).products)||{};const S=new Set(Object.keys(R));cardList().forEach((c)=>{if(c.type!=='other_task')S.add(c.id)});
   return [...S].filter((id)=>!isOther(id)&&cruiseNames()[id])}
-function cvReady(){if(state.cvReady)return state.cvReady;let v=null;try{v=localStorage.getItem('sunshine_cvready_v1')}catch(_){}
+function cvReady(){return 'scratch';if(state.cvReady)return state.cvReady;let v=null;try{v=localStorage.getItem('sunshine_cvready_v1')}catch(_){}
   if(v!=='scratch'&&v!=='ready')v=Object.values(setup.cellState||{}).some((x)=>x&&x.full>0)?'ready':'scratch';return state.cvReady=v}
 /* works every card out; "From scratch" ignores what is waiting to be collected */
-function cvCompute(full){const keep=setup.cellState;const scratch=cvReady()==='scratch';if(scratch)setup.cellState={};
-  const out={};try{cvIds().forEach((id)=>{const t=cvTime(id),calc=canCalc(id),sizes=cvSizes(id);
+function cvCompute(full,only){const keep=setup.cellState;const scratch=cvReady()==='scratch';if(scratch)setup.cellState={};
+  const out={};try{(only?[only]:cvIds()).forEach((id)=>{const t=cvTime(id),calc=canCalc(id),sizes=cvSizes(id);
     out[id]={id,t,calc,lock:pLock(id),unseen:cvUnseen(id),sizes:sizes.map((sz)=>{let a=null;if(calc&&t){try{a=taskAnswer({product:id,target:sz.amount,h:Math.floor(t/60),m:t%60,instant:false,have:{}},!full)}catch(_){a=null}}
       return Object.assign({},sz,{a,ok:a&&a.head?(a.head.cls==='good'||!!a.via):null,via:a&&a.head&&a.head.cls!=='good'&&a.via?a.via:null})})}})}finally{if(scratch)setup.cellState=keep}
   return out}
@@ -1790,7 +1803,7 @@ function cvNoBuild(p){if(!p.calc||!p.sizes.length)return null;const pids=p.id===
   if(p.t)h+=`<p class="sub" style="margin:0 0 6px">Time limit: <b>${limitText(p.t)}</b></p>`;
   h+=`<p style="margin:0 0 6px">${p.id==='manure'?'You have no animal buildings yet.':sto?`Your ${esc(sto===1?one:P.name.toLowerCase())} ${sto===1?'is':'are'} in storage. Put ${sto===1?'it':'them'} back in <a href="#buildings" data-sec="buildings">My buildings</a> to count ${sto===1?'it':'them'}.`:`You have no ${esc(one)} yet${u>1?' (it unlocks at level '+u+')':''}.`}</p>`;
   h+=`<p class="sub" style="margin:0 0 6px">Sizes seen: ${p.sizes.map((s)=>nf(s.amount)+(s.chk?' (not checked)':'')).join(', ')}${p.unseen?` · ${p.unseen} more not seen yet`:''}</p>`;
-  const D=p.t?cvCompute(true)[p.id]:p,nx=D&&D.sizes.find((s)=>s.ok===false);
+  const D=p.t?cvCompute(true,p.id)[p.id]:p,nx=D&&D.sizes.find((s)=>s.ok===false);
   if(nx&&nx.a){const fix=(nx.a.opts||[]).filter((o)=>!/^Now:/.test(o));if(fix.length)h+=`<p style="margin:8px 0 2px"><b>To reach ${nf(nx.amount)}:</b></p><ul class="opt">${fix.map((o)=>`<li>${o}</li>`).join('')}</ul>`}
   if(!sto)h+=`<p class="sub" style="margin:8px 0 0"><a href="#buildings" data-sec="buildings">Add it in My buildings</a> once you have it.</p>`;
   return h+'</div>'}
@@ -1803,18 +1816,19 @@ function cvDetail(p){const lk=p.lock;
   const nb0=cvNoBuild(p);if(nb0)return nb0.replace('<div class="cvdet">','<div class="cvdet">'+lkNote);const nm=cruiseNames()[p.id]||pretty(p.id);let h='<div class="cvdet">'+lkNote;
   if(p.t)h+=`<p class="sub" style="margin:0 0 6px">Time limit: <b>${limitText(p.t)}</b></p>`;
   if(!p.sizes.length)h+=`<p class="sub">No amounts for ${esc(nm.toLowerCase())} have been seen on a real task yet. If you see one, please send a screenshot (Help and feedback).</p>`;
-  else{const D=p.calc&&p.t?cvCompute(true)[p.id]:p;
-    {     const li=(s)=>`<li><b>${nf(s.amount)}</b>${s.chk?' <span class="chip">not checked</span>':''}: ${s.a&&s.a.head?(s.ok?(s.via?`<span class="good">✓ with ${s.via.mode}</span> <span class="sub">· uses ${s.via.items}</span>`:'<span class="good nw">✓ can do</span>'):'<span class="cvno">not yet</span>')+(s.via?'':' <span class="sub">'+cmpHead(s.a.head.text)+'</span>'):'<span class="sub">cannot work out</span>'}</li>`;
+  else{const D=p.calc&&p.t?cvCompute(true,p.id)[p.id]:p;
+    {     const rd=(a)=>a.rounds===1?'in one round':'needs '+a.rounds+' rounds';const ln=(a)=>a&&a.cyc?(a.rounds===1?` <span class="sub nw">(${mins(a.cyc)})</span>`:` <span class="sub nw">of ${mins(a.cyc)}</span>`):'';
+     const li=(s)=>`<li><b>${nf(s.amount)}</b>${s.chk?' <span class="chip">not checked</span>':''}: ${s.a&&s.a.head?(s.ok?(s.via?`<span class="good nw">✓ with ${s.via.mode}</span> <span class="good nw">${s.via.rounds===1?'in one round':'in '+s.via.rounds+' rounds'}</span> <span class="sub nw">· uses ${s.via.items}</span>`:`<span class="good nw">✓ ${rd(s.a)}</span>${ln(s.a)}`):`<span class="cvno">not in the time</span> <span class="sub nw">(${limitText(p.t)})</span>`):'<span class="sub">cannot work out</span>'}</li>`;
      const i0=D.sizes.findIndex((s)=>s.ok===false),rest=i0<0?[]:D.sizes.slice(i0+1).filter((s)=>s.ok===false);
-     h+='<ul class="cvsizes">'+D.sizes.map((s,i)=>(i0>=0&&i>i0&&s.ok===false)?'':li(s)).join('')+(rest.length?`<li><b>${rest.map((s)=>nf(s.amount)).join(', ')}</b>: <span class="cvno">not yet</span> <span class="sub">(bigger than ${nf(D.sizes[i0].amount)})</span></li>`:'')+'</ul>';
+     h+='<ul class="cvsizes">'+D.sizes.map((s,i)=>(i0>=0&&i>i0&&s.ok===false)?'':li(s)).join('')+(rest.length?`<li><b>${rest.map((s)=>nf(s.amount)).join(', ')}</b>: <span class="cvno">not in the time</span> <span class="sub">(bigger than ${nf(D.sizes[i0].amount)})</span></li>`:'')+'</ul>';
      const sk=(D.sizes.find((s)=>s.ok&&s.a&&s.a.stk&&s.a.stk.length)||{}).a;
      if(sk)h+=sk.stk.map((k)=>`<p style="margin:6px 0 0">Use a stack of <b>x${k.to}</b> on your Level ${k.lv} ${esc(k.nm.toLowerCase())}, so each cycle fits the time limit.</p>`).join('')}
     if(p.unseen)h+=`<p class="sub" style="margin:4px 0 0">${p.unseen} more size${p.unseen===1?'':'s'} ${p.unseen===1?'hasn\u2019t':'haven\u2019t'} been seen in the game yet.</p>`;
+    const o1=D.sizes.find((s)=>s.ok&&!s.via&&s.a&&s.a.one&&s.a.one.length);
+    if(o1)h+=`<p style="margin:8px 0 2px"><b>To do ${nf(o1.amount)} in one round:</b></p><ul class="opt">${o1.a.one.map((o)=>`<li>${o}</li>`).join('')}</ul>`;
     const nx=D.sizes.find((s)=>s.ok===false);
     if(nx&&nx.a){const fix=(nx.a.opts||[]).filter((o)=>!/^Now:/.test(o));if(fix.length)h+=`<p style="margin:8px 0 2px"><b>To reach ${nf(nx.amount)}:</b></p><ul class="opt">${fix.map((o)=>`<li>${o}</li>`).join('')}</ul>`;
       if(nx.a.inputs&&nx.a.inputs.length)h+=`<p class="sub" style="margin:6px 0 0">It needs: ${nx.a.inputs.map((i)=>nf(i.need)+' '+esc(inName(i.product).toLowerCase())).join(', ')}.</p>`}}
-  if(cvReady()==='ready'){const cs=activeCells().filter((c)=>c.product===p.id);if(cs.length)h+=cs.map((c)=>{const fl=Math.min(cellState(c).full||0,c.count),op=state.rdOpen===c.key;
-    return `<div class="line" data-cell="${esc(c.key)}" style="margin-top:8px"><details class="rdyfold" data-rdk="${esc(c.key)}"${op?' open':''}><summary><span class="nw">Full now: <b>${fl} of ${c.count}</b></span> <span class="nw">· Level ${c.level} ${esc(model.producers[c.producer].name.toLowerCase())}</span> <span class="lk nw">Change</span></summary><div class="row" style="margin-top:8px;align-items:flex-end"><label>How many are full right now?<select data-gf="full">${rng(0,c.count,fl)}</select></label><button class="btn ghost small" data-act="cfull">All ready</button><button class="btn ghost small" data-act="cnone">None</button></div></details></div>`}).join('')}
   return h+'</div>'}
 function renderTournament(){
   const stars=cvStars(),D=cvCompute(false),ready=cvReady();
@@ -1823,8 +1837,6 @@ function renderTournament(){
   const f=['can','not','all','star'].includes(state.cvF)?state.cvF:'all';
   let html=`<div class="card"><div class="hline"><h2 style="margin:0;flex:1">Cruise tournament</h2>${qh('<p>Every Cruise task in the calculator is worked out against your buildings. Nothing to save.</p><ol class="steps"><li>Type a product name in the box, or scroll.</li><li>Tap a product to see each size, how long it takes and what you would need.</li><li>Tap the star to keep a product at the top.</li></ol><p>Only amounts seen on real tasks are used. Sizes marked <b>not checked</b> come from a forum table. Guesses are left out.</p>')}</div>
   ${setup.groups.length?`<p class="cvcount"><b>You can do ${ok} of ${n}</b> known tasks with your buildings.</p>`:`<p class="sub">Add your buildings in <a href="#buildings" data-sec="buildings">My buildings</a> first, then this tab works out which tasks you can do.</p>`}
-  <div class="cvready" role="group" aria-label="Count from"><span class="sub" style="margin:0">Count from:</span><button type="button" class="btn small${ready==='scratch'?'':' ghost'}" data-act="cvready" data-v="scratch" aria-pressed="${ready==='scratch'}">From scratch</button><button type="button" class="btn small${ready==='ready'?'':' ghost'}" data-act="cvready" data-v="ready" aria-pressed="${ready==='ready'}">What's ready now</button></div>
-  ${ready==='ready'?`<div class="row" style="margin-top:6px"><button class="btn ghost small" data-act="allready">All ready (every building)</button>${state.rready?`<span class="rune-ask">Set every ready count back to 0? <button class="btn small" data-act="ryes">Yes</button><button class="btn ghost small" data-act="rno">No</button></span>`:`<button class="btn ghost small" data-act="rask">Clear</button>`}</div>${state.rdone?`<p class="nstrip" role="status" style="margin:8px 0 0"><span class="tick">✓</span> ${esc(state.rdone)}</p>`:''}`:''}
   <p class="sub" style="margin:8px 0 0">Answers use Regular. If Regular isn\u2019t enough, it tells you whether Fine or Instant would work.</p>
   <label class="cvsearch">Find a product<input type="search" data-cq placeholder="e.g. jacket" value="${esc(state.cq||'')}" autocomplete="off" autocapitalize="none" spellcheck="false"></label>
   <div class="cvfilt" role="group" aria-label="Show">${[['can','Can do now'],['not','Not yet'],['all','All']].concat(stars.length?[['star','★ Starred']]:[]).map(([k,l])=>`<button type="button" class="cchip${k===f?' on':''}" data-act="cvf" data-v="${k}" aria-pressed="${k===f}">${l}</button>`).join('')}</div></div>`;
