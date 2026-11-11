@@ -1812,7 +1812,6 @@ function cvDetail(p){const lk=p.lock;
     if(nx&&nx.a){const fix=(nx.a.opts||[]).filter((o)=>!/^Now:/.test(o));if(fix.length)h+=`<p style="margin:8px 0 2px"><b>To reach ${nf(nx.amount)}:</b></p><ul class="opt">${fix.map((o)=>`<li>${o}</li>`).join('')}</ul>`;
       if(nx.a.inputs&&nx.a.inputs.length)h+=`<p class="sub" style="margin:6px 0 0">It needs: ${nx.a.inputs.map((i)=>nf(i.need)+' '+esc(inName(i.product).toLowerCase())).join(', ')}.</p>`}}
   if(cvReady()==='ready'){const cs=activeCells().filter((c)=>c.product===p.id);if(cs.length)h+=`<p class="sub" style="margin:10px 0 0"><b>Ready to collect now</b></p>`+cs.map((c)=>`<div class="line" data-cell="${esc(c.key)}" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:6px"><span><b>${c.count} × Level ${c.level} ${esc(model.producers[c.producer].name)}</b></span><label style="flex-direction:row;align-items:center;gap:6px">Ready (of ${c.count})<input type="number" min="0" max="${c.count}" step="1" data-gf="full" value="${cellState(c).full||0}" style="width:80px"></label><button class="btn ghost small" data-act="cfull">All ready</button><button class="btn ghost small" data-act="cnone">None</button></div>`).join('')}
-  if(p.calc)h+=`<p class="sub" style="margin:10px 0 0">${supplyNote(p.id)} · <a href="#buildings" data-sec="buildings">change my buildings</a></p>`;
   return h+'</div>'}
 function renderTournament(){
   const stars=cvStars(),D=cvCompute(false),ready=cvReady();
