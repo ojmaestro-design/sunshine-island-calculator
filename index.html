@@ -1620,7 +1620,7 @@ function cvPlan(U,need,R,limit,pids,primOf,gainOf,per){const out=[],memo={};
   /* 1 storage */
   {const st=[];setup.groups.filter((g)=>g.state==='storage'&&pids.includes(g.producer)).forEach((g)=>{for(let i=0;i<g.count;i++)st.push({pid:g.producer,lv:g.level,v:unit(g.producer,g.level)})});
    st.sort((x,y)=>y.v-x.v);let v=per;const used={};for(const x of st){if(enough(v))break;v+=x.v;const k=x.pid+'|'+x.lv;used[k]=(used[k]||0)+1}
-   if(Object.keys(used).length&&enough(v))out.push(`Bring back ${Object.entries(used).map(([k,n])=>{const [pid,lv]=k.split('|');return n+' Level '+lv+' '+esc(nmOf(pid,n))}).join(' and ')} from storage.`)}
+   if(Object.keys(used).length&&enough(v))out.push(`Bring back ${Object.entries(used).map(([k,n])=>{const [pid,lv]=k.split('|');return (n===1?'a':n)+' Level '+lv+' '+esc(nmOf(pid,n))}).join(' and ')} from storage.`)}
   /* 2 Fine / Instant */
   if(U.some((x)=>x.opts.some((o)=>o.cost>0))){const fmt=(p)=>Object.entries(p.items).map(([k,v])=>`${nf(v)} × ${esc(k)}`).join(', ');
     const f=boostPlan(U,need,R,false),a=boostPlan(U,need,R,true);
@@ -1630,15 +1630,15 @@ function cvPlan(U,need,R,limit,pids,primOf,gainOf,per){const out=[],memo={};
   let found=false;{let v=per;const max=(pid)=>model.producers[pid].maxLevel||0;
     for(let step=0;step<3&&!enough(v);step++){let bi=-1,bd=0;bl.forEach((b,i)=>{if(b.lv>=max(b.pid))return;const d=unit(b.pid,b.lv+1)-unit(b.pid,b.lv);if(d>bd+1e-9){bd=d;bi=i}});if(bi<0)break;v+=bd;bl[bi].lv++}
     if(enough(v)&&v>per){found=true;const grp={};bl.filter((b)=>b.lv>b.from).forEach((b)=>{const k=b.pid+'|'+b.from+'|'+b.lv;grp[k]=(grp[k]||0)+1});
-      out.push(`Upgrade ${Object.entries(grp).map(([k,n])=>{const [pid,f,t]=k.split('|');return n+' Level '+f+' '+esc(nmOf(pid,n))+' to Level '+t}).join(' and ')}.`)}}
+      out.push(`Upgrade ${Object.entries(grp).map(([k,n])=>{const [pid,f,t]=k.split('|');return (n===1?'a':n+' of your')+' Level '+f+' '+esc(nmOf(pid,n))+' to Level '+t}).join(' and ')}.`)}}
   /* 4 new Level 1 buildings */
   {const bestP=pids.map((pid)=>({pid,v:unit(pid,1)})).filter((x)=>x.v>0).sort((x,y)=>y.v-x.v)[0];
    if(bestP){const extra=Math.ceil((need-per*R)/(bestP.v*R)-1e-9),P=model.producers[bestP.pid],cp=capOf(P),owned=setup.groups.filter((g)=>g.producer===bestP.pid).reduce((n,g)=>n+g.count,0);
-     if(extra>0)out.push(cp!==null&&owned+extra>cp?`Adding new buildings would not be enough: only ${cp} ${esc(P.name.toLowerCase())} are allowed.`:`Add ${extra} Level 1 ${esc(nmOf(bestP.pid,extra))}.`)}}
+     if(extra>0)out.push(cp!==null&&owned+extra>cp?`Adding new buildings would not be enough: only ${cp} ${esc(P.name.toLowerCase())} are allowed.`:`Add ${extra===1?'a':extra} new Level 1 ${esc(nmOf(bestP.pid,extra))}.`)}}
   /* 5 bigger upgrades */
   if(!found){const grp=U.slice().sort((a,b)=>b.g.count-a.g.count)[0];if(grp){const P=grp.P;let lv=null;
     for(let l=grp.g.level+1;l<=(P.maxLevel||0);l++){if(enough(per+grp.g.count*(unit(P.id,l)-unit(P.id,grp.g.level)))){lv=l;break}}
-    if(lv)out.push(`Or upgrade ${grp.g.count===1?'your':'all '+grp.g.count} Level ${grp.g.level} ${esc(nmOf(P.id,grp.g.count))} to Level ${lv}.`)}}
+    if(lv)out.push(`Or upgrade ${grp.g.count===1?'your':'all '+grp.g.count+' of your'} Level ${grp.g.level} ${esc(nmOf(P.id,grp.g.count))} to Level ${lv}.`)}}
   if(!out.length)out.push('None of these would be enough on their own.');
   return out}
 function taskAnswer(t,quick){
@@ -1652,7 +1652,7 @@ function taskAnswer(t,quick){
   const levelOne=()=>{if(isM)return null;const r=C.resolve(model,setup,{producer:P0.id,product:t.product,mode:modeList(P0,t.product).includes('regular')?'regular':modeList(P0,t.product)[0],level:1,slider:1});return r.ok?r:null};
   if(!U.length){
     res.head={cls:'bad',text:isM?'None of your animal buildings is listed yet. Manure comes from cow sheds, ostrich farms and goat farms.':(()=>{const st=setup.groups.filter((g)=>g.state==='storage'&&pids.includes(g.producer));const n=st.reduce((a,g)=>a+g.count,0);const nmz=st.length?model.producers[st[0].producer].name.toLowerCase():'';return n?`You have ${n} ${n===1?nmz.replace(/s$/,''):nmz} that can make ${nm}, but ${n>1?'they are':'it is'} in storage. <a href="#buildings">Go to My buildings</a> and press Put back.`:`You have no building that makes ${nm} yet. Here is what it would take. <a href="#buildings">Go to My buildings</a> to add it.`})()};
-    const l1=levelOne();if(l1){const cm=l1.cycle&&l1.cycle.v>0?l1.cycle.v:0,nmL=P0.name.toLowerCase(),sg=bsing(P0.name).toLowerCase(),cp=capOf(P0);const cyc=t.instant||!limit||!cm?1:Math.max(1,Math.floor(limit/cm));const n=Math.ceil(N/(l1.out.v*cyc)),n1=Math.ceil(N/l1.out.v);const lab=(k)=>k+' Level 1 '+(k===1?sg:nmL);
+    const l1=levelOne();if(l1){const cm=l1.cycle&&l1.cycle.v>0?l1.cycle.v:0,nmL=P0.name.toLowerCase(),sg=bsing(P0.name).toLowerCase(),cp=capOf(P0);const cyc=t.instant||!limit||!cm?1:Math.max(1,Math.floor(limit/cm));const n=Math.ceil(N/(l1.out.v*cyc)),n1=Math.ceil(N/l1.out.v);const lab=(k)=>(k===1?'a':k)+' new Level 1 '+(k===1?sg:nmL);
       if(cp!==null&&n>cp)res.opts.push(`You can own at most ${cp} ${nmL} here, so this task is out of reach with Level 1. Higher levels make more per cycle.`);
       else{res.opts.push(`<b>To do this task, add ${lab(n)}</b>: ${cyc>1?`${cyc} cycles of ${tc(l1.cycle)} fit in your time limit, about ${mins(cyc*cm)}.`:`one cycle of ${tc(l1.cycle)}.`} Each makes ${tv(l1.out.v,l1.out.tag)} per cycle.`);
         if(cyc>1&&n1!==n&&(cp===null||n1<=cp))res.opts.push(`Or add ${lab(n1)} to have it all in one cycle.`)}}
@@ -1795,7 +1795,7 @@ function cvRow(p,stars){const nm=cruiseNames()[p.id]||pretty(p.id),star=stars.in
   else if(!p.calc)line='<span class="sub">No game data for this product yet</span>';
   else if(p.lock&&p.lock.locked)line=`<span class="cvno">Unlocks at player level ${p.lock.lv}</span> <span class="sub">· you're level ${p.lock.pl}</span>`;
   else{const g1=[...p.sizes].reverse().find((s)=>s.ok&&!s.via&&s.a&&s.a.rounds===1);
-    line=(g1?`<span class="good nw">✓ in one go up to ${nf(g1.amount)}</span>`:'')+(best&&best!==g1?` <span class="good nw">${g1?'<span class="sub">·</span>&nbsp;':'✓ '}up to ${nf(best.amount)} in the time</span>`:'')+(bestV&&bestV!==best?`${best?' <span class="sub">·</span> ':''}<span class="good">${best?'':'✓ '}up to ${nf(bestV.amount)} with ${bestV.via.mode}</span>`:'')+(!bestV?'<span class="cvno">Not yet</span>':'')+(next?` <span class="sub nw">· next: ${nf(next.amount)}</span>`:(best?' <span class="sub nw">· every known size</span>':''))}
+    line=(g1?`<span class="good nw">✓ in one go up to ${nf(g1.amount)}</span>`:'')+(best&&best!==g1?` <span class="good nw">${g1?'<span class="sub">·</span>&nbsp;':'✓ '}up to ${nf(best.amount)} within ${limitText(p.t)}</span>`:'')+(bestV&&bestV!==best?`${best?' <span class="sub">·</span> ':''}<span class="good">${best?'':'✓ '}up to ${nf(bestV.amount)} with ${bestV.via.mode}</span>`:'')+(!bestV?'<span class="cvno">Not yet</span>':'')+(next?` <span class="sub nw">· next: ${nf(next.amount)}</span>`:(best?' <span class="sub nw">· every known size</span>':''))}
   let h=`<div class="cvrow${open?' open':''}" data-cvid="${esc(p.id)}" data-name="${esc(nm.toLowerCase())}"><div class="cvtop"><button type="button" class="cvstar" data-act="cvstar" aria-pressed="${star}" aria-label="${star?'Remove star from':'Star'} ${esc(nm)}">${star?'★':'☆'}</button><button type="button" class="cvmain" data-act="cvopen" aria-expanded="${open}"><b>${esc(nm)}</b><span class="cvline">${line}</span></button></div>`;
   if(open)h+=cvDetail(p);
   return h+'</div>'}
