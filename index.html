@@ -1653,9 +1653,9 @@ function taskAnswer(t,quick){
   if(!U.length){
     res.head={cls:'bad',text:isM?'None of your animal buildings is listed yet. Manure comes from cow sheds, ostrich farms and goat farms.':(()=>{const st=setup.groups.filter((g)=>g.state==='storage'&&pids.includes(g.producer));const n=st.reduce((a,g)=>a+g.count,0);const nmz=st.length?model.producers[st[0].producer].name.toLowerCase():'';return n?`You have ${n} ${n===1?nmz.replace(/s$/,''):nmz} that can make ${nm}, but ${n>1?'they are':'it is'} in storage. <a href="#buildings">Go to My buildings</a> and press Put back.`:`You have no building that makes ${nm} yet. Here is what it would take. <a href="#buildings">Go to My buildings</a> to add it.`})()};
     const l1=levelOne();if(l1){const cm=l1.cycle&&l1.cycle.v>0?l1.cycle.v:0,nmL=P0.name.toLowerCase(),sg=bsing(P0.name).toLowerCase(),cp=capOf(P0);const cyc=t.instant||!limit||!cm?1:Math.max(1,Math.floor(limit/cm));const n=Math.ceil(N/(l1.out.v*cyc)),n1=Math.ceil(N/l1.out.v);const lab=(k)=>(k===1?'a':k)+' new Level 1 '+(k===1?sg:nmL);
-      if(cp!==null&&n>cp)res.opts.push(`You can own at most ${cp} ${nmL} here, so this task is out of reach with Level 1. Higher levels make more per cycle.`);
-      else{res.opts.push(`<b>To do this task, add ${lab(n)}</b>: ${cyc>1?`${cyc} cycles of ${tc(l1.cycle)} fit in your time limit, about ${mins(cyc*cm)}.`:`one cycle of ${tc(l1.cycle)}.`} Each makes ${tv(l1.out.v,l1.out.tag)} per cycle.`);
-        if(cyc>1&&n1!==n&&(cp===null||n1<=cp))res.opts.push(`Or add ${lab(n1)} to have it all in one cycle.`)}}
+      if(cp!==null&&n>cp)res.opts.push(`You can own at most ${cp} ${nmL} here, so this task is out of reach with Level 1. Higher levels make more each go.`);
+      else{res.opts.push(`<b>To do this task, add ${lab(n)}</b>: ${cyc>1?`${cyc} goes of ${tc(l1.cycle)} fit in your time limit, about ${mins(cyc*cm)}.`:`one go of ${tc(l1.cycle)}.`} Each makes ${tv(l1.out.v,l1.out.tag)} per go.`);
+        if(cyc>1&&n1!==n&&(cp===null||n1<=cp))res.opts.push(`Or add ${lab(n1)} to do it in one go.`)}}
     return res}
   let per=0,ready=0,cyc=0,tag='seen',nB=0;
   U.forEach((x)=>{per+=x.g.count*x.base.gain;nB+=x.g.count;if(x.on)ready+=(x.g.full||0)*((x.setO||x.base).rgain||(x.setO||x.base).gain);if(x.base.cyc)cyc=Math.max(cyc,x.base.cyc);tag=C.worst(tag,x.base.tag)});
@@ -1673,7 +1673,7 @@ function taskAnswer(t,quick){
   {const agg={};let outAgg=0;U.forEach((x)=>{outAgg+=x.g.count*x.base.gain;(x.base.inp||[]).forEach((i)=>{const a=agg[i.product]=agg[i.product]||{q:0,h:0,tag:'seen'};a.q+=x.g.count*i.qty;if(x.base.cyc)a.h+=x.g.count*i.qty*60/x.base.cyc;a.tag=C.worst(a.tag,i.tag)})});
    res.inputs=outAgg>0?Object.entries(agg).map(([p,a])=>({product:p,need:Math.ceil(a.q/outAgg*Math.max(need,0)-1e-9),tag:a.tag,useHr:a.h})):[]}
   const rT=limit&&cyc?Math.max(1,Math.floor(limit/cyc)):1;
-  res.stk.forEach((k)=>res.opts.unshift(`Use a stack of <b>x${k.to}</b> on your Level ${k.lv} ${esc(k.nm.toLowerCase())}, so each go fits the time limit.`));
+  res.stk.forEach((k)=>res.opts.unshift(`Use a smaller stack: <b>x${k.to}</b> on your Level ${k.lv} ${esc(k.nm.toLowerCase())}, so it finishes within the time limit.`));
   const plan=(R)=>cvPlan(U,need,R,limit,pids,primOf,gainOf,per);
   if(fits&&limit){if(r>1&&!inst)res.one=plan(1);return res}
   res.opts=res.opts.concat(plan(rT));
@@ -1808,7 +1808,7 @@ function cvNoBuild(p){if(!p.calc||!p.sizes.length)return null;const pids=p.id===
   h+=`<p style="margin:0 0 6px">${p.id==='manure'?'You have no animal buildings yet.':sto?`Your ${esc(sto===1?one:P.name.toLowerCase())} ${sto===1?'is':'are'} in storage. Put ${sto===1?'it':'them'} back in <a href="#buildings" data-sec="buildings">My buildings</a> to count ${sto===1?'it':'them'}.`:`You have no ${esc(one)} yet${u>1?' (it unlocks at level '+u+')':''}.`}</p>`;
   h+=`<p class="sub" style="margin:0 0 6px">Sizes seen: ${p.sizes.map((s)=>nf(s.amount)+(s.chk?' (not checked)':'')).join(', ')}${p.unseen?` · ${p.unseen} more not seen yet`:''}</p>`;
   const D=p.t?cvCompute(true,p.id)[p.id]:p,nx=D&&D.sizes.find((s)=>s.ok===false);
-  if(nx&&nx.a){const fix=(nx.a.opts||[]).filter((o)=>!/^Now:/.test(o));if(fix.length)h+=`<p style="margin:8px 0 2px"><b>To reach ${nf(nx.amount)}:</b></p><ul class="opt">${fix.map((o)=>`<li>${o}</li>`).join('')}</ul>`}
+  if(nx&&nx.a){const fix=(nx.a.opts||[]).filter((o)=>!/^Now:/.test(o));if(fix.length)h+=`<p style="margin:8px 0 2px"><b>To reach ${nf(nx.amount)}${p.t?' within '+limitText(p.t):''}:</b></p><ul class="opt">${fix.map((o)=>`<li>${o}</li>`).join('')}</ul>`}
   if(!sto)h+=`<p class="sub" style="margin:8px 0 0"><a href="#buildings" data-sec="buildings">Add it in My buildings</a> once you have it.</p>`;
   return h+'</div>'}
 /* test 205: the two folds in an opened Cruise task remember being open, per device */
@@ -1820,7 +1820,6 @@ function cvEnough(p,D,nm){const cs=activeCells().filter((c)=>c.product===p.id);l
     let rdy=0;try{const a=taskAnswer({product:p.id,target:D.sizes[0].amount,h:Math.floor(p.t/60),m:p.t%60,instant:false,have:{}},true);rdy=a&&a.ready||0}catch(_){}
     const ok=D.sizes.filter((s)=>s.amount<=rdy+1e-9).map((s)=>nf(s.amount));
     b+=rdy>0?`<p style="margin:8px 0 0"><b>${nf(rdy)} ready to collect</b>: ${ok.length?`<span class="good">enough for ${ok.length===D.sizes.length?'every size':ok.join(', ')}</span>`:'<span class="cvno">not enough for any size yet</span>'}.</p>`:'<p class="sub" style="margin:8px 0 0">Nothing marked as ready yet.</p>'}
-  b+='<p class="sub" style="margin:6px 0 0">Already got some in your warehouse? Those count too.</p>';
   return `<details class="cvfold" data-cvfold="rdy"${cvFold().rdy?' open':''}><summary>Have I already got enough?</summary>${b}</details>`}
 function cvDetail(p){const lk=p.lock;
   if(lk&&lk.locked){let h='<div class="cvdet">';if(p.t)h+=`<p class="sub" style="margin:0 0 6px">Time limit: <b>${limitText(p.t)}</b></p>`;
@@ -1837,14 +1836,14 @@ function cvDetail(p){const lk=p.lock;
      const i0=D.sizes.findIndex((s)=>s.ok===false),rest=i0<0?[]:D.sizes.slice(i0+1).filter((s)=>s.ok===false);
      h+='<ul class="cvsizes">'+D.sizes.map((s,i)=>(i0>=0&&i>i0&&s.ok===false)?'':li(s)).join('')+(rest.length?`<li><b>${rest.map((s)=>nf(s.amount)).join(', ')}</b>: <span class="cvno">not in the time</span> <span class="sub">(bigger than ${nf(D.sizes[i0].amount)})</span></li>`:'')+'</ul>';
      const sk=(D.sizes.find((s)=>s.ok&&s.a&&s.a.stk&&s.a.stk.length)||{}).a;
-     if(sk)h+=sk.stk.map((k)=>`<p style="margin:6px 0 0">Use a stack of <b>x${k.to}</b> on your Level ${k.lv} ${esc(k.nm.toLowerCase())}, so each go fits the time limit.</p>`).join('')}
+     if(sk)h+=sk.stk.map((k)=>`<p style="margin:6px 0 0">Use a smaller stack: <b>x${k.to}</b> on your Level ${k.lv} ${esc(k.nm.toLowerCase())}, so it finishes within the time limit.</p>`).join('')}
     if(p.unseen)h+=`<p class="sub" style="margin:4px 0 0">${p.unseen} more size${p.unseen===1?'':'s'} ${p.unseen===1?'hasn\u2019t':'haven\u2019t'} been seen in the game yet.</p>`;
     const o1=D.sizes.find((s)=>s.ok&&!s.via&&s.a&&s.a.one&&s.a.one.length);
     let adv='';if(o1)adv+=`<p style="margin:8px 0 2px"><b>To do ${nf(o1.amount)} in one go:</b></p><ul class="opt">${o1.a.one.map((o)=>`<li>${o}</li>`).join('')}</ul>`;
     const nx=D.sizes.find((s)=>s.ok===false);
-    if(nx&&nx.a){const fix=(nx.a.opts||[]).filter((o)=>!/^Now:/.test(o));if(fix.length)adv+=`<p style="margin:8px 0 2px"><b>To reach ${nf(nx.amount)}:</b></p><ul class="opt">${fix.map((o)=>`<li>${o}</li>`).join('')}</ul>`;
+    if(nx&&nx.a){const fix=(nx.a.opts||[]).filter((o)=>!/^Now:/.test(o));if(fix.length)adv+=`<p style="margin:8px 0 2px"><b>To reach ${nf(nx.amount)}${p.t?' within '+limitText(p.t):''}:</b></p><ul class="opt">${fix.map((o)=>`<li>${o}</li>`).join('')}</ul>`;
       if(nx.a.inputs&&nx.a.inputs.length)adv+=`<p class="sub" style="margin:6px 0 0">It needs: ${nx.a.inputs.map((i)=>nf(i.need)+' '+esc(inName(i.product).toLowerCase())).join(', ')}.</p>`}
-    adv=adv?adv+'<p class="sub" style="margin:8px 0 0">Choices, cheapest first. Only you know your land and coins.</p>':'<p class="sub" style="margin:8px 0 0">You can already do every known size in one go.</p>';
+    if(!adv)adv='<p class="sub" style="margin:8px 0 0">You can already do every known size in one go.</p>';
     h+=`<details class="cvfold" data-cvfold="adv"${cvFold().adv?' open':''}><summary>What to change to do bigger tasks</summary>${adv}</details>`;
     h+=cvEnough(p,D,nm)}
   return h+'</div>'}
