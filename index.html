@@ -538,7 +538,7 @@ ol.steps{margin:0 0 8px;padding-left:22px}ol.steps li{margin:4px 0;color:var(--m
 .subtabs{grid-template-columns:repeat(3,minmax(0,1fr))}
 .cardq{float:right;margin:-4px -4px 0 8px}.cardq:has(.qh[open]){float:none;margin:0 0 8px}.golink{margin:4px 0 14px;font-size:16px;font-weight:600}
 .ptlrow{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid var(--line);margin:16px 0 8px;padding-top:12px}.ptlrow .ptl{border-top:0;margin:0;padding:0}
-.cvcount{font-size:17px;margin:8px 0}.cvready{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:8px}
+.cvcount{font-size:17px;margin:8px 0}
 .cvsearch{margin-top:12px;font-size:14px}.cvsearch input{font-size:16px;min-height:44px}
 .cvfilt{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.cvfilt .cchip.on{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
 .cvgrp{padding:6px 12px}.cvgh{margin:8px 0 4px;color:var(--fg)}
@@ -648,7 +648,15 @@ input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea{f
 .cvfold{margin-top:10px;border-top:1px solid var(--line);padding-top:4px}.cvfold>summary{list-style:none;cursor:pointer;min-height:44px;display:flex;align-items:center;gap:6px;color:var(--accent);font-weight:700}.cvfold>summary::-webkit-details-marker{display:none}.cvfold>summary::after{content:'\25BE';font-weight:400}.cvfold[open]>summary::after{content:'\25B4'}
 .cvline .nw,.cvfold .nw{white-space:nowrap}
 /* test 208: every open/close link: one colour (--accent-ink: yellow on dark looks) and ▾ / ▴ */
-.cvfold>summary,.splitfold>summary,.cvchg>summary,.qcmore>summary,.qfind summary,.proftext>summary,.hometip summary,.ocrgaps summary,.ovlist>summary{color:var(--accent-ink);list-style:none;cursor:pointer;gap:6px}.cvchg>summary{min-height:44px;display:flex;align-items:center;font-weight:600}.cvchg>summary::-webkit-details-marker,.qcmore>summary::-webkit-details-marker,.qfind summary::-webkit-details-marker,.proftext>summary::-webkit-details-marker,.hometip summary::-webkit-details-marker,.ocrgaps summary::-webkit-details-marker,.ovlist>summary::-webkit-details-marker,.cvother>summary::-webkit-details-marker{display:none}.cvchg>summary::after,.qcmore>summary::after,.qfind summary::after,.proftext>summary::after,.hometip summary::after,.ocrgaps summary::after,.ovlist>summary::after,.cvother>summary::after{content:'\25BE';font-weight:400;color:var(--accent-ink)}.cvchg[open]>summary::after,.qcmore[open]>summary::after,.qfind[open] summary::after,.proftext[open]>summary::after,.hometip[open] summary::after,.ocrgaps[open] summary::after,.ovlist[open]>summary::after,.cvother[open]>summary::after{content:'\25B4'}.cvother>summary{gap:6px;list-style:none}.setupfold>summary::after{color:var(--accent-ink);opacity:1}
+.cvfold>summary,.splitfold>summary,.qcmore>summary,.qfind summary,.proftext>summary,.hometip summary,.ocrgaps summary,.ovlist>summary{color:var(--accent-ink);list-style:none;cursor:pointer;gap:6px}.qcmore>summary::-webkit-details-marker,.qfind summary::-webkit-details-marker,.proftext>summary::-webkit-details-marker,.hometip summary::-webkit-details-marker,.ocrgaps summary::-webkit-details-marker,.ovlist>summary::-webkit-details-marker,.cvother>summary::-webkit-details-marker{display:none}.qcmore>summary::after,.qfind summary::after,.proftext>summary::after,.hometip summary::after,.ocrgaps summary::after,.ovlist>summary::after,.cvother>summary::after{content:'\25BE';font-weight:400;color:var(--accent-ink)}.qcmore[open]>summary::after,.qfind[open] summary::after,.proftext[open]>summary::after,.hometip[open] summary::after,.ocrgaps[open] summary::after,.ovlist[open]>summary::after,.cvother[open]>summary::after{content:'\25B4'}.cvother>summary{gap:6px;list-style:none}.setupfold>summary::after{color:var(--accent-ink);opacity:1}
+
+/* test 208: one style for every open/close link (guild leader folds, island-at-a-glance arrow) */
+.glbon>summary,.glms>summary{list-style:none;cursor:pointer;color:var(--accent-ink);font-weight:600;min-height:44px;display:flex;align-items:center;gap:6px}
+.glbon>summary::-webkit-details-marker,.glms>summary::-webkit-details-marker{display:none}
+.glbon>summary::after,.glms>summary::after{content:'\25BE';font-weight:400;color:var(--accent-ink)}
+.glbon[open]>summary::after,.glms[open]>summary::after{content:'\25B4'}
+.statusline summary::after{content:'\25BE';border:0;width:auto;height:auto;transform:none!important;margin:0 2px 0 0;color:var(--accent-ink);font-size:18px;line-height:1;align-self:center}
+.statusline details[open] summary::after{content:'\25B4';margin:0 2px 0 0}
 </style>
 <!-- test 173: visitor counter (GoatCounter: no cookies, nothing personal) -->
 <script data-goatcounter="https://ojmaestro.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
@@ -795,7 +803,7 @@ function siteBits(){
   const fb=$('#feedback');
   if(fb&&(SITE.feedback||SITE.email||SITE.discord))fb.innerHTML=`<div class="fbline"><p class="fbq">Spot a bug or have an idea?</p>${SITE.email?`<p><a href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a></p>`:''}${SITE.discord?`<p>or message <b>${esc(SITE.discord)}</b> on Discord</p>`:''}</div>`}
 document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.classList&&t.classList.contains('ovlist'))state.ovOpen=t.open},true);
-document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.dataset&&t.dataset.cvchg!==undefined){state.cvChg=t.open?t.dataset.cvchg:null;return}if(t&&t.dataset&&t.dataset.cvfold){const f=cvFold();f[t.dataset.cvfold]=t.open?1:0;try{localStorage.setItem('sunshine_cvfold_v1',JSON.stringify(f))}catch(_){}}},true);
+document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.dataset&&t.dataset.cvfold){const f=cvFold();f[t.dataset.cvfold]=t.open?1:0;try{localStorage.setItem('sunshine_cvfold_v1',JSON.stringify(f))}catch(_){}}},true);
 /* test 175: the Quick count fold stays open when the card redraws */
 document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.dataset&&t.dataset.qcm!==undefined){state.qcOpen=state.qcOpen||{};state.qcOpen[t.dataset.qcm]=t.open}},true);
 /* test 169: remember whether "Add or tick buildings" is folded */
@@ -1025,7 +1033,7 @@ function statusLine(){const byI={},stoI={};let n=0,sto=0;setup.groups.forEach((g
   const lib=Object.values(setup.library||{}).filter((v)=>v>0).length;
   const list=model.islands.filter((i)=>byI[i]).map((i)=>`<div class="sl-isl isl-${esc(String(i).toLowerCase())}"><div class="sl-ih">${esc(pretty(i))}</div><ul class="sl-ul">${Object.entries(byI[i]).sort((a,b)=>azIds().indexOf(a[0])-azIds().indexOf(b[0])).map(([k,v])=>{const nm=model.producers[k].name;const sv=(stoI[i]||{})[k]||0;return `<li><b>${v}</b><span>${esc((v===1?bsing(nm):nm).toLowerCase())}${sv?`<small class="slsto">${sv} in storage</small>`:''}</span></li>`}).join('')}</ul></div>`).join('');
   const cv=n?cvSummary():{n:0,ok:0},cn=cv.ok,tasks={length:cv.n};
-  const head=[n?n+' buildings'+(sto?', including '+sto+' in storage':''):'No buildings yet',tasks.length?'Cruise: '+cn+' of '+tasks.length+' cards':''].filter(Boolean).join(' · ');
+  const head=[n?n+' buildings'+(sto?', including '+sto+' in storage':''):'No buildings yet',tasks.length?'Cruise: you can do '+cn+' of '+tasks.length+' task sizes':''].filter(Boolean).join(' · ');
   return `<div class="card statusline isl-${esc(String(state.bIsland||model.islands[0]).toLowerCase())}"><details><summary><span class="sl-title">My island at a glance</span><span class="sl-head">${esc(head)}</span></summary><p class="sub" style="margin:6px 0 0">${setup.groups.length||lib?'Your setup is saved in this browser.':'Nothing saved yet.'} Library: ${lib} levels set.</p>${list?`<div class="sl-list">${list}</div>`:''}${tasks.length?`<p class="sub" style="margin:4px 0 0">Cruise cards your buildings can do now: <b>${cn} of ${tasks.length}</b> known cards.</p>`:''}</details></div>`}
 function bsecTabs(cur){const T=[['buildings','Buildings'],['collect','Quick count'],['save','Save']];
   return `<div class="subtabs" role="tablist" aria-label="My buildings sections">${T.map(([k,l])=>`<button type="button" role="tab" aria-selected="${k===cur}" data-act="bsec" data-s="${k}">${l}</button>`).join('')}</div>`}
@@ -1777,8 +1785,7 @@ function cvSizes(id){const rows=cfStepRows(id).filter((x)=>x.amount!=null&&(x.st
 function cvUnseen(id){return cfStepRows(id).filter((x)=>x.amount==null).length}
 function cvIds(){const R=((files.cruiseRules||{}).products)||{};const S=new Set(Object.keys(R));cardList().forEach((c)=>{if(c.type!=='other_task')S.add(c.id)});
   return [...S].filter((id)=>!isOther(id)&&cruiseNames()[id])}
-function cvReady(){return 'scratch';if(state.cvReady)return state.cvReady;let v=null;try{v=localStorage.getItem('sunshine_cvready_v1')}catch(_){}
-  if(v!=='scratch'&&v!=='ready')v=Object.values(setup.cellState||{}).some((x)=>x&&x.full>0)?'ready':'scratch';return state.cvReady=v}
+function cvReady(){return 'scratch'}
 /* works every card out; "From scratch" ignores what is waiting to be collected */
 function cvCompute(full,only){const keep=setup.cellState;const scratch=cvReady()==='scratch';if(scratch)setup.cellState={};
   const out={};try{(only?[only]:cvIds()).forEach((id)=>{const t=cvTime(id),calc=canCalc(id),sizes=cvSizes(id);
@@ -2270,7 +2277,7 @@ document.addEventListener('click',(e)=>{
   if(a==='cnone'){const c=cOf();if(c){cellState(c).full=0;save();render()}return}
   if(a==='rask'){state.rready=true;render();return}
   if(a==='rno'){state.rready=false;render();return}
-  if(a==='cvready'){state.cvReady=b.dataset.v;try{localStorage.setItem('sunshine_cvready_v1',state.cvReady)}catch(_){}render();return}
+  
   if(a==='cvf'){state.cvF=b.dataset.v;try{localStorage.setItem('sunshine_cvf_v1',state.cvF)}catch(_){}render();return}
   if(a==='cvisl'){state.cvIsl=b.dataset.k;try{localStorage.setItem('sunshine_cvisl_v1',state.cvIsl)}catch(_){}document.querySelectorAll('[data-act="cvisl"]').forEach((x)=>{const on=x.dataset.k===state.cvIsl;x.classList.toggle('on',on);x.setAttribute('aria-selected',String(on))});cvFilterDom();return}
   if(a==='cvopen'){const id=b.closest('[data-cvid]').dataset.cvid;state.cvOpen=state.cvOpen===id?null:id;render();const r=document.querySelector('[data-cvid="'+id+'"]');if(r&&state.cvOpen){try{r.scrollIntoView({block:'nearest'})}catch(_){}}return}
