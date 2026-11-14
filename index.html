@@ -893,7 +893,7 @@ const cellKey=(g)=>g.producer+'|'+g.level+'|'+(g.apart||'');
 function cellsOf(list){const m=new Map();
   list.forEach((g)=>{const k=cellKey(g);let c=m.get(k);if(!c){c={key:k,producer:g.producer,island:g.island,level:g.level,apart:g.apart||'',recs:[]};m.set(k,c)}c.recs.push(g)});
   const isl=model.islands,ord=azIds();const out=[...m.values()];
-  out.forEach((c)=>{c.count=c.recs.reduce((n,g)=>n+g.count,0);c.product=c.recs[0].product;c.slider=c.recs[0].slider;c.modes={};c.recs.forEach((g)=>{c.modes[g.mode]=(c.modes[g.mode]||0)+g.count})});
+  out.forEach((c)=>{c.count=c.recs.reduce((n,g)=>n+g.count,0);c.product=c.recs[0].product||(model.producers[c.producer]?prodsOf(model.producers[c.producer])[0]:'');c.slider=c.recs[0].slider;c.modes={};c.recs.forEach((g)=>{c.modes[g.mode]=(c.modes[g.mode]||0)+g.count})});
   out.sort((a,b)=>(isl.indexOf(a.island)-isl.indexOf(b.island))||(ord.indexOf(a.producer)-ord.indexOf(b.producer))||(b.level-a.level)||String(a.apart).localeCompare(String(b.apart)));
   return out}
 const activeCells=()=>cellsOf(setup.groups.filter((g)=>g.state==='active'));
@@ -1581,7 +1581,7 @@ function curTour(){let ts=tours().filter((t)=>t.type==='cruise');if(!ts.length){
 function manureIds(){if(!model._manure)model._manure=Object.values(model.producers).filter((P)=>P.tables.some((t)=>Object.values(t._levelMap||{}).some((r)=>r.second_output&&r.second_output.product_id==='manure'))).map((P)=>P.id);return model._manure}
 function capUnits(product,limitMin,cr){const isM=product==='manure';const pids=isM?manureIds():(model.productProducers[product]||[]);const list=[];
   const fullOf=new Map();cellsOf(setup.groups.filter((a0)=>a0.state==='active')).forEach((c)=>{const st=cellState(c);c.recs.forEach((r)=>fullOf.set(r,c.count?st.full*r.count/c.count:0))});
-  const capUsed={};setup.groups.filter((g0)=>g0.state==='active'&&pids.includes(g0.producer)).slice().sort((a,b)=>b.level-a.level).forEach((g0)=>{const P=model.producers[g0.producer];let g=Object.assign({},g0,{full:fullOf.get(g0)||0});const cp=capOf(P);if(cp!==null){const left=cp-(capUsed[g0.producer]||0),cnt=Math.max(0,Math.min(g0.count,left));capUsed[g0.producer]=(capUsed[g0.producer]||0)+cnt;if(cnt<=0)return;g=Object.assign({},g0,{count:cnt,full:Math.min(fullOf.get(g0)||0,cnt)})}const prim=isM?(g.product||prodsOf(P)[0]):product;const on=!isM&&g.product===product;
+  const capUsed={};setup.groups.filter((g0)=>g0.state==='active'&&pids.includes(g0.producer)).slice().sort((a,b)=>b.level-a.level).forEach((g0)=>{const P=model.producers[g0.producer];let g=Object.assign({},g0,{full:fullOf.get(g0)||0});const cp=capOf(P);if(cp!==null){const left=cp-(capUsed[g0.producer]||0),cnt=Math.max(0,Math.min(g0.count,left));capUsed[g0.producer]=(capUsed[g0.producer]||0)+cnt;if(cnt<=0)return;g=Object.assign({},g0,{count:cnt,full:Math.min(fullOf.get(g0)||0,cnt)})}const prim=isM?(g.product||prodsOf(P)[0]):product;const on=!isM&&(g.product||prodsOf(P)[0])===product;
     const o=[];modeList(P,prim).forEach((m)=>{const r=C.resolve(model,setup,{producer:g.producer,product:prim,mode:m,level:g.level,slider:cr?slFor(Object.assign({},g,{product:''}),P,prim,m,limitMin):slFor(g,P,prim,m,limitMin)});if(!r.ok)return;
       if(isM){if(!(r.second&&r.second.product==='manure'))return;r.out={v:r.second.v,tag:r.second.tag}}
       const it=(r.inputs||[]).find((i)=>i.product!=='coins');const prem=(m==='fine'||m==='instant');
@@ -1818,14 +1818,11 @@ function cvNoBuild(p){if(!p.calc||!p.sizes.length)return null;const pids=p.id===
 function cvFold(){if(state.cvFold)return state.cvFold;let v={};try{v=JSON.parse(localStorage.getItem('sunshine_cvfold_v1')||'{}')||{}}catch(_){}return state.cvFold=v}
 function cvEnough(p,D,nm){const cs=activeCells().filter((c)=>c.product===p.id);let b='';
   const rdyNow=()=>{try{const a=taskAnswer({product:p.id,target:D.sizes[0].amount,h:Math.floor(p.t/60),m:p.t%60,instant:false,have:{}},true);return a&&a.ready||0}catch(_){return 0}};
-  const say=(r)=>{const ok=D.sizes.filter((s)=>s.amount<=r+1e-9).map((s)=>nf(s.amount));return `<b>${nf(r)} ready to collect</b>: ${ok.length?`<span class="good">enough for ${ok.length===D.sizes.length?'every size':ok.length>1?ok.slice(0,-1).join(', ')+' and '+ok[ok.length-1]:ok[0]}</span>`:'<span class="cvno">not enough for any size yet</span>'}.`};
+  const say=(r)=>{const ok=D.sizes.filter((s)=>s.amount<=r+1e-9).map((s)=>nf(s.amount));return `you'll have <b>${nf(r)} ready to collect</b>, ${ok.length?`<span class="good">enough for ${ok.length===D.sizes.length&&ok.length>1?'every size of this task':'a task of '+(ok.length>1?ok.slice(0,-1).join(', ')+' or '+ok[ok.length-1]:ok[0])}</span>`:'<span class="cvno">not enough for this task yet</span>'}.`};
   if(!cs.length)b=`<p class="sub" style="margin:8px 0 0">None of your buildings is making ${esc(nm.toLowerCase())} right now, so nothing is waiting to collect.</p>`;
   else{const tot=cs.reduce((n,c)=>n+c.count,0),P0=model.producers[cs[0].producer],one=cs.length===1&&cs[0].count===1;
     const keep=cs.map((c)=>cellState(c).full);cs.forEach((c)=>{cellState(c).full=c.count});const all=rdyNow();cs.forEach((c,i)=>{cellState(c).full=keep[i]});
-    const allFull=cs.every((c)=>cellState(c).full>=c.count);
-    b=`<p style="margin:8px 0 0">${one?'When your '+esc(bsing(P0.name).toLowerCase())+' is full':(tot===2?'When both your ':'When all '+tot+' of your ')+esc(P0.name.toLowerCase())+' are full'}, ${say(all).replace('ready to collect</b>:','ready to collect</b>,')}</p>`;
-    const boxes=cs.map((c)=>{const P=model.producers[c.producer];return `<div class="line" data-cell="${esc(c.key)}" style="margin-top:8px;max-width:240px"><label>Level ${c.level} ${esc((c.count===1?bsing(P.name):P.name).toLowerCase())} · ready to collect (of ${c.count})<select data-gf="full">${rng(0,c.count,Math.min(cellState(c).full||0,c.count))}</select></label></div>`}).join('');
-    b+=`<details class="cvchg" data-cvchg="${esc(p.id)}"${(!allFull&&state.cvChg===p.id)?' open':''}><summary>Not all full? Change</summary>${boxes}${allFull?'':`<p style="margin:8px 0 0">With these: ${say(rdyNow())}</p>`}</details>`}
+    b=`<p style="margin:8px 0 0">${one?'When your '+esc(bsing(P0.name).toLowerCase())+' is full':(tot===2?'When both your ':'When all '+tot+' of your ')+esc(P0.name.toLowerCase())+' are full'}, ${say(all)}</p>`}
   return `<details class="cvfold" data-cvfold="rdy"${cvFold().rdy?' open':''}><summary>Have I already got enough?</summary>${b}</details>`}
 function cvDetail(p){const lk=p.lock;
   if(lk&&lk.locked){let h='<div class="cvdet">';if(p.t)h+=`<p class="sub" style="margin:0 0 6px">Time limit: <b>${limitText(p.t)}</b></p>`;
