@@ -1170,11 +1170,11 @@ function renderCollect(){
   state.csel=(state.csel==='all'||inIsl.includes(state.csel))?state.csel:'all';
   const cap=(t)=>{t=String(t);return t.charAt(0).toUpperCase()+t.slice(1)};
   let h=`<div class="card"><div class="hline"><h2 style="margin:0;flex:1">Quick count</h2>${qh('<ol class="steps"><li>Pick the island and the building.</li><li>Tap the product, then choose <b>How many?</b> and Regular, Fine or Instant. Your highest-level buildings are counted first.</li><li>Press <b>Copy</b> and paste it into guild chat, for example "Carrots (Fine), 7 fields:" followed by the total.</li></ol><p>It remembers your last choices. Open the fold under the number to see every mode and upgrade tips.</p>')}</div><p class="sub" style="margin:4px 0 0">Pick the product, how many and the mode. Press <b>Copy</b> to paste the number in guild chat.</p></div>`;
+  if(isls.length)h+=`<div class="card qcallcard"><p style="margin:0 0 8px">Copy the numbers from every card on all ${isls.length>1?'your islands':'your island'} at once, ready to paste into guild chat.</p><button type="button" class="btn" data-act="qcall" style="width:100%">Copy all ${isls.length>1?isls.length+' islands':'cards'}</button></div>`;
   h+=`<div class="qbar" role="region" aria-label="Island">`;
   if(isls.length>1)h+=`<div class="bisltabs" role="tablist" aria-label="Island">${isls.map((k)=>`<button type="button" role="tab" aria-selected="${k===state.cisl2}" class="bislt isl-${esc(String(k).toLowerCase())}${k===state.cisl2?' on':''}" data-act="cisl2" data-k="${esc(k)}">${esc(cap(k))}</button>`).join('')}</div>`;
   h+='</div>';
   if(inIsl.length>1)h+=`<div class="card"><div class="cchips lchips">${['all'].concat(inIsl).map((x)=>`<button type="button" class="cchip lchip isl-${esc(String(state.cisl2).toLowerCase())}${x===state.csel?' on':''}" data-act="qcpick" data-v="${esc(x)}" aria-pressed="${x===state.csel}">${x==='all'?'All on '+esc(cap(state.cisl2)):esc(model.producers[x].name)}</button>`).join('')}</div></div>`;
-  if(state.csel==='all'&&inIsl.length>1)h+=`<div style="display:flex;justify-content:flex-end;margin:0 0 10px"><button type="button" class="btn" data-act="qcall" data-isl="${esc(cap(state.cisl2))}">Copy all on ${esc(cap(state.cisl2))}</button></div>`;
   inIsl.filter((x)=>state.csel==='all'||x===state.csel).forEach((pid)=>{h+=collectCard(pid,act.filter((g)=>g.producer===pid))});
   return h}
 
@@ -2290,7 +2290,9 @@ document.addEventListener('click',(e)=>{
   if(a==='qcpick'){state.csel=b.dataset.v;qcS().sel[state.cisl2]=b.dataset.v;qcSave();render();return}
   if(a==='qcprod'){qcS().prod[b.dataset.p]=b.dataset.v;qcSave();render();return}
   if(a==='qcmode'){qcS().mode[b.dataset.k]=b.dataset.m;qcSave();render();return}
-  if(a==='qcall'){const t=b.dataset.isl+':\n'+[...document.querySelectorAll('#panel [data-act=qccopy]')].map((x)=>x.dataset.t).join('\n');copyText(t,(ok)=>{b.textContent=ok?'Copied \u2713':'Could not copy';setTimeout(()=>{b.textContent='Copy all on '+b.dataset.isl},2000)});return}
+  if(a==='qcall'){const lab=b.textContent;const act=setup.groups.filter((g)=>g.state==='active'&&model.producers[g.producer]);const ids=[...new Set(act.map((g)=>g.producer))];const cap=(t)=>{t=String(t);return t.charAt(0).toUpperCase()+t.slice(1)};const tmp=document.createElement('div');
+    const t=model.islands.map((isl)=>{const ps=ids.filter((x)=>String(model.producers[x].island)===String(isl));if(!ps.length)return '';tmp.innerHTML=ps.map((pid)=>collectCard(pid,act.filter((g)=>g.producer===pid))).join('');const ls=[...tmp.querySelectorAll('[data-act=qccopy]')].map((x)=>x.dataset.t);return ls.length?cap(isl)+':\n'+ls.join('\n'):''}).filter(Boolean).join('\n\n');
+    copyText(t,(ok)=>{b.textContent=ok?'Copied \u2713':'Could not copy';setTimeout(()=>{b.textContent=lab},2000)});return}
   if(a==='qccopy'){const t=b.dataset.t;copyText(t,(ok)=>{b.textContent=ok?'Copied \u2713':'Could not copy';setTimeout(()=>{b.textContent='Copy'},2000)});return}
   if(a==='bpick'){state.bsel=state.bsel||{};state.bsel[state.bIsland]=b.dataset.v;render();return}
   if(a==='bisl'){state.bIsland=b.dataset.isl;try{localStorage.setItem('sunshine_lastisl_v1',state.bIsland)}catch(e){}state.addMsg='';render()}
