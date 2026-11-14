@@ -7,7 +7,7 @@
 <title>Sunshine Calculator</title>
 <!-- V104: Browse products list, one saved card per product with a size strip, sizes green (can do) / grey (not yet); V92 (test 92): plain wording, ? panels, My buildings sections, Teal/Black/Light looks, separate quick-sum lines, shelter box fixed, undo stays 30 s; V91 jump highlight + bottom tabs and Back to top; V90 (checked at 340 to 430 px) slim status line + one Jump to drop-down on the island row; V89 island list folded, singular names, island remembered; V88 island-in-use line on My buildings; V87 reopen on the last tab used; V85 test build number in header chip; V84 Load my saved island button in the jump row; V83 no-building answer shows the scenario; V82 storage hint + link to My buildings on cruise cards; V81 jump links, None, reset ready counts, points totals; V80 Full now on Cruise cards; V79 warehouse box tidy; V78 warehouse wording; V77 card note shows number not code; V76 load-island keeps cards/layouts/runes; V75 undo bar sticky at the bottom; V74 2 Nov 2026: fields card, tab order, sticky picker, cruise rules v2, shortest-crop-first when a count is lowered -->
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="build" content="208">
+<meta name="build" content="209">
 <meta name="description" content="Sunshine Island Calculator. Beta 0.1 - data from the 28 Oct 2026 game update.">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=170"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=168"><meta name="apple-mobile-web-app-title" content="Sunshine">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -657,6 +657,11 @@ input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea{f
 .glbon[open]>summary::after,.glms[open]>summary::after{content:'\25B4'}
 .statusline summary::after{content:'\25BE';border:0;width:auto;height:auto;transform:none!important;margin:0 2px 0 0;color:var(--accent-ink);font-size:18px;line-height:1;align-self:center}
 .statusline details[open] summary::after{content:'\25B4';margin:0 2px 0 0}
+
+/* test 209: open/close arrows a little bigger so they read as tappable */
+.cvfold>summary::after,.splitfold>summary::after,.qcmore>summary::after,.qfind summary::after,.proftext>summary::after,.hometip summary::after,.ocrgaps summary::after,.ovlist>summary::after,.cvother>summary::after,.glbon>summary::after,.glms>summary::after{font-size:1.25em;line-height:1}
+.statusline summary::after{font-size:22px}
+.cvmain b::after{color:var(--accent-ink);font-size:1.15em;line-height:1}
 </style>
 <!-- test 173: visitor counter (GoatCounter: no cookies, nothing personal) -->
 <script data-goatcounter="https://ojmaestro.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
@@ -672,7 +677,7 @@ input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea{f
   <div id="feedback"></div>
   <p class="footer"><span class="meonly"><a href="#data">Data &amp; flags</a> · <button class="linkbtn" data-act="widthchk">Width check</button> · </span><button class="linkbtn" data-act="walkshow">Set-up guide</button> · <button class="linkbtn" data-act="key" aria-expanded="false" id="keybtn">How accurate are the numbers?</button></p>
   <div id="keyline"></div>
-  <p class="footer" style="margin-top:6px">Beta&nbsp;0.1 · test&nbsp;208 · data from the 28&nbsp;Oct&nbsp;2026 game update, checked against game&nbsp;1.3.40309</p>
+  <p class="footer" style="margin-top:6px">Beta&nbsp;0.1 · test&nbsp;209 · data from the 28&nbsp;Oct&nbsp;2026 game update, checked against game&nbsp;1.3.40309</p>
   <p class="footer" style="margin-top:0">Unofficial fan tool. Not made by, or connected to, the game's developers.</p>
   <div id="footlogo" class="footlogo"></div>
   <p class="totop"><button type="button" class="btn ghost small" data-act="totop">↑ Back to top</button></p>
@@ -1809,6 +1814,8 @@ function cvRow(p,stars){const nm=cruiseNames()[p.id]||pretty(p.id),star=stars.in
   let h=`<div class="cvrow${open?' open':''}" data-cvid="${esc(p.id)}" data-name="${esc(nm.toLowerCase())}"><div class="cvtop"><button type="button" class="cvstar" data-act="cvstar" aria-pressed="${star}" aria-label="${star?'Remove star from':'Star'} ${esc(nm)}">${star?'★':'☆'}</button><button type="button" class="cvmain" data-act="cvopen" aria-expanded="${open}"><b>${esc(nm)}</b><span class="cvline">${line}</span></button></div>`;
   if(open)h+=cvDetail(p);
   return h+'</div>'}
+/* test 209: each advice line works on its own: heading says 'any one of these', no 'Or' */
+function cvOpts(head,arr){const L=arr.map((o)=>String(o).replace(/^(<b>)?To do this task, ([a-z])/,(m,b,c)=>(b||'')+c.toUpperCase()).replace(/^Or ([a-z])/,(m,c)=>c.toUpperCase()));return `<p style="margin:8px 0 2px"><b>${head}${L.length>1?', any one of these:':':'}</b></p><ul class="opt">${L.map((o)=>`<li>${o}</li>`).join('')}</ul>`}
 /* test 174: a product whose building you do not have: one line, then the sizes in one short list */
 function cvNoBuild(p){if(!p.calc||!p.sizes.length)return null;const pids=p.id==='manure'?manureIds():(model.productProducers[p.id]||[]);if(!pids.length)return null;
   if(setup.groups.some((g)=>g.state==='active'&&pids.includes(g.producer)))return null;
@@ -1818,14 +1825,14 @@ function cvNoBuild(p){if(!p.calc||!p.sizes.length)return null;const pids=p.id===
   h+=`<p style="margin:0 0 6px">${p.id==='manure'?'You have no animal buildings yet.':sto?`Your ${esc(sto===1?one:P.name.toLowerCase())} ${sto===1?'is':'are'} in storage. Put ${sto===1?'it':'them'} back in <a href="#buildings" data-sec="buildings">My buildings</a> to count ${sto===1?'it':'them'}.`:`You have no ${esc(one)} yet${u>1?' (it unlocks at level '+u+')':''}.`}</p>`;
   h+=`<p class="sub" style="margin:0 0 6px">Sizes seen: ${p.sizes.map((s)=>nf(s.amount)+(s.chk?' (not checked)':'')).join(', ')}${p.unseen?` · ${p.unseen} more not seen yet`:''}</p>`;
   const D=p.t?cvCompute(true,p.id)[p.id]:p,nx=D&&D.sizes.find((s)=>s.ok===false);
-  if(nx&&nx.a){const fix=(nx.a.opts||[]).filter((o)=>!/^Now:/.test(o));if(fix.length)h+=`<p style="margin:8px 0 2px"><b>To reach ${nf(nx.amount)}${p.t?' within '+limitText(p.t):''}:</b></p><ul class="opt">${fix.map((o)=>`<li>${o}</li>`).join('')}</ul>`}
+  if(nx&&nx.a){const fix=(nx.a.opts||[]).filter((o)=>!/^Now:/.test(o));if(fix.length)h+=cvOpts(`To reach ${nf(nx.amount)}${p.t?' within '+limitText(p.t):''}`,fix)}
   if(!sto)h+=`<p class="sub" style="margin:8px 0 0"><a href="#buildings" data-sec="buildings">Add it in My buildings</a> once you have it.</p>`;
   return h+'</div>'}
 /* test 205: the two folds in an opened Cruise task remember being open, per device */
 function cvFold(){if(state.cvFold)return state.cvFold;let v={};try{v=JSON.parse(localStorage.getItem('sunshine_cvfold_v1')||'{}')||{}}catch(_){}return state.cvFold=v}
 function cvEnough(p,D,nm){const cs=activeCells().filter((c)=>c.product===p.id);let b='';
   const rdyNow=()=>{try{const a=taskAnswer({product:p.id,target:D.sizes[0].amount,h:Math.floor(p.t/60),m:p.t%60,instant:false,have:{}},true);return a&&a.ready||0}catch(_){return 0}};
-  const say=(r)=>{const ok=D.sizes.filter((s)=>s.amount<=r+1e-9).map((s)=>nf(s.amount));return `you'll have <b>${nf(r)} ready to collect</b>, ${ok.length?`<span class="good">enough for ${ok.length===D.sizes.length&&ok.length>1?'every size of this task':'a task of '+(ok.length>1?ok.slice(0,-1).join(', ')+' or '+ok[ok.length-1]:ok[0])}</span>`:'<span class="cvno">not enough for this task yet</span>'}.`};
+  const say=(r)=>{const ok=D.sizes.filter((s)=>s.amount<=r+1e-9).map((s)=>nf(s.amount));return `you'll have <b>${nf(r)} ready to collect</b>, ${ok.length?`<span class="good">enough for ${ok.length===D.sizes.length&&ok.length>1?'every size of this task':'a task of '+(ok.length>1?ok.slice(0,-1).join(', ')+' or '+ok[ok.length-1]:ok[0])}</span>`:`<span class="cvno">not enough for the smallest size (${nf(D.sizes[0].amount)}) yet</span>`}.`};
   if(!cs.length)b=`<p class="sub" style="margin:8px 0 0">None of your buildings is making ${esc(nm.toLowerCase())} right now, so nothing is waiting to collect.</p>`;
   else{const tot=cs.reduce((n,c)=>n+c.count,0),P0=model.producers[cs[0].producer],one=cs.length===1&&cs[0].count===1;
     const keep=cs.map((c)=>cellState(c).full);cs.forEach((c)=>{cellState(c).full=c.count});const all=rdyNow();cs.forEach((c,i)=>{cellState(c).full=keep[i]});
@@ -1844,16 +1851,16 @@ function cvDetail(p){const lk=p.lock;
     {     const rd=(a)=>a.rounds===1?'in one go':'needs '+a.rounds+' goes';const ln=(a)=>a&&a.cyc?(a.rounds===1?` <span class="sub nw">(${mins(a.cyc)})</span>`:` <span class="sub nw">of ${mins(a.cyc)}</span>`):'';
      const li=(s)=>`<li><b>${nf(s.amount)}</b>${s.chk?' <span class="chip">not checked</span>':''}: ${s.a&&s.a.head?(s.ok?(s.via?`<span class="good nw">✓ with ${s.via.mode}</span> <span class="good nw">${s.via.rounds===1?'in one go':'in '+s.via.rounds+' goes'}</span> <span class="sub nw">· uses ${s.via.items}</span>`:`<span class="good nw">✓ ${rd(s.a)}</span>${ln(s.a)}`):`<span class="cvno">not in the time</span> <span class="sub nw">(${limitText(p.t)})</span>`):'<span class="sub">cannot work out</span>'}</li>`;
      const i0=D.sizes.findIndex((s)=>s.ok===false),rest=i0<0?[]:D.sizes.slice(i0+1).filter((s)=>s.ok===false);
-     h+='<ul class="cvsizes">'+D.sizes.map((s,i)=>(i0>=0&&i>i0&&s.ok===false)?'':li(s)).join('')+(rest.length?`<li><b>${rest.map((s)=>nf(s.amount)).join(', ')}</b>: <span class="cvno">not in the time</span> <span class="sub">(bigger than ${nf(D.sizes[i0].amount)})</span></li>`:'')+'</ul>';
+     h+='<ul class="cvsizes">'+D.sizes.map((s,i)=>(i0>=0&&i>i0&&s.ok===false)?'':li(s)).join('')+(rest.length?`<li><b>${rest.map((s)=>nf(s.amount)).join(', ')}</b>: <span class="cvno">not in the time</span></li>`:'')+'</ul>';
      const sk=(D.sizes.find((s)=>s.ok&&s.a&&s.a.stk&&s.a.stk.length)||{}).a;
      if(sk)h+=sk.stk.map((k)=>`<p style="margin:6px 0 0">Use a smaller stack: <b>x${k.to}</b> on your Level ${k.lv} ${esc(k.nm.toLowerCase())}, so it finishes within the time limit.</p>`).join('')}
     if(p.unseen)h+=`<p class="sub" style="margin:4px 0 0">${p.unseen} more size${p.unseen===1?'':'s'} ${p.unseen===1?'hasn\u2019t':'haven\u2019t'} been seen in the game yet.</p>`;
     const o1=D.sizes.find((s)=>s.ok&&!s.via&&s.a&&s.a.one&&s.a.one.length);
     {const s0=D.sizes.find((s)=>s.a&&s.a.inputs&&s.a.inputs.length);const ins=s0?s0.a.inputs.filter((i)=>i.product!=='coins').map((i)=>esc(inName(i.product).toLowerCase())):[];
      if(ins.length)h+=`<p class="sub" style="margin:8px 0 0">Made from ${ins.length>1?ins.slice(0,-1).join(', ')+' and '+ins[ins.length-1]:ins[0]}.</p>`}
-    let adv='';if(o1)adv+=`<p style="margin:8px 0 2px"><b>To do ${nf(o1.amount)} in one go:</b></p><ul class="opt">${o1.a.one.map((o)=>`<li>${o}</li>`).join('')}</ul>`;
+    let adv='';if(o1)adv+=cvOpts(`To do ${nf(o1.amount)} in one go`,o1.a.one);
     const nx=D.sizes.find((s)=>s.ok===false);
-    if(nx&&nx.a){const fix=(nx.a.opts||[]).filter((o)=>!/^Now:/.test(o));if(fix.length)adv+=`<p style="margin:8px 0 2px"><b>To reach ${nf(nx.amount)}${p.t?' within '+limitText(p.t):''}:</b></p><ul class="opt">${fix.map((o)=>`<li>${o}</li>`).join('')}</ul>`;
+    if(nx&&nx.a){const fix=(nx.a.opts||[]).filter((o)=>!/^Now:/.test(o));if(fix.length)adv+=cvOpts(`To reach ${nf(nx.amount)}${p.t?' within '+limitText(p.t):''}`,fix);
       if(nx.a.inputs&&nx.a.inputs.length)adv+=`<p class="sub" style="margin:6px 0 0">It needs: ${nx.a.inputs.map((i)=>nf(i.need)+' '+esc(inName(i.product).toLowerCase())).join(', ')}.</p>`}
     if(!adv)adv='<p class="sub" style="margin:8px 0 0">You can already do every known size in one go.</p>';
     h+=`<details class="cvfold" data-cvfold="adv"${cvFold().adv?' open':''}><summary>What to change to do bigger tasks</summary>${adv}</details>`;
