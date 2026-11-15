@@ -7,7 +7,7 @@
 <title>Sunshine Calculator</title>
 <!-- V104: Browse products list, one saved card per product with a size strip, sizes green (can do) / grey (not yet); V92 (test 92): plain wording, ? panels, My buildings sections, Teal/Black/Light looks, separate quick-sum lines, shelter box fixed, undo stays 30 s; V91 jump highlight + bottom tabs and Back to top; V90 (checked at 340 to 430 px) slim status line + one Jump to drop-down on the island row; V89 island list folded, singular names, island remembered; V88 island-in-use line on My buildings; V87 reopen on the last tab used; V85 test build number in header chip; V84 Load my saved island button in the jump row; V83 no-building answer shows the scenario; V82 storage hint + link to My buildings on cruise cards; V81 jump links, None, reset ready counts, points totals; V80 Full now on Cruise cards; V79 warehouse box tidy; V78 warehouse wording; V77 card note shows number not code; V76 load-island keeps cards/layouts/runes; V75 undo bar sticky at the bottom; V74 2 Nov 2026: fields card, tab order, sticky picker, cruise rules v2, shortest-crop-first when a count is lowered -->
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="build" content="215">
+<meta name="build" content="216">
 <meta name="description" content="Sunshine Island Calculator. Beta 0.1 - data from the 28 Oct 2026 game update.">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=170"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=168"><meta name="apple-mobile-web-app-title" content="Sunshine">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -687,7 +687,7 @@ input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea{f
   <div id="feedback"></div>
   <p class="footer"><span class="meonly"><a href="#data">Data &amp; flags</a> · <button class="linkbtn" data-act="widthchk">Width check</button> · </span><button class="linkbtn" data-act="walkshow">Set-up guide</button> · <button class="linkbtn" data-act="key" aria-expanded="false" id="keybtn">How accurate are the numbers?</button></p>
   <div id="keyline"></div>
-  <p class="footer" style="margin-top:6px">Beta&nbsp;0.1 · test&nbsp;215 · data from the 28&nbsp;Oct&nbsp;2026 game update, checked against game&nbsp;1.3.40309</p>
+  <p class="footer" style="margin-top:6px">Beta&nbsp;0.1 · test&nbsp;216 · data from the 28&nbsp;Oct&nbsp;2026 game update, checked against game&nbsp;1.3.40309</p>
   <p class="footer" style="margin-top:0">Unofficial fan tool. Not made by, or connected to, the game's developers.</p>
   <div id="footlogo" class="footlogo"></div>
   <p class="totop"><button type="button" class="btn ghost small" data-act="totop">↑ Back to top</button></p>
@@ -1940,7 +1940,7 @@ function renderTournament(){
   if(state.cvF===undefined){try{state.cvF=localStorage.getItem('sunshine_cvf_v1')||(setup.groups.length?'can':'all')}catch(_){state.cvF='all'}}
   const f=['can','not','all','star'].includes(state.cvF)?state.cvF:'all';
   let html=`<div class="card"><div class="hline"><h2 style="margin:0;flex:1">Cruise tournament</h2>${qh('<p>Every Cruise task in the calculator is worked out against your buildings. Nothing to save.</p><ol class="steps"><li>Type a product name in the box, or scroll.</li><li>Tap a product to see each size, how long it takes and what you would need.</li><li>Tap the star to keep a product at the top.</li></ol><p>Only amounts seen on real tasks are used. Sizes marked <b>not checked</b> come from a forum table. Guesses are left out.</p>')}</div>
-  ${setup.groups.length?`<p class="cvcount"><b>You can do ${ok} of ${n}</b> known tasks with your buildings.</p>`:`<p class="sub">Add your buildings in <a href="#buildings" data-sec="buildings">My buildings</a> first, then this tab works out which tasks you can do.</p>`}
+  ${setup.groups.length?`<p class="cvcount"><b>You can do ${ok} of ${n}</b> known task sizes with your buildings.</p>`:`<p class="sub">Add your buildings in <a href="#buildings" data-sec="buildings">My buildings</a> first, then this tab works out which tasks you can do.</p>`}
   <p class="sub" style="margin:8px 0 0">Answers use Regular. If Regular isn\u2019t enough, it tells you whether Fine or Instant would work.</p>
   <label class="cvsearch">Find a product<input type="search" data-cq placeholder="e.g. jacket" value="${esc(state.cq||'')}" autocomplete="off" autocapitalize="none" spellcheck="false"></label>
   <div class="cvfilt" role="group" aria-label="Show">${[['can','Can do now'],['not','Not yet'],['all','All tasks']].concat(stars.length?[['star','★ Starred']]:[]).map(([k,l])=>`<button type="button" class="cchip${k===f?' on':''}" data-act="cvf" data-v="${k}" aria-pressed="${k===f}">${l}</button>`).join('')}</div></div>`;
