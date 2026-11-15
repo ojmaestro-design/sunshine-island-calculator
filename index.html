@@ -7,7 +7,7 @@
 <title>Sunshine Calculator</title>
 <!-- V104: Browse products list, one saved card per product with a size strip, sizes green (can do) / grey (not yet); V92 (test 92): plain wording, ? panels, My buildings sections, Teal/Black/Light looks, separate quick-sum lines, shelter box fixed, undo stays 30 s; V91 jump highlight + bottom tabs and Back to top; V90 (checked at 340 to 430 px) slim status line + one Jump to drop-down on the island row; V89 island list folded, singular names, island remembered; V88 island-in-use line on My buildings; V87 reopen on the last tab used; V85 test build number in header chip; V84 Load my saved island button in the jump row; V83 no-building answer shows the scenario; V82 storage hint + link to My buildings on cruise cards; V81 jump links, None, reset ready counts, points totals; V80 Full now on Cruise cards; V79 warehouse box tidy; V78 warehouse wording; V77 card note shows number not code; V76 load-island keeps cards/layouts/runes; V75 undo bar sticky at the bottom; V74 2 Nov 2026: fields card, tab order, sticky picker, cruise rules v2, shortest-crop-first when a count is lowered -->
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="build" content="214">
+<meta name="build" content="215">
 <meta name="description" content="Sunshine Island Calculator. Beta 0.1 - data from the 28 Oct 2026 game update.">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=170"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=168"><meta name="apple-mobile-web-app-title" content="Sunshine">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -687,7 +687,7 @@ input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea{f
   <div id="feedback"></div>
   <p class="footer"><span class="meonly"><a href="#data">Data &amp; flags</a> · <button class="linkbtn" data-act="widthchk">Width check</button> · </span><button class="linkbtn" data-act="walkshow">Set-up guide</button> · <button class="linkbtn" data-act="key" aria-expanded="false" id="keybtn">How accurate are the numbers?</button></p>
   <div id="keyline"></div>
-  <p class="footer" style="margin-top:6px">Beta&nbsp;0.1 · test&nbsp;214 · data from the 28&nbsp;Oct&nbsp;2026 game update, checked against game&nbsp;1.3.40309</p>
+  <p class="footer" style="margin-top:6px">Beta&nbsp;0.1 · test&nbsp;215 · data from the 28&nbsp;Oct&nbsp;2026 game update, checked against game&nbsp;1.3.40309</p>
   <p class="footer" style="margin-top:0">Unofficial fan tool. Not made by, or connected to, the game's developers.</p>
   <div id="footlogo" class="footlogo"></div>
   <p class="totop"><button type="button" class="btn ghost small" data-act="totop">↑ Back to top</button></p>
@@ -1054,7 +1054,7 @@ function layoutsCard(){const T=curTour();
   return h+'</div>'}
 function statusLine(){const byI={},stoI={};let n=0,sto=0;setup.groups.forEach((g)=>{const P=model.producers[g.producer];if(!P)return;n+=g.count;if(g.state==='storage')sto+=g.count;const I=byI[g.island]=byI[g.island]||{};I[P.id]=(I[P.id]||0)+g.count;if(g.state==='storage'){const S=stoI[g.island]=stoI[g.island]||{};S[P.id]=(S[P.id]||0)+g.count}});
   const lib=Object.values(setup.library||{}).filter((v)=>v>0).length;
-  const list=model.islands.filter((i)=>byI[i]).map((i)=>`<div class="sl-isl isl-${esc(String(i).toLowerCase())}"><div class="sl-ih">${esc(pretty(i))}</div><ul class="sl-ul">${Object.entries(byI[i]).sort((a,b)=>azIds().indexOf(a[0])-azIds().indexOf(b[0])).map(([k,v])=>{const nm=model.producers[k].name;const sv=(stoI[i]||{})[k]||0;return `<li><b>${v}</b><span>${esc((v===1?bsing(nm):nm).toLowerCase())}${sv?`<small class="slsto">${sv} in storage</small>`:''}</span></li>`}).join('')}</ul></div>`).join('');
+  const list=model.islands.filter((i)=>byI[i]).map((i)=>`<div class="sl-isl isl-${esc(String(i).toLowerCase())}"><div class="sl-ih">${esc(pretty(i))}</div><ul class="sl-ul">${Object.entries(byI[i]).sort((a,b)=>azIds().indexOf(a[0])-azIds().indexOf(b[0])).map(([k,v])=>{const nm=model.producers[k].name;const sv=(stoI[i]||{})[k]||0;return `<li><b>${v}</b><span>${esc(v===1?bsing(nm):nm)}${sv?`<small class="slsto">${sv} in storage</small>`:''}</span></li>`}).join('')}</ul></div>`).join('');
   const cv=n?cvSummary():{n:0,ok:0},cn=cv.ok,tasks={length:cv.n};
   const head=[n?n+' buildings'+(sto?', including '+sto+' in storage':''):'No buildings yet',tasks.length?'Cruise: you can do '+cn+' of '+tasks.length+' task sizes':''].filter(Boolean).join(' · ');
   return `<div class="card statusline isl-${esc(String(state.bIsland||model.islands[0]).toLowerCase())}"><details><summary><span class="sl-title">My islands at a glance</span><span class="sl-head">${esc(head)}</span></summary><p class="sub" style="margin:6px 0 0">${setup.groups.length||lib?'Your setup is saved in this browser.':'Nothing saved yet.'} Library: ${lib} levels set.</p>${list?`<div class="sl-list">${list}</div>`:''}</details></div>`}
@@ -1172,7 +1172,7 @@ function collectCard(pid,gs){const P=model.producers[pid],S=qcS();
   if(prods.length>1)h+=`<div class="cchips lchips qcpick">${prods.map((x)=>`<button type="button" class="cchip lchip${x===prod?' on':''}" data-act="qcprod" data-p="${esc(pid)}" data-v="${esc(x)}" aria-pressed="${x===prod}">${esc(pn(x))}</button>`).join('')}</div>`;
   /* highest levels first */
   let rem=n,tot=0,tag='seen',cyc=null,bad=false;const used=[];
-  [...lvs].reverse().forEach((L)=>{if(rem<=0)return;const k=Math.min(rem,byLv[L]);rem-=k;used.push(k+' at level '+L);const r=R(prod,mode,L);if(!r.ok){bad=true;return}tot+=r.out.v*k;tag=C.worst(tag,r.out.tag);if(r.cycle&&(!cyc||r.cycle.v>cyc.v))cyc=r.cycle});
+  [...lvs].reverse().forEach((L)=>{if(rem<=0)return;const k=Math.min(rem,byLv[L]);rem-=k;used.push(k+' at Level '+L);const r=R(prod,mode,L);if(!r.ok){bad=true;return}tot+=r.out.v*k;tag=C.worst(tag,r.out.tag);if(r.cycle&&(!cyc||r.cycle.v>cyc.v))cyc=r.cycle});
   h+=`<div class="qcrow"><label style="flex-direction:row;align-items:center;gap:8px;font-size:15px;color:var(--fg)">How many?<select data-qcn="${esc(key)}" aria-label="How many ${esc(noun(2))}, of your ${total}">${rng(1,total,n)}</select></label></div>`;
   if(ml[0]!=='none')h+=`<div class="lmodes" style="margin-top:8px">${ml.map((m)=>`<button type="button" class="btn small gallbtn m-${esc(m)}${m===mode?' on':''}" data-act="qcmode" data-k="${esc(key)}" data-m="${esc(m)}" aria-pressed="${m===mode}">${m===mode?'✓ ':''}${esc(modeLabel(P,prod,m))}</button>`).join('')}</div>`;
   const mlab=ml[0]==='none'?'':' ('+modeLabel(P,prod,mode)+')';
@@ -1186,7 +1186,7 @@ function collectCard(pid,gs){const P=model.producers[pid],S=qcS();
   /* test 175: upgrade tips list every product of the building (each at Regular), so they do not change with the product picked above */
   const parts=[],one=bsing(P.name).toLowerCase(),hasM=prods.some((x)=>modeList(P,x)[0]!=='none');
   lvs.forEach((L)=>{if(L>=P.maxLevel)return;const adds=[];prods.forEach((x)=>{const mx=modeList(P,x),m0=mx.includes('regular')?'regular':mx[0];const a=R(x,m0,L),b=R(x,m0,L+1);if(a.ok&&b.ok&&b.out.v>a.out.v){const d=b.out.v-a.out.v;adds.push(nf(d,Number.isInteger(d)?0:1)+' '+amtName(x,d))}});
-    if(adds.length)parts.push('<b>Upgrade one level '+L+' '+esc(one)+' to level '+(L+1)+'</b><br>adds '+esc(adds.join(', '))+(hasM?' (Regular)':''))});
+    if(adds.length)parts.push('<b>Upgrade one Level '+L+' '+esc(one)+' to Level '+(L+1)+'</b><br>adds '+esc(adds.join(', '))+(hasM?' (Regular)':''))});
   if(parts.length)up='<div class="upbox">'+parts.slice(0,3).map((t)=>`<p>${t}</p>`).join('')+'</div>';
   h+=`<details class="qcmore" data-qcm="${esc(pid)}"${(state.qcOpen||{})[pid]?' open':''}><summary>Your ${total>1?total+' ':''}${esc(noun(total))}: ${parts.length?'upgrade tips':'more details'}</summary><div class="scroll"><table class="ctbl"><thead><tr><th>${ml[0]==='none'?'':'Mode'}</th><th class="n">You can collect</th><th class="n">Time</th></tr></thead><tbody>${rows}</tbody></table></div>${up}</details>`;
   return h+'</div>'}
@@ -1202,10 +1202,10 @@ function islandsMake(){const act=setup.groups.filter((g)=>g.state==='active'&&mo
       return {name:P.name,total,items}});
     out.push({isl,bs})});
   return out}
-function islandsMakeText(){return islandsMake().map((o)=>String(o.isl).toUpperCase()+'\n'+o.bs.map((b)=>b.total+' '+(b.total===1?bsing(b.name):b.name).toLowerCase()+': '+b.items.map((i)=>i.bad?plu(i.id).toLowerCase()+' not worked out yet':amtName(i.id,i.t)+' '+nf(i.t)+(i.cyc?', every '+mins(i.cyc.v):'')).join(' · ')).join('\n')).join('\n\n')}
+function islandsMakeText(){return islandsMake().map((o)=>String(o.isl).toUpperCase()+'\n'+o.bs.map((b)=>b.total+' '+(b.total===1?bsing(b.name):b.name)+': '+b.items.map((i)=>i.bad?plu(i.id)+' not worked out yet':plu(i.id)+' '+nf(i.t)+(i.cyc?', every '+mins(i.cyc.v):'')).join(' · ')).join('\n')).join('\n\n')}
 function islandsMakeCard(){const d=islandsMake();if(!d.length)return '';
   /* test 213: same look as "My islands at a glance" (title in island colour, arrow on the right, coloured island headings) */
-  const lab=(b)=>(b.total===1?bsing(b.name):b.name).toLowerCase();
+  const lab=(b)=>(b.total===1?bsing(b.name):b.name);
   return `<div class="card statusline qcov isl-${esc(String(state.bIsland||model.islands[0]).toLowerCase())}"><details data-qcov="1"${state.qcOv?' open':''}><summary><span class="sl-title">What my islands make</span><span class="sl-head">Every product, with all your buildings</span></summary>
     <p class="sub" style="margin:8px 0 6px">What all your buildings of each kind would make of each product (Regular, biggest stack). A building makes one product at a time, so don't add up products from the same building.</p>
     <div class="sl-list">${d.map((o)=>`<div class="sl-isl isl-${esc(String(o.isl).toLowerCase())}"><div class="sl-ih">${esc(pretty(o.isl))}</div>${o.bs.map((b)=>`<div class="qcovb"><div class="qcovh"><b>${b.total}</b> ${esc(lab(b))}</div>${b.items.map((i)=>`<div class="qcovi"><span>${esc(plu(i.id))}</span>${i.bad?'<span class="empty qcovbad">not worked out yet</span>':`<b class="qcovn">${tv(i.t,i.tag)}</b><span class="qcovt">${i.cyc?esc(mins(i.cyc.v)):''}</span>`}</div>`).join('')}</div>`).join('')}</div>`).join('')}</div>
@@ -1285,7 +1285,7 @@ function renderLookup(){
   if(!res.ok)html+=`<div class="card"><div class="warn">${esc(res.reason)}</div></div>`;
   else{
     const ins=P.category==='processing'?res.inputs.filter((i)=>i.product!=='coins'):[];
-    html+=`<div class="card"><h2>${esc(pn(L.product))} · level ${L.level}${res.slider>1?' · stack of x'+res.slider+(L.slider==='max'?' (biggest)':''):''}</h2><div class="kv">
+    html+=`<div class="card"><h2>${esc(pn(L.product))} · Level ${L.level}${res.slider>1?' · stack of x'+res.slider+(L.slider==='max'?' (biggest)':''):''}</h2><div class="kv">
       <div><span class="k">${res.slider>1?'Makes':'Output '+(res.instant?'per use':'per cycle')}</span><span class="big">${tv(res.out.v,res.out.tag)}</span></div>
       ${res.second?`<div><span class="k">+ ${esc(pretty(res.second.product))}</span><span class="big">${tv(res.second.v,res.second.tag)}</span></div>`:''}
       <div><span class="k">${res.slider>1?'Time':'Cycle'}</span><span class="big" style="font-size:22px">${tc(res.cycle)}</span></div></div>
@@ -1309,7 +1309,7 @@ function renderLookup(){
       for(let n=P.slider.min;n<=topN;n++){const r=C.resolve(model,setup,Object.assign({},L,{slider:n}));
         if(!r.ok){sr+=`<tr><td class="n">x${n}</td><td colspan="${2+sIds.length}"><span class="empty">not available</span></td></tr>`;continue}
         sr+=`<tr class="${n===res.slider?'cur':''}"><td class="n">x${n}</td><td class="n">${tv(r.out.v,r.out.tag)}${r.second?' + '+tv(r.second.v,r.second.tag)+' '+esc(pretty(r.second.product)):''}</td><td class="n">${tcFixed(r.cycle,wsS)}</td>${sIds.map((id)=>{const i=r.inputs.find((z)=>z.product===id);return `<td class="n">${i?nf(i.qty,Number.isInteger(i.qty)?0:1):'–'}</td>`}).join('')}</tr>`}
-      html+=`<div class="card"><h2>Every stack size, ${esc(pn(L.product))}, level ${L.level}</h2>${sIds.length?`<p class="sub" style="margin:0 0 8px">The last ${sIds.length===1?'column is':'columns are'} what it uses.</p>`:''}<div class="scroll"><table class="lutbl"><thead><tr><th class="n">Stack</th><th class="n">Makes</th><th class="n">Time</th>${sIds.map((id)=>`<th class="n inh">${esc(inName(id))}</th>`).join('')}</tr></thead><tbody>${sr}</tbody></table></div></div>`}
+      html+=`<div class="card"><h2>Every stack size, ${esc(pn(L.product))}, Level ${L.level}</h2>${sIds.length?`<p class="sub" style="margin:0 0 8px">The last ${sIds.length===1?'column is':'columns are'} what it uses.</p>`:''}<div class="scroll"><table class="lutbl"><thead><tr><th class="n">Stack</th><th class="n">Makes</th><th class="n">Time</th>${sIds.map((id)=>`<th class="n inh">${esc(inName(id))}</th>`).join('')}</tr></thead><tbody>${sr}</tbody></table></div></div>`}
   }
   html+=`<p class="golink"><a href="#buildings" data-sec="collect">Your own buildings: Quick count →</a></p>`;
   $('#panel').innerHTML=html;
