@@ -7,7 +7,7 @@
 <title>Sunshine Calculator</title>
 <!-- V104: Browse products list, one saved card per product with a size strip, sizes green (can do) / grey (not yet); V92 (test 92): plain wording, ? panels, My buildings sections, Teal/Black/Light looks, separate quick-sum lines, shelter box fixed, undo stays 30 s; V91 jump highlight + bottom tabs and Back to top; V90 (checked at 340 to 430 px) slim status line + one Jump to drop-down on the island row; V89 island list folded, singular names, island remembered; V88 island-in-use line on My buildings; V87 reopen on the last tab used; V85 test build number in header chip; V84 Load my saved island button in the jump row; V83 no-building answer shows the scenario; V82 storage hint + link to My buildings on cruise cards; V81 jump links, None, reset ready counts, points totals; V80 Full now on Cruise cards; V79 warehouse box tidy; V78 warehouse wording; V77 card note shows number not code; V76 load-island keeps cards/layouts/runes; V75 undo bar sticky at the bottom; V74 2 Nov 2026: fields card, tab order, sticky picker, cruise rules v2, shortest-crop-first when a count is lowered -->
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="build" content="218">
+<meta name="build" content="219">
 <meta name="description" content="Sunshine Island Calculator. Beta 0.1 - data from the 28 Oct 2026 game update.">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=170"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=168"><meta name="apple-mobile-web-app-title" content="Sunshine">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -661,6 +661,7 @@ input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea{f
 .qcovh{font:600 15px/1.4 var(--body);color:var(--fg)}.qcovh b{color:var(--ic)}
 .qcovi{display:grid;grid-template-columns:minmax(0,1fr) 5.2em 5.6em;column-gap:12px;align-items:baseline;font-size:.95em;padding-left:10px}
 .qcovn{text-align:right;white-space:nowrap}.qcovt{text-align:left;white-space:nowrap;color:var(--muted,inherit)}.qcovbad{grid-column:2 / 4;text-align:right}
+.lobtns{display:flex;flex-wrap:wrap;gap:8px;align-items:center;width:100%;margin-top:6px}.lobtns .btn{flex:1 1 140px}.lobtns .lodel{margin-left:auto}
 </style>
 <!-- test 173: visitor counter (GoatCounter: no cookies, nothing personal) -->
 <script>/* test 217: opening the ?me=1 link once stops visits from this browser being counted */try{if(/[?&]me=1(&|$)/.test(location.search))localStorage.setItem('skipgc','t')}catch(e){}</script>
@@ -677,7 +678,7 @@ input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea{f
   <div id="feedback"></div>
   <p class="footer"><span class="meonly"><a href="#data">Data &amp; flags</a> · <button class="linkbtn" data-act="widthchk">Width check</button> · </span><button class="linkbtn" data-act="walkshow">Set-up guide</button> · <button class="linkbtn" data-act="key" aria-expanded="false" id="keybtn">How accurate are the numbers?</button></p>
   <div id="keyline"></div>
-  <p class="footer" style="margin-top:6px">Beta&nbsp;0.1 · test&nbsp;218 · data from the 28&nbsp;Oct&nbsp;2026 game update, checked against game&nbsp;1.3.40309 · ©&nbsp;2026 OJ&nbsp;Maestro</p>
+  <p class="footer" style="margin-top:6px">Beta&nbsp;0.1 · test&nbsp;219 · data from the 28&nbsp;Oct&nbsp;2026 game update, checked against game&nbsp;1.3.40309 · ©&nbsp;2026 OJ&nbsp;Maestro</p>
   <p class="footer" style="margin-top:0">Unofficial fan tool. Not made by, or connected to, the game's developers.</p>
   <div id="footlogo" class="footlogo"></div>
   <p class="totop"><button type="button" class="btn ghost small" data-act="totop">↑ Back to top</button></p>
@@ -1015,6 +1016,10 @@ function doLoad(){const p=state.lbPend;state.lbPend=null;if(!p)return;const n=ap
   loadBar(`<p><b>✓ Setup loaded:</b> ${n} building${n===1?'':'s'}, your Library levels and runes.</p><div class="row"><button type="button" class="btn" data-act="lbok">OK</button><button type="button" class="btn ghost" data-act="lbundo">Undo</button></div>`,20000)}
 document.addEventListener('click',(e)=>{const b=e.target.closest&&e.target.closest('#loadbar [data-act]');if(!b)return;const a=b.dataset.act;
   if(a==='lbyes'){doLoad();return}
+  if(a==='loyes'||a==='luyes'){const T=curTour(),L=T.loadouts.find((x)=>x.id===b.dataset.id);loadBarClose();if(!L)return;
+    if(a==='loyes'){snap('Loaded “'+L.name+'”. Your buildings were replaced.');setup.groups=JSON.parse(JSON.stringify(L.groups)).filter(validGroup);setup.groups.forEach((g)=>{g.id='g'+(uid++);fixGroup(g)});setup.cellState={};mergeGroups();save();render()}
+    else{L.groups=JSON.parse(JSON.stringify(setup.groups.map((g)=>Object.assign({},g,{full:0}))));L.saved=Date.now();save();render();loadBar(`<p><b>✓ “${esc(L.name)}” updated</b> with the buildings you have now.</p><div class="row"><button type="button" class="btn" data-act="lbok">OK</button></div>`,8000)}
+    return}
   if(a==='lbno'||a==='lbok'){state.lbPend=null;loadBarClose();return}
   if(a==='lbundo'){if(state.loadUndo){try{setup=JSON.parse(state.loadUndo);(setup.groups||[]).forEach(fixGroup);fixUid();mergeGroups();save()}catch(_){}}state.loadUndo=null;render();loadBar('<p><b>Your previous setup is back.</b></p>',6000)}});
 function bkReadFile(f){if(!f)return;const r=new FileReader();r.onload=()=>{let o=null;try{o=JSON.parse(String(r.result))}catch(_){}
@@ -1034,11 +1039,11 @@ function saveCard(){const me=/[?&]me=1(&|$)/.test(location.search);
     <details class="proftext"${state.pasteOpen?' open':''}><summary>${state.pasteOpen?'Paste your copied setup into the box':'Show the text'}</summary><textarea id="prof" spellcheck="false" aria-label="Your setup as text">${esc(JSON.stringify(setup,null,1))}</textarea>
     <div class="row" style="margin-top:8px"><button class="btn" data-act="apply">Load this text</button><button class="btn ghost" data-act="clearbox">Clear box</button>${me&&files.myIsland?'<button class="btn ghost" data-act="loadfile">Load my saved island (28 Oct file)</button>':''}</div></details></div>`}
 function layoutsCard(){const T=curTour();
-  let h=`<div class="card" id="j-layouts"><h2>My saved setups</h2>${hline('To switch between your own saved setups, press <b>Use</b>. No copying needed.','<p>Using a saved setup replaces all your buildings on every island. You can press <b>Undo</b> straight afterwards.</p>')}`;
+  let h=`<div class="card" id="j-layouts"><h2>My saved setups</h2>${hline('<b>Load this setup</b> puts a saved setup on your islands. <b>Update it</b> saves what you have now into it.','<p><b>Load this setup</b> replaces all your buildings on every island with the saved ones. You can press <b>Undo</b> straight afterwards.</p><p><b>Update it with what I have now</b> replaces the saved copy with the buildings you have now. Your islands do not change.</p><p>Both ask first.</p>')}`;
   if(!T.loadouts.length)h+=`<p class="empty">Nothing saved yet. Type a name below and press <b>Save my setup</b>.</p>`;
   T.loadouts.forEach((L)=>{const sm=loadoutSummary(L);
     h+=`<div class="line lsaved" data-lid="${L.id}"><div style="flex:1;min-width:150px"><b>${esc(L.name)}</b><div class="sub" style="margin:0">${Object.entries(sm).map(([i,x])=>esc(pretty(i))+': '+x.a+' in use, '+x.s+' stored').join('<br>')}</div></div>
-      <button class="btn" data-act="lapply">Use</button><button class="btn ghost small" data-act="lupdate">Replace with what I have now</button><button class="btn ghost small" data-act="ldel">Delete</button></div>`});
+      <div class="lobtns"><button type="button" class="btn ghost" data-act="lapply">Load this setup</button><button type="button" class="btn ghost" data-act="lupdate">Update it with what I have now</button><button type="button" class="startlink lodel" data-act="ldel">Delete</button></div></div>`});
   h+=`<div class="row" style="align-items:flex-end;margin-top:12px"><label style="flex:1;min-width:160px">Name for what you have now<input type="text" data-lname="1" placeholder="e.g. Cruise week" value="${esc(state.lname||'')}"></label><button class="btn" data-act="lsave">Save my setup</button></div>`;
   return h+'</div>'}
 function statusLine(){const byI={},stoI={};let n=0,sto=0;setup.groups.forEach((g)=>{const P=model.producers[g.producer];if(!P)return;n+=g.count;if(g.state==='storage')sto+=g.count;const I=byI[g.island]=byI[g.island]||{};I[P.id]=(I[P.id]||0)+g.count;if(g.state==='storage'){const S=stoI[g.island]=stoI[g.island]||{};S[P.id]=(S[P.id]||0)+g.count}});
@@ -2012,7 +2017,7 @@ function renderSetup(){
 }
 
 /* ---- QUICK ENTRY from the game's Overview (totals of Vol 1 + Vol 2 per product) ---- */
-const OV_ORDER=['cow_feed','ostrich_feed','manure','fertilizer','wheat','daisy','corn','carrots','coffee_beans','rice','flour','ground_coffee','milk','bread','cup_of_coffee','breakfast','cotton','cotton_yarn','cotton_roll','silk_cocoon','silk_thread','bolt_of_silk','feather','cashmere','pine_wood','bamboo','palm_wood','gold_ore','gold_ingot','gold_sheets','copper_ore','copper_ingot','copper_sheets','iron_ore','iron_ingot','iron_sheets'];
+const OV_ORDER=['cow_feed','ostrich_feed','manure','fertilizer','wheat','daisy','corn','carrots','coffee_beans','rice','flour','ground_coffee','milk','bread','cup_of_coffee','breakfast','milk_rice','cotton','cotton_yarn','cotton_roll','silk_cocoon','silk_thread','bolt_of_silk','feather','cashmere','poncho','pine_wood','bamboo','palm_wood','gold_ore','gold_ingot','gold_sheets','copper_ore','copper_ingot','copper_sheets','iron_ore','iron_ingot','iron_sheets'];
 function bsing(n){const w=String(n||'').split(' ');let l=w.pop()||'';if(/ies$/.test(l))l=l.replace(/ies$/,'y');else if(/sses$/.test(l))l=l.replace(/sses$/,'ss');else if(!/(Works|ss|us)$/.test(l)&&/s$/.test(l))l=l.replace(/s$/,'');w.push(l);return w.join(' ')}
 function ovBonus(g,l){const v=g&&g.levels&&g.levels[l];if(v==null)return null;const n=parseInt(String(v).replace(/[^0-9-]/g,''),10);return isNaN(n)?null:n}
 function ovBooks(k){const GU=model.lib.game_upgrades;return{v1:GU[k+'_bonus_vol_1'],v2:GU[k+'_bonus_vol_2'],i1:k+'_bonus_vol_1',i2:k+'_bonus_vol_2'}}
@@ -2045,13 +2050,14 @@ function ovDecText(k){const b=ovBooks(k);const t=ovTotal(k);if(!t)return'';retur
 /* ---- READ THE OVERVIEW FROM SCREENSHOTS (runs on this device, nothing is uploaded) ---- */
 const OCR={worker:null,busy:false,res:null,stat:''};
 const ocrNorm=(s)=>String(s).toLowerCase().replace(/[^a-z]/g,'');
-const OVN={};OV_ORDER.forEach((k)=>{OVN[ocrNorm(k.replace(/_/g,' '))]=k});
+let OV_ALL=null;function ovAll(){if(OV_ALL)return OV_ALL;const ks=[];Object.keys(model.lib.game_upgrades).forEach((id)=>{const m=id.match(/^(.*)_bonus_vol_\d+$/);if(m&&m[1]!=='shelter_feed'&&!ks.includes(m[1]))ks.push(m[1])});OV_ALL=OV_ORDER.concat(ks.filter((k)=>!OV_ORDER.includes(k)));return OV_ALL}
+let OVN=null;function ovn(){if(OVN)return OVN;OVN={};ovAll().forEach((k)=>{OVN[ocrNorm(k.replace(/_/g,' '))]=k});return OVN}
 function ocrLev(a,b){const m=a.length,n=b.length;let p=Array.from({length:n+1},(_,j)=>j);for(let i=1;i<=m;i++){const c=[i];for(let j=1;j<=n;j++)c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]===b[j-1]?0:1));p=c}return p[n]}
-function ocrMatch(name){const t=name.trim().split(/\s+/);
-  for(let i=0;i<t.length;i++){const k=OVN[ocrNorm(t.slice(i).join(' '))];if(k)return{k,fuzzy:false}}
-  let best=null,bd=99;
-  for(let i=0;i<Math.min(t.length,3);i++){const n=ocrNorm(t.slice(i).join(' '));if(n.length<4)continue;for(const k of OV_ORDER){const d=ocrLev(n,ocrNorm(k.replace(/_/g,' ')));if(d<bd){bd=d;best=k}}}
-  return best&&bd<=Math.max(1,Math.floor(ocrNorm(best.replace(/_/g,' ')).length/6))?{k:best,fuzzy:true}:null}
+function ocrMatch(name){const t=name.trim().split(/\s+/),N=ovn(),A=ovAll();
+  const near=(n)=>{let best=null,bd=99;if(n.length<4)return null;for(const k of A){const d=ocrLev(n,ocrNorm(k.replace(/_/g,' ')));if(d<bd){bd=d;best=k}}return best&&bd<=Math.max(1,Math.floor(ocrNorm(best.replace(/_/g,' ')).length/6))?best:null};
+  for(let i=0;i<Math.min(t.length,3);i++){const n=ocrNorm(t.slice(i).join(' '));if(N[n])return{k:N[n],fuzzy:false};const f=near(n);if(f)return{k:f,fuzzy:true}}
+  for(let i=3;i<t.length;i++){const k=N[ocrNorm(t.slice(i).join(' '))];if(k)return{k,fuzzy:false}}
+  return null}
 function ocrParse(pages){
   const warn=[],info=[],loose=[];let heading=false;
   const P=pages.map((pg,pi)=>{const rows=[];let stop=false;
@@ -2065,7 +2071,7 @@ function ocrParse(pages){
       if(!f){loose.push(ln);return}
       rows.push({k:f.k,total:parseInt(m[2],10),fuzzy:f.fuzzy,raw:m[1].trim()})});
     return{name:pg.name,rows,idx:0}});
-  P.forEach((p)=>{p.idx=p.rows.length?OV_ORDER.indexOf(p.rows[0].k):999});
+  P.forEach((p)=>{const r=p.rows.find((x)=>OV_ORDER.includes(x.k));p.idx=r?OV_ORDER.indexOf(r.k):999});
   P.sort((a,b)=>a.idx-b.idx);
   const used=P.filter((p)=>p.rows.length);
   const empty=P.length-used.length;
@@ -2084,8 +2090,8 @@ function ocrParse(pages){
   rows.filter((r)=>r.twice).forEach((r)=>info.push(pretty(r.k)+' bonus is listed twice with the same number (+'+r.total+'). It was counted once.'));
   if(!heading)warn.push('The “Delivery bonuses” heading was not found, so the list may stop early. Products not read are left as they are.');
   loose.forEach((l)=>warn.push('Could not match this line: “'+l+'”.'));
-  const unseen=OV_ORDER.filter((k)=>!seen[k]&&ovTotal(k)>0);
-  const zeroUnseen=heading&&!gaps;
+  const unseen=ovAll().filter((k)=>!seen[k]&&ovTotal(k)>0);
+  const zeroUnseen=heading&&!gaps&&!loose.length;
   return{rows,warn,info,unseen,zeroUnseen,pages:pages.length,gapList:gl}}
 function ovDrawHtml(){return `<svg class="ovdraw" viewBox="0 0 388 112" role="img" aria-label="Drawing of the top of the game's Library screen. On the right is a gold Overview button, then a round paintbrush button and a round red close button. Tapping Overview opens a list called Research bonuses - Overview."><rect x="0" y="0" width="388" height="46" rx="10" fill="#8a5a33"/><g font-family="inherit" font-size="11" font-weight="700" fill="#5b3b1e" text-anchor="middle"><rect x="8" y="12" width="62" height="34" rx="8" fill="#f1dba9"/><text x="39" y="33">Production</text><rect x="74" y="12" width="62" height="34" rx="8" fill="#f1dba9"/><text x="105" y="33">Delivery</text><rect x="140" y="12" width="62" height="34" rx="8" fill="#f1dba9"/><text x="171" y="33">Shelter</text><rect x="214" y="9" width="84" height="28" rx="14" fill="#f2b81f" stroke="#a87a0c" stroke-width="1.5"/><text x="256" y="28" fill="#4a3208">Overview</text></g><circle cx="334" cy="23" r="13" fill="#f4f0e8"/><circle cx="366" cy="23" r="13" fill="#d83a32"/><path d="M361 18l10 10M371 18l-10 10" stroke="#fff" stroke-width="3" stroke-linecap="round"/><rect x="207" y="4" width="98" height="38" rx="19" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="6 4"/><path d="M256 64v-14m0 0l-6 7m6-7l6 7" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="271" y="68" font-size="13" font-weight="700" fill="currentColor" font-family="inherit">Tap this</text><rect x="54" y="78" width="280" height="30" rx="8" fill="#f9ecc8" stroke="#c9a766" stroke-width="1.5"/><text x="194" y="98" font-size="13" font-weight="700" fill="#3f6f93" text-anchor="middle" font-family="inherit">Research bonuses - Overview</text></svg>`}
 function ocrCardHtml(){const r=OCR.res;
@@ -2467,8 +2473,8 @@ document.addEventListener('click',(e)=>{
   if(a==='tdel'){curTour().tasks.splice(+b.closest('[data-ti]').dataset.ti,1);save();render()}
   if(a==='lsave'){const T=curTour();const nm=(state.lname||'').trim()||('Layout '+(T.loadouts.length+1));T.loadouts.push({id:'l'+(uid++)+Date.now().toString(36),name:nm,saved:Date.now(),groups:JSON.parse(JSON.stringify(setup.groups.map((g)=>Object.assign({},g,{full:0}))))});state.lname='';save();render()}
   if(a==='lapply'||a==='lupdate'||a==='ldel'){const T=curTour(),L=T.loadouts.find((x)=>x.id===b.closest('[data-lid]').dataset.lid);
-    if(L&&a==='lapply'){snap('Switched to layout “'+L.name+'”. Your buildings were replaced.');setup.groups=JSON.parse(JSON.stringify(L.groups)).filter(validGroup);setup.groups.forEach((g)=>{g.id='g'+(uid++);fixGroup(g)});setup.cellState={};mergeGroups();save();render()}
-    if(L&&a==='lupdate'){L.groups=JSON.parse(JSON.stringify(setup.groups.map((g)=>Object.assign({},g,{full:0}))));L.saved=Date.now();save();render()}
+    if(L&&a==='lapply'){loadBar(`<p><b>Load “${esc(L.name)}”?</b> All your buildings on every island are swapped for this saved setup.</p><div class="row"><button type="button" class="btn" data-act="loyes" data-id="${L.id}">Yes, load it</button><button type="button" class="btn ghost" data-act="lbno">No</button></div>`);return}
+    if(L&&a==='lupdate'){loadBar(`<p><b>Update “${esc(L.name)}”?</b> The saved copy is replaced with the buildings you have now. Your islands do not change.</p><div class="row"><button type="button" class="btn" data-act="luyes" data-id="${L.id}">Yes, update it</button><button type="button" class="btn ghost" data-act="lbno">No</button></div>`);return}
     if(L&&a==='ldel'){T.loadouts=T.loadouts.filter((x)=>x!==L);save();render()}}
   if(a==='lundo'&&setup.prevGroups){setup.groups=setup.prevGroups;setup.prevGroups=null;setup.groups.forEach(fixGroup);save();render()}
   if(a==='pasteopen'){

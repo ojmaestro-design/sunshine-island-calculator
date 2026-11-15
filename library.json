@@ -711,14 +711,17 @@
   "bolt_of_silk_bonus_vol_1": {
    "building": "Silk Weavers",
    "island": "Jade",
-   "max_level": 3,
+   "max_level": 5,
    "levels": {
     "1": "+1",
     "2": "+2",
-    "3": "+3"
+    "3": "+3",
+    "4": "+4",
+    "5": "+5"
    },
    "effect_format": "bare +N as shown in game; flat additive is HYPOTHESIS (supported by iron_sheets before/after test only); unit UNCONFIRMED",
    "source": "screenshot_or_user_typed",
+   "note_15_nov": "Max level 5 seen 15 Nov 20:41 (game 1.3.40309, Overview table Lvl 1 +1 to Lvl 5 +5; reported by a player at level 4).",
    "note_29_oct": "Level 3 seen 29 Oct 01:07 (Bolt of silk bonus I, Level 2 to 3, +2 to +3; Overview table Lvl 1 +1, Lvl 2 +2, Lvl 3 +3). Earlier record had max level 2 (pre-update)."
   },
   "wheat_bonus_vol_2": {
@@ -1072,7 +1075,7 @@
   },
   "bolt_of_silk_bonus_vol_1": {
    "current": 2,
-   "max": 3,
+   "max": 5,
    "shelf_row": 10,
    "note": "2/3 on the shelf (29 Oct 00:54 and 01:07)"
   },
