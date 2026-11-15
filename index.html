@@ -664,6 +664,7 @@ input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea{f
 .cvmain b::after{color:var(--accent-ink);font-size:1.15em;line-height:1}
 
 /* test 212 */
+.gswrow{flex-basis:100%;display:flex;gap:8px;flex-wrap:wrap}
 .gsum{flex-basis:100%;display:flex;gap:10px;align-items:center;justify-content:space-between}
 .gsum>.sub{flex:1;line-height:1.45}
 .gsum .btn{flex:none;white-space:nowrap}
@@ -1460,6 +1461,9 @@ function groupLine(c,ids,single){
     <div class="first"><b style="display:block;font-size:1.35em;line-height:1.2;color:var(--fg)">${c.count} × Level ${c.level}</b><b style="display:block;font-size:1.1em;line-height:1.25;color:var(--fg)">${esc(P.name)}</b>${runeBadge(c)}</div>
     <div class="gsum"><span class="sub" style="margin:0">${sum}</span>${!unset?`<button type="button" class="btn ghost small" data-act="gfold" aria-expanded="${open}">${open?'Done ▴':'Change ▾'}</button>`:''}</div>`;
   if(bad)h+=`<div class="warn" style="flex-basis:100%">${esc(bad)}</div>`;
+  /* test 212: one tap to move the whole group to the project's other product (e.g. Carrots <-> Wheat) */
+  if(!open&&counted){const sw=prods.filter((p)=>ids.has(p)&&p!==c.product);
+    if(sw.length)h+=`<div class="gswrow">${sw.map((p)=>`<button type="button" class="btn ghost small" data-act="gswitch" data-p="${esc(p)}">Switch to ${esc(plu(p))}</button>`).join('')}</div>`}
   if(open){
     h+=`${prods.length>1?`<label class="mkb">Making<select data-gc="product"><option value="" ${c.product?'':'selected'}>Choose what it makes</option>${opts(prods.filter((p)=>ids.has(p)).map((p)=>({id:p,label:pretty(p)})),c.product)}${prods.some((p)=>!ids.has(p))?`<optgroup label="Not in this project">${opts(prods.filter((p)=>!ids.has(p)).map((p)=>({id:p,label:pretty(p)})),c.product)}</optgroup>`:''}</select></label>`:`<div><span class="sub">Making</span><br><b>${esc(plu(c.product||prods[0]))}</b></div>`}
     ${c.product&&P.slider?`<label>Stack<select data-gc="slider">${opts(sliderOpts(P,c.product,c.recs[0].mode,c.level),c.slider)}</select></label>`:''}`;
@@ -2300,6 +2304,9 @@ document.addEventListener('click',(e)=>{
   if(a==='gpick'){state.gproj=b.dataset.p;try{localStorage.setItem('sunshine_gproj_v1',state.gproj)}catch(_){}state.gchange=false;state.lastCollect=null;try{projectDefaults(curProject())}catch(x){}render();return}
   if(a==='gchange'){state.gchange=true;render();return}
   if(a==='gmore'){state.gmore=!state.gmore;render();return}
+  if(a==='gswitch'){const el=b.closest('[data-cell]'),c=el&&cellByKey(el.dataset.cell),want=b.dataset.p;if(c&&want){const P=model.producers[c.producer],ml=modeList(P,want);
+    c.recs.forEach((g)=>{g.product=want;if(!ml.includes(g.mode))g.mode=ml.includes('regular')?'regular':ml[0];if(P.slider)g.slider=P.hasMaxCycles?'max':topOf(P,want,g.mode,g.level).top});
+    mergeGroups();save();render();toast('Switched to '+plu(want))}return}
   if(a==='gfold'){const el=b.closest('[data-cell]');if(el){const k=el.dataset.cell;state.gopen=state.gopen||{};state.gopen[k]=!state.gopen[k];render();
     try{const e2=[...document.querySelectorAll('[data-cell]')].find((x)=>x.dataset.cell===k);if(e2){const r=e2.getBoundingClientRect();if(r.top<120||r.top>innerHeight-80)window.scrollBy(0,r.top-140)}}catch(_){}}return}
   if(a==='gallmode'){const pr=b.dataset.pr,isl=b.dataset.isl,m=b.dataset.m,P=model.producers[pr];if(!P)return;
