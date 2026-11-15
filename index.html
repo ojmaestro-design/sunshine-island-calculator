@@ -7,7 +7,7 @@
 <title>Sunshine Calculator</title>
 <!-- V104: Browse products list, one saved card per product with a size strip, sizes green (can do) / grey (not yet); V92 (test 92): plain wording, ? panels, My buildings sections, Teal/Black/Light looks, separate quick-sum lines, shelter box fixed, undo stays 30 s; V91 jump highlight + bottom tabs and Back to top; V90 (checked at 340 to 430 px) slim status line + one Jump to drop-down on the island row; V89 island list folded, singular names, island remembered; V88 island-in-use line on My buildings; V87 reopen on the last tab used; V85 test build number in header chip; V84 Load my saved island button in the jump row; V83 no-building answer shows the scenario; V82 storage hint + link to My buildings on cruise cards; V81 jump links, None, reset ready counts, points totals; V80 Full now on Cruise cards; V79 warehouse box tidy; V78 warehouse wording; V77 card note shows number not code; V76 load-island keeps cards/layouts/runes; V75 undo bar sticky at the bottom; V74 2 Nov 2026: fields card, tab order, sticky picker, cruise rules v2, shortest-crop-first when a count is lowered -->
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="build" content="211">
+<meta name="build" content="212">
 <meta name="description" content="Sunshine Island Calculator. Beta 0.1 - data from the 28 Oct 2026 game update.">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=170"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=168"><meta name="apple-mobile-web-app-title" content="Sunshine">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -662,6 +662,16 @@ input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea{f
 .cvfold>summary::after,.splitfold>summary::after,.qcmore>summary::after,.qfind summary::after,.proftext>summary::after,.hometip summary::after,.ocrgaps summary::after,.ovlist>summary::after,.cvother>summary::after,.glbon>summary::after,.glms>summary::after{font-size:1.25em;line-height:1}
 .statusline summary::after{font-size:22px}
 .cvmain b::after{color:var(--accent-ink);font-size:1.15em;line-height:1}
+
+/* test 212 */
+.gsum{flex-basis:100%;display:flex;gap:10px;align-items:center;justify-content:space-between}
+.gsum>.sub{flex:1;line-height:1.45}
+.gsum .btn{flex:none;white-space:nowrap}
+.qcov>summary{cursor:pointer;font-size:1.1em;padding:4px 0}
+.qcovisl{margin-top:10px}.qcovisl h3{margin:6px 0 4px}
+.qcovb{padding:6px 0;border-top:1px solid var(--line,rgba(255,255,255,.08))}
+.qcovi{display:flex;justify-content:space-between;gap:10px;font-size:.95em;padding-left:10px}
+.qcovi>span:last-child{text-align:right;white-space:nowrap}
 </style>
 <!-- test 173: visitor counter (GoatCounter: no cookies, nothing personal) -->
 <script data-goatcounter="https://ojmaestro.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
@@ -677,7 +687,7 @@ input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea{f
   <div id="feedback"></div>
   <p class="footer"><span class="meonly"><a href="#data">Data &amp; flags</a> · <button class="linkbtn" data-act="widthchk">Width check</button> · </span><button class="linkbtn" data-act="walkshow">Set-up guide</button> · <button class="linkbtn" data-act="key" aria-expanded="false" id="keybtn">How accurate are the numbers?</button></p>
   <div id="keyline"></div>
-  <p class="footer" style="margin-top:6px">Beta&nbsp;0.1 · test&nbsp;211 · data from the 28&nbsp;Oct&nbsp;2026 game update, checked against game&nbsp;1.3.40309</p>
+  <p class="footer" style="margin-top:6px">Beta&nbsp;0.1 · test&nbsp;212 · data from the 28&nbsp;Oct&nbsp;2026 game update, checked against game&nbsp;1.3.40309</p>
   <p class="footer" style="margin-top:0">Unofficial fan tool. Not made by, or connected to, the game's developers.</p>
   <div id="footlogo" class="footlogo"></div>
   <p class="totop"><button type="button" class="btn ghost small" data-act="totop">↑ Back to top</button></p>
@@ -812,6 +822,7 @@ function siteBits(){
 document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.classList&&t.classList.contains('ovlist'))state.ovOpen=t.open},true);
 document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.dataset&&t.dataset.cvfold){const f=cvFold();f[t.dataset.cvfold]=t.open?1:0;try{localStorage.setItem('sunshine_cvfold_v1',JSON.stringify(f))}catch(_){}}},true);
 /* test 175: the Quick count fold stays open when the card redraws */
+document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.dataset&&t.dataset.qcov)state.qcOv=t.open},true);
 document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.dataset&&t.dataset.qcm!==undefined){state.qcOpen=state.qcOpen||{};state.qcOpen[t.dataset.qcm]=t.open}},true);
 /* test 169: remember whether "Add or tick buildings" is folded */
 document.addEventListener('toggle',(e)=>{const t=e.target;if(t&&t.dataset&&t.dataset.rdk!==undefined){if(t.open)state.rdOpen=t.dataset.rdk;else if(state.rdOpen===t.dataset.rdk)state.rdOpen=null;return}if(t&&t.dataset&&t.dataset.setupfold!==undefined){state.setupOpen=t.open;if(!t.open)state.tickOpen=false;}},true);
@@ -1179,6 +1190,24 @@ function collectCard(pid,gs){const P=model.producers[pid],S=qcS();
   if(parts.length)up='<div class="upbox">'+parts.slice(0,3).map((t)=>`<p>${t}</p>`).join('')+'</div>';
   h+=`<details class="qcmore" data-qcm="${esc(pid)}"${(state.qcOpen||{})[pid]?' open':''}><summary>Your ${total>1?total+' ':''}${esc(noun(total))}: ${parts.length?'upgrade tips':'more details'}</summary><div class="scroll"><table class="ctbl"><thead><tr><th>${ml[0]==='none'?'':'Mode'}</th><th class="n">You can collect</th><th class="n">Time</th></tr></thead><tbody>${rows}</tbody></table></div>${up}</details>`;
   return h+'</div>'}
+/* test 212: everything each island can make, every product, all your buildings of each kind (Regular, biggest stack); replaces "Copy all" */
+function islandsMake(){const act=setup.groups.filter((g)=>g.state==='active'&&model.producers[g.producer]);const out=[];
+  model.islands.forEach((isl)=>{const ps=[...new Set(act.filter((g)=>String(model.producers[g.producer].island)===String(isl)).map((g)=>g.producer))]
+      .sort((x,y)=>model.producers[x].name.localeCompare(model.producers[y].name));if(!ps.length)return;
+    const bs=ps.map((pid)=>{const P=model.producers[pid],gs=act.filter((g)=>g.producer===pid),byLv={};gs.forEach((g)=>{byLv[g.level]=(byLv[g.level]||0)+g.count});
+      const total=gs.reduce((n,g)=>n+g.count,0),sl=P.slider?'max':1;
+      const items=prodsOf(P).map((x)=>{const mx=modeList(P,x),m0=mx.includes('regular')?'regular':mx[0];let t=0,tag='seen',cyc=null,bad=false;
+        Object.keys(byLv).forEach((L)=>{const r=C.resolve(model,setup,{producer:pid,product:x,mode:m0,level:+L,slider:sl});if(!r.ok){bad=true;return}t+=r.out.v*byLv[L];tag=C.worst(tag,r.out.tag);if(r.cycle&&(!cyc||r.cycle.v>cyc.v))cyc=r.cycle});
+        return {id:x,t,tag,cyc,bad}});
+      return {name:P.name,total,items}});
+    out.push({isl,bs})});
+  return out}
+function islandsMakeText(){return islandsMake().map((o)=>String(o.isl).toUpperCase()+'\n'+o.bs.map((b)=>b.name+' ('+b.total+'): '+b.items.map((i)=>i.bad?plu(i.id).toLowerCase()+' not worked out yet':amtName(i.id,i.t)+' '+nf(i.t)+(i.cyc?', every '+mins(i.cyc.v):'')).join(' · ')).join('\n')).join('\n\n')}
+function islandsMakeCard(){const d=islandsMake();if(!d.length)return '';
+  return `<details class="card qcov" data-qcov="1"${state.qcOv?' open':''}><summary><b>What my islands make</b></summary>
+    <p class="sub" style="margin:8px 0 6px">Every product, as if all your buildings of that kind made it (Regular, biggest stack). A building makes one product at a time, so do not add them together.</p>
+    ${d.map((o)=>`<div class="qcovisl isl-${esc(String(o.isl).toLowerCase())}"><h3>${esc(pretty(o.isl))}</h3>${o.bs.map((b)=>`<div class="qcovb"><b>${esc(b.name)} (${b.total})</b>${b.items.map((i)=>`<div class="qcovi"><span>${esc(plu(i.id))}</span><span>${i.bad?'<span class="empty">not worked out yet</span>':`<b>${tv(i.t,i.tag)}</b>${i.cyc?' · '+esc(mins(i.cyc.v)):''}`}</span></div>`).join('')}</div>`).join('')}</div>`).join('')}
+    <button type="button" class="btn" data-act="qcall" style="width:100%;margin-top:10px">Copy this list</button></details>`}
 function renderCollect(){
   const act=setup.groups.filter((g)=>g.state==='active'&&model.producers[g.producer]);
   const ids=[];model.islands.forEach((i)=>producersOf(i).forEach((p)=>{if(act.some((g)=>g.producer===p.id))ids.push(p.id)}));
@@ -1190,7 +1219,7 @@ function renderCollect(){
   state.csel=(state.csel==='all'||inIsl.includes(state.csel))?state.csel:'all';
   const cap=(t)=>{t=String(t);return t.charAt(0).toUpperCase()+t.slice(1)};
   let h=`<div class="card"><div class="hline"><h2 style="margin:0;flex:1">Quick count</h2>${qh('<ol class="steps"><li>Pick the island and the building.</li><li>Tap the product, then choose <b>How many?</b> and Regular, Fine or Instant. Your highest-level buildings are counted first.</li><li>Press <b>Copy</b> and paste it into guild chat, for example "Carrots (Fine), 7 fields:" followed by the total.</li></ol><p>It remembers your last choices. Open the fold under the number to see every mode and upgrade tips.</p>')}</div><p class="sub" style="margin:4px 0 0">Pick the product, how many and the mode. Press <b>Copy</b> to paste the number in guild chat.</p></div>`;
-  if(isls.length)h+=`<div class="card qcallcard"><p style="margin:0 0 8px">Copy the numbers from every card on all ${isls.length>1?'your islands':'your island'} at once, ready to paste into guild chat.</p><button type="button" class="btn" data-act="qcall" style="width:100%">Copy all ${isls.length>1?isls.length+' islands':'cards'}</button></div>`;
+  if(isls.length)h+=islandsMakeCard();
   h+=`<div class="qbar" role="region" aria-label="Island">`;
   if(isls.length>1)h+=`<div class="bisltabs" role="tablist" aria-label="Island">${isls.map((k)=>`<button type="button" role="tab" aria-selected="${k===state.cisl2}" class="bislt isl-${esc(String(k).toLowerCase())}${k===state.cisl2?' on':''}" data-act="cisl2" data-k="${esc(k)}">${esc(cap(k))}</button>`).join('')}</div>`;
   h+='</div>';
@@ -1335,7 +1364,7 @@ function productCards(A,kind,sh,compact){const keys=Object.keys(A.out).sort();le
       ${w?`<div class="shelbox"><div><span class="k">+ In the Animal Shelter (collect it there as well)</span><span class="big">${tv(w.amount,'seen')}</span></div><div><span class="k">Total available</span><span class="big">${tv(o.total+w.amount,o.tag)}</span></div></div>`:''}
       ${compact?'':o.lines.map((x)=>gline(x.g,x.res,kind)).join('')}</div>`});
   return h}
-function possibleOut(act,id){
+function possibleTot(act,id){
   const pids=model.productProducers[id]||[];let tot=0,tag='seen',cyc=null;const by={};
   act.forEach((g)=>{if(!pids.includes(g.producer))return;const P=model.producers[g.producer];let best=null,bm='';
     modeList(P,id).filter((m)=>m!=='instant').forEach((m)=>{const r=C.resolve(model,setup,{producer:g.producer,product:id,mode:m,level:g.level,slider:P.slider?topOf(P,id,m,g.level).top:1});
@@ -1343,8 +1372,26 @@ function possibleOut(act,id){
     if(!best)return;tot+=best.out.v*g.count;tag=C.worst(tag,best.out.tag);
     if(best.cycle&&(!cyc||best.cycle.v>cyc.v))cyc=best.cycle;
     const d=(by[P.name]=by[P.name]||{n:0,m:new Set(),x:1});d.n+=g.count;if(bm!=='none')d.m.add(modeLabel(P,id,bm));d.x=Math.max(d.x,best.slider||1)});
-  const desc=Object.keys(by).map((k)=>by[k].n+' '+k+(by[k].m.size?', '+[...by[k].m].join('/'):'')+(by[k].x>1?', stack x'+by[k].x:'')).join('; ');
-  return desc?`<p class="sub" style="margin:6px 0 0"><b>Potential:</b> up to ${tv(tot,tag)}${cyc?' every '+mins(cyc.v):''}<br><span class="sub">(${esc(desc)})</span></p>`:''}
+  const names=Object.keys(by);if(!names.length)return null;
+  /* test 212: plain words, e.g. "If all 20 fields used Fine" */
+  const desc='If '+names.map((k)=>{const d=by[k],m=[...d.m].join(' or ');
+    return (d.n===1?'your '+bsing(k).toLowerCase():'all '+d.n+' '+k.toLowerCase())+(m?' used '+m+(d.x>1?', stack x'+d.x:''):(d.x>1?' used stack x'+d.x:' made it'))}).join(' and ');
+  return {tot,tag,cyc,desc}}
+function makersOf(act,id){const pids=model.productProducers[id]||[];const n=[...new Set(act.filter((g)=>pids.includes(g.producer)).map((g)=>model.producers[g.producer].name.toLowerCase()))];return n.length===1?n[0]:'buildings'}
+/* test 212: one folded card instead of the Project totals cards; READY NOW and the groups already show the rest */
+function moreCard(pr,A,act,sh){const open=!!state.gmore;let b='';
+  if(open)pr.products.forEach((p)=>{const id=p.product_id,o=A.out[id],w=sh&&sh.find((x)=>x.product===id&&x.amount>0),pt=possibleTot(act,id);
+    b+=`<div class="gmore"><h3 style="margin:10px 0 4px">${esc(plu(id))}</h3>`;
+    if(o)b+=`<p class="sub" style="margin:0">Now: <b>${tv(o.total,o.tag)}</b>${o.cyc?' every '+mins(o.cyc.v):''}</p>`;
+    else b+=`<p class="sub" style="margin:0">${pt?`None of your ${esc(makersOf(act,id))} is making ${esc(plu(id).toLowerCase())} yet.`:`You have no buildings that make ${esc(plu(id).toLowerCase())}.`}</p>`;
+    if(pt){if(o&&pt.tot<=o.total+1e-9)b+=`<p class="sub" style="margin:0">That is the most your buildings can make.</p>`;
+      else b+=`<p class="sub" style="margin:0">${esc(pt.desc)}: up to <b>${tv(pt.tot,pt.tag)}</b>${pt.cyc?' every '+mins(pt.cyc.v):''}</p>`}
+    if(o)Object.entries(o.second).forEach(([k,v])=>{b+=`<p class="sub" style="margin:0">+ ${tv(v.v,v.tag)} ${esc(pretty(k))} as well</p>`});
+    if(o&&Object.keys(o.inputs).length)b+=`<p class="sub" style="margin:0">They use, each time: ${Object.entries(o.inputs).map(([k,v])=>`${tv(v.v,v.tag,Number.isInteger(v.v)?0:1)} ${esc(inName(k))}`).join(', ')}</p>`;
+    if(w)b+=`<p class="sub" style="margin:0">+ ${nf(w.amount)} waiting in the Animal Shelter</p>`;
+    if(o&&o.tag==='unconfirmed')b+=`<p class="sub" style="margin:4px 0 0"><b>Why the yellow ?</b> ${o.unc.extra>0?`Your Library bonus for ${esc(pretty(id))} adds ${nf(o.unc.extra)} here, but the recorded figure may already include it. So the real number is somewhere between ${nf(o.total)} and ${nf(o.total+o.unc.extra)}.`:esc(o.unc.other[0]||'This figure is not confirmed in the game data.')}</p>`;
+    b+='</div>'});
+  return `<div class="card"><button class="shelhead" data-act="gmore" aria-expanded="${open}">Could you make more? <span>${open?'Hide':'Show'}</span></button>${b}</div>`}
 function guildProjects(){return (files.guild&&files.guild.projects)||[]}
 function curProject(){return guildProjects().find((x)=>x.id===state.gproj)||null}
 /* groups that can make any product of the project; counted = the ones set to a product the project uses */
@@ -1366,7 +1413,8 @@ function stripInner(pr){const A=projAgg(pr);
 function projectDefaults(pr){if(!pr||!model)return;
   const ids=new Set(pr.products.map((p)=>p.product_id));let changed=false;
   const before={groups:JSON.parse(JSON.stringify(setup.groups)),cellState:JSON.parse(JSON.stringify(setup.cellState||{}))};
-  activeCells().forEach((c)=>{if(c.product&&ids.has(c.product))return;
+  /* test 212: a group whose product was never chosen (blank) is filled in too; before, it showed the first product but was not counted */
+  activeCells().forEach((c)=>{if(c.recs.every((g)=>g.product)&&c.product&&ids.has(c.product))return;
     const P=model.producers[c.producer],prods=prodsOf(P);
     const want=pr.products.map((p)=>p.product_id).find((id)=>prods.includes(id));if(!want)return;
     const ml=modeList(P,want),mode=ml.includes('regular')?'regular':ml[0];
@@ -1382,6 +1430,7 @@ function updateStrip(){const pr=curProject(),el=document.getElementById('rstrip'
 /* one row above the first line of a building type that has two or more lines: set every line of that building to one mode */
 function allModeRow(c,ix,lines,isl){if(ix>0&&lines[ix-1].producer===c.producer)return '';
   if(lines.filter((x)=>x.producer===c.producer).length<2)return '';
+  if(!lines.some((x)=>x.producer===c.producer&&(!x.product||(state.gopen&&state.gopen[x.key]))))return '';
   const P=model.producers[c.producer];
   const ok=MODES3.filter((m)=>lines.some((x)=>x.producer===c.producer&&x.product&&modeList(P,x.product).includes(m)));
   if(!ok.length)return '';
@@ -1394,21 +1443,31 @@ function groupLine(c,ids,single){
   const counted=!!(c.product&&ids.has(c.product));
   const ml=c.product?modeList(P,c.product):[],noModes=ml[0]==='none';
   const resBy={};ml.forEach((m)=>{resBy[m]=C.resolve(model,setup,{producer:c.producer,product:c.product,mode:m,level:c.level,slider:c.slider})});
-  let h=`<div class="line gline${counted||!c.product?'':' notcounted'}" data-cell="${esc(c.key)}">
+  /* test 212: a group that is set up is folded to one summary line; Change opens the settings */
+  if(!c.product||(!noModes&&!ml.some((m)=>(c.modes[m]||0)>0))){state.gopen=state.gopen||{};state.gopen[c.key]=true}
+  const unset=!c.product||(!noModes&&!ml.some((m)=>(c.modes[m]||0)>0));
+  const open=unset||!!(state.gopen&&state.gopen[c.key]);
+  let tot=0,tag='seen',cyc=null,bad=null;
+  if(c.product)ml.forEach((m)=>{const n=noModes?c.count:(c.modes[m]||0);const r=resBy[m];if(!n)return;if(!r||!r.ok){bad=r?r.reason:'not seen yet';return}tot+=r.out.v*n;tag=C.worst(tag,r.out.tag);if(r.cycle&&(!cyc||r.cycle.v>cyc.v))cyc=r.cycle});
+  const split=noModes?'':MODES3.filter((m)=>ml.includes(m)&&(c.modes[m]||0)>0).map((m)=>c.modes[m]+' '+pretty(m)).join(', ');
+  let sum='';
+  if(!c.product)sum='Not set yet: choose what it makes.';
+  else if(unset)sum=`${esc(plu(c.product))}: set how many use Regular, Fine or Instant below.`;
+  else if(bad)sum=esc(plu(c.product));
+  else if(!counted)sum=`${esc(plu(c.product))}: not part of this project, so not counted here.`;
+  else sum=`<b style="color:var(--fg)">${esc(plu(c.product))}</b>${split?' · '+esc(split):''}<br>${c.count>1?'Together they make':'Makes'} <b style="color:var(--fg)">${tv(tot,tag)}</b>${cyc?' every '+mins(cyc.v):''}`;
+  let h=`<div class="line gline${counted||!c.product?'':' notcounted'}${open?'':' gfolded'}" data-cell="${esc(c.key)}">
     <div class="first"><b style="display:block;font-size:1.35em;line-height:1.2;color:var(--fg)">${c.count} × Level ${c.level}</b><b style="display:block;font-size:1.1em;line-height:1.25;color:var(--fg)">${esc(P.name)}</b>${runeBadge(c)}</div>
-    ${prods.length>1?`<label class="mkb">Making<select data-gc="product"><option value="" ${c.product?'':'selected'}>Choose what it makes</option>${opts(prods.filter((p)=>ids.has(p)).map((p)=>({id:p,label:pretty(p)})),c.product)}${prods.some((p)=>!ids.has(p))?`<optgroup label="Not in this project">${opts(prods.filter((p)=>!ids.has(p)).map((p)=>({id:p,label:pretty(p)})),c.product)}</optgroup>`:''}</select></label>`:`<div><span class="sub">Making</span><br><b>${esc(plu(c.product||prods[0]))}</b></div>`}
+    <div class="gsum"><span class="sub" style="margin:0">${sum}</span>${!unset?`<button type="button" class="btn ghost small" data-act="gfold" aria-expanded="${open}">${open?'Done ▴':'Change ▾'}</button>`:''}</div>`;
+  if(bad)h+=`<div class="warn" style="flex-basis:100%">${esc(bad)}</div>`;
+  if(open){
+    h+=`${prods.length>1?`<label class="mkb">Making<select data-gc="product"><option value="" ${c.product?'':'selected'}>Choose what it makes</option>${opts(prods.filter((p)=>ids.has(p)).map((p)=>({id:p,label:pretty(p)})),c.product)}${prods.some((p)=>!ids.has(p))?`<optgroup label="Not in this project">${opts(prods.filter((p)=>!ids.has(p)).map((p)=>({id:p,label:pretty(p)})),c.product)}</optgroup>`:''}</select></label>`:`<div><span class="sub">Making</span><br><b>${esc(plu(c.product||prods[0]))}</b></div>`}
     ${c.product&&P.slider?`<label>Stack<select data-gc="slider">${opts(sliderOpts(P,c.product,c.recs[0].mode,c.level),c.slider)}</select></label>`:''}`;
-  if(c.product&&!noModes)h+=`<div class="sub" style="flex-basis:100%;margin:0">How many ${esc(P.name.toLowerCase())} on each:</div><div class="mboxes" style="flex-basis:100%">${MODES3.filter((m)=>ml.includes(m)).map((m)=>modeBox(c,P,m,resBy)).join('')}</div>`;
-  if(c.product&&noModes){const r=resBy.none;h+=`<div class="sub" style="flex-basis:100%;margin:0">${r&&r.ok?(c.count===1?'Makes ':'Each makes ')+tv(r.out.v,r.out.tag)+(r.cycle?' every '+mins(r.cycle.v):''):'not seen yet'}.</div>`}
-  if(c.product&&prods.length>1&&c.count>1){const other=prods.filter((p)=>p!==c.product).sort((x,y)=>(ids.has(y)?1:0)-(ids.has(x)?1:0));
-    h+=`<details class="splitfold" style="flex-basis:100%"><summary>Switch some to something else</summary><div class="splitrow" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px"><span class="sub" style="margin:0">Move</span><select data-gsn aria-label="How many to move" style="width:auto;min-width:72px">${rng(1,c.count,1)}</select><span class="sub" style="margin:0" data-gsl data-pl="${esc(P.name.toLowerCase())}" data-sg="${esc(bsing(P.name).toLowerCase())}">${esc(bsing(P.name).toLowerCase())} to</span><select data-gsp aria-label="Move them to" style="width:auto;min-width:140px">${opts(other.map((p)=>({id:p,label:pretty(p)})),other[0])}</select><button type="button" class="btn small" data-act="gsplit">Move</button></div></details>`}
-  if(c.product){
-    let tot=0,tag='seen',cyc=null,bad=null;
-    ml.forEach((m)=>{const n=noModes?c.count:(c.modes[m]||0);const r=resBy[m];if(!n)return;if(!r||!r.ok){bad=r?r.reason:'not seen yet';return}tot+=r.out.v*n;tag=C.worst(tag,r.out.tag);if(r.cycle&&(!cyc||r.cycle.v>cyc.v))cyc=r.cycle});
-    if(bad)h+=`<div class="warn" style="flex-basis:100%">${esc(bad)}</div>`;
-    else if(counted){if(!single&&!(noModes&&c.count===1))h+=`<div class="sub" style="flex-basis:100%;margin:0">Together they make ${tv(tot,tag)} ${esc(plu(c.product))}${cyc?' every '+mins(cyc.v):''}</div>`}
-    else h+=`<div class="sub" style="flex-basis:100%;margin:0">${esc(pretty(c.product))} is not part of this project, so it is not counted here.</div>`;
-    if(counted)h+=`<label>Ready to collect (of ${c.count})<select data-gf="full">${rng(0,c.count,Math.min(s.full||0,c.count))}</select></label><button class="btn ghost small" data-act="cfull">All ready</button><button class="btn small" data-act="ccollect" ${s.full>0?'':'disabled'}>I collected one</button>${undoBtn(c)}`}
+    if(c.product&&!noModes)h+=`<div class="sub" style="flex-basis:100%;margin:0">How many ${esc(P.name.toLowerCase())} on each:</div><div class="mboxes" style="flex-basis:100%">${MODES3.filter((m)=>ml.includes(m)).map((m)=>modeBox(c,P,m,resBy)).join('')}</div>`;
+    if(c.product&&noModes){const r=resBy.none;h+=`<div class="sub" style="flex-basis:100%;margin:0">${r&&r.ok?(c.count===1?'Makes ':'Each makes ')+tv(r.out.v,r.out.tag)+(r.cycle?' every '+mins(r.cycle.v):''):'not seen yet'}.</div>`}
+    if(c.product&&prods.length>1&&c.count>1){const other=prods.filter((p)=>p!==c.product).sort((x,y)=>(ids.has(y)?1:0)-(ids.has(x)?1:0));
+      h+=`<details class="splitfold" style="flex-basis:100%"><summary>Switch some to something else</summary><div class="splitrow" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px"><span class="sub" style="margin:0">Move</span><select data-gsn aria-label="How many to move" style="width:auto;min-width:72px">${rng(1,c.count,1)}</select><span class="sub" style="margin:0" data-gsl data-pl="${esc(P.name.toLowerCase())}" data-sg="${esc(bsing(P.name).toLowerCase())}">${esc(bsing(P.name).toLowerCase())} to</span><select data-gsp aria-label="Move them to" style="width:auto;min-width:140px">${opts(other.map((p)=>({id:p,label:pretty(p)})),other[0])}</select><button type="button" class="btn small" data-act="gsplit">Move</button></div></details>`}}
+  if(c.product&&counted)h+=`<label>Ready to collect (of ${c.count})<select data-gf="full">${rng(0,c.count,Math.min(s.full||0,c.count))}</select></label><button class="btn ghost small" data-act="cfull">All ready</button><button class="btn small" data-act="ccollect" ${s.full>0?'':'disabled'}>I collected one</button>${undoBtn(c)}`;
   return h+'</div>'}
 let undoTimer=null,undoArmed=null;
 function armUndo(){if(undoArmed===state.undo)return;undoArmed=state.undo;clearTimeout(undoTimer);const mine=state.undo;undoTimer=setTimeout(()=>{if(state.undo===mine){state.undo=null;const e=document.getElementById('gundo');if(e)e.remove()}undoArmed=null},30000)}
@@ -1571,13 +1630,11 @@ function renderGuild(){
     else if(!pc.shown.length)html+=`<div class="card"><p class="empty">None of your buildings can make ${esc(pr.products.map((p)=>plu(p.product_id)).join(' or '))}. Add them in <a href="#buildings">My buildings</a>.</p></div>`;
     else model.islands.forEach((i)=>{const lines=pc.shown.filter((c)=>c.island===i);if(!lines.length)return;
       html+=`<div class="card isl-${esc(String(i).toLowerCase())}"><h2>${esc(pretty(i))}</h2>${lines.map((c,ix)=>allModeRow(c,ix,lines,i)+groupLine(c,pc.ids,pc.counted.length===1)).join('')}</div>`});
-    html+=`<div class="row" style="justify-content:space-between;margin:14px 0 6px"><h3 style="margin:0">Project totals</h3></div>`;
-    pr.products.forEach((p)=>{const id=p.product_id;
-      if(A.out[id]){let c=productCards({out:{[id]:A.out[id]}},'p',sh,true);const add=possibleOut(act,id);if(add){const k=c.lastIndexOf('</div>');c=c.slice(0,k)+add+c.slice(k)}html+=c}
-      else{const w=sh&&sh.find((x)=>x.product===id&&x.amount>0);html+=`<div class="card"><h2>${esc(plu(id))}</h2><p class="sub" style="margin:0">None of your groups is set to ${esc(plu(id).toLowerCase())} yet.${w?` In the Animal Shelter: ${nf(w.amount)}.`:''}</p>${possibleOut(act,id)}</div>`}});
+    if(pc.shown.length)html+=moreCard(pr,A,act,sh);
   }
   else if(!pr)html+=`<p class="sub">Pick a project to enter what your buildings are making for it.</p>`;
-  html+=`<div id="gj-s"></div>`+renderShelter();
+  /* test 212: the Animal Shelter only for projects that use one of its products */
+  if(pr&&pr.products.some((p)=>shelterIds().includes(p.product_id)))html+=`<div id="gj-s"></div>`+renderShelter();
   $('#panel').innerHTML=html;
   {const st=document.querySelector('.pstrip'),on=st&&st.querySelector('.pbtn.on');if(on)st.scrollLeft=Math.max(0,on.offsetLeft-(st.clientWidth-on.offsetWidth)/2)}
 }
@@ -2242,6 +2299,9 @@ document.addEventListener('click',(e)=>{
     if(all.some((q)=>q<=r&&setup.shelfLocked[q])){all.filter((q)=>q<=r).forEach((q)=>{delete setup.shelfLocked[q]})}else{all.filter((q)=>q>=r).forEach((q)=>{setup.shelfLocked[q]=true})}save();render();return}
   if(a==='gpick'){state.gproj=b.dataset.p;try{localStorage.setItem('sunshine_gproj_v1',state.gproj)}catch(_){}state.gchange=false;state.lastCollect=null;try{projectDefaults(curProject())}catch(x){}render();return}
   if(a==='gchange'){state.gchange=true;render();return}
+  if(a==='gmore'){state.gmore=!state.gmore;render();return}
+  if(a==='gfold'){const el=b.closest('[data-cell]');if(el){const k=el.dataset.cell;state.gopen=state.gopen||{};state.gopen[k]=!state.gopen[k];render();
+    try{const e2=[...document.querySelectorAll('[data-cell]')].find((x)=>x.dataset.cell===k);if(e2){const r=e2.getBoundingClientRect();if(r.top<120||r.top>innerHeight-80)window.scrollBy(0,r.top-140)}}catch(_){}}return}
   if(a==='gallmode'){const pr=b.dataset.pr,isl=b.dataset.isl,m=b.dataset.m,P=model.producers[pr];if(!P)return;
     const cs=activeCells().filter((x)=>x.island===isl&&x.producer===pr&&x.product&&modeList(P,x.product)[0]!=='none'&&modeList(P,x.product).includes(m));
     if(!cs.length)return;snap('All '+P.name.toLowerCase()+' set to '+pretty(m));
@@ -2308,8 +2368,7 @@ document.addEventListener('click',(e)=>{
   if(a==='qcpick'){state.csel=b.dataset.v;qcS().sel[state.cisl2]=b.dataset.v;qcSave();render();return}
   if(a==='qcprod'){qcS().prod[b.dataset.p]=b.dataset.v;qcSave();render();return}
   if(a==='qcmode'){qcS().mode[b.dataset.k]=b.dataset.m;qcSave();render();return}
-  if(a==='qcall'){const lab=b.textContent;const act=setup.groups.filter((g)=>g.state==='active'&&model.producers[g.producer]);const ids=[...new Set(act.map((g)=>g.producer))];const cap=(t)=>{t=String(t);return t.charAt(0).toUpperCase()+t.slice(1)};const tmp=document.createElement('div');
-    const t=model.islands.map((isl)=>{const ps=ids.filter((x)=>String(model.producers[x].island)===String(isl));if(!ps.length)return '';tmp.innerHTML=ps.map((pid)=>collectCard(pid,act.filter((g)=>g.producer===pid))).join('');const ls=[...tmp.querySelectorAll('[data-act=qccopy]')].map((x)=>x.dataset.t);return ls.length?cap(isl)+':\n'+ls.join('\n'):''}).filter(Boolean).join('\n\n');
+  if(a==='qcall'){const lab=b.textContent;const t=islandsMakeText();
     copyText(t,(ok)=>{b.textContent=ok?'Copied \u2713':'Could not copy';setTimeout(()=>{b.textContent=lab},2000)});return}
   if(a==='qccopy'){const t=b.dataset.t;copyText(t,(ok)=>{b.textContent=ok?'Copied \u2713':'Could not copy';setTimeout(()=>{b.textContent='Copy'},2000)});return}
   if(a==='bpick'){state.bsel=state.bsel||{};state.bsel[state.bIsland]=b.dataset.v;render();return}
