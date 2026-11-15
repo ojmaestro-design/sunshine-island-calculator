@@ -670,8 +670,8 @@ input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea{f
 .qcov>summary{cursor:pointer;font-size:1.1em;padding:4px 0}
 .qcovisl{margin-top:10px}.qcovisl h3{margin:6px 0 4px}
 .qcovb{padding:6px 0;border-top:1px solid var(--line,rgba(255,255,255,.08))}
-.qcovi{display:flex;justify-content:space-between;gap:10px;font-size:.95em;padding-left:10px}
-.qcovi>span:last-child{text-align:right;white-space:nowrap}
+.qcovi{display:grid;grid-template-columns:minmax(0,1fr) 5.2em 5.6em;column-gap:12px;align-items:baseline;font-size:.95em;padding-left:10px}
+.qcovn{text-align:right;white-space:nowrap}.qcovt{text-align:left;white-space:nowrap;color:var(--muted,inherit)}.qcovbad{grid-column:2 / 4;text-align:right}
 </style>
 <!-- test 173: visitor counter (GoatCounter: no cookies, nothing personal) -->
 <script data-goatcounter="https://ojmaestro.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
@@ -1206,7 +1206,7 @@ function islandsMakeText(){return islandsMake().map((o)=>String(o.isl).toUpperCa
 function islandsMakeCard(){const d=islandsMake();if(!d.length)return '';
   return `<details class="card qcov" data-qcov="1"${state.qcOv?' open':''}><summary><b>What my islands make</b></summary>
     <p class="sub" style="margin:8px 0 6px">Every product, as if all your buildings of that kind made it (Regular, biggest stack). A building makes one product at a time, so do not add them together.</p>
-    ${d.map((o)=>`<div class="qcovisl isl-${esc(String(o.isl).toLowerCase())}"><h3>${esc(pretty(o.isl))}</h3>${o.bs.map((b)=>`<div class="qcovb"><b>${esc(b.name)} (${b.total})</b>${b.items.map((i)=>`<div class="qcovi"><span>${esc(plu(i.id))}</span><span>${i.bad?'<span class="empty">not worked out yet</span>':`<b>${tv(i.t,i.tag)}</b>${i.cyc?' · '+esc(mins(i.cyc.v)):''}`}</span></div>`).join('')}</div>`).join('')}</div>`).join('')}
+    ${d.map((o)=>`<div class="qcovisl isl-${esc(String(o.isl).toLowerCase())}"><h3>${esc(pretty(o.isl))}</h3>${o.bs.map((b)=>`<div class="qcovb"><b>${esc(b.name)} (${b.total})</b>${b.items.map((i)=>`<div class="qcovi"><span>${esc(plu(i.id))}</span>${i.bad?'<span class="empty qcovbad">not worked out yet</span>':`<b class="qcovn">${tv(i.t,i.tag)}</b><span class="qcovt">${i.cyc?esc(mins(i.cyc.v)):''}</span>`}</div>`).join('')}</div>`).join('')}</div>`).join('')}
     <button type="button" class="btn" data-act="qcall" style="width:100%;margin-top:10px">Copy this list</button></details>`}
 function renderCollect(){
   const act=setup.groups.filter((g)=>g.state==='active'&&model.producers[g.producer]);
