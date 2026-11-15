@@ -7,7 +7,7 @@
 <title>Sunshine Calculator</title>
 <!-- V104: Browse products list, one saved card per product with a size strip, sizes green (can do) / grey (not yet); V92 (test 92): plain wording, ? panels, My buildings sections, Teal/Black/Light looks, separate quick-sum lines, shelter box fixed, undo stays 30 s; V91 jump highlight + bottom tabs and Back to top; V90 (checked at 340 to 430 px) slim status line + one Jump to drop-down on the island row; V89 island list folded, singular names, island remembered; V88 island-in-use line on My buildings; V87 reopen on the last tab used; V85 test build number in header chip; V84 Load my saved island button in the jump row; V83 no-building answer shows the scenario; V82 storage hint + link to My buildings on cruise cards; V81 jump links, None, reset ready counts, points totals; V80 Full now on Cruise cards; V79 warehouse box tidy; V78 warehouse wording; V77 card note shows number not code; V76 load-island keeps cards/layouts/runes; V75 undo bar sticky at the bottom; V74 2 Nov 2026: fields card, tab order, sticky picker, cruise rules v2, shortest-crop-first when a count is lowered -->
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="build" content="220">
+<meta name="build" content="221">
 <meta name="description" content="Sunshine Island Calculator. Beta 0.1 - data from the 28 Oct 2026 game update.">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=170"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=168"><meta name="apple-mobile-web-app-title" content="Sunshine">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -662,6 +662,7 @@ input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea{f
 .qcovi{display:grid;grid-template-columns:minmax(0,1fr) 5.2em 5.6em;column-gap:12px;align-items:baseline;font-size:.95em;padding-left:10px}
 .qcovn{text-align:right;white-space:nowrap}.qcovt{text-align:left;white-space:nowrap;color:var(--muted,inherit)}.qcovbad{grid-column:2 / 4;text-align:right}
 .lobtns{display:flex;flex-wrap:wrap;gap:8px;align-items:center;width:100%;margin-top:6px}.lobtns .btn{flex:1 1 140px}.lobtns .lodel{margin-left:auto}
+.qclk{display:block;font-size:12px;color:var(--muted,#9aa)}
 </style>
 <!-- test 173: visitor counter (GoatCounter: no cookies, nothing personal) -->
 <script>/* test 217: opening the ?me=1 link once stops visits from this browser being counted */try{if(/[?&]me=1(&|$)/.test(location.search))localStorage.setItem('skipgc','t')}catch(e){}</script>
@@ -678,7 +679,7 @@ input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea{f
   <div id="feedback"></div>
   <p class="footer"><span class="meonly"><a href="#data">Data &amp; flags</a> · <button class="linkbtn" data-act="widthchk">Width check</button> · </span><button class="linkbtn" data-act="walkshow">Set-up guide</button> · <button class="linkbtn" data-act="key" aria-expanded="false" id="keybtn">How accurate are the numbers?</button></p>
   <div id="keyline"></div>
-  <p class="footer" style="margin-top:6px">Beta&nbsp;0.1 · test&nbsp;220 · data from the 28&nbsp;Oct&nbsp;2026 game update, checked against game&nbsp;1.3.40309 · ©&nbsp;2026 OJ&nbsp;Maestro</p>
+  <p class="footer" style="margin-top:6px">Beta&nbsp;0.1 · test&nbsp;221 · data from the 28&nbsp;Oct&nbsp;2026 game update, checked against game&nbsp;1.3.40309 · ©&nbsp;2026 OJ&nbsp;Maestro</p>
   <p class="footer" style="margin-top:0">Unofficial fan tool. Not made by, or connected to, the game's developers.</p>
   <div id="footlogo" class="footlogo"></div>
   <p class="totop"><button type="button" class="btn ghost small" data-act="totop">↑ Back to top</button></p>
@@ -711,6 +712,9 @@ const UNLOCK={field:1,cow_shed:1,windmill:2,feed_mill:3,bakery:4,silo:6,pine_nur
 const PUNLOCK={daisies:3,corn:6,fertilizer:6,ostrich_feed:9,ground_coffee:10,cotton:13,silk_cocoon:14,copper_ore:18,silk_thread:18,iron_ore:20,shelter_feed:21,carrots:22,copper_ingot:24,goat_feed:25,iron_ingot:28,bamboo_rice:46,quilt:58,curtain:67,gong:72,hammock:90};
 function plvl(){const ok=(v)=>v>=1&&v<=200;if(setup&&ok(setup.playerLevel))return setup.playerLevel;let v=null;try{v=parseInt(localStorage.getItem('sunshine_playerlevel_v1'),10)}catch(_){}return ok(v)?v:null}
 function pLock(id){const lv=PUNLOCK[id];if(!lv)return null;const pl=plvl();return {lv,pl,locked:pl!=null&&pl<lv}}
+/* test 221: every list of products follows the player level, like the Cruise tab: recipes above it are left out; with no level set they are kept and marked */
+function prodsOk(P,keep){const all=prodsOf(P);const ok=all.filter((x)=>x===keep||!(pLock(x)||{}).locked);return ok.length?ok:all}
+function lockNote(id){const k=pLock(id);return k&&k.pl==null&&k.lv>=40?'unlocks at level '+k.lv:''}
 /* test 179: ordered by use. The tab grid reads down in pairs: top row My buildings, Guild tournament, Cruise tournament; bottom row Look up, Guild leader, Library & setup */
 const TABS=[['buildings','My buildings'],['lookup','Look up'],['guild','Guild tournament'],['leader','Guild leader'],['cruise','Cruise tournament'],['setup','Library & setup']];
 const ALLTABS=TABS.concat([['data','Data & flags']]);
@@ -1157,13 +1161,14 @@ function collectCard(pid,gs){const P=model.producers[pid],S=qcS();
   const lvs=Object.keys(byLv).map(Number).sort((a,b)=>a-b),total=gs.reduce((n,g)=>n+g.count,0);
   const sl=P.slider?'max':1;
   const R=(prod,m,L)=>C.resolve(model,setup,{producer:pid,product:prod,mode:m,level:L,slider:sl});
-  const prods=prodsOf(P),prod=prods.includes(S.prod[pid])?S.prod[pid]:prods[0];
+  const prods=prodsOk(P),prod=prods.includes(S.prod[pid])?S.prod[pid]:prods[0];
   const ml=modeList(P,prod).slice().sort((a,b)=>['regular','fine','instant'].indexOf(a)-['regular','fine','instant'].indexOf(b));
   const key=pid+'|'+prod,mode=ml.includes(S.mode[key])?S.mode[key]:(ml.includes('regular')?'regular':ml[0]);
   const n=Math.min(total,Math.max(1,parseInt(S.n[key],10)||total));
   const noun=(k)=>(k===1?bsing(P.name):P.name).toLowerCase();
   let h=`<div class="card"><div class="row" style="justify-content:space-between;align-items:flex-start"><h2 style="margin:0">${esc(P.name)}</h2><span class="chip">You have ${total}</span></div>`;
   if(prods.length>1)h+=`<div class="cchips lchips qcpick">${prods.map((x)=>`<button type="button" class="cchip lchip${x===prod?' on':''}" data-act="qcprod" data-p="${esc(pid)}" data-v="${esc(x)}" aria-pressed="${x===prod}">${esc(pn(x))}</button>`).join('')}</div>`;
+  if(lockNote(prod))h+=`<p class="sub" style="margin:6px 0 0">${esc(pn(prod))}: ${esc(lockNote(prod))}. Set your player level in <a href="#setup">Library &amp; setup</a> to leave out recipes you haven't unlocked.</p>`;
   /* highest levels first */
   let rem=n,tot=0,tag='seen',cyc=null,bad=false;const used=[];
   [...lvs].reverse().forEach((L)=>{if(rem<=0)return;const k=Math.min(rem,byLv[L]);rem-=k;used.push(k+' at Level '+L);const r=R(prod,mode,L);if(!r.ok){bad=true;return}tot+=r.out.v*k;tag=C.worst(tag,r.out.tag);if(r.cycle&&(!cyc||r.cycle.v>cyc.v))cyc=r.cycle});
@@ -1190,19 +1195,19 @@ function islandsMake(){const act=setup.groups.filter((g)=>g.state==='active'&&mo
       .sort((x,y)=>model.producers[x].name.localeCompare(model.producers[y].name));if(!ps.length)return;
     const bs=ps.map((pid)=>{const P=model.producers[pid],gs=act.filter((g)=>g.producer===pid),byLv={};gs.forEach((g)=>{byLv[g.level]=(byLv[g.level]||0)+g.count});
       const total=gs.reduce((n,g)=>n+g.count,0),sl=P.slider?'max':1;
-      const items=prodsOf(P).map((x)=>{const mx=modeList(P,x),m0=mx.includes('regular')?'regular':mx[0];let t=0,tag='seen',cyc=null,bad=false;
+      const items=prodsOk(P).map((x)=>{const mx=modeList(P,x),m0=mx.includes('regular')?'regular':mx[0];let t=0,tag='seen',cyc=null,bad=false;
         Object.keys(byLv).forEach((L)=>{const r=C.resolve(model,setup,{producer:pid,product:x,mode:m0,level:+L,slider:sl});if(!r.ok){bad=true;return}t+=r.out.v*byLv[L];tag=C.worst(tag,r.out.tag);if(r.cycle&&(!cyc||r.cycle.v>cyc.v))cyc=r.cycle});
-        return {id:x,t,tag,cyc,bad}});
+        return {id:x,t,tag,cyc,bad,lk:lockNote(x)}});
       return {name:P.name,total,items}});
     out.push({isl,bs})});
   return out}
-function islandsMakeText(){return islandsMake().map((o)=>String(o.isl).toUpperCase()+'\n'+o.bs.map((b)=>b.total+' '+(b.total===1?bsing(b.name):b.name)+': '+b.items.map((i)=>i.bad?plu(i.id)+' not worked out yet':plu(i.id)+' '+nf(i.t)+(i.cyc?', every '+mins(i.cyc.v):'')).join(' · ')).join('\n')).join('\n\n')}
+function islandsMakeText(){return islandsMake().map((o)=>String(o.isl).toUpperCase()+'\n'+o.bs.map((b)=>b.total+' '+(b.total===1?bsing(b.name):b.name)+': '+b.items.map((i)=>i.bad?plu(i.id)+' not worked out yet':plu(i.id)+' '+nf(i.t)+(i.cyc?', every '+mins(i.cyc.v):'')+(i.lk?' ('+i.lk+')':'')).join(' · ')).join('\n')).join('\n\n')}
 function islandsMakeCard(){const d=islandsMake();if(!d.length)return '';
   /* test 213: same look as "My islands at a glance" (title in island colour, arrow on the right, coloured island headings) */
   const lab=(b)=>(b.total===1?bsing(b.name):b.name);
   return `<div class="card statusline qcov isl-${esc(String(state.bIsland||model.islands[0]).toLowerCase())}"><details data-qcov="1"${state.qcOv?' open':''}><summary><span class="sl-title">What my islands make</span><span class="sl-head">Every product, with all your buildings</span></summary>
     <p class="sub" style="margin:8px 0 6px">What all your buildings of each kind would make of each product (Regular, biggest stack). A building makes one product at a time, so don't add up products from the same building.</p>
-    <div class="sl-list">${d.map((o)=>`<div class="sl-isl isl-${esc(String(o.isl).toLowerCase())}"><div class="sl-ih">${esc(pretty(o.isl))}</div>${o.bs.map((b)=>`<div class="qcovb"><div class="qcovh"><b>${b.total}</b> ${esc(lab(b))}</div>${b.items.map((i)=>`<div class="qcovi"><span>${esc(plu(i.id))}</span>${i.bad?'<span class="empty qcovbad">not worked out yet</span>':`<b class="qcovn">${tv(i.t,i.tag)}</b><span class="qcovt">${i.cyc?esc(mins(i.cyc.v)):''}</span>`}</div>`).join('')}</div>`).join('')}</div>`).join('')}</div>
+    <div class="sl-list">${d.map((o)=>`<div class="sl-isl isl-${esc(String(o.isl).toLowerCase())}"><div class="sl-ih">${esc(pretty(o.isl))}</div>${o.bs.map((b)=>`<div class="qcovb"><div class="qcovh"><b>${b.total}</b> ${esc(lab(b))}</div>${b.items.map((i)=>`<div class="qcovi"><span>${esc(plu(i.id))}${i.lk?`<small class="qclk">${esc(i.lk)}</small>`:''}</span>${i.bad?'<span class="empty qcovbad">not worked out yet</span>':`<b class="qcovn">${tv(i.t,i.tag)}</b><span class="qcovt">${i.cyc?esc(mins(i.cyc.v)):''}</span>`}</div>`).join('')}</div>`).join('')}</div>`).join('')}</div>
     <button type="button" class="btn" data-act="qcall" style="width:100%;margin-top:10px">Copy this list</button></details></div>`}
 function renderCollect(){
   const act=setup.groups.filter((g)=>g.state==='active'&&model.producers[g.producer]);
@@ -1410,7 +1415,7 @@ function projectDefaults(pr){if(!pr||!model)return;
   const before={groups:JSON.parse(JSON.stringify(setup.groups)),cellState:JSON.parse(JSON.stringify(setup.cellState||{}))};
   /* test 212: a group whose product was never chosen (blank) is filled in too; before, it showed the first product but was not counted */
   activeCells().forEach((c)=>{if(c.recs.every((g)=>g.product)&&c.product&&ids.has(c.product))return;
-    const P=model.producers[c.producer],prods=prodsOf(P);
+    const P=model.producers[c.producer],prods=prodsOk(P);
     const want=pr.products.map((p)=>p.product_id).find((id)=>prods.includes(id));if(!want)return;
     const ml=modeList(P,want),mode=ml.includes('regular')?'regular':ml[0];
     const slider=P.slider?(P.hasMaxCycles?'max':topOf(P,want,mode,c.level).top):1;
@@ -1434,7 +1439,7 @@ function allModeRow(c,ix,lines,isl){if(ix>0&&lines[ix-1].producer===c.producer)r
 function runeBadge(c){const id=c.product&&model.productRune&&model.productRune[c.product],r=id&&model.runes[id];if(!r)return '';const on=!!setup.runes[r.id];
   return `<span class="rbadge isl-${esc(String(r.island||'').toLowerCase())}${on?' on':''}" title="${esc(pretty(r.id))} rune ${on?'on':'off'}">${runeGlyph(r.id)}<span>${esc(pretty(r.id))} rune ${on?'on':'off'}</span></span>`}
 function groupLine(c,ids,single){
-  const P=model.producers[c.producer],prods=prodsOf(P),s=cellState(c);
+  const P=model.producers[c.producer],prods=prodsOk(P,c.product),s=cellState(c);
   const counted=!!(c.product&&ids.has(c.product));
   const ml=c.product?modeList(P,c.product):[],noModes=ml[0]==='none';
   const resBy={};ml.forEach((m)=>{resBy[m]=C.resolve(model,setup,{producer:c.producer,product:c.product,mode:m,level:c.level,slider:c.slider})});
