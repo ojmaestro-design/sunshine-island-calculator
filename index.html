@@ -1877,7 +1877,7 @@ function renderTournament(){
   ${setup.groups.length?`<p class="cvcount"><b>You can do ${ok} of ${n}</b> known tasks with your buildings.</p>`:`<p class="sub">Add your buildings in <a href="#buildings" data-sec="buildings">My buildings</a> first, then this tab works out which tasks you can do.</p>`}
   <p class="sub" style="margin:8px 0 0">Answers use Regular. If Regular isn\u2019t enough, it tells you whether Fine or Instant would work.</p>
   <label class="cvsearch">Find a product<input type="search" data-cq placeholder="e.g. jacket" value="${esc(state.cq||'')}" autocomplete="off" autocapitalize="none" spellcheck="false"></label>
-  <div class="cvfilt" role="group" aria-label="Show">${[['can','Can do now'],['not','Not yet'],['all','All']].concat(stars.length?[['star','★ Starred']]:[]).map(([k,l])=>`<button type="button" class="cchip${k===f?' on':''}" data-act="cvf" data-v="${k}" aria-pressed="${k===f}">${l}</button>`).join('')}</div></div>`;
+  <div class="cvfilt" role="group" aria-label="Show">${[['can','Can do now'],['not','Not yet'],['all','All tasks']].concat(stars.length?[['star','★ Starred']]:[]).map(([k,l])=>`<button type="button" class="cchip${k===f?' on':''}" data-act="cvf" data-v="${k}" aria-pressed="${k===f}">${l}</button>`).join('')}</div></div>`;
   state.rdone=null;
   /* test 172: island buttons, kept at the top while you scroll; a search looks on every island */
   if(state.cvIsl===undefined){try{state.cvIsl=localStorage.getItem('sunshine_cvisl_v1')||'all'}catch(_){state.cvIsl='all'}}
