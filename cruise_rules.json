@@ -1,7 +1,7 @@
 {
- "_note": "Cruise card rules, version 2 (2 Nov 2026). Not game data: a pattern read from the card list, used for SEEN / PREDICTED badges. Every value carries a state: seen, seen_time_inferred, predicted or unknown. Source: claude/CRUISE_LADDERS_CONFIRMED_2nov.md and cruise_cards_clean_30oct.json. Version 3 (7 Nov 2026): gaps filled from the koszz Cruise Ship sheet (non-red numbers only; red ones left out) and a Hammock card. Where our number and the sheet differ, ours is kept. Version 4 (8 Nov 2026): hearts/points audit (no points value was a hearts number); unproven 90-point sizes of Copper ore and Ostrich feed removed; Bamboo rice x30 added; Cotton yarn 1h30m confirmed on cards.",
+ "_note": "Cruise card rules, version 2 (2 Nov 2026). Not game data: a pattern read from the card list, used for SEEN / PREDICTED badges. Every value carries a state: seen, seen_time_inferred, predicted or unknown. Source: claude/CRUISE_LADDERS_CONFIRMED_2nov.md and cruise_cards_clean_30oct.json. Version 3 (7 Nov 2026): gaps filled from the koszz Cruise Ship sheet (non-red numbers only; red ones left out) and a Hammock card. Where our number and the sheet differ, ours is kept. Version 4 (8 Nov 2026): hearts/points audit (no points value was a hearts number); unproven 90-point sizes of Copper ore and Ostrich feed removed; Bamboo rice x30 added; Cotton yarn 1h30m confirmed on cards. Version 4.1 (16 Nov 2026): Longcase clock biggest card x53 (3h) from a card screenshot.",
  "version": 4,
- "updated": "2026-11-08 10:30",
+ "updated": "2026-11-16 11:15",
  "time_base_points": {
   "150": 90,
   "180": 108,
@@ -1879,13 +1879,11 @@
      "source": "koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)"
     },
     "1.5": {
-     "amount": null,
+     "amount": 53,
      "points": 162,
-     "state": "unknown",
-     "candidates": [
-      30
-     ],
-     "note": "Jump products change base again late; steps after the last seen one are not predicted."
+     "state": "seen",
+     "jo_card": "x53, 3h, 162 points (108 hearts), Jo's screenshot from Discord 8 Nov, read 16 Nov 2026",
+     "note": "The koszz sheet's 30 was wrong."
     }
    },
    "notes": []
