@@ -1400,8 +1400,8 @@
     "1.5": {
      "amount": 6,
      "points": 324,
-     "state": "seen_unchecked",
-     "source": "forum table 31 Oct (second-hand, unchecked, no time, blurry in places)"
+     "state": "seen",
+     "source": "Jo's card 16 Nov 2026 (x6, 6h, 324 points)"
     }
    },
    "notes": []
@@ -2222,7 +2222,7 @@
     }
    },
    "notes": [
-    "Time unknown (9h or 18h); points fit 324 ladder. Name matched from a \"Palm\" icon.",
+    "Time 9h confirmed on Jo's card 17 Nov 2026 (x315, 486 points). Name matched from a \"Palm\" icon.",
     "Time 540 min from the koszz Cruise Ship sheet (author-confirmed, read 7 Nov 2026)."
    ]
   },
@@ -2367,7 +2367,7 @@
     "1.2": {
      "amount": 504,
      "points": 259,
-     "state": "seen_time_inferred"
+     "state": "seen"
     },
     "1.3": {
      "amount": 546,
