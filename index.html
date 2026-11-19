@@ -7,7 +7,7 @@
 <title>Sunshine Calculator: free Sunshine Island calculator</title>
 <!-- V104: Browse products list, one saved card per product with a size strip, sizes green (can do) / grey (not yet); V92 (test 92): plain wording, ? panels, My buildings sections, Teal/Black/Light looks, separate quick-sum lines, shelter box fixed, undo stays 30 s; V91 jump highlight + bottom tabs and Back to top; V90 (checked at 340 to 430 px) slim status line + one Jump to drop-down on the island row; V89 island list folded, singular names, island remembered; V88 island-in-use line on My buildings; V87 reopen on the last tab used; V85 test build number in header chip; V84 Load my saved island button in the jump row; V83 no-building answer shows the scenario; V82 storage hint + link to My buildings on cruise cards; V81 jump links, None, reset ready counts, points totals; V80 Full now on Cruise cards; V79 warehouse box tidy; V78 warehouse wording; V77 card note shows number not code; V76 load-island keeps cards/layouts/runes; V75 undo bar sticky at the bottom; V74 2 Nov 2026: fields card, tab order, sticky picker, cruise rules v2, shortest-crop-first when a count is lowered -->
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="build" content="227">
+<meta name="build" content="228">
 <meta name="description" content="Free calculator for Sunshine Island: see which Cruise tasks you can do in the time and what you can make for your guild project, worked out from your own buildings, Library levels and runes. Fan-made, no sign-up.">
 <!-- test 223: link preview text (Discord, Facebook, Google) -->
 <meta property="og:type" content="website"><meta property="og:site_name" content="OJ Maestro"><meta property="og:title" content="Sunshine Calculator: free Sunshine Island calculator"><meta property="og:description" content="Free calculator for Sunshine Island: see which Cruise tasks you can do in the time and what you can make for your guild project, worked out from your own buildings, Library levels and runes. Fan-made, no sign-up."><meta property="og:url" content="https://ojmaestro-design.github.io/sunshine-island-calculator/"><meta property="og:image" content="https://ojmaestro-design.github.io/sunshine-island-calculator/icon-192.png"><meta name="twitter:card" content="summary">
@@ -665,6 +665,11 @@ input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea{f
 .qcovn{text-align:right;white-space:nowrap}.qcovt{text-align:left;white-space:nowrap;color:var(--muted,inherit)}.qcovbad{grid-column:2 / 4;text-align:right}
 .lobtns{display:flex;flex-wrap:wrap;gap:8px;align-items:center;width:100%;margin-top:6px}.lobtns .btn{flex:1 1 140px}.lobtns .lodel{margin-left:auto}
 .qclk{display:block;font-size:12px;color:var(--muted,#9aa)}
+.lmodes .gallbtn:not(.on){background:transparent!important;color:var(--muted);font-weight:500;border-width:2px;opacity:.8}
+.lmodes .gallbtn.on{border-width:3px;font-weight:800;opacity:1}
+.qcres.m-regular{border-color:var(--reg-edge)}.qcres.m-fine{border-color:var(--fine-edge)}.qcres.m-instant{border-color:var(--ins-edge)}
+.qcmodeh{display:block;width:fit-content;font-size:14px;font-weight:800;padding:2px 10px;border-radius:999px;margin-bottom:4px;color:#14211c}
+.qcres.m-regular .qcmodeh{background:var(--reg-bg)}.qcres.m-fine .qcmodeh{background:var(--fine-bg)}.qcres.m-instant .qcmodeh{background:var(--ins-bg)}
 </style>
 <!-- test 173: visitor counter (GoatCounter: no cookies, nothing personal) -->
 <script>/* test 217: opening the ?me=1 link once stops visits from this browser being counted */try{if(/[?&]me=1(&|$)/.test(location.search))localStorage.setItem('skipgc','t')}catch(e){}</script>
@@ -681,7 +686,7 @@ input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea{f
   <div id="feedback"></div>
   <p class="footer"><span class="meonly"><a href="#data">Data &amp; flags</a> · <button class="linkbtn" data-act="widthchk">Width check</button> · </span><button class="linkbtn" data-act="walkshow">Set-up guide</button> · <button class="linkbtn" data-act="key" aria-expanded="false" id="keybtn">How accurate are the numbers?</button></p>
   <div id="keyline"></div>
-  <p class="footer" style="margin-top:6px">Beta&nbsp;0.1 · test&nbsp;227 · data from the 28&nbsp;Oct&nbsp;2026 game update, checked against game&nbsp;1.3.40309 · ©&nbsp;2026 OJ&nbsp;Maestro</p>
+  <p class="footer" style="margin-top:6px">Beta&nbsp;0.1 · test&nbsp;228 · data from the 28&nbsp;Oct&nbsp;2026 game update, checked against game&nbsp;1.3.40309 · ©&nbsp;2026 OJ&nbsp;Maestro</p>
   <p class="footer" style="margin-top:0">Unofficial fan tool. Not made by, or connected to, the game's developers.</p>
   <div id="footlogo" class="footlogo"></div>
   <p class="totop"><button type="button" class="btn ghost small" data-act="totop">↑ Back to top</button></p>
@@ -1179,7 +1184,7 @@ function collectCard(pid,gs){const P=model.producers[pid],S=qcS();
   const mlab=ml[0]==='none'?'':' ('+modeLabel(P,prod,mode)+')';
   const line=plu(prod)+mlab+', '+n+' '+noun(n)+': '+nf(tot);
   if(bad)h+=`<p class="warn">Not worked out for every level yet.</p>`;
-  else h+=`<div class="qcres" role="status"><div><span class="big">${tv(tot,tag)}</span> <b>${esc(amtName(prod,tot))}</b><div class="qcsub">${cyc?'every '+esc(mins(cyc.v)):(mode==='instant'?'straight away':'')}${n<total||lvs.length>1?(cyc||mode==='instant'?'<br>':'')+'using your best: '+esc(used.join(', ')):''}</div></div><button type="button" class="btn" data-act="qccopy" data-t="${esc(line)}" aria-label="Copy: ${esc(line)}">Copy</button></div>`;
+  else h+=`<div class="qcres${ml[0]!=='none'?' m-'+esc(mode):''}" role="status"><div>${ml[0]!=='none'?`<div class="qcmodeh">${esc(modeLabel(P,prod,mode))}</div>`:''}<span class="big">${tv(tot,tag)}</span> <b>${esc(amtName(prod,tot))}</b><div class="qcsub">${cyc?'every '+esc(mins(cyc.v)):(mode==='instant'?'straight away':'')}${n<total||lvs.length>1?(cyc||mode==='instant'?'<br>':'')+'using your best: '+esc(used.join(', ')):''}</div></div><button type="button" class="btn" data-act="qccopy" data-t="${esc(line)}" aria-label="Copy: ${esc(line)}">Copy</button></div>`;
   /* the old full table and upgrade tips, folded away */
   let rows='',up='';
   ml.forEach((m)=>{let t2=0,tg='seen',cy=null,bd=false;lvs.forEach((L)=>{const r=R(prod,m,L);if(!r.ok){bd=true;return}t2+=r.out.v*byLv[L];tg=C.worst(tg,r.out.tag);if(r.cycle&&(!cy||r.cycle.v>cy.v))cy=r.cycle});
